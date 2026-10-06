@@ -131,9 +131,68 @@
 #chapter-0 .footnote { margin: 22px 0 0; font-size: 0.78rem; color: var(--ink-soft); min-height: 1.2em; }
 #chapter-0 .hint { margin: 18px 4px 0; font-size: 0.92rem; color: var(--ink-soft); }
 
+/* ---------- Map section ---------- */
+#chapter-0 .section-divider { height: 1px; background: var(--line); margin: 32px 0; }
+#chapter-0 .map-section {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(300px, 420px);
+  gap: 40px; align-items: start;
+}
+#chapter-0 .eyebrow-sm {
+  margin: 0 0 6px; font-size: 0.74rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal);
+}
+#chapter-0 .map-text h3 {
+  margin: 0 0 14px; font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.6vw, 1.8rem); line-height: 1.2;
+}
+#chapter-0 .seg {
+  display: inline-flex; margin: 0 0 16px; padding: 3px;
+  background: #eef0f3; border-radius: 999px;
+}
+#chapter-0 .seg button {
+  border: 0; background: transparent; color: var(--ink-soft);
+  border-radius: 999px; padding: 6px 14px;
+  font: inherit; font-size: 0.84rem; font-weight: 500; cursor: pointer;
+  transition: background .15s, color .15s;
+}
+#chapter-0 .seg button.active { background: #fff; color: var(--ink); box-shadow: 0 1px 3px rgba(20,33,61,.18); }
+#chapter-0 .seg button:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+#chapter-0 .map-insight { margin: 0 0 14px; max-width: 48ch; }
+#chapter-0 .map-callout {
+  margin: 0 0 14px; padding: 12px 14px; max-width: 48ch;
+  background: #fdf1ec; border-left: 4px solid var(--coral);
+  border-radius: 0 10px 10px 0; font-size: 0.9rem;
+}
+#chapter-0 .map-selected { margin: 0 0 8px; font-size: 0.9rem; color: var(--ink-soft); }
+#chapter-0 .map-selected a { color: var(--teal); }
+#chapter-0 .clear-btn {
+  margin-bottom: 14px; border: 1px solid var(--line); background: #fff; color: var(--ink);
+  border-radius: 999px; padding: 4px 12px; font: inherit; font-size: 0.82rem; cursor: pointer;
+}
+#chapter-0 .clear-btn:hover { border-color: var(--teal); }
+#chapter-0 .clear-btn[hidden], #chapter-0 .map-callout[hidden] { display: none; }
+#chapter-0 .map-note { margin: 4px 0 0; max-width: 48ch; font-size: 0.8rem; color: var(--ink-soft); }
+#chapter-0 .map-wrap { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+#chapter-0 .map-legend {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 14px;
+  font-size: 0.78rem; color: var(--ink-soft);
+}
+#chapter-0 .map-legend-title { font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.7rem; }
+#chapter-0 .map-legend-item i {
+  display: inline-block; width: 14px; height: 14px; margin-right: 5px;
+  border-radius: 3px; border: 1px solid rgba(20,33,61,.18); vertical-align: -3px;
+}
+#chapter-0 #map { line-height: 0; }
+#chapter-0 #map svg { overflow: visible; }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   #chapter-0 .controls { grid-template-columns: 1fr; gap: 20px; }
-  #chapter-0 .viz { grid-template-columns: 1fr; gap: 28px; }
+  #chapter-0 .viz, #chapter-0 .map-section { grid-template-columns: 1fr; gap: 28px; }
+  #chapter-0 .map-wrap { order: -1; }
   #chapter-0 .waffle-wrap { order: -1; }
 }
+
+/* Let grid columns shrink below their chart's current width (needed for resize) */
+#chapter-0 .viz > *, #chapter-0 .map-section > *, #chapter-0 .controls > * { min-width: 0; }

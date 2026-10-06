@@ -19,8 +19,8 @@
       <h2>Before we compare results, who actually sat the test?</h2>
       <p class="lede">
         NAPLAN scores only describe the students who take part. So we start with
-        the share of enrolled students who sat each test. Every square below is
-        about 1% of enrolled students.
+        the share of enrolled students who sat each test, first across Australia and
+        then state by state. In the waffle, every square is about 1% of enrolled students.
       </p>
     </header>
 
@@ -71,12 +71,38 @@
         </div>
       </div>
 
+      <!-- By state / territory -->
+      <div class="section-divider"></div>
+      <div class="map-section">
+        <div class="map-text">
+          <p class="eyebrow-sm">By state and territory</p>
+          <h3>Does participation depend on where you live?</h3>
+          <div class="seg" id="map-mode" role="group" aria-label="Map colour view">
+            <button type="button" data-mode="rate">Participation rate</button>
+            <button type="button" data-mode="diff">Difference from Australia</button>
+          </div>
+          <p class="map-insight" id="map-insight"></p>
+          <p class="map-callout" id="map-callout" hidden>
+            <strong>Why the 2026 dips?</strong> ACARA attributes the lower 2026 participation to
+            industrial action in Tasmanian government schools and localised flooding in the
+            Northern Territory. Tasmania's 2026 state-level results were not reported.
+          </p>
+          <p class="map-selected" id="map-selected"></p>
+          <button id="map-clear" class="clear-btn" type="button" hidden>✕ Clear selection</button>
+          <p class="map-note" id="map-note"></p>
+        </div>
+        <div class="map-wrap">
+          <div id="map" role="img" aria-label="Tile map of participation by state and territory"></div>
+          <div id="map-legend" class="map-legend"></div>
+        </div>
+      </div>
+
       <p class="footnote" id="footnote"></p>
     </div>
 
     <p class="hint">
-      <strong>Try this:</strong> slide from 2025 to 2026, then filter to Year 9 only.
-      Hover any square for details.
+      <strong>Try this:</strong> slide from 2025 to 2026 and watch the map, then click a
+      state to see its own waffle. Hover any square for details.
     </p>
   </section>
 
@@ -86,6 +112,10 @@
   <script src="lib/vega-embed.min.js"></script>
 
   <!-- Chapter scripts -->
+  <script src="chapter-0/js/shared.js"></script>
+  <script src="chapter-0/js/controls.js"></script>
   <script src="chapter-0/js/waffle.js"></script>
+  <script src="chapter-0/js/map.js"></script>
+  <script src="chapter-0/js/main.js"></script>
 </body>
 </html>
