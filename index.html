@@ -1,72 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NAPLAN Performance Trends · Australia</title>
 
-    <title>NAPLAN Performance Trend</title>
-
-    <!-- Global CSS -->
-    <link rel="stylesheet" href="css/global.css">
-
-    <!-- D3 -->
-    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
-
-    <!-- Vega -->
-    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-
-    <!-- Vega-Lite -->
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
-
-    <!-- Vega-Embed -->
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="chapter-0/css/chapter0.css">
+  <!-- Global styles, then one stylesheet per chapter -->
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="chapter-0/css/chapter-0.css" />
 </head>
-
 <body>
 
-    <main>
+  <!-- ============ CHAPTER 0 · PARTICIPATION ============ -->
+  <section id="chapter-0" class="chapter">
+    <header class="chapter-head">
+      <p class="eyebrow">Chapter 0 · Context</p>
+      <h2>Before we compare results, who actually sat the test?</h2>
+      <p class="lede">
+        NAPLAN scores only describe the students who take part. So we start with
+        the share of enrolled students who sat each test. Every square below is
+        about 1% of enrolled students.
+      </p>
+    </header>
 
-        <h1>NAPLAN Performance Trend</h1>
+    <div class="card" id="waffle-card">
+      <!-- Controls -->
+      <div class="controls">
+        <div class="control control-year">
+          <div class="control-label">
+            <span>Year</span>
+            <button id="play-btn" class="play" type="button" aria-label="Play through the years">▶ Play</button>
+          </div>
+          <input id="year-slider" type="range" aria-label="Calendar year" />
+          <div id="year-ticks" class="year-ticks"></div>
+        </div>
 
-        <section id="chapter0">
+        <div class="control">
+          <div class="control-label"><span>Year level</span></div>
+          <div id="level-chips" class="chips" role="group" aria-label="Filter by year level"></div>
+        </div>
 
-            <h2>Chapter 0 — NAPLAN Participation</h2>
-            
+        <div class="control">
+          <div class="control-label"><span>Assessment domain</span></div>
+          <div id="domain-chips" class="chips" role="group" aria-label="Filter by domain"></div>
+        </div>
+      </div>
 
+      <!-- Viz -->
+      <div class="viz">
+        <aside class="stat-panel">
+          <p class="stat-context" id="stat-context"></p>
+          <p class="stat-number"><span id="stat-pct">–</span><small>%</small></p>
+          <p class="stat-label">of enrolled students participated</p>
+          <p class="delta" id="stat-delta"></p>
+          <p class="sentence" id="stat-sentence"></p>
 
-            <div id="participation-waffle"></div>
-            
-            <!-- Year -->
-            <!-- <div class="chart-controls">
-                <div class="control-group">
+          <div class="mini">
+            <p class="mini-title">Trend for this selection</p>
+            <div id="trend"></div>
+          </div>
+        </aside>
 
-                    <label for="year-slider">
-                        Year:
-                        <span id="year-value">2026</span>
-                    </label>
+        <div class="waffle-wrap">
+          <div id="waffle" role="img"></div>
+          <div class="legend">
+            <span><i class="dot dot-in"></i>Participated</span>
+            <span><i class="dot dot-out"></i>Did not participate</span>
+          </div>
+        </div>
+      </div>
 
-                    <input
-                        type="range"
-                        id="year-slider"
-                        min="2023"
-                        max="2026"
-                        step="1"
-                        value="2026"
-                    >
+      <p class="footnote" id="footnote"></p>
+    </div>
 
-                </div>
-            </div> -->
+    <p class="hint">
+      <strong>Try this:</strong> slide from 2025 to 2026, then filter to Year 9 only.
+      Hover any square for details.
+    </p>
+  </section>
 
-        </section>
+  <!-- Vega stack (local copies: vega 5.33.1, vega-lite 5.23.0, vega-embed 6.29.0) -->
+  <script src="lib/vega.min.js"></script>
+  <script src="lib/vega-lite.min.js"></script>
+  <script src="lib/vega-embed.min.js"></script>
 
-    </main>
-
-    <!-- Chapter 0 JavaScript -->
-    <script type="module" src="chapter-0/js/main.js"></script>
-
+  <!-- Chapter scripts -->
+  <script src="chapter-0/js/waffle.js"></script>
 </body>
 </html>

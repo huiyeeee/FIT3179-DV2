@@ -1,32 +1,64 @@
-/* Custom formatting rule to protect your chart slots */
-#waffle-dashboard-container {
-  width: 100%;
-  min-height: 320px;    /* Prevents vertical squeezing */
-  display: block;
-  overflow-x: auto;     /* Injects a horizontal scrollbar if elements grow wide on small laptops */
-  padding: 15px;
-  box-sizing: border-box;
+:root {
+  --ink: #14213d;
+  --ink-soft: #4a5568;
+  --paper: #f7f3ec;
+  --card: #ffffff;
+  --line: #e4ddd0;
+  --teal: #1f6f8b;
+  --teal-soft: #e3f0f4;
+  --coral: #f0745a;
+  --good: #1b8a5a;
+  --bad: #c2410c;
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
-/* Style the native Vega-Lite form selectors layout box */
-.vega-binds {
-  display: flex;
-  flex-wrap: wrap;       /* Drops controls down if screen width is narrow */
-  gap: 15px;             /* Keeps clean gaps between filter items */
-  margin-bottom: 25px;   /* Pushes selectors cleanly above chart headings */
-  font-family: sans-serif;
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
 }
 
-.vega-bind {
-  display: inline-flex;
-  align-items: center;
-  font-weight: bold;
-  color: #444;
+.chapter {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 72px 24px;
 }
 
-.vega-bind select, .vega-bind input {
-  margin-left: 8px;      /* Spacing between text description and form entry box */
-  padding: 4px 8px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+.chapter-head { max-width: 680px; margin-bottom: 32px; }
+
+.eyebrow {
+  margin: 0 0 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+
+.chapter h2 {
+  margin: 0 0 14px;
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 4vw, 2.7rem);
+  line-height: 1.15;
+}
+
+.lede { margin: 0; font-size: 1.08rem; color: var(--ink-soft); }
+
+/* vega-tooltip theme */
+#vg-tooltip-element.vg-tooltip {
+  font-family: var(--font-body);
+  font-size: 13px;
+  border-radius: 8px;
+  border: none;
+  padding: 10px 12px;
+  box-shadow: 0 8px 24px rgba(20, 33, 61, 0.18);
 }

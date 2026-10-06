@@ -1,0 +1,721 @@
+year,year_level,domain,state,enrolled,participated,participation_pct
+2023,3,Grammar and Punctuation,Australia,322122,305173.0,94.73832896
+2023,3,Grammar and Punctuation,Australian Capital Territory,6095,5723.0,93.89663659
+2023,3,Grammar and Punctuation,New South Wales,99235,95825.0,96.5637124
+2023,3,Grammar and Punctuation,Northern Territory,3398,2732.0,80.40023543
+2023,3,Grammar and Punctuation,Queensland,68203,62929.0,92.26720232
+2023,3,Grammar and Punctuation,South Australia,21108,19983.0,94.6702672
+2023,3,Grammar and Punctuation,Tasmania,6375,6159.0,96.61176471
+2023,3,Grammar and Punctuation,Victoria,82011,77855.0,94.93238712
+2023,3,Grammar and Punctuation,Western Australia,35697,33967.0,95.15365437
+2023,3,Numeracy,Australia,322110,304914.0,94.66145106
+2023,3,Numeracy,Australian Capital Territory,6095,5729.0,93.99507793
+2023,3,Numeracy,New South Wales,99235,95680.0,96.4175946
+2023,3,Numeracy,Northern Territory,3398,2731.0,80.37080636
+2023,3,Numeracy,Queensland,68196,62812.0,92.1051088
+2023,3,Numeracy,South Australia,21108,19959.0,94.55656623
+2023,3,Numeracy,Tasmania,6375,6123.0,96.04705882
+2023,3,Numeracy,Victoria,82009,77965.0,95.06883391
+2023,3,Numeracy,Western Australia,35694,33915.0,95.01596907
+2023,3,Reading,Australia,322144,307079.0,95.32351992
+2023,3,Reading,Australian Capital Territory,6095,5761.0,94.52009844
+2023,3,Reading,New South Wales,99235,96258.0,97.00005039
+2023,3,Reading,Northern Territory,3398,2797.0,82.31312537
+2023,3,Reading,Queensland,68213,63469.0,93.04531394
+2023,3,Reading,South Australia,21108,20088.0,95.16770893
+2023,3,Reading,Tasmania,6378,6199.0,97.19347758
+2023,3,Reading,Victoria,82019,78353.0,95.53030395
+2023,3,Reading,Western Australia,35698,34154.0,95.67482772
+2023,3,Spelling,Australia,322122,305173.0,94.73832896
+2023,3,Spelling,Australian Capital Territory,6095,5723.0,93.89663659
+2023,3,Spelling,New South Wales,99235,95825.0,96.5637124
+2023,3,Spelling,Northern Territory,3398,2732.0,80.40023543
+2023,3,Spelling,Queensland,68203,62929.0,92.26720232
+2023,3,Spelling,South Australia,21108,19983.0,94.6702672
+2023,3,Spelling,Tasmania,6375,6159.0,96.61176471
+2023,3,Spelling,Victoria,82011,77855.0,94.93238712
+2023,3,Spelling,Western Australia,35697,33967.0,95.15365437
+2023,3,Writing,Australia,322152,304296.0,94.45727483
+2023,3,Writing,Australian Capital Territory,6095,5659.0,92.84659557
+2023,3,Writing,New South Wales,99235,95402.0,96.1374515
+2023,3,Writing,Northern Territory,3398,2734.0,80.45909358
+2023,3,Writing,Queensland,68212,63060.0,92.44707676
+2023,3,Writing,South Australia,21108,19841.0,93.99753648
+2023,3,Writing,Tasmania,6379,6101.0,95.64195015
+2023,3,Writing,Victoria,82021,77563.0,94.56480657
+2023,3,Writing,Western Australia,35704,33936.0,95.04817387
+2023,5,Grammar and Punctuation,Australia,328544,313187.0,95.32574024
+2023,5,Grammar and Punctuation,Australian Capital Territory,6048,5713.0,94.46097884
+2023,5,Grammar and Punctuation,New South Wales,102131,99124.0,97.05574214
+2023,5,Grammar and Punctuation,Northern Territory,3361,2772.0,82.47545373
+2023,5,Grammar and Punctuation,Queensland,70032,64889.0,92.6562143
+2023,5,Grammar and Punctuation,South Australia,21640,20657.0,95.45748614
+2023,5,Grammar and Punctuation,Tasmania,6343,6076.0,95.79063535
+2023,5,Grammar and Punctuation,Victoria,82863,79190.0,95.56738231
+2023,5,Grammar and Punctuation,Western Australia,36126,34766.0,96.23539833
+2023,5,Numeracy,Australia,328529,312703.0,95.18276925
+2023,5,Numeracy,Australian Capital Territory,6048,5715.0,94.49404762
+2023,5,Numeracy,New South Wales,102131,98963.0,96.89810146
+2023,5,Numeracy,Northern Territory,3361,2745.0,81.67212139
+2023,5,Numeracy,Queensland,70023,64719.0,92.42534596
+2023,5,Numeracy,South Australia,21640,20617.0,95.27264325
+2023,5,Numeracy,Tasmania,6343,6056.0,95.47532713
+2023,5,Numeracy,Victoria,82858,79202.0,95.58763185
+2023,5,Numeracy,Western Australia,36125,34686.0,96.016609
+2023,5,Reading,Australia,328564,314987.0,95.86777614
+2023,5,Reading,Australian Capital Territory,6048,5740.0,94.90740741
+2023,5,Reading,New South Wales,102131,99550.0,97.47285349
+2023,5,Reading,Northern Territory,3361,2798.0,83.24903303
+2023,5,Reading,Queensland,70039,65454.0,93.45364725
+2023,5,Reading,South Australia,21640,20779.0,96.02125693
+2023,5,Reading,Tasmania,6346,6127.0,96.54900725
+2023,5,Reading,Victoria,82869,79620.0,96.07935416
+2023,5,Reading,Western Australia,36130,34919.0,96.64821478
+2023,5,Spelling,Australia,328544,313187.0,95.32574024
+2023,5,Spelling,Australian Capital Territory,6048,5713.0,94.46097884
+2023,5,Spelling,New South Wales,102131,99124.0,97.05574214
+2023,5,Spelling,Northern Territory,3361,2772.0,82.47545373
+2023,5,Spelling,Queensland,70032,64889.0,92.6562143
+2023,5,Spelling,South Australia,21640,20657.0,95.45748614
+2023,5,Spelling,Tasmania,6343,6076.0,95.79063535
+2023,5,Spelling,Victoria,82863,79190.0,95.56738231
+2023,5,Spelling,Western Australia,36126,34766.0,96.23539833
+2023,5,Writing,Australia,328570,313925.0,95.54280671
+2023,5,Writing,Australian Capital Territory,6049,5735.0,94.80905935
+2023,5,Writing,New South Wales,102131,99073.0,97.00580627
+2023,5,Writing,Northern Territory,3361,2814.0,83.72508182
+2023,5,Writing,Queensland,70043,65286.0,93.20845766
+2023,5,Writing,South Australia,21640,20641.0,95.38354898
+2023,5,Writing,Tasmania,6346,6091.0,95.98172077
+2023,5,Writing,Victoria,82869,79417.0,95.83438922
+2023,5,Writing,Western Australia,36131,34868.0,96.50438682
+2023,7,Grammar and Punctuation,Australia,322515,302350.0,93.74757763
+2023,7,Grammar and Punctuation,Australian Capital Territory,6136,5752.0,93.74185137
+2023,7,Grammar and Punctuation,New South Wales,99534,95552.0,95.999357
+2023,7,Grammar and Punctuation,Northern Territory,3265,2554.0,78.22358346
+2023,7,Grammar and Punctuation,Queensland,70582,62730.0,88.87535066
+2023,7,Grammar and Punctuation,South Australia,21123,19884.0,94.13435592
+2023,7,Grammar and Punctuation,Tasmania,6460,6057.0,93.76160991
+2023,7,Grammar and Punctuation,Victoria,79801,75864.0,95.06647786
+2023,7,Grammar and Punctuation,Western Australia,35614,33957.0,95.34733532
+2023,7,Numeracy,Australia,322508,301616.0,93.52202116
+2023,7,Numeracy,Australian Capital Territory,6136,5751.0,93.72555411
+2023,7,Numeracy,New South Wales,99534,95202.0,95.64771837
+2023,7,Numeracy,Northern Territory,3265,2572.0,78.77488515
+2023,7,Numeracy,Queensland,70581,62643.0,88.75334722
+2023,7,Numeracy,South Australia,21123,19777.0,93.62779908
+2023,7,Numeracy,Tasmania,6461,6069.0,93.93282774
+2023,7,Numeracy,Victoria,79797,75724.0,94.89579809
+2023,7,Numeracy,Western Australia,35611,33878.0,95.13352616
+2023,7,Reading,Australia,322526,304722.0,94.47982488
+2023,7,Reading,Australian Capital Territory,6136,5813.0,94.73598436
+2023,7,Reading,New South Wales,99534,96059.0,96.50873069
+2023,7,Reading,Northern Territory,3265,2636.0,80.73506891
+2023,7,Reading,Queensland,70585,63363.0,89.76836438
+2023,7,Reading,South Australia,21123,20023.0,94.79240638
+2023,7,Reading,Tasmania,6461,6142.0,95.0626838
+2023,7,Reading,Victoria,79804,76422.0,95.76211719
+2023,7,Reading,Western Australia,35618,34264.0,96.19855129
+2023,7,Spelling,Australia,322515,302350.0,93.74757763
+2023,7,Spelling,Australian Capital Territory,6136,5752.0,93.74185137
+2023,7,Spelling,New South Wales,99534,95552.0,95.999357
+2023,7,Spelling,Northern Territory,3265,2554.0,78.22358346
+2023,7,Spelling,Queensland,70582,62730.0,88.87535066
+2023,7,Spelling,South Australia,21123,19884.0,94.13435592
+2023,7,Spelling,Tasmania,6460,6057.0,93.76160991
+2023,7,Spelling,Victoria,79801,75864.0,95.06647786
+2023,7,Spelling,Western Australia,35614,33957.0,95.34733532
+2023,7,Writing,Australia,322526,305591.0,94.74926053
+2023,7,Writing,Australian Capital Territory,6136,5820.0,94.85006519
+2023,7,Writing,New South Wales,99534,96238.0,96.68856873
+2023,7,Writing,Northern Territory,3265,2656.0,81.34762634
+2023,7,Writing,Queensland,70587,63901.0,90.52800091
+2023,7,Writing,South Australia,21123,20040.0,94.87288737
+2023,7,Writing,Tasmania,6460,6095.0,94.3498452
+2023,7,Writing,Victoria,79807,76457.0,95.80237323
+2023,7,Writing,Western Australia,35614,34384.0,96.54630202
+2023,9,Grammar and Punctuation,Australia,321029,284621.0,88.6589685
+2023,9,Grammar and Punctuation,Australian Capital Territory,5877,5266.0,89.60353922
+2023,9,Grammar and Punctuation,New South Wales,98748,91113.0,92.26819784
+2023,9,Grammar and Punctuation,Northern Territory,3078,2258.0,73.35932424
+2023,9,Grammar and Punctuation,Queensland,70315,56393.0,80.2005262
+2023,9,Grammar and Punctuation,South Australia,21841,19528.0,89.40982556
+2023,9,Grammar and Punctuation,Tasmania,6820,5959.0,87.37536657
+2023,9,Grammar and Punctuation,Victoria,79422,71898.0,90.52655436
+2023,9,Grammar and Punctuation,Western Australia,34928,32206.0,92.20682547
+2023,9,Numeracy,Australia,321029,283767.0,88.39294892
+2023,9,Numeracy,Australian Capital Territory,5877,5261.0,89.5184618
+2023,9,Numeracy,New South Wales,98748,90498.0,91.64540041
+2023,9,Numeracy,Northern Territory,3078,2249.0,73.06692658
+2023,9,Numeracy,Queensland,70315,56219.0,79.95306834
+2023,9,Numeracy,South Australia,21841,19409.0,88.86497871
+2023,9,Numeracy,Tasmania,6818,5985.0,87.78234086
+2023,9,Numeracy,Victoria,79424,71997.0,90.64892224
+2023,9,Numeracy,Western Australia,34928,32149.0,92.04363262
+2023,9,Reading,Australia,321034,287709.0,89.61947956
+2023,9,Reading,Australian Capital Territory,5877,5350.0,91.03283988
+2023,9,Reading,New South Wales,98748,91669.0,92.83124722
+2023,9,Reading,Northern Territory,3078,2312.0,75.1137102
+2023,9,Reading,Queensland,70319,57179.0,81.31372744
+2023,9,Reading,South Australia,21841,19755.0,90.44915526
+2023,9,Reading,Tasmania,6820,6109.0,89.57478006
+2023,9,Reading,Victoria,79421,72743.0,91.59164453
+2023,9,Reading,Western Australia,34930,32592.0,93.30661323
+2023,9,Spelling,Australia,321029,284621.0,88.6589685
+2023,9,Spelling,Australian Capital Territory,5877,5266.0,89.60353922
+2023,9,Spelling,New South Wales,98748,91113.0,92.26819784
+2023,9,Spelling,Northern Territory,3078,2258.0,73.35932424
+2023,9,Spelling,Queensland,70315,56393.0,80.2005262
+2023,9,Spelling,South Australia,21841,19528.0,89.40982556
+2023,9,Spelling,Tasmania,6820,5959.0,87.37536657
+2023,9,Spelling,Victoria,79422,71898.0,90.52655436
+2023,9,Spelling,Western Australia,34928,32206.0,92.20682547
+2023,9,Writing,Australia,321040,289001.0,90.0202467
+2023,9,Writing,Australian Capital Territory,5878,5354.0,91.0854032
+2023,9,Writing,New South Wales,98748,92050.0,93.21707781
+2023,9,Writing,Northern Territory,3078,2330.0,75.69850552
+2023,9,Writing,Queensland,70322,57784.0,82.17058673
+2023,9,Writing,South Australia,21841,19792.0,90.61856142
+2023,9,Writing,Tasmania,6820,6128.0,89.85337243
+2023,9,Writing,Victoria,79423,72862.0,91.73916876
+2023,9,Writing,Western Australia,34930,32701.0,93.6186659
+2024,3,Grammar and Punctuation,Australia,324666,307791.0,94.80235072
+2024,3,Grammar and Punctuation,Australian Capital Territory,5922,5559.0,93.87031408
+2024,3,Grammar and Punctuation,New South Wales,99027,95515.0,96.45349248
+2024,3,Grammar and Punctuation,Northern Territory,3445,2800.0,81.27721335
+2024,3,Grammar and Punctuation,Queensland,68799,63538.0,92.35308653
+2024,3,Grammar and Punctuation,South Australia,21198,20106.0,94.84857062
+2024,3,Grammar and Punctuation,Tasmania,6134,5884.0,95.92435605
+2024,3,Grammar and Punctuation,Victoria,82955,78875.0,95.08167079
+2024,3,Grammar and Punctuation,Western Australia,37186,35514.0,95.50368418
+2024,3,Numeracy,Australia,324659,307577.0,94.73847945
+2024,3,Numeracy,Australian Capital Territory,5922,5599.0,94.54576157
+2024,3,Numeracy,New South Wales,99027,95465.0,96.4030012
+2024,3,Numeracy,Northern Territory,3445,2806.0,81.45137881
+2024,3,Numeracy,Queensland,68797,63310.0,92.02436153
+2024,3,Numeracy,South Australia,21198,20093.0,94.78724408
+2024,3,Numeracy,Tasmania,6133,5898.0,96.16827001
+2024,3,Numeracy,Victoria,82955,78976.0,95.20342354
+2024,3,Numeracy,Western Australia,37182,35430.0,95.2880426
+2024,3,Reading,Australia,324674,309724.0,95.39538121
+2024,3,Reading,Australian Capital Territory,5922,5602.0,94.59642013
+2024,3,Reading,New South Wales,99027,96005.0,96.94830703
+2024,3,Reading,Northern Territory,3445,2869.0,83.28011611
+2024,3,Reading,Queensland,68805,64095.0,93.15456726
+2024,3,Reading,South Australia,21198,20197.0,95.2778564
+2024,3,Reading,Tasmania,6134,5920.0,96.51124878
+2024,3,Reading,Victoria,82955,79321.0,95.61931168
+2024,3,Reading,Western Australia,37188,35715.0,96.03904485
+2024,3,Spelling,Australia,324666,307791.0,94.80235072
+2024,3,Spelling,Australian Capital Territory,5922,5559.0,93.87031408
+2024,3,Spelling,New South Wales,99027,95515.0,96.45349248
+2024,3,Spelling,Northern Territory,3445,2800.0,81.27721335
+2024,3,Spelling,Queensland,68799,63538.0,92.35308653
+2024,3,Spelling,South Australia,21198,20106.0,94.84857062
+2024,3,Spelling,Tasmania,6134,5884.0,95.92435605
+2024,3,Spelling,Victoria,82955,78875.0,95.08167079
+2024,3,Spelling,Western Australia,37186,35514.0,95.50368418
+2024,3,Writing,Australia,324652,307021.0,94.56926186
+2024,3,Writing,Australian Capital Territory,5922,5518.0,93.17798041
+2024,3,Writing,New South Wales,99027,94947.0,95.87991154
+2024,3,Writing,Northern Territory,3445,2831.0,82.17706821
+2024,3,Writing,Queensland,68771,63655.0,92.56081779
+2024,3,Writing,South Australia,21198,19966.0,94.18813096
+2024,3,Writing,Tasmania,6134,5864.0,95.59830453
+2024,3,Writing,Victoria,82947,78554.0,94.70384703
+2024,3,Writing,Western Australia,37208,35686.0,95.90948183
+2024,5,Grammar and Punctuation,Australia,328474,312864.0,95.24772128
+2024,5,Grammar and Punctuation,Australian Capital Territory,5984,5655.0,94.50200535
+2024,5,Grammar and Punctuation,New South Wales,100974,97929.0,96.98437221
+2024,5,Grammar and Punctuation,Northern Territory,3417,2890.0,84.57711443
+2024,5,Grammar and Punctuation,Queensland,70490,65210.0,92.50957583
+2024,5,Grammar and Punctuation,South Australia,21709,20642.0,95.08498779
+2024,5,Grammar and Punctuation,Tasmania,6427,6193.0,96.35911
+2024,5,Grammar and Punctuation,Victoria,82815,79133.0,95.55394554
+2024,5,Grammar and Punctuation,Western Australia,36658,35212.0,96.05543128
+2024,5,Numeracy,Australia,328459,312356.0,95.09740942
+2024,5,Numeracy,Australian Capital Territory,5984,5639.0,94.23462567
+2024,5,Numeracy,New South Wales,100974,97804.0,96.86057797
+2024,5,Numeracy,Northern Territory,3417,2885.0,84.43078724
+2024,5,Numeracy,Queensland,70478,64880.0,92.05709583
+2024,5,Numeracy,South Australia,21709,20633.0,95.04353033
+2024,5,Numeracy,Tasmania,6427,6185.0,96.23463513
+2024,5,Numeracy,Victoria,82815,79227.0,95.66745155
+2024,5,Numeracy,Western Australia,36655,35103.0,95.76592552
+2024,5,Reading,Australia,328482,314867.0,95.85517623
+2024,5,Reading,Australian Capital Territory,5984,5694.0,95.15374332
+2024,5,Reading,New South Wales,100974,98387.0,97.43795432
+2024,5,Reading,Northern Territory,3417,2928.0,85.68920105
+2024,5,Reading,Queensland,70496,65812.0,93.35565138
+2024,5,Reading,South Australia,21709,20770.0,95.674605
+2024,5,Reading,Tasmania,6427,6236.0,97.02816244
+2024,5,Reading,Victoria,82815,79628.0,96.15166335
+2024,5,Reading,Western Australia,36660,35412.0,96.59574468
+2024,5,Spelling,Australia,328474,312864.0,95.24772128
+2024,5,Spelling,Australian Capital Territory,5984,5655.0,94.50200535
+2024,5,Spelling,New South Wales,100974,97929.0,96.98437221
+2024,5,Spelling,Northern Territory,3417,2890.0,84.57711443
+2024,5,Spelling,Queensland,70490,65210.0,92.50957583
+2024,5,Spelling,South Australia,21709,20642.0,95.08498779
+2024,5,Spelling,Tasmania,6427,6193.0,96.35911
+2024,5,Spelling,Victoria,82815,79133.0,95.55394554
+2024,5,Spelling,Western Australia,36658,35212.0,96.05543128
+2024,5,Writing,Australia,328489,313947.0,95.57306333
+2024,5,Writing,Australian Capital Territory,5984,5665.0,94.66911765
+2024,5,Writing,New South Wales,100974,97881.0,96.93683522
+2024,5,Writing,Northern Territory,3417,2933.0,85.83552824
+2024,5,Writing,Queensland,70501,65776.0,93.2979674
+2024,5,Writing,South Australia,21709,20689.0,95.30148786
+2024,5,Writing,Tasmania,6427,6194.0,96.37466936
+2024,5,Writing,Victoria,82815,79423.0,95.90412365
+2024,5,Writing,Western Australia,36662,35386.0,96.51955703
+2024,7,Grammar and Punctuation,Australia,326426,305864.0,93.70086942
+2024,7,Grammar and Punctuation,Australian Capital Territory,6067,5711.0,94.13219054
+2024,7,Grammar and Punctuation,New South Wales,100863,96871.0,96.04215619
+2024,7,Grammar and Punctuation,Northern Territory,3294,2581.0,78.35458409
+2024,7,Grammar and Punctuation,Queensland,70650,62561.0,88.55060156
+2024,7,Grammar and Punctuation,South Australia,21843,20482.0,93.7691709
+2024,7,Grammar and Punctuation,Tasmania,6547,6159.0,94.07362151
+2024,7,Grammar and Punctuation,Victoria,81192,77272.0,95.17193812
+2024,7,Grammar and Punctuation,Western Australia,35970,34227.0,95.15429525
+2024,7,Numeracy,Australia,326425,305021.0,93.44290419
+2024,7,Numeracy,Australian Capital Territory,6067,5714.0,94.18163837
+2024,7,Numeracy,New South Wales,100863,96530.0,95.70407384
+2024,7,Numeracy,Northern Territory,3294,2553.0,77.50455373
+2024,7,Numeracy,Queensland,70649,62266.0,88.13429773
+2024,7,Numeracy,South Australia,21843,20439.0,93.5723115
+2024,7,Numeracy,Tasmania,6547,6165.0,94.16526653
+2024,7,Numeracy,Victoria,81192,77255.0,95.1510001
+2024,7,Numeracy,Western Australia,35970,34099.0,94.79844315
+2024,7,Reading,Australia,326431,308344.0,94.45916595
+2024,7,Reading,Australian Capital Territory,6067,5757.0,94.89039064
+2024,7,Reading,New South Wales,100863,97381.0,96.54779255
+2024,7,Reading,Northern Territory,3294,2635.0,79.99392835
+2024,7,Reading,Queensland,70653,63293.0,89.58289103
+2024,7,Reading,South Australia,21843,20706.0,94.79467106
+2024,7,Reading,Tasmania,6549,6236.0,95.22064437
+2024,7,Reading,Victoria,81192,77821.0,95.84811311
+2024,7,Reading,Western Australia,35970,34515.0,95.95496247
+2024,7,Spelling,Australia,326426,305864.0,93.70086942
+2024,7,Spelling,Australian Capital Territory,6067,5711.0,94.13219054
+2024,7,Spelling,New South Wales,100863,96871.0,96.04215619
+2024,7,Spelling,Northern Territory,3294,2581.0,78.35458409
+2024,7,Spelling,Queensland,70650,62561.0,88.55060156
+2024,7,Spelling,South Australia,21843,20482.0,93.7691709
+2024,7,Spelling,Tasmania,6547,6159.0,94.07362151
+2024,7,Spelling,Victoria,81192,77272.0,95.17193812
+2024,7,Spelling,Western Australia,35970,34227.0,95.15429525
+2024,7,Writing,Australia,326441,309188.0,94.7148183
+2024,7,Writing,Australian Capital Territory,6067,5754.0,94.84094281
+2024,7,Writing,New South Wales,100863,97482.0,96.64792838
+2024,7,Writing,Northern Territory,3294,2676.0,81.23861566
+2024,7,Writing,Queensland,70657,63799.0,90.29395531
+2024,7,Writing,South Australia,21843,20688.0,94.7122648
+2024,7,Writing,Tasmania,6549,6227.0,95.08321881
+2024,7,Writing,Victoria,81192,78014.0,96.08582126
+2024,7,Writing,Western Australia,35976,34548.0,96.03068712
+2024,9,Grammar and Punctuation,Australia,326300,290147.0,88.92031873
+2024,9,Grammar and Punctuation,Australian Capital Territory,6101,5409.0,88.65759712
+2024,9,Grammar and Punctuation,New South Wales,99821,92250.0,92.41542361
+2024,9,Grammar and Punctuation,Northern Territory,3117,2203.0,70.67693295
+2024,9,Grammar and Punctuation,Queensland,72394,58419.0,80.69591403
+2024,9,Grammar and Punctuation,South Australia,21863,19550.0,89.42048209
+2024,9,Grammar and Punctuation,Tasmania,6676,5921.0,88.69083283
+2024,9,Grammar and Punctuation,Victoria,80740,73602.0,91.15927669
+2024,9,Grammar and Punctuation,Western Australia,35588,32793.0,92.14622907
+2024,9,Numeracy,Australia,326297,289159.0,88.61834464
+2024,9,Numeracy,Australian Capital Territory,6101,5394.0,88.41173578
+2024,9,Numeracy,New South Wales,99821,91920.0,92.08483185
+2024,9,Numeracy,Northern Territory,3117,2151.0,69.00866218
+2024,9,Numeracy,Queensland,72389,57935.0,80.03287792
+2024,9,Numeracy,South Australia,21863,19467.0,89.04084526
+2024,9,Numeracy,Tasmania,6676,5917.0,88.63091672
+2024,9,Numeracy,Victoria,80740,73520.0,91.05771613
+2024,9,Numeracy,Western Australia,35590,32855.0,92.31525709
+2024,9,Reading,Australia,326308,293342.0,89.89727497
+2024,9,Reading,Australian Capital Territory,6102,5469.0,89.62635202
+2024,9,Reading,New South Wales,99821,93049.0,93.21585638
+2024,9,Reading,Northern Territory,3117,2211.0,70.93358999
+2024,9,Reading,Queensland,72396,59226.0,81.8083872
+2024,9,Reading,South Australia,21863,19768.0,90.41760051
+2024,9,Reading,Tasmania,6677,5996.0,89.80080875
+2024,9,Reading,Victoria,80740,74409.0,92.15878127
+2024,9,Reading,Western Australia,35592,33214.0,93.31872331
+2024,9,Spelling,Australia,326300,290147.0,88.92031873
+2024,9,Spelling,Australian Capital Territory,6101,5409.0,88.65759712
+2024,9,Spelling,New South Wales,99821,92250.0,92.41542361
+2024,9,Spelling,Northern Territory,3117,2203.0,70.67693295
+2024,9,Spelling,Queensland,72394,58419.0,80.69591403
+2024,9,Spelling,South Australia,21863,19550.0,89.42048209
+2024,9,Spelling,Tasmania,6676,5921.0,88.69083283
+2024,9,Spelling,Victoria,80740,73602.0,91.15927669
+2024,9,Spelling,Western Australia,35588,32793.0,92.14622907
+2024,9,Writing,Australia,326308,294533.0,90.26226755
+2024,9,Writing,Australian Capital Territory,6100,5487.0,89.95081967
+2024,9,Writing,New South Wales,99821,93150.0,93.3170375
+2024,9,Writing,Northern Territory,3117,2268.0,72.76227141
+2024,9,Writing,Queensland,72398,59942.0,82.79510484
+2024,9,Writing,South Australia,21863,19767.0,90.41302657
+2024,9,Writing,Tasmania,6677,6046.0,90.54964805
+2024,9,Writing,Victoria,80740,74618.0,92.41763686
+2024,9,Writing,Western Australia,35592,33255.0,93.43391773
+2025,3,Grammar and Punctuation,Australia,324397,308117.0,94.9814579
+2025,3,Grammar and Punctuation,Australian Capital Territory,6066,5748.0,94.75766568
+2025,3,Grammar and Punctuation,New South Wales,99333,96141.0,96.7865664
+2025,3,Grammar and Punctuation,Northern Territory,3371,2833.0,84.04034411
+2025,3,Grammar and Punctuation,Queensland,67913,62750.0,92.39762637
+2025,3,Grammar and Punctuation,South Australia,21037,19857.0,94.3908352
+2025,3,Grammar and Punctuation,Tasmania,6419,6160.0,95.9651036
+2025,3,Grammar and Punctuation,Victoria,83245,79323.0,95.28860592
+2025,3,Grammar and Punctuation,Western Australia,37013,35305.0,95.38540513
+2025,3,Numeracy,Australia,324376,308038.0,94.96325252
+2025,3,Numeracy,Australian Capital Territory,6064,5745.0,94.73944591
+2025,3,Numeracy,New South Wales,99333,96061.0,96.70602921
+2025,3,Numeracy,Northern Territory,3371,2853.0,84.63363987
+2025,3,Numeracy,Queensland,67910,62555.0,92.11456339
+2025,3,Numeracy,South Australia,21037,19889.0,94.54294814
+2025,3,Numeracy,Tasmania,6417,6161.0,96.01059685
+2025,3,Numeracy,Victoria,83240,79467.0,95.4673234
+2025,3,Numeracy,Western Australia,37004,35307.0,95.4140093
+2025,3,Reading,Australia,324404,309713.0,95.47138753
+2025,3,Reading,Australian Capital Territory,6066,5767.0,95.07088691
+2025,3,Reading,New South Wales,99333,96463.0,97.11072856
+2025,3,Reading,Northern Territory,3371,2881.0,85.46425393
+2025,3,Reading,Queensland,67914,63217.0,93.08390023
+2025,3,Reading,South Australia,21037,19947.0,94.81865285
+2025,3,Reading,Tasmania,6420,6201.0,96.58878505
+2025,3,Reading,Victoria,83251,79742.0,95.78503562
+2025,3,Reading,Western Australia,37012,35495.0,95.9013293
+2025,3,Spelling,Australia,324397,308117.0,94.9814579
+2025,3,Spelling,Australian Capital Territory,6066,5748.0,94.75766568
+2025,3,Spelling,New South Wales,99333,96141.0,96.7865664
+2025,3,Spelling,Northern Territory,3371,2833.0,84.04034411
+2025,3,Spelling,Queensland,67913,62750.0,92.39762637
+2025,3,Spelling,South Australia,21037,19857.0,94.3908352
+2025,3,Spelling,Tasmania,6419,6160.0,95.9651036
+2025,3,Spelling,Victoria,83245,79323.0,95.28860592
+2025,3,Spelling,Western Australia,37013,35305.0,95.38540513
+2025,3,Writing,Australia,324241,306874.0,94.6437989
+2025,3,Writing,Australian Capital Territory,6067,5710.0,94.11570793
+2025,3,Writing,New South Wales,99333,95436.0,96.07683247
+2025,3,Writing,Northern Territory,3371,2882.0,85.49391872
+2025,3,Writing,Queensland,67924,62874.0,92.56521995
+2025,3,Writing,South Australia,21037,19758.0,93.92023578
+2025,3,Writing,Tasmania,6420,6127.0,95.43613707
+2025,3,Writing,Victoria,83256,78855.0,94.71389449
+2025,3,Writing,Western Australia,36833,35232.0,95.65335433
+2025,5,Grammar and Punctuation,Australia,329450,314219.0,95.37684019
+2025,5,Grammar and Punctuation,Australian Capital Territory,6162,5863.0,95.14767932
+2025,5,Grammar and Punctuation,New South Wales,100435,97542.0,97.11953004
+2025,5,Grammar and Punctuation,Northern Territory,3439,2847.0,82.78569352
+2025,5,Grammar and Punctuation,Queensland,70352,65114.0,92.55458267
+2025,5,Grammar and Punctuation,South Australia,21557,20484.0,95.02249849
+2025,5,Grammar and Punctuation,Tasmania,6414,6172.0,96.22700343
+2025,5,Grammar and Punctuation,Victoria,84187,80689.0,95.84496419
+2025,5,Grammar and Punctuation,Western Australia,36904,35508.0,96.21721223
+2025,5,Numeracy,Australia,329439,313776.0,95.24555381
+2025,5,Numeracy,Australian Capital Territory,6161,5855.0,95.03327382
+2025,5,Numeracy,New South Wales,100435,97446.0,97.02394584
+2025,5,Numeracy,Northern Territory,3439,2873.0,83.54172725
+2025,5,Numeracy,Queensland,70348,64835.0,92.16324558
+2025,5,Numeracy,South Australia,21557,20454.0,94.88333256
+2025,5,Numeracy,Tasmania,6414,6171.0,96.21141254
+2025,5,Numeracy,Victoria,84187,80695.0,95.85209118
+2025,5,Numeracy,Western Australia,36898,35447.0,96.06753754
+2025,5,Reading,Australia,329454,315847.0,95.86983312
+2025,5,Reading,Australian Capital Territory,6163,5885.0,95.4892098
+2025,5,Reading,New South Wales,100435,97849.0,97.42520038
+2025,5,Reading,Northern Territory,3439,2903.0,84.41407386
+2025,5,Reading,Queensland,70354,65593.0,93.23279416
+2025,5,Reading,South Australia,21557,20599.0,95.5559679
+2025,5,Reading,Tasmania,6414,6223.0,97.02213907
+2025,5,Reading,Victoria,84188,81112.0,96.34627263
+2025,5,Reading,Western Australia,36904,35683.0,96.69141556
+2025,5,Spelling,Australia,329450,314219.0,95.37684019
+2025,5,Spelling,Australian Capital Territory,6162,5863.0,95.14767932
+2025,5,Spelling,New South Wales,100435,97542.0,97.11953004
+2025,5,Spelling,Northern Territory,3439,2847.0,82.78569352
+2025,5,Spelling,Queensland,70352,65114.0,92.55458267
+2025,5,Spelling,South Australia,21557,20484.0,95.02249849
+2025,5,Spelling,Tasmania,6414,6172.0,96.22700343
+2025,5,Spelling,Victoria,84187,80689.0,95.84496419
+2025,5,Spelling,Western Australia,36904,35508.0,96.21721223
+2025,5,Writing,Australia,329456,315314.0,95.70746928
+2025,5,Writing,Australian Capital Territory,6163,5880.0,95.40808048
+2025,5,Writing,New South Wales,100435,97597.0,97.17429183
+2025,5,Writing,Northern Territory,3439,2915.0,84.7630125
+2025,5,Writing,Queensland,70358,65589.0,93.22180847
+2025,5,Writing,South Australia,21557,20560.0,95.37505219
+2025,5,Writing,Tasmania,6414,6199.0,96.64795759
+2025,5,Writing,Victoria,84186,80937.0,96.14068848
+2025,5,Writing,Western Australia,36904,35637.0,96.56676783
+2025,7,Grammar and Punctuation,Australia,334287,314995.0,94.22891109
+2025,7,Grammar and Punctuation,Australian Capital Territory,6279,5878.0,93.61363274
+2025,7,Grammar and Punctuation,New South Wales,102544,98713.0,96.26404275
+2025,7,Grammar and Punctuation,Northern Territory,3260,2672.0,81.96319018
+2025,7,Grammar and Punctuation,Queensland,71944,64606.0,89.80040031
+2025,7,Grammar and Punctuation,South Australia,22091,20770.0,94.02018922
+2025,7,Grammar and Punctuation,Tasmania,6342,5979.0,94.27625355
+2025,7,Grammar and Punctuation,Victoria,84804,81005.0,95.52025848
+2025,7,Grammar and Punctuation,Western Australia,37023,35372.0,95.54060989
+2025,7,Numeracy,Australia,334286,314365.0,94.04073159
+2025,7,Numeracy,Australian Capital Territory,6279,5868.0,93.45437172
+2025,7,Numeracy,New South Wales,102544,98453.0,96.01049306
+2025,7,Numeracy,Northern Territory,3260,2668.0,81.8404908
+2025,7,Numeracy,Queensland,71944,64288.0,89.35838986
+2025,7,Numeracy,South Australia,22091,20687.0,93.6444706
+2025,7,Numeracy,Tasmania,6341,5967.0,94.10187668
+2025,7,Numeracy,Victoria,84803,81057.0,95.58270344
+2025,7,Numeracy,Western Australia,37024,35377.0,95.55153414
+2025,7,Reading,Australia,334292,317171.0,94.87842964
+2025,7,Reading,Australian Capital Territory,6279,5927.0,94.39401179
+2025,7,Reading,New South Wales,102544,99197.0,96.73603526
+2025,7,Reading,Northern Territory,3260,2728.0,83.6809816
+2025,7,Reading,Queensland,71947,65090.0,90.46937329
+2025,7,Reading,South Australia,22091,20904.0,94.62677108
+2025,7,Reading,Tasmania,6343,6062.0,95.5699196
+2025,7,Reading,Victoria,84803,81553.0,96.16758841
+2025,7,Reading,Western Australia,37025,35710.0,96.44834571
+2025,7,Spelling,Australia,334287,314995.0,94.22891109
+2025,7,Spelling,Australian Capital Territory,6279,5878.0,93.61363274
+2025,7,Spelling,New South Wales,102544,98713.0,96.26404275
+2025,7,Spelling,Northern Territory,3260,2672.0,81.96319018
+2025,7,Spelling,Queensland,71944,64606.0,89.80040031
+2025,7,Spelling,South Australia,22091,20770.0,94.02018922
+2025,7,Spelling,Tasmania,6342,5979.0,94.27625355
+2025,7,Spelling,Victoria,84804,81005.0,95.52025848
+2025,7,Spelling,Western Australia,37023,35372.0,95.54060989
+2025,7,Writing,Australia,334293,318067.0,95.14617416
+2025,7,Writing,Australian Capital Territory,6280,5947.0,94.69745223
+2025,7,Writing,New South Wales,102544,99373.0,96.9076689
+2025,7,Writing,Northern Territory,3260,2766.0,84.84662577
+2025,7,Writing,Queensland,71950,65551.0,91.10632384
+2025,7,Writing,South Australia,22091,20980.0,94.97080259
+2025,7,Writing,Tasmania,6343,6044.0,95.2861422
+2025,7,Writing,Victoria,84802,81721.0,96.36683097
+2025,7,Writing,Western Australia,37023,35685.0,96.38603031
+2025,9,Grammar and Punctuation,Australia,327158,293860.0,89.82204317
+2025,9,Grammar and Punctuation,Australian Capital Territory,6131,5509.0,89.85483608
+2025,9,Grammar and Punctuation,New South Wales,100091,92864.0,92.77957059
+2025,9,Grammar and Punctuation,Northern Territory,3232,2362.0,73.08168317
+2025,9,Grammar and Punctuation,Queensland,71508,59264.0,82.87744029
+2025,9,Grammar and Punctuation,South Australia,21567,19300.0,89.4885705
+2025,9,Grammar and Punctuation,Tasmania,6456,5740.0,88.90954151
+2025,9,Grammar and Punctuation,Victoria,81738,75027.0,91.78962049
+2025,9,Grammar and Punctuation,Western Australia,36435,33794.0,92.75147523
+2025,9,Numeracy,Australia,327153,293045.0,89.57429704
+2025,9,Numeracy,Australian Capital Territory,6131,5500.0,89.7080411
+2025,9,Numeracy,New South Wales,100091,92493.0,92.40890789
+2025,9,Numeracy,Northern Territory,3232,2392.0,74.00990099
+2025,9,Numeracy,Queensland,71504,58821.0,82.26253077
+2025,9,Numeracy,South Australia,21567,19179.0,88.92752817
+2025,9,Numeracy,Tasmania,6454,5726.0,88.72017354
+2025,9,Numeracy,Victoria,81738,75093.0,91.87036629
+2025,9,Numeracy,Western Australia,36436,33841.0,92.87792293
+2025,9,Reading,Australia,327166,296660.0,90.67568146
+2025,9,Reading,Australian Capital Territory,6131,5549.0,90.5072582
+2025,9,Reading,New South Wales,100091,93508.0,93.42298508
+2025,9,Reading,Northern Territory,3232,2439.0,75.46410891
+2025,9,Reading,Queensland,71513,59890.0,83.74701103
+2025,9,Reading,South Australia,21567,19476.0,90.30463208
+2025,9,Reading,Tasmania,6456,5836.0,90.39653036
+2025,9,Reading,Victoria,81739,75784.0,92.71461603
+2025,9,Reading,Western Australia,36437,34178.0,93.80025798
+2025,9,Spelling,Australia,327158,293860.0,89.82204317
+2025,9,Spelling,Australian Capital Territory,6131,5509.0,89.85483608
+2025,9,Spelling,New South Wales,100091,92864.0,92.77957059
+2025,9,Spelling,Northern Territory,3232,2362.0,73.08168317
+2025,9,Spelling,Queensland,71508,59264.0,82.87744029
+2025,9,Spelling,South Australia,21567,19300.0,89.4885705
+2025,9,Spelling,Tasmania,6456,5740.0,88.90954151
+2025,9,Spelling,Victoria,81738,75027.0,91.78962049
+2025,9,Spelling,Western Australia,36435,33794.0,92.75147523
+2025,9,Writing,Australia,327177,298116.0,91.11765191
+2025,9,Writing,Australian Capital Territory,6132,5582.0,91.03065884
+2025,9,Writing,New South Wales,100091,93820.0,93.73470142
+2025,9,Writing,Northern Territory,3232,2485.0,76.88737624
+2025,9,Writing,Queensland,71518,60484.0,84.57171621
+2025,9,Writing,South Australia,21567,19506.0,90.44373348
+2025,9,Writing,Tasmania,6456,5855.0,90.69083024
+2025,9,Writing,Victoria,81738,76131.0,93.14027747
+2025,9,Writing,Western Australia,36443,34253.0,93.99061548
+2026,3,Grammar and Punctuation,Australia,319482,300297.0,93.99496685
+2026,3,Grammar and Punctuation,Australian Capital Territory,5644,5357.0,94.91495393
+2026,3,Grammar and Punctuation,New South Wales,97455,93921.0,96.37371094
+2026,3,Grammar and Punctuation,Northern Territory,3274,2544.0,77.70311546
+2026,3,Grammar and Punctuation,Queensland,66952,61968.0,92.55586092
+2026,3,Grammar and Punctuation,South Australia,20746,19469.0,93.84459655
+2026,3,Grammar and Punctuation,Tasmania,6026,3433.0,56.96979754
+2026,3,Grammar and Punctuation,Victoria,82628,78570.0,95.08883187
+2026,3,Grammar and Punctuation,Western Australia,36757,35035.0,95.31517806
+2026,3,Numeracy,Australia,319474,300043.0,93.91781491
+2026,3,Numeracy,Australian Capital Territory,5644,5372.0,95.18072289
+2026,3,Numeracy,New South Wales,97455,93826.0,96.27623005
+2026,3,Numeracy,Northern Territory,3274,2575.0,78.64996946
+2026,3,Numeracy,Queensland,66944,61802.0,92.31895315
+2026,3,Numeracy,South Australia,20746,19487.0,93.93136026
+2026,3,Numeracy,Tasmania,6026,3432.0,56.95320279
+2026,3,Numeracy,Victoria,82628,78533.0,95.04405286
+2026,3,Numeracy,Western Australia,36757,35016.0,95.26348723
+2026,3,Reading,Australia,319497,301868.0,94.48226431
+2026,3,Reading,Australian Capital Territory,5645,5383.0,95.35872453
+2026,3,Reading,New South Wales,97455,94229.0,96.7
+2026,3,Reading,Northern Territory,3274,2589.0,79.07758094
+2026,3,Reading,Queensland,66957,62430.0,93.2389444
+2026,3,Reading,South Australia,20746,19607.0,94.50978502
+2026,3,Reading,Tasmania,6026,3452.0,57.28509791
+2026,3,Reading,Victoria,82629,78965.0,95.6
+2026,3,Reading,Western Australia,36765,35213.0,95.77859377
+2026,3,Spelling,Australia,319482,300297.0,93.99496685
+2026,3,Spelling,Australian Capital Territory,5644,5357.0,94.91495393
+2026,3,Spelling,New South Wales,97455,93921.0,96.37371094
+2026,3,Spelling,Northern Territory,3274,2544.0,77.70311546
+2026,3,Spelling,Queensland,66952,61968.0,92.55586092
+2026,3,Spelling,South Australia,20746,19469.0,93.84459655
+2026,3,Spelling,Tasmania,6026,3433.0,56.96979754
+2026,3,Spelling,Victoria,82628,78570.0,95.08883187
+2026,3,Spelling,Western Australia,36757,35035.0,95.31517806
+2026,3,Writing,Australia,319519,299259.0,93.65921901
+2026,3,Writing,Australian Capital Territory,5645,5339.0,94.57927369
+2026,3,Writing,New South Wales,97455,93432.0,95.8719409
+2026,3,Writing,Northern Territory,3274,2564.0,78.313989
+2026,3,Writing,Queensland,66956,61962.0,92.54137045
+2026,3,Writing,South Australia,20746,19390.0,93.46380025
+2026,3,Writing,Tasmania,6026,3440.0,57.08596084
+2026,3,Writing,Victoria,82628,78253.0,94.70518468
+2026,3,Writing,Western Australia,36789,34879.0,94.80823072
+2026,5,Grammar and Punctuation,Australia,330806,312276.0,94.39852965
+2026,5,Grammar and Punctuation,Australian Capital Territory,6071,5721.0,94.23488717
+2026,5,Grammar and Punctuation,New South Wales,99888,96680.0,96.78840301
+2026,5,Grammar and Punctuation,Northern Territory,3413,2634.0,77.17550542
+2026,5,Grammar and Punctuation,Queensland,70649,65667.0,92.94823706
+2026,5,Grammar and Punctuation,South Australia,21633,20484.0,94.68867009
+2026,5,Grammar and Punctuation,Tasmania,6207,3584.0,57.74125987
+2026,5,Grammar and Punctuation,Victoria,84675,80790.0,95.41186891
+2026,5,Grammar and Punctuation,Western Australia,38270,36716.0,95.9393781
+2026,5,Numeracy,Australia,330802,311891.0,94.28328728
+2026,5,Numeracy,Australian Capital Territory,6071,5727.0,94.33371767
+2026,5,Numeracy,New South Wales,99888,96567.0,96.67527631
+2026,5,Numeracy,Northern Territory,3413,2636.0,77.23410489
+2026,5,Numeracy,Queensland,70647,65475.0,92.67909465
+2026,5,Numeracy,South Australia,21633,20441.0,94.48989969
+2026,5,Numeracy,Tasmania,6207,3576.0,57.61237313
+2026,5,Numeracy,Victoria,84675,80826.0,95.45438441
+2026,5,Numeracy,Western Australia,38268,36643.0,95.75363228
+2026,5,Reading,Australia,330819,314074.0,94.93831975
+2026,5,Reading,Australian Capital Territory,6072,5756.0,94.79578393
+2026,5,Reading,New South Wales,99888,97065.0,97.17383469
+2026,5,Reading,Northern Territory,3413,2669.0,78.20099619
+2026,5,Reading,Queensland,70659,66160.0,93.63279978
+2026,5,Reading,South Australia,21633,20631.0,95.36818749
+2026,5,Reading,Tasmania,6207,3609.0,58.14403093
+2026,5,Reading,Victoria,84675,81304.0,96.01889578
+2026,5,Reading,Western Australia,38272,36880.0,96.36287625
+2026,5,Spelling,Australia,330806,312276.0,94.39852965
+2026,5,Spelling,Australian Capital Territory,6071,5721.0,94.23488717
+2026,5,Spelling,New South Wales,99888,96680.0,96.78840301
+2026,5,Spelling,Northern Territory,3413,2634.0,77.17550542
+2026,5,Spelling,Queensland,70649,65667.0,92.94823706
+2026,5,Spelling,South Australia,21633,20484.0,94.68867009
+2026,5,Spelling,Tasmania,6207,3584.0,57.74125987
+2026,5,Spelling,Victoria,84675,80790.0,95.41186891
+2026,5,Spelling,Western Australia,38270,36716.0,95.9393781
+2026,5,Writing,Australia,330829,313517.0,94.76708511
+2026,5,Writing,Australian Capital Territory,6072,5756.0,94.79578393
+2026,5,Writing,New South Wales,99888,96891.0,96.9996396
+2026,5,Writing,Northern Territory,3413,2704.0,79.22648696
+2026,5,Writing,Queensland,70669,66026.0,93.42993392
+2026,5,Writing,South Australia,21633,20504.0,94.78112143
+2026,5,Writing,Tasmania,6206,3603.0,58.0567193
+2026,5,Writing,Victoria,84675,81222.0,95.92205492
+2026,5,Writing,Western Australia,38273,36811.0,96.18007473
+2026,7,Grammar and Punctuation,Australia,333157,310764.0,93.27854435
+2026,7,Grammar and Punctuation,Australian Capital Territory,6256,5833.0,93.23849105
+2026,7,Grammar and Punctuation,New South Wales,101139,96703.0,95.61395703
+2026,7,Grammar and Punctuation,Northern Territory,3266,2572.0,78.75076546
+2026,7,Grammar and Punctuation,Queensland,72061,64779.0,89.89467257
+2026,7,Grammar and Punctuation,South Australia,22065,20617.0,93.43757081
+2026,7,Grammar and Punctuation,Tasmania,6464,4199.0,64.95977723
+2026,7,Grammar and Punctuation,Victoria,84489,80387.0,95.14493011
+2026,7,Grammar and Punctuation,Western Australia,37417,35674.0,95.34168961
+2026,7,Numeracy,Australia,333147,310111.0,93.0853347
+2026,7,Numeracy,Australian Capital Territory,6256,5834.0,93.2544757
+2026,7,Numeracy,New South Wales,101139,96490.0,95.40335578
+2026,7,Numeracy,Northern Territory,3266,2552.0,78.13839559
+2026,7,Numeracy,Queensland,72056,64580.0,89.62473632
+2026,7,Numeracy,South Australia,22065,20558.0,93.17017902
+2026,7,Numeracy,Tasmania,6463,4118.0,63.71654031
+2026,7,Numeracy,Victoria,84489,80433.0,95.19937507
+2026,7,Numeracy,Western Australia,37413,35546.0,95.00975597
+2026,7,Reading,Australia,333162,313235.0,94.01882568
+2026,7,Reading,Australian Capital Territory,6256,5872.0,93.86189258
+2026,7,Reading,New South Wales,101139,97238.0,96.142932
+2026,7,Reading,Northern Territory,3266,2598.0,79.5468463
+2026,7,Reading,Queensland,72062,65420.0,90.78293692
+2026,7,Reading,South Australia,22065,20809.0,94.30772717
+2026,7,Reading,Tasmania,6465,4383.0,67.79582367
+2026,7,Reading,Victoria,84489,81030.0,95.90597593
+2026,7,Reading,Western Australia,37420,35885.0,95.89791555
+2026,7,Spelling,Australia,333157,310764.0,93.27854435
+2026,7,Spelling,Australian Capital Territory,6256,5833.0,93.23849105
+2026,7,Spelling,New South Wales,101139,96703.0,95.61395703
+2026,7,Spelling,Northern Territory,3266,2572.0,78.75076546
+2026,7,Spelling,Queensland,72061,64779.0,89.89467257
+2026,7,Spelling,South Australia,22065,20617.0,93.43757081
+2026,7,Spelling,Tasmania,6464,4199.0,64.95977723
+2026,7,Spelling,Victoria,84489,80387.0,95.14493011
+2026,7,Spelling,Western Australia,37417,35674.0,95.34168961
+2026,7,Writing,Australia,333169,314308.0,94.33890908
+2026,7,Writing,Australian Capital Territory,6256,5898.0,94.27749361
+2026,7,Writing,New South Wales,101139,97578.0,96.47910302
+2026,7,Writing,Northern Territory,3266,2619.0,80.18983466
+2026,7,Writing,Queensland,72066,65814.0,91.3246191
+2026,7,Writing,South Australia,22065,20780.0,94.1762973
+2026,7,Writing,Tasmania,6464,4315.0,66.75433168
+2026,7,Writing,Victoria,84489,81330.0,96.26105173
+2026,7,Writing,Western Australia,37424,35974.0,96.12548097
+2026,9,Grammar and Punctuation,Australia,331224,294344.0,88.86554114
+2026,9,Grammar and Punctuation,Australian Capital Territory,6098,5476.0,89.7999344
+2026,9,Grammar and Punctuation,New South Wales,101631,93597.0,92.09493166
+2026,9,Grammar and Punctuation,Northern Territory,3193,2234.0,69.96554964
+2026,9,Grammar and Punctuation,Queensland,71554,59280.0,82.84652151
+2026,9,Grammar and Punctuation,South Australia,22435,19853.0,88.49119679
+2026,9,Grammar and Punctuation,Tasmania,6582,3862.0,58.67517472
+2026,9,Grammar and Punctuation,Victoria,82955,75945.0,91.54963534
+2026,9,Grammar and Punctuation,Western Australia,36776,34097.0,92.71535784
+2026,9,Numeracy,Australia,331213,293758.0,88.69156706
+2026,9,Numeracy,Australian Capital Territory,6098,5484.0,89.93112496
+2026,9,Numeracy,New South Wales,101631,93229.0,91.73283742
+2026,9,Numeracy,Northern Territory,3193,2197.0,68.8067648
+2026,9,Numeracy,Queensland,71546,59068.0,82.55947223
+2026,9,Numeracy,South Australia,22435,19829.0,88.38422108
+2026,9,Numeracy,Tasmania,6582,3981.0,60.48313582
+2026,9,Numeracy,Victoria,82955,75937.0,91.53999156
+2026,9,Numeracy,Western Australia,36773,34033.0,92.54888097
+2026,9,Reading,Australia,331233,297304.0,89.75675733
+2026,9,Reading,Australian Capital Territory,6098,5514.0,90.42308954
+2026,9,Reading,New South Wales,101631,94216.0,92.7039978
+2026,9,Reading,Northern Territory,3193,2287.0,71.62543063
+2026,9,Reading,Queensland,71561,59897.0,83.70061905
+2026,9,Reading,South Australia,22435,20068.0,89.44952084
+2026,9,Reading,Tasmania,6582,4044.0,61.4402917
+2026,9,Reading,Victoria,82955,76801.0,92.5815201
+2026,9,Reading,Western Australia,36778,34477.0,93.74354234
+2026,9,Spelling,Australia,331224,294344.0,88.86554114
+2026,9,Spelling,Australian Capital Territory,6098,5476.0,89.7999344
+2026,9,Spelling,New South Wales,101631,93597.0,92.09493166
+2026,9,Spelling,Northern Territory,3193,2234.0,69.96554964
+2026,9,Spelling,Queensland,71554,59280.0,82.84652151
+2026,9,Spelling,South Australia,22435,19853.0,88.49119679
+2026,9,Spelling,Tasmania,6582,3862.0,58.67517472
+2026,9,Spelling,Victoria,82955,75945.0,91.54963534
+2026,9,Spelling,Western Australia,36776,34097.0,92.71535784
+2026,9,Writing,Australia,331243,299126.0,90.30409699
+2026,9,Writing,Australian Capital Territory,6098,5528.0,90.65267301
+2026,9,Writing,New South Wales,101631,94755.0,93.23434779
+2026,9,Writing,Northern Territory,3193,2310.0,72.34575634
+2026,9,Writing,Queensland,71567,60507.0,84.54594995
+2026,9,Writing,South Australia,22435,20079.0,89.49855137
+2026,9,Writing,Tasmania,6582,4218.0,64.08386509
+2026,9,Writing,Victoria,82955,77265.0,93.1408595
+2026,9,Writing,Western Australia,36782,34464.0,93.69800446
