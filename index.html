@@ -97,6 +97,28 @@
         </div>
       </div>
 
+      <!-- By student background -->
+      <div class="section-divider"></div>
+      <div class="groups-section">
+        <div class="groups-head">
+          <p class="eyebrow-sm">By student background</p>
+          <h3>Who is taking part, and who is missing?</h3>
+          <div class="seg" id="groups-mode" role="group" aria-label="Background chart view">
+            <button type="button" data-mode="rate">Participation rate</button>
+            <button type="button" data-mode="share">Who is enrolled</button>
+          </div>
+          <p class="map-insight" id="groups-insight"></p>
+          <p class="map-callout callout-teal">
+            <strong>Why this matters for the results that follow:</strong> a NAPLAN score only
+            describes the students who sat the test. Where a group takes part less often, its
+            results describe fewer of its students.
+          </p>
+        </div>
+        <div class="groups-legend" id="groups-legend"></div>
+        <div class="groups-scroll"><div id="groups-chart" role="img" aria-label="Participation by student background"></div></div>
+        <p class="map-note" id="groups-note"></p>
+      </div>
+
       <p class="footnote" id="footnote"></p>
     </div>
 
@@ -116,6 +138,7 @@
   <script src="chapter-0/js/controls.js"></script>
   <script src="chapter-0/js/waffle.js"></script>
   <script src="chapter-0/js/map.js"></script>
+  <script src="chapter-0/js/groups.js"></script>
   <script src="chapter-0/js/main.js"></script>
 </body>
 </html>

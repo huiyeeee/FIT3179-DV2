@@ -186,6 +186,30 @@
 #chapter-0 #map { line-height: 0; }
 #chapter-0 #map svg { overflow: visible; }
 
+/* ---------- Background (groups) section ---------- */
+#chapter-0 .groups-head { max-width: 680px; margin-bottom: 18px; }
+#chapter-0 .groups-head h3 {
+  margin: 0 0 14px; font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.6vw, 1.8rem); line-height: 1.2;
+}
+#chapter-0 .callout-teal { background: var(--teal-soft); border-left-color: var(--teal); margin-bottom: 0; }
+#chapter-0 .groups-legend {
+  display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center;
+  margin: 0 0 14px; font-size: 0.8rem; color: var(--ink-soft);
+}
+#chapter-0 .lg { display: inline-flex; align-items: center; gap: 5px; }
+#chapter-0 .lg-dot {
+  display: inline-block; width: 11px; height: 11px; border-radius: 50%;
+  border: 2px solid transparent;
+}
+#chapter-0 .lg-dot.hollow { background: #fff; }
+#chapter-0 .lg-dot.sz1 { width: 7px; height: 7px; background: var(--ink-soft); }
+#chapter-0 .lg-dot.sz2 { width: 12px; height: 12px; background: var(--ink-soft); }
+#chapter-0 .lg-dot.sz3 { width: 18px; height: 18px; background: var(--ink-soft); }
+#chapter-0 .lg-line { display: inline-block; width: 22px; border-top: 2px dashed var(--ink); opacity: .6; }
+#chapter-0 .groups-scroll { overflow-x: auto; padding-bottom: 6px; }
+#chapter-0 #groups-chart { line-height: 0; }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   #chapter-0 .controls { grid-template-columns: 1fr; gap: 20px; }
@@ -196,3 +220,5 @@
 
 /* Let grid columns shrink below their chart's current width (needed for resize) */
 #chapter-0 .viz > *, #chapter-0 .map-section > *, #chapter-0 .controls > * { min-width: 0; }
+
+#chapter-0 #groups-note { max-width: 92ch; }

@@ -96,7 +96,7 @@
 
   /* ---------- stat panel text ---------- */
   function sentence(cur) {
-    const where = cur.region === Ch0.AUS ? "" : ` in ${cur.region}`;
+    const where = cur.region === Ch0.AUS ? "" : ` in ${Ch0.regionName(cur.region)}`;
     const who = state.levels.size ? `Year ${join(Ch0.levelsArr())} students` : "students across Years 3, 5, 7 and 9";
     const what = state.domains.size
       ? `the ${join(Ch0.domainsArr())} ${state.domains.size > 1 ? "tests" : "test"}`

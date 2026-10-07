@@ -64,8 +64,11 @@ window.Ch0 = (function () {
       state.domains.size ? domainsArr().join(", ") : "All domains"
     }`;
 
+  // "the Northern Territory" reads better in a sentence than "Northern Territory"
+  const regionName = (r) => (r === "Northern Territory" || r === "Australian Capital Territory" ? "the " + r : r);
+
   return {
-    LEVELS, DOMAINS, AUS, state, onChange, emit, setYear, setRegion, load, years, aggregate,
+    regionName, LEVELS, DOMAINS, AUS, state, onChange, emit, setYear, setRegion, load, years, aggregate,
     fmtInt, fmtPct, join, levelsArr, domainsArr, levelPhrase, domainPhrase, contextLabel,
     $: (id) => document.getElementById(id),
     font: 'Inter, system-ui, -apple-system, "Segoe UI", sans-serif',

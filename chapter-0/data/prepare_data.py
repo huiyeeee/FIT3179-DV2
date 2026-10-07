@@ -25,3 +25,26 @@ tidy = (
 )
 tidy.to_csv(here / "participation_all.csv", index=False)
 print(f"wrote {len(tidy)} rows")
+
+# ---------------------------------------------------------------------------
+# Student-background rows (everything that is not "All"), for the background chart.
+# Rows with 0 enrolled students (a group that doesn't exist in that state, e.g.
+# "Very remote" in Victoria) carry no information and are dropped.
+# ---------------------------------------------------------------------------
+groups = (
+    raw[(raw["Student attribute"] != "All") & (raw["Enrolled students"] > 0)]
+    .rename(columns={
+        "Calendar year": "year",
+        "Year level": "year_level",
+        "Domain": "domain",
+        "State/territory": "state",
+        "Student attribute": "attribute",
+        "Subgroup": "subgroup",
+        "Enrolled students": "enrolled",
+        "Participation (Num)": "participated",
+    })[["year", "year_level", "domain", "state", "attribute", "subgroup", "enrolled", "participated"]]
+    .sort_values(["year", "state", "attribute", "subgroup", "year_level", "domain"])
+)
+groups["participated"] = groups["participated"].astype(int)
+groups.to_csv(here / "participation_by_group.csv", index=False)
+print(f"wrote {len(groups)} background rows")
