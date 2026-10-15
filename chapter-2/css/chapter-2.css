@@ -1,0 +1,35 @@
+/* Chapter 2 · geographic differences. Generic components come from chapter-0.css (scoped by .chapter). */
+#chapter-2 .controls-one { grid-template-columns: minmax(240px, 420px); }
+#chapter-2 .scene h3 {
+  margin: 0 0 14px; font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.6vw, 1.8rem); line-height: 1.2;
+}
+#chapter-2 .scene-head { max-width: 760px; margin-bottom: 18px; }
+#chapter-2 .scene-lede { margin: 0 0 14px; color: var(--ink-soft); max-width: 64ch; }
+
+/* map */
+#chapter-2 .map2-grid { display: grid; grid-template-columns: minmax(240px, 0.8fr) minmax(340px, 1.45fr); gap: 32px; align-items: start; }
+#chapter-2 .map2-grid > *, #chapter-2 .why-grid > *, #chapter-2 .wf-grid > * { min-width: 0; }
+#chapter-2 .map2-box { width: 100%; aspect-ratio: 1 / 1.08; }
+#chapter-2 #c2-map, #chapter-2 #c2-map .vega-embed { width: 100%; height: 100%; }
+#chapter-2 #c2-map svg, #chapter-2 #c2-map canvas { max-width: 100%; }
+
+/* charts that size themselves to their container */
+#chapter-2 #c2-strip, #chapter-2 #c2-ladder, #chapter-2 #c2-breakdown, #chapter-2 #c2-waterfall,
+#chapter-2 #c2-strip .vega-embed, #chapter-2 #c2-ladder .vega-embed, #chapter-2 #c2-breakdown .vega-embed, #chapter-2 #c2-waterfall .vega-embed { width: 100%; }
+#chapter-2 .vega-embed summary { display: none; }
+
+#chapter-2 .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+#chapter-2 .wf-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: start; margin-top: 34px; padding-top: 28px; border-top: 1px dashed var(--line); }
+#chapter-2 .wf-text { padding-top: 26px; }
+#chapter-2 .dd-title { margin: 0 0 8px; font-size: 0.74rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); }
+#chapter-2 .dd-text { max-width: 78ch; margin-top: 16px; }
+#chapter-2 .ladder-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 4px 0 12px; font-size: 0.8rem; color: var(--ink-soft); }
+#chapter-2 .lg { display: inline-flex; align-items: center; }
+#chapter-2 .lg-sq { display: inline-block; width: 12px; height: 12px; margin-right: 6px; border-radius: 50%; }
+
+@media (max-width: 900px) {
+  #chapter-2 .map2-grid, #chapter-2 .why-grid, #chapter-2 .wf-grid { grid-template-columns: 1fr; gap: 24px; }
+  #chapter-2 .map2-box { order: -1; }
+  #chapter-2 .wf-text { padding-top: 0; }
+}

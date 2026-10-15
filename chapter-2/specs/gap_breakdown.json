@@ -1,0 +1,238 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Diverging stacked bars. Each bar splits a state's difference from the Australian result into the part explained by where its students live (type of area) and everything else. The black tick is the total difference.",
+  "width": "container",
+  "height": {
+    "step": 34
+  },
+  "padding": {
+    "left": 4,
+    "right": 70,
+    "top": 24,
+    "bottom": 4
+  },
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+    "axis": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontWeight": 500,
+      "titleFontSize": 11,
+      "domain": false,
+      "ticks": false,
+      "gridColor": "#eee8dc"
+    },
+    "legend": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontSize": 11,
+      "titleFontWeight": 600,
+      "labelFontSize": 11
+    }
+  },
+  "params": [
+    {
+      "name": "year",
+      "value": 2026
+    },
+    {
+      "name": "sel",
+      "value": "Northern Territory"
+    }
+  ],
+  "data": {
+    "url": "chapter-2/data/gap_breakdown.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.year == year"
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "state",
+      "type": "nominal",
+      "sort": {
+        "field": "gap",
+        "op": "max",
+        "order": "descending"
+      },
+      "scale": {
+        "padding": 0.3
+      },
+      "axis": {
+        "title": null,
+        "labelFontSize": 12,
+        "labelFontWeight": 600,
+        "labelColor": "#14213d",
+        "labelLimit": 150,
+        "labelPadding": 8,
+        "labelExpr": "replace(datum.label, 'Australian Capital Territory', 'ACT')"
+      }
+    }
+  },
+  "layer": [
+    {
+      "transform": [
+        {
+          "fold": [
+            "location",
+            "other"
+          ],
+          "as": [
+            "part",
+            "pp"
+          ]
+        },
+        {
+          "calculate": "datum.part == 'location' ? 'Where students live' : 'Everything else'",
+          "as": "part_label"
+        }
+      ],
+      "mark": {
+        "type": "bar",
+        "cursor": "pointer",
+        "tooltip": true,
+        "stroke": "#ffffff",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "pp",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -30,
+              8
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": "Difference from Australia (percentage points)",
+            "grid": true,
+            "values": [
+              -30,
+              -20,
+              -10,
+              0
+            ],
+            "labelExpr": "(datum.value > 0 ? '+' : datum.value < 0 ? '−' : '') + abs(datum.value)"
+          }
+        },
+        "color": {
+          "field": "part_label",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Where students live",
+              "Everything else"
+            ],
+            "range": [
+              "#b7791f",
+              "#8a96b0"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "top",
+            "direction": "horizontal",
+            "symbolType": "square"
+          }
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum.state == sel",
+            "value": 1
+          },
+          "value": 0.62
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "title": "State / territory"
+          },
+          {
+            "field": "part_label",
+            "title": "Part of the gap"
+          },
+          {
+            "field": "pp",
+            "title": "Points",
+            "format": "+.1f"
+          },
+          {
+            "field": "gap",
+            "title": "Total difference",
+            "format": "+.1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "tick",
+        "color": "#14213d",
+        "thickness": 3,
+        "size": 24
+      },
+      "encoding": {
+        "x": {
+          "field": "gap",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -30,
+              8
+            ],
+            "nice": false
+          },
+          "axis": null
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 14,
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#14213d"
+      },
+      "transform": [
+        {
+          "calculate": "(datum.gap > 0 ? '+' : '−') + format(abs(datum.gap), '.1f')",
+          "as": "gap_text"
+        }
+      ],
+      "encoding": {
+        "x": {
+          "datum": 8,
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -30,
+              8
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "gap_text"
+        }
+      }
+    }
+  ]
+}

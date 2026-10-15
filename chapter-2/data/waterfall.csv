@@ -1,0 +1,125 @@
+year,state,step,label,start,end,value,kind
+2023,Australian Capital Territory,1,Australia,65.57,65.57,65.57,total
+2023,Australian Capital Territory,2,Where students live,65.57,69.558,3.988,delta
+2023,Australian Capital Territory,3,Everything else,69.558,68.503,-1.055,delta
+2023,Australian Capital Territory,4,This state,0.0,68.503,68.503,total
+2023,New South Wales,1,Australia,65.57,65.57,65.57,total
+2023,New South Wales,2,Where students live,65.57,66.479,0.909,delta
+2023,New South Wales,3,Everything else,66.479,68.414,1.935,delta
+2023,New South Wales,4,This state,0.0,68.414,68.414,total
+2023,Northern Territory,1,Australia,65.57,65.57,65.57,total
+2023,Northern Territory,2,Where students live,65.57,46.297,-19.273,delta
+2023,Northern Territory,3,Everything else,46.297,38.59,-7.707,delta
+2023,Northern Territory,4,This state,0.0,38.59,38.59,total
+2023,Queensland,1,Australia,65.57,65.57,65.57,total
+2023,Queensland,2,Where students live,65.57,64.187,-1.383,delta
+2023,Queensland,3,Everything else,64.187,60.829,-3.358,delta
+2023,Queensland,4,This state,0.0,60.829,60.829,total
+2023,South Australia,1,Australia,65.57,65.57,65.57,total
+2023,South Australia,2,Where students live,65.57,65.586,0.016,delta
+2023,South Australia,3,Everything else,65.586,61.25,-4.336,delta
+2023,South Australia,4,This state,0.0,61.25,61.25,total
+2023,Tasmania,1,Australia,65.57,65.57,65.57,total
+2023,Tasmania,2,Where students live,65.57,55.351,-10.219,delta
+2023,Tasmania,3,Everything else,55.351,57.0,1.649,delta
+2023,Tasmania,4,This state,0.0,57.0,57.0,total
+2023,Victoria,1,Australia,65.57,65.57,65.57,total
+2023,Victoria,2,Where students live,65.57,66.699,1.129,delta
+2023,Victoria,3,Everything else,66.699,69.007,2.308,delta
+2023,Victoria,4,This state,0.0,69.007,69.007,total
+2023,Western Australia,1,Australia,65.57,65.57,65.57,total
+2023,Western Australia,2,Where students live,65.57,65.66,0.09,delta
+2023,Western Australia,3,Everything else,65.66,65.2,-0.46,delta
+2023,Western Australia,4,This state,0.0,65.2,65.2,total
+2024,Australian Capital Territory,1,Australia,65.425,65.425,65.425,total
+2024,Australian Capital Territory,2,Where students live,65.425,69.236,3.811,delta
+2024,Australian Capital Territory,3,Everything else,69.236,70.13,0.894,delta
+2024,Australian Capital Territory,4,This state,0.0,70.13,70.13,total
+2024,New South Wales,1,Australia,65.425,65.425,65.425,total
+2024,New South Wales,2,Where students live,65.425,66.298,0.873,delta
+2024,New South Wales,3,Everything else,66.298,68.355,2.057,delta
+2024,New South Wales,4,This state,0.0,68.355,68.355,total
+2024,Northern Territory,1,Australia,65.425,65.425,65.425,total
+2024,Northern Territory,2,Where students live,65.425,46.499,-18.926,delta
+2024,Northern Territory,3,Everything else,46.499,39.144,-7.355,delta
+2024,Northern Territory,4,This state,0.0,39.144,39.144,total
+2024,Queensland,1,Australia,65.425,65.425,65.425,total
+2024,Queensland,2,Where students live,65.425,64.106,-1.319,delta
+2024,Queensland,3,Everything else,64.106,60.468,-3.638,delta
+2024,Queensland,4,This state,0.0,60.468,60.468,total
+2024,South Australia,1,Australia,65.425,65.425,65.425,total
+2024,South Australia,2,Where students live,65.425,65.474,0.049,delta
+2024,South Australia,3,Everything else,65.474,61.273,-4.201,delta
+2024,South Australia,4,This state,0.0,61.273,61.273,total
+2024,Tasmania,1,Australia,65.425,65.425,65.425,total
+2024,Tasmania,2,Where students live,65.425,55.607,-9.818,delta
+2024,Tasmania,3,Everything else,55.607,57.284,1.677,delta
+2024,Tasmania,4,This state,0.0,57.284,57.284,total
+2024,Victoria,1,Australia,65.425,65.425,65.425,total
+2024,Victoria,2,Where students live,65.425,66.532,1.107,delta
+2024,Victoria,3,Everything else,66.532,68.577,2.045,delta
+2024,Victoria,4,This state,0.0,68.577,68.577,total
+2024,Western Australia,1,Australia,65.425,65.425,65.425,total
+2024,Western Australia,2,Where students live,65.425,65.481,0.056,delta
+2024,Western Australia,3,Everything else,65.481,65.421,-0.06,delta
+2024,Western Australia,4,This state,0.0,65.421,65.421,total
+2025,Australian Capital Territory,1,Australia,65.901,65.901,65.901,total
+2025,Australian Capital Territory,2,Where students live,65.901,69.747,3.846,delta
+2025,Australian Capital Territory,3,Everything else,69.747,69.094,-0.653,delta
+2025,Australian Capital Territory,4,This state,0.0,69.094,69.094,total
+2025,New South Wales,1,Australia,65.901,65.901,65.901,total
+2025,New South Wales,2,Where students live,65.901,66.782,0.881,delta
+2025,New South Wales,3,Everything else,66.782,68.745,1.963,delta
+2025,New South Wales,4,This state,0.0,68.745,68.745,total
+2025,Northern Territory,1,Australia,65.901,65.901,65.901,total
+2025,Northern Territory,2,Where students live,65.901,45.82,-20.081,delta
+2025,Northern Territory,3,Everything else,45.82,38.513,-7.307,delta
+2025,Northern Territory,4,This state,0.0,38.513,38.513,total
+2025,Queensland,1,Australia,65.901,65.901,65.901,total
+2025,Queensland,2,Where students live,65.901,64.564,-1.337,delta
+2025,Queensland,3,Everything else,64.564,60.283,-4.281,delta
+2025,Queensland,4,This state,0.0,60.283,60.283,total
+2025,South Australia,1,Australia,65.901,65.901,65.901,total
+2025,South Australia,2,Where students live,65.901,65.954,0.053,delta
+2025,South Australia,3,Everything else,65.954,61.938,-4.016,delta
+2025,South Australia,4,This state,0.0,61.938,61.938,total
+2025,Tasmania,1,Australia,65.901,65.901,65.901,total
+2025,Tasmania,2,Where students live,65.901,55.85,-10.051,delta
+2025,Tasmania,3,Everything else,55.85,57.8,1.95,delta
+2025,Tasmania,4,This state,0.0,57.8,57.8,total
+2025,Victoria,1,Australia,65.901,65.901,65.901,total
+2025,Victoria,2,Where students live,65.901,67.048,1.147,delta
+2025,Victoria,3,Everything else,67.048,70.038,2.99,delta
+2025,Victoria,4,This state,0.0,70.038,70.038,total
+2025,Western Australia,1,Australia,65.901,65.901,65.901,total
+2025,Western Australia,2,Where students live,65.901,65.944,0.043,delta
+2025,Western Australia,3,Everything else,65.944,65.163,-0.781,delta
+2025,Western Australia,4,This state,0.0,65.163,65.163,total
+2026,Australian Capital Territory,1,Australia,65.11,65.11,65.11,total
+2026,Australian Capital Territory,2,Where students live,65.11,68.822,3.712,delta
+2026,Australian Capital Territory,3,Everything else,68.822,70.166,1.344,delta
+2026,Australian Capital Territory,4,This state,0.0,70.166,70.166,total
+2026,New South Wales,1,Australia,65.11,65.11,65.11,total
+2026,New South Wales,2,Where students live,65.11,65.888,0.778,delta
+2026,New South Wales,3,Everything else,65.888,67.948,2.06,delta
+2026,New South Wales,4,This state,0.0,67.948,67.948,total
+2026,Northern Territory,1,Australia,65.11,65.11,65.11,total
+2026,Northern Territory,2,Where students live,65.11,45.896,-19.214,delta
+2026,Northern Territory,3,Everything else,45.896,38.904,-6.992,delta
+2026,Northern Territory,4,This state,0.0,38.904,38.904,total
+2026,Queensland,1,Australia,65.11,65.11,65.11,total
+2026,Queensland,2,Where students live,65.11,63.671,-1.439,delta
+2026,Queensland,3,Everything else,63.671,58.985,-4.686,delta
+2026,Queensland,4,This state,0.0,58.985,58.985,total
+2026,South Australia,1,Australia,65.11,65.11,65.11,total
+2026,South Australia,2,Where students live,65.11,65.055,-0.055,delta
+2026,South Australia,3,Everything else,65.055,60.514,-4.541,delta
+2026,South Australia,4,This state,0.0,60.514,60.514,total
+2026,Victoria,1,Australia,65.11,65.11,65.11,total
+2026,Victoria,2,Where students live,65.11,66.181,1.071,delta
+2026,Victoria,3,Everything else,66.181,69.56,3.379,delta
+2026,Victoria,4,This state,0.0,69.56,69.56,total
+2026,Western Australia,1,Australia,65.11,65.11,65.11,total
+2026,Western Australia,2,Where students live,65.11,65.104,-0.006,delta
+2026,Western Australia,3,Everything else,65.104,64.695,-0.409,delta
+2026,Western Australia,4,This state,0.0,64.695,64.695,total

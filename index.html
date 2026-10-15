@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="css/fonts.css" />
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="chapter-0/css/chapter-0.css" />
+  <link rel="stylesheet" href="chapter-1/css/chapter-1.css" />
+  <link rel="stylesheet" href="chapter-2/css/chapter-2.css" />
 </head>
 <body>
 
@@ -128,6 +130,218 @@
     </p>
   </section>
 
+  <!-- ============ CHAPTER 1 · OVERALL PERFORMANCE ============ -->
+  <section id="chapter-1" class="chapter">
+    <header class="chapter-head">
+      <p class="eyebrow">Chapter 1 · Overall performance</p>
+      <h2>Two in three students meet expectations. The headline hides a lot.</h2>
+      <p class="lede">
+        NAPLAN isn't a pass or fail test. Since 2023, each student is placed in one of four proficiency
+        levels, and "Strong" is the level that means meeting expectations for their year level.
+        Let's see where Australia's students sit relative to that line, and where it gets more interesting.
+      </p>
+    </header>
+
+    <div class="card" id="c1-card">
+      <div class="controls controls-one">
+        <div class="control control-year">
+          <div class="control-label">
+            <span>Year</span>
+            <button id="c1-play" class="play" type="button" aria-label="Play through the years">▶ Play</button>
+          </div>
+          <input id="c1-year-slider" type="range" aria-label="Calendar year" />
+          <div id="c1-year-ticks" class="year-ticks"></div>
+        </div>
+      </div>
+
+      <!-- Scene 1: hero -->
+      <div class="scene">
+        <div class="scene-head">
+          <p class="eyebrow-sm">Overall picture</p>
+          <h3>Where do students sit relative to the expectation line?</h3>
+        </div>
+
+        <div class="levels" aria-label="The four NAPLAN proficiency levels">
+          <div class="level l-nas"><b>Needs additional support</b>At risk of not making enough progress without extra help</div>
+          <div class="level l-dev"><b>Developing</b>Working towards the expected level</div>
+          <div class="level l-strong"><b>Strong</b>Meeting the expected level: the target</div>
+          <div class="level l-exceed"><b>Exceeding</b>Performing above the expected level</div>
+        </div>
+
+        <div class="kpis">
+          <div class="kpi k-so"><span class="kpi-label">Meeting expectations</span><span class="kpi-sub">Strong or Exceeding</span>
+            <span class="kpi-num"><span id="kpi-so">–</span><small>%</small></span><span class="kpi-delta" id="kpi-so-d"></span></div>
+          <div class="kpi k-nas"><span class="kpi-label">Needs additional support</span><span class="kpi-sub">Lowest proficiency level</span>
+            <span class="kpi-num"><span id="kpi-nas">–</span><small>%</small></span><span class="kpi-delta" id="kpi-nas-d"></span></div>
+          <div class="kpi k-ex"><span class="kpi-label">Exceeding</span><span class="kpi-sub">Highest proficiency level</span>
+            <span class="kpi-num"><span id="kpi-exceed">–</span><small>%</small></span><span class="kpi-delta" id="kpi-exceed-d"></span></div>
+        </div>
+
+        <div class="hero-grid">
+          <div>
+            <p class="map-insight" id="hero-insight"></p>
+            <p class="map-note">All 20 domain and year-level results are combined, weighted by the number of students who sat each test.
+              Around 2% of students are exempt and are not shown, so each bar adds up to about 98%.
+              Hover any segment for details.</p>
+          </div>
+          <div>
+            <div class="div-legend" id="hero-legend"></div>
+            <div class="chart-wrap"><div id="hero-chart" role="img" aria-label="Diverging stacked bar of NAPLAN proficiency levels by year"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene 2: heatmap -->
+      <div class="section-divider"></div>
+      <div class="scene">
+        <div class="scene-head">
+          <p class="eyebrow-sm">Domains and year levels</p>
+          <h3>Where are the strengths and the weak spots?</h3>
+          <div class="seg" id="heat-metric" role="group" aria-label="Measure shown in the heatmap">
+            <button type="button" data-metric="so">Strong or above</button>
+            <button type="button" data-metric="nas">Needs additional support</button>
+            <button type="button" data-metric="exceed">Exceeding</button>
+          </div>
+        </div>
+        <div class="heat-grid">
+          <div>
+            <p class="map-insight" id="heat-insight"></p>
+            <p class="map-note" id="heat-note"></p>
+          </div>
+          <div>
+            <div class="heat-legend" id="heat-legend"></div>
+            <div class="chart-wrap"><div id="heat-chart" role="img" aria-label="Heatmap of results by domain and year level"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene 3: deep-dive -->
+      <div class="section-divider"></div>
+      <div class="scene" id="c1-deepdive">
+        <div class="scene-head">
+          <p class="eyebrow-sm">Zoom in</p>
+          <h3>How does one domain change as students move through school?</h3>
+          <div class="chips" id="dd-domain-chips" role="group" aria-label="Domain"></div>
+        </div>
+        <div class="div-legend" id="dd-legend"></div>
+        <div class="dd-grid">
+          <div>
+            <p class="dd-title" id="dd-title-stack"></p>
+            <div class="chart-wrap"><div id="dd-stack" role="img" aria-label="Proficiency mix by year level"></div></div>
+          </div>
+          <div>
+            <p class="dd-title" id="dd-title-dist"></p>
+            <div class="chart-wrap"><div id="dd-dist" role="img" aria-label="Modelled score distributions by year level"></div></div>
+          </div>
+        </div>
+        <p class="map-insight dd-text" id="dd-insight"></p>
+        <p class="map-note dd-text" id="dd-note"></p>
+      </div>
+    </div>
+
+    <p class="hint">
+      <strong>Try this:</strong> switch the heatmap to "Needs additional support", click a row to jump to that domain, and
+      slide through the years. Hover anything for details.
+    </p>
+  </section>
+
+  <!-- ============ CHAPTER 2 · GEOGRAPHIC DIFFERENCES ============ -->
+  <section id="chapter-2" class="chapter">
+    <header class="chapter-head">
+      <p class="eyebrow">Chapter 2 · Where do outcomes differ?</p>
+      <h2>One territory stands apart, and the reason is mostly geography.</h2>
+      <p class="lede">
+        Australia's states and territories are mostly within a few points of each other. One is not.
+        Let's see who is ahead, who is behind, how consistent the gaps are, and what really lies behind them.
+      </p>
+    </header>
+
+    <div class="card" id="c2-card">
+      <div class="controls controls-one">
+        <div class="control control-year">
+          <div class="control-label"><span>Year</span>
+            <button id="c2-play" class="play" type="button" aria-label="Play through the years">▶ Play</button></div>
+          <input id="c2-year-slider" type="range" aria-label="Calendar year" />
+          <div id="c2-year-ticks" class="year-ticks"></div>
+        </div>
+      </div>
+
+      <!-- Scene 1: proportional symbol map -->
+      <div class="scene">
+        <div class="map2-grid">
+          <div>
+            <p class="eyebrow-sm">State by state</p>
+            <h3>How do the states and territories compare?</h3>
+            <div class="seg" id="c2-metric" role="group" aria-label="Measure shown on the map">
+              <button type="button" data-metric="so">Meeting expectations</button>
+              <button type="button" data-metric="nas">Needing extra support</button>
+            </div>
+            <p class="map-insight" id="c2-map-insight"></p>
+            <p class="map-note"><span id="c2-legend-note"></span>
+              The size of each circle shows how many students sat the tests, so the big circles on the east coast are where most students are.
+              Click a circle to explore that state further down the page.</p>
+          </div>
+          <div class="map2-box"><div id="c2-map" role="img" aria-label="Proportional symbol map of results by state and territory"></div></div>
+        </div>
+      </div>
+
+      <!-- Scene 2: dot strip plot -->
+      <div class="section-divider"></div>
+      <div class="scene">
+        <div class="scene-head">
+          <p class="eyebrow-sm">How consistent are the gaps?</p>
+          <h3>Is it one weak subject, or everywhere?</h3>
+          <p class="scene-lede">Each dot is one result: a subject at a year level (20 per state). A dot's position shows how far it is above or
+            below the Australian result for the same test.</p>
+        </div>
+        <div class="chart-wrap"><div id="c2-strip" role="img" aria-label="Dot strip plot of each state's results compared with Australia"></div></div>
+        <p class="map-insight dd-text" id="c2-strip-insight"></p>
+      </div>
+
+      <!-- Scene 3: why? -->
+      <div class="section-divider"></div>
+      <div class="scene" id="c2-why">
+        <div class="scene-head">
+          <p class="eyebrow-sm">What lies behind the gaps?</p>
+          <h3>Is it the state, or the setting?</h3>
+          <p class="scene-lede">Australia's students do very differently depending on whether they live in a city, a regional town or a remote
+            community. To compare like with like, we ask: <em>if a state's students did as well as students in the same type of area across
+            Australia, what would its result be?</em> Pick a state, or click one in the map or bars.</p>
+          <div class="chips" id="c2-state-chips" role="group" aria-label="Choose a state or territory"></div>
+        </div>
+
+        <div class="why-grid">
+          <div>
+            <p class="dd-title" id="c2-ladder-title"></p>
+            <div class="chart-wrap"><div id="c2-ladder" role="img" aria-label="Results by remoteness, Australia and selected state"></div></div>
+            <div class="ladder-legend"><span class="lg"><i class="lg-sq" style="background:#9aa3b2"></i>Australia</span>
+              <span class="lg"><i class="lg-sq" style="background:#f0745a"></i>Selected state</span>
+              <span class="lg">Circle area = students tested</span></div>
+            <p class="map-insight" id="c2-ladder-insight"></p>
+          </div>
+          <div>
+            <p class="dd-title">How much of each state's gap is about where its students live?</p>
+            <div class="chart-wrap"><div id="c2-breakdown" role="img" aria-label="Breakdown of each state's gap from Australia"></div></div>
+            <p class="map-insight" id="c2-breakdown-insight"></p>
+          </div>
+        </div>
+
+        <div class="wf-grid">
+          <div>
+            <p class="dd-title" id="c2-wf-title"></p>
+            <div class="chart-wrap"><div id="c2-waterfall" role="img" aria-label="Waterfall from the Australian result to the selected state's result"></div></div>
+          </div>
+          <div class="wf-text">
+            <p class="map-insight" id="c2-wf-insight"></p>
+            <p class="map-note" id="c2-wf-note"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="hint"><strong>Try this:</strong> switch the map to "Needing extra support", slide to 2023, and click Queensland or South Australia in the bars to see how different their story is.</p>
+  </section>
+
   <!-- Vega stack (local copies: vega 5.33.1, vega-lite 5.23.0, vega-embed 6.29.0) -->
   <script src="lib/vega.min.js"></script>
   <script src="lib/vega-lite.min.js"></script>
@@ -140,5 +354,14 @@
   <script src="chapter-0/js/map.js"></script>
   <script src="chapter-0/js/groups.js"></script>
   <script src="chapter-0/js/main.js"></script>
+
+  <script src="chapter-1/js/shared.js"></script>
+  <script src="chapter-1/js/diverging.js"></script>
+  <script src="chapter-1/js/hero.js"></script>
+  <script src="chapter-1/js/heatmap.js"></script>
+  <script src="chapter-1/js/deepdive.js"></script>
+  <script src="chapter-1/js/main.js"></script>
+
+  <script src="chapter-2/js/main.js"></script>
 </body>
 </html>

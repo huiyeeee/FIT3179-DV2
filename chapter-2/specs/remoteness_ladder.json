@@ -1,0 +1,529 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "How results change with remoteness. Grey = Australia, coral = the selected state. Circle area = students tested in that type of area.",
+  "width": "container",
+  "height": 300,
+  "padding": {
+    "left": 4,
+    "right": 12,
+    "top": 14,
+    "bottom": 4
+  },
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+    "axis": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontWeight": 500,
+      "titleFontSize": 11,
+      "domain": false,
+      "ticks": false,
+      "gridColor": "#eee8dc"
+    },
+    "legend": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontSize": 11,
+      "titleFontWeight": 600,
+      "labelFontSize": 11
+    }
+  },
+  "params": [
+    {
+      "name": "year",
+      "value": 2026
+    },
+    {
+      "name": "sel",
+      "value": "Northern Territory"
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "url": "chapter-2/data/remoteness.csv",
+        "format": {
+          "type": "csv"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.year == year && datum.state == 'Australia'"
+        }
+      ],
+      "mark": {
+        "type": "line",
+        "color": "#9aa3b2",
+        "strokeWidth": 3
+      },
+      "encoding": {
+        "x": {
+          "field": "remoteness",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "Major cities",
+              "Inner regional",
+              "Outer regional",
+              "Remote",
+              "Very remote"
+            ],
+            "padding": 0.5
+          },
+          "axis": {
+            "title": null,
+            "labelAngle": 0,
+            "labelFontSize": 12,
+            "labelColor": "#14213d",
+            "labelFontWeight": 600,
+            "labelPadding": 8,
+            "labelExpr": "replace(datum.label, ' ', '\\n')"
+          }
+        },
+        "y": {
+          "field": "so",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              80
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": "% meeting expectations",
+            "grid": true,
+            "values": [
+              0,
+              20,
+              40,
+              60,
+              80
+            ]
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-2/data/remoteness.csv",
+        "format": {
+          "type": "csv"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.year == year && datum.state == 'Australia'"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "color": "#9aa3b2",
+        "opacity": 0.55,
+        "stroke": "#ffffff",
+        "strokeWidth": 1.5,
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {
+          "field": "remoteness",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "Major cities",
+              "Inner regional",
+              "Outer regional",
+              "Remote",
+              "Very remote"
+            ],
+            "padding": 0.5
+          },
+          "axis": {
+            "title": null,
+            "labelAngle": 0,
+            "labelFontSize": 12,
+            "labelColor": "#14213d",
+            "labelFontWeight": 600,
+            "labelPadding": 8,
+            "labelExpr": "replace(datum.label, ' ', '\\n')"
+          }
+        },
+        "y": {
+          "field": "so",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              80
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": "% meeting expectations",
+            "grid": true,
+            "values": [
+              0,
+              20,
+              40,
+              60,
+              80
+            ]
+          }
+        },
+        "size": {
+          "field": "n",
+          "type": "quantitative",
+          "scale": {
+            "type": "linear",
+            "domain": [
+              0,
+              5000000
+            ],
+            "range": [
+              50,
+              2400
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "remoteness",
+            "title": "Type of area"
+          },
+          {
+            "field": "so",
+            "title": "Australia: % meeting expectations",
+            "format": ".1f"
+          },
+          {
+            "field": "n",
+            "title": "Students tested in Australia",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-2/data/remoteness.csv",
+        "format": {
+          "type": "csv"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.year == year && datum.state == sel"
+        }
+      ],
+      "mark": {
+        "type": "line",
+        "color": "#f0745a",
+        "strokeWidth": 3
+      },
+      "encoding": {
+        "x": {
+          "field": "remoteness",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "Major cities",
+              "Inner regional",
+              "Outer regional",
+              "Remote",
+              "Very remote"
+            ],
+            "padding": 0.5
+          },
+          "axis": {
+            "title": null,
+            "labelAngle": 0,
+            "labelFontSize": 12,
+            "labelColor": "#14213d",
+            "labelFontWeight": 600,
+            "labelPadding": 8,
+            "labelExpr": "replace(datum.label, ' ', '\\n')"
+          }
+        },
+        "y": {
+          "field": "so",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              80
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": "% meeting expectations",
+            "grid": true,
+            "values": [
+              0,
+              20,
+              40,
+              60,
+              80
+            ]
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-2/data/remoteness.csv",
+        "format": {
+          "type": "csv"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.year == year && datum.state == sel"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "color": "#f0745a",
+        "opacity": 0.9,
+        "stroke": "#ffffff",
+        "strokeWidth": 1.5,
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {
+          "field": "remoteness",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "Major cities",
+              "Inner regional",
+              "Outer regional",
+              "Remote",
+              "Very remote"
+            ],
+            "padding": 0.5
+          },
+          "axis": {
+            "title": null,
+            "labelAngle": 0,
+            "labelFontSize": 12,
+            "labelColor": "#14213d",
+            "labelFontWeight": 600,
+            "labelPadding": 8,
+            "labelExpr": "replace(datum.label, ' ', '\\n')"
+          }
+        },
+        "y": {
+          "field": "so",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              80
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": "% meeting expectations",
+            "grid": true,
+            "values": [
+              0,
+              20,
+              40,
+              60,
+              80
+            ]
+          }
+        },
+        "size": {
+          "field": "n",
+          "type": "quantitative",
+          "scale": {
+            "type": "linear",
+            "domain": [
+              0,
+              5000000
+            ],
+            "range": [
+              50,
+              2400
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "title": "State / territory"
+          },
+          {
+            "field": "remoteness",
+            "title": "Type of area"
+          },
+          {
+            "field": "so",
+            "title": "% meeting expectations",
+            "format": ".1f"
+          },
+          {
+            "field": "n",
+            "title": "Students tested",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-2/data/remoteness.csv",
+        "format": {
+          "type": "csv"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.year == year && datum.state == 'Australia'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": -16,
+        "fontSize": 11,
+        "fontWeight": 700,
+        "color": "#6b7280"
+      },
+      "encoding": {
+        "x": {
+          "field": "remoteness",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "Major cities",
+              "Inner regional",
+              "Outer regional",
+              "Remote",
+              "Very remote"
+            ],
+            "padding": 0.5
+          },
+          "axis": {
+            "title": null,
+            "labelAngle": 0,
+            "labelFontSize": 12,
+            "labelColor": "#14213d",
+            "labelFontWeight": 600,
+            "labelPadding": 8,
+            "labelExpr": "replace(datum.label, ' ', '\\n')"
+          }
+        },
+        "y": {
+          "field": "so",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              80
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": "% meeting expectations",
+            "grid": true,
+            "values": [
+              0,
+              20,
+              40,
+              60,
+              80
+            ]
+          }
+        },
+        "text": {
+          "field": "so",
+          "type": "quantitative",
+          "format": ".0f"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-2/data/remoteness.csv",
+        "format": {
+          "type": "csv"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.year == year && datum.state == sel"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": 17,
+        "fontSize": 11,
+        "fontWeight": 700,
+        "color": "#c2410c"
+      },
+      "encoding": {
+        "x": {
+          "field": "remoteness",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "Major cities",
+              "Inner regional",
+              "Outer regional",
+              "Remote",
+              "Very remote"
+            ],
+            "padding": 0.5
+          },
+          "axis": {
+            "title": null,
+            "labelAngle": 0,
+            "labelFontSize": 12,
+            "labelColor": "#14213d",
+            "labelFontWeight": 600,
+            "labelPadding": 8,
+            "labelExpr": "replace(datum.label, ' ', '\\n')"
+          }
+        },
+        "y": {
+          "field": "so",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              80
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": "% meeting expectations",
+            "grid": true,
+            "values": [
+              0,
+              20,
+              40,
+              60,
+              80
+            ]
+          }
+        },
+        "text": {
+          "field": "so",
+          "type": "quantitative",
+          "format": ".0f"
+        }
+      }
+    }
+  ]
+}

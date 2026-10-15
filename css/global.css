@@ -62,3 +62,7 @@ body {
   padding: 10px 12px;
   box-shadow: 0 8px 24px rgba(20, 33, 61, 0.18);
 }
+
+/* Text marks inside charts (value labels etc.) must not swallow hover/click:
+   the tooltip and click handlers belong to the shape underneath. */
+.vega-embed svg text { pointer-events: none; }

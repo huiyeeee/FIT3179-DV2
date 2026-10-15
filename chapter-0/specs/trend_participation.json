@@ -1,0 +1,284 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 120,
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif"
+  },
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {
+            "year": "2023",
+            "pct": 93.35
+          },
+          {
+            "year": "2024",
+            "pct": 93.4
+          },
+          {
+            "year": "2025",
+            "pct": 93.81
+          },
+          {
+            "year": "2026",
+            "pct": 92.86
+          }
+        ]
+      },
+      "mark": {
+        "type": "line",
+        "color": "#1f6f8b",
+        "strokeWidth": 2,
+        "opacity": 0.6
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "scale": {
+            "padding": 0.4
+          },
+          "axis": {
+            "title": null,
+            "labelColor": "#4a5568",
+            "labelPadding": 6,
+            "domain": false,
+            "ticks": false,
+            "labelAngle": 0
+          }
+        },
+        "y": {
+          "field": "pct",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              91,
+              95
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": null,
+            "tickCount": 3,
+            "labelColor": "#4a5568",
+            "grid": true,
+            "gridColor": "#eee8dc",
+            "domain": false,
+            "ticks": false,
+            "format": ".0f"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": "2023",
+            "pct": 93.35
+          },
+          {
+            "year": "2024",
+            "pct": 93.4
+          },
+          {
+            "year": "2025",
+            "pct": 93.81
+          },
+          {
+            "year": "2026",
+            "pct": 92.86
+          }
+        ]
+      },
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "color": "#fff",
+        "stroke": "#1f6f8b",
+        "strokeWidth": 1.5,
+        "size": 50,
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "scale": {
+            "padding": 0.4
+          },
+          "axis": {
+            "title": null,
+            "labelColor": "#4a5568",
+            "labelPadding": 6,
+            "domain": false,
+            "ticks": false,
+            "labelAngle": 0
+          }
+        },
+        "y": {
+          "field": "pct",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              91,
+              95
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": null,
+            "tickCount": 3,
+            "labelColor": "#4a5568",
+            "grid": true,
+            "gridColor": "#eee8dc",
+            "domain": false,
+            "ticks": false,
+            "format": ".0f"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "year",
+            "title": "Year"
+          },
+          {
+            "field": "pct",
+            "title": "Participation (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "name": "current",
+        "values": [
+          {
+            "year": "2026",
+            "pct": 92.86
+          }
+        ]
+      },
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "color": "#1f6f8b",
+        "stroke": "#fff",
+        "strokeWidth": 2,
+        "size": 190,
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "scale": {
+            "padding": 0.4
+          },
+          "axis": {
+            "title": null,
+            "labelColor": "#4a5568",
+            "labelPadding": 6,
+            "domain": false,
+            "ticks": false,
+            "labelAngle": 0
+          }
+        },
+        "y": {
+          "field": "pct",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              91,
+              95
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": null,
+            "tickCount": 3,
+            "labelColor": "#4a5568",
+            "grid": true,
+            "gridColor": "#eee8dc",
+            "domain": false,
+            "ticks": false,
+            "format": ".0f"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "year",
+            "title": "Year"
+          },
+          {
+            "field": "pct",
+            "title": "Participation (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "name": "current"
+      },
+      "mark": {
+        "type": "text",
+        "dy": -15,
+        "fontWeight": 700,
+        "fontSize": 12,
+        "color": "#14213d"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "scale": {
+            "padding": 0.4
+          },
+          "axis": {
+            "title": null,
+            "labelColor": "#4a5568",
+            "labelPadding": 6,
+            "domain": false,
+            "ticks": false,
+            "labelAngle": 0
+          }
+        },
+        "y": {
+          "field": "pct",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              91,
+              95
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": null,
+            "tickCount": 3,
+            "labelColor": "#4a5568",
+            "grid": true,
+            "gridColor": "#eee8dc",
+            "domain": false,
+            "ticks": false,
+            "format": ".0f"
+          }
+        },
+        "text": {
+          "field": "pct",
+          "type": "quantitative",
+          "format": ".1f"
+        }
+      }
+    }
+  ]
+}

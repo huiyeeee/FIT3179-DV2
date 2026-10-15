@@ -1,0 +1,608 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": null,
+  "padding": {
+    "left": 6,
+    "right": 10,
+    "top": 24,
+    "bottom": 6
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif"
+  },
+  "width": 586,
+  "height": {
+    "step": 54
+  },
+  "data": {
+    "name": "hero",
+    "values": [
+      {
+        "label": "2023",
+        "cat": "Needs additional support",
+        "value": 9.749332845939362,
+        "x1": -32.737325746088544,
+        "x2": -22.987992900149184,
+        "mid": -27.862659323118862,
+        "color": "#c2410c",
+        "ink": "#ffffff",
+        "dim": true,
+        "showVal": true,
+        "valLabel": "10",
+        "tRow": "2023",
+        "tCat": "Needs additional support",
+        "tVal": "9.7% of students",
+        "tMeet": "65.6% Strong or above"
+      },
+      {
+        "label": "2023",
+        "cat": "Developing",
+        "value": 22.987992900149184,
+        "x1": -22.987992900149184,
+        "x2": 0,
+        "mid": -11.493996450074592,
+        "color": "#f4a58f",
+        "ink": "#14213d",
+        "dim": true,
+        "showVal": true,
+        "valLabel": "23",
+        "tRow": "2023",
+        "tCat": "Developing",
+        "tVal": "23.0% of students",
+        "tMeet": "65.6% Strong or above"
+      },
+      {
+        "label": "2023",
+        "cat": "Strong",
+        "value": 50.47504148736329,
+        "x1": 0,
+        "x2": 50.47504148736329,
+        "mid": 25.237520743681646,
+        "color": "#7ab3c6",
+        "ink": "#14213d",
+        "dim": true,
+        "showVal": true,
+        "valLabel": "50",
+        "tRow": "2023",
+        "tCat": "Strong",
+        "tVal": "50.5% of students",
+        "tMeet": "65.6% Strong or above"
+      },
+      {
+        "label": "2023",
+        "cat": "Exceeding",
+        "value": 15.09503488180379,
+        "x1": 50.47504148736329,
+        "x2": 65.57007636916708,
+        "mid": 58.022558928265184,
+        "color": "#0e4a62",
+        "ink": "#ffffff",
+        "dim": true,
+        "showVal": true,
+        "valLabel": "15",
+        "tRow": "2023",
+        "tCat": "Exceeding",
+        "tVal": "15.1% of students",
+        "tMeet": "65.6% Strong or above"
+      },
+      {
+        "label": "2024",
+        "cat": "Needs additional support",
+        "value": 10.252003417447591,
+        "x1": -32.81968712767966,
+        "x2": -22.567683710232064,
+        "mid": -27.69368541895586,
+        "color": "#c2410c",
+        "ink": "#ffffff",
+        "dim": true,
+        "showVal": true,
+        "valLabel": "10",
+        "tRow": "2024",
+        "tCat": "Needs additional support",
+        "tVal": "10.3% of students",
+        "tMeet": "65.4% Strong or above"
+      },
+      {
+        "label": "2024",
+        "cat": "Developing",
+        "value": 22.567683710232064,
+        "x1": -22.567683710232064,
+        "x2": 0,
+        "mid": -11.283841855116032,
+        "color": "#f4a58f",
+        "ink": "#14213d",
+        "dim": true,
+        "showVal": true,
+        "valLabel": "23",
+        "tRow": "2024",
+        "tCat": "Developing",
+        "tVal": "22.6% of students",
+        "tMeet": "65.4% Strong or above"
+      },
+      {
+        "label": "2024",
+        "cat": "Strong",
+        "value": 49.71347015739017,
+        "x1": 0,
+        "x2": 49.71347015739017,
+        "mid": 24.856735078695085,
+        "color": "#7ab3c6",
+        "ink": "#14213d",
+        "dim": true,
+        "showVal": true,
+        "valLabel": "50",
+        "tRow": "2024",
+        "tCat": "Strong",
+        "tVal": "49.7% of students",
+        "tMeet": "65.4% Strong or above"
+      },
+      {
+        "label": "2024",
+        "cat": "Exceeding",
+        "value": 15.712039847921043,
+        "x1": 49.71347015739017,
+        "x2": 65.42551000531121,
+        "mid": 57.56949008135069,
+        "color": "#0e4a62",
+        "ink": "#ffffff",
+        "dim": true,
+        "showVal": true,
+        "valLabel": "16",
+        "tRow": "2024",
+        "tCat": "Exceeding",
+        "tVal": "15.7% of students",
+        "tMeet": "65.4% Strong or above"
+      },
+      {
+        "label": "2025",
+        "cat": "Needs additional support",
+        "value": 10.080772035158223,
+        "x1": -32.34142068134045,
+        "x2": -22.260648646182233,
+        "mid": -27.301034663761342,
+        "color": "#c2410c",
+        "ink": "#ffffff",
+        "dim": true,
+        "showVal": true,
+        "valLabel": "10",
+        "tRow": "2025",
+        "tCat": "Needs additional support",
+        "tVal": "10.1% of students",
+        "tMeet": "65.9% Strong or above"
+      },
+      {
+        "label": "2025",
+        "cat": "Developing",
+        "value": 22.260648646182233,
+        "x1": -22.260648646182233,
+        "x2": 0,
+        "mid": -11.130324323091116,
+        "color": "#f4a58f",
+        "ink": "#14213d",
+        "dim": true,
+        "showVal": true,
+        "valLabel": "22",
+        "tRow": "2025",
+        "tCat": "Developing",
+        "tVal": "22.3% of students",
+        "tMeet": "65.9% Strong or above"
+      },
+      {
+        "label": "2025",
+        "cat": "Strong",
+        "value": 49.6451952146476,
+        "x1": 0,
+        "x2": 49.6451952146476,
+        "mid": 24.8225976073238,
+        "color": "#7ab3c6",
+        "ink": "#14213d",
+        "dim": true,
+        "showVal": true,
+        "valLabel": "50",
+        "tRow": "2025",
+        "tCat": "Strong",
+        "tVal": "49.6% of students",
+        "tMeet": "65.9% Strong or above"
+      },
+      {
+        "label": "2025",
+        "cat": "Exceeding",
+        "value": 16.255340210699057,
+        "x1": 49.6451952146476,
+        "x2": 65.90053542534666,
+        "mid": 57.77286531999713,
+        "color": "#0e4a62",
+        "ink": "#ffffff",
+        "dim": true,
+        "showVal": true,
+        "valLabel": "16",
+        "tRow": "2025",
+        "tCat": "Exceeding",
+        "tVal": "16.3% of students",
+        "tMeet": "65.9% Strong or above"
+      },
+      {
+        "label": "2026",
+        "cat": "Needs additional support",
+        "value": 10.792501361270647,
+        "x1": -33.033745237600634,
+        "x2": -22.241243876329985,
+        "mid": -27.637494556965308,
+        "color": "#c2410c",
+        "ink": "#ffffff",
+        "dim": false,
+        "showVal": true,
+        "valLabel": "11",
+        "tRow": "2026",
+        "tCat": "Needs additional support",
+        "tVal": "10.8% of students",
+        "tMeet": "65.1% Strong or above"
+      },
+      {
+        "label": "2026",
+        "cat": "Developing",
+        "value": 22.241243876329985,
+        "x1": -22.241243876329985,
+        "x2": 0,
+        "mid": -11.120621938164993,
+        "color": "#f4a58f",
+        "ink": "#14213d",
+        "dim": false,
+        "showVal": true,
+        "valLabel": "22",
+        "tRow": "2026",
+        "tCat": "Developing",
+        "tVal": "22.2% of students",
+        "tMeet": "65.1% Strong or above"
+      },
+      {
+        "label": "2026",
+        "cat": "Strong",
+        "value": 48.7654501824748,
+        "x1": 0,
+        "x2": 48.7654501824748,
+        "mid": 24.3827250912374,
+        "color": "#7ab3c6",
+        "ink": "#14213d",
+        "dim": false,
+        "showVal": true,
+        "valLabel": "49",
+        "tRow": "2026",
+        "tCat": "Strong",
+        "tVal": "48.8% of students",
+        "tMeet": "65.1% Strong or above"
+      },
+      {
+        "label": "2026",
+        "cat": "Exceeding",
+        "value": 16.34442392841509,
+        "x1": 48.7654501824748,
+        "x2": 65.10987411088989,
+        "mid": 56.93766214668234,
+        "color": "#0e4a62",
+        "ink": "#ffffff",
+        "dim": false,
+        "showVal": true,
+        "valLabel": "16",
+        "tRow": "2026",
+        "tCat": "Exceeding",
+        "tVal": "16.3% of students",
+        "tMeet": "65.1% Strong or above"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "stroke": "#ffffff",
+        "strokeWidth": 1.5,
+        "cornerRadius": 2,
+        "tooltip": true
+      },
+      "encoding": {
+        "y": {
+          "field": "label",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "2023",
+              "2024",
+              "2025",
+              "2026"
+            ],
+            "padding": 0.22
+          },
+          "axis": {
+            "title": null,
+            "ticks": false,
+            "domain": false,
+            "labelFontSize": 12,
+            "labelFontWeight": 600,
+            "labelColor": "#14213d",
+            "labelPadding": 10,
+            "minExtent": 44,
+            "maxExtent": 44
+          }
+        },
+        "x": {
+          "field": "x1",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -50,
+              80
+            ],
+            "nice": false,
+            "zero": false
+          },
+          "axis": {
+            "values": [
+              -40,
+              -20,
+              0,
+              20,
+              40,
+              60,
+              80
+            ],
+            "labelExpr": "abs(datum.value) + '%'",
+            "grid": true,
+            "gridColor": "#eee8dc",
+            "domain": false,
+            "ticks": false,
+            "labels": true,
+            "title": "% of students",
+            "titleColor": "#4a5568",
+            "titleFontSize": 11,
+            "titleFontWeight": 500,
+            "labelColor": "#4a5568",
+            "titlePadding": 8
+          }
+        },
+        "x2": {
+          "field": "x2"
+        },
+        "color": {
+          "field": "color",
+          "type": "nominal",
+          "scale": null,
+          "legend": null
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum.dim",
+            "value": 0.55
+          },
+          "value": 1
+        },
+        "tooltip": [
+          {
+            "field": "tRow",
+            "title": "Group"
+          },
+          {
+            "field": "tCat",
+            "title": "Proficiency level"
+          },
+          {
+            "field": "tVal",
+            "title": "Share"
+          },
+          {
+            "field": "tMeet",
+            "title": "Meeting expectations"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 0
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#14213d",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -50,
+              80
+            ],
+            "nice": false,
+            "zero": false
+          },
+          "axis": {
+            "values": [
+              -40,
+              -20,
+              0,
+              20,
+              40,
+              60,
+              80
+            ],
+            "labelExpr": "abs(datum.value) + '%'",
+            "grid": true,
+            "gridColor": "#eee8dc",
+            "domain": false,
+            "ticks": false,
+            "labels": true,
+            "title": "% of students",
+            "titleColor": "#4a5568",
+            "titleFontSize": 11,
+            "titleFontWeight": 500,
+            "labelColor": "#4a5568",
+            "titlePadding": 8
+          }
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.showVal"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "baseline": "middle",
+        "fontSize": 11,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "y": {
+          "field": "label",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "2023",
+              "2024",
+              "2025",
+              "2026"
+            ],
+            "padding": 0.22
+          },
+          "axis": {
+            "title": null,
+            "ticks": false,
+            "domain": false,
+            "labelFontSize": 12,
+            "labelFontWeight": 600,
+            "labelColor": "#14213d",
+            "labelPadding": 10,
+            "minExtent": 44,
+            "maxExtent": 44
+          }
+        },
+        "x": {
+          "field": "mid",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -50,
+              80
+            ],
+            "nice": false,
+            "zero": false
+          },
+          "axis": {
+            "values": [
+              -40,
+              -20,
+              0,
+              20,
+              40,
+              60,
+              80
+            ],
+            "labelExpr": "abs(datum.value) + '%'",
+            "grid": true,
+            "gridColor": "#eee8dc",
+            "domain": false,
+            "ticks": false,
+            "labels": true,
+            "title": "% of students",
+            "titleColor": "#4a5568",
+            "titleFontSize": 11,
+            "titleFontWeight": 500,
+            "labelColor": "#4a5568",
+            "titlePadding": 8
+          }
+        },
+        "text": {
+          "field": "valLabel"
+        },
+        "color": {
+          "field": "ink",
+          "type": "nominal",
+          "scale": null,
+          "legend": null
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum.dim",
+            "value": 0.55
+          },
+          "value": 1
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": -25,
+            "t": "NOT YET MEETING EXPECTATIONS"
+          },
+          {
+            "x": 40,
+            "t": "MEETING OR EXCEEDING EXPECTATIONS"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 10,
+        "fontWeight": 700,
+        "color": "#4a5568",
+        "align": "center"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -50,
+              80
+            ],
+            "nice": false,
+            "zero": false
+          },
+          "axis": {
+            "values": [
+              -40,
+              -20,
+              0,
+              20,
+              40,
+              60,
+              80
+            ],
+            "labelExpr": "abs(datum.value) + '%'",
+            "grid": true,
+            "gridColor": "#eee8dc",
+            "domain": false,
+            "ticks": false,
+            "labels": true,
+            "title": "% of students",
+            "titleColor": "#4a5568",
+            "titleFontSize": 11,
+            "titleFontWeight": 500,
+            "labelColor": "#4a5568",
+            "titlePadding": 8
+          }
+        },
+        "y": {
+          "value": -12
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    }
+  ]
+}

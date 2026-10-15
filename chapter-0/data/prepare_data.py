@@ -8,7 +8,7 @@ from pathlib import Path
 import pandas as pd
 
 here = Path(__file__).parent
-raw = pd.read_csv(here / "NAPLAN_participation_overall.csv", thousands=",")
+raw = pd.read_csv(here.parent.parent / "data" / "raw" / "NAPLAN_participation_raw.csv", thousands=",")
 
 tidy = (
     raw[raw["Student attribute"] == "All"]

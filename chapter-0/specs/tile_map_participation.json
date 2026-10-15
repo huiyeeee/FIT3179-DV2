@@ -1,0 +1,336 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 400,
+  "height": 400,
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif"
+  },
+  "data": {
+    "name": "tiles",
+    "values": [
+      {
+        "name": "Northern Territory",
+        "code": "NT",
+        "col": 1,
+        "row": 0,
+        "region": "Northern Territory",
+        "pct": 76.47649475125513,
+        "diff": -16.37977772078959,
+        "value": 76.47649475125513,
+        "label": "76.5%",
+        "ink": "#14213d",
+        "selected": false,
+        "dim": false,
+        "participation": "76.5%",
+        "enrolled": "65,730",
+        "vsAus": "−16.4 pp",
+        "vsPrev": "−5.0 pp",
+        "context": "2026 · all year levels · all domains"
+      },
+      {
+        "name": "Queensland",
+        "code": "QLD",
+        "col": 2,
+        "row": 0,
+        "region": "Queensland",
+        "pct": 89.78801270444528,
+        "diff": -3.068259767599443,
+        "value": 89.78801270444528,
+        "label": "89.8%",
+        "ink": "#14213d",
+        "selected": false,
+        "dim": false,
+        "participation": "89.8%",
+        "enrolled": "1,406,122",
+        "vsAus": "−3.1 pp",
+        "vsPrev": "+0.2 pp",
+        "context": "2026 · all year levels · all domains"
+      },
+      {
+        "name": "Western Australia",
+        "code": "WA",
+        "col": 0,
+        "row": 1,
+        "region": "Western Australia",
+        "pct": 95.00250618505028,
+        "diff": 2.1462337130055573,
+        "value": 95.00250618505028,
+        "label": "95.0%",
+        "ink": "#ffffff",
+        "selected": false,
+        "dim": false,
+        "participation": "95.0%",
+        "enrolled": "746,154",
+        "vsAus": "+2.1 pp",
+        "vsPrev": "−0.3 pp",
+        "context": "2026 · all year levels · all domains"
+      },
+      {
+        "name": "South Australia",
+        "code": "SA",
+        "col": 1,
+        "row": 1,
+        "region": "South Australia",
+        "pct": 92.77938281978383,
+        "diff": -0.0768896522608884,
+        "value": 92.77938281978383,
+        "label": "92.8%",
+        "ink": "#ffffff",
+        "selected": false,
+        "dim": false,
+        "participation": "92.8%",
+        "enrolled": "434,395",
+        "vsAus": "−0.1 pp",
+        "vsPrev": "−0.6 pp",
+        "context": "2026 · all year levels · all domains"
+      },
+      {
+        "name": "New South Wales",
+        "code": "NSW",
+        "col": 2,
+        "row": 1,
+        "region": "New South Wales",
+        "pct": 95.33896674189542,
+        "diff": 2.482694269850697,
+        "value": 95.33896674189542,
+        "label": "95.3%",
+        "ink": "#ffffff",
+        "selected": false,
+        "dim": false,
+        "participation": "95.3%",
+        "enrolled": "2,000,565",
+        "vsAus": "+2.5 pp",
+        "vsPrev": "−0.5 pp",
+        "context": "2026 · all year levels · all domains"
+      },
+      {
+        "name": "Australian Capital Territory",
+        "code": "ACT",
+        "col": 3,
+        "row": 1,
+        "region": "Australian Capital Territory",
+        "pct": 93.25960332034333,
+        "diff": 0.40333084829860866,
+        "value": 93.25960332034333,
+        "label": "93.3%",
+        "ink": "#ffffff",
+        "selected": false,
+        "dim": false,
+        "participation": "93.3%",
+        "enrolled": "120,349",
+        "vsAus": "+0.4 pp",
+        "vsPrev": "−0.3 pp",
+        "context": "2026 · all year levels · all domains"
+      },
+      {
+        "name": "Victoria",
+        "code": "VIC",
+        "col": 2,
+        "row": 2,
+        "region": "Victoria",
+        "pct": 94.59574269777312,
+        "diff": 1.7394702257283967,
+        "value": 94.59574269777312,
+        "label": "94.6%",
+        "ink": "#ffffff",
+        "selected": false,
+        "dim": false,
+        "participation": "94.6%",
+        "enrolled": "1,673,736",
+        "vsAus": "+1.7 pp",
+        "vsPrev": "−0.3 pp",
+        "context": "2026 · all year levels · all domains"
+      },
+      {
+        "name": "Tasmania",
+        "code": "TAS",
+        "col": 2,
+        "row": 3,
+        "region": "Tasmania",
+        "pct": 60.38815133629761,
+        "diff": -32.46812113574711,
+        "value": 60.38815133629761,
+        "label": "60.4%",
+        "ink": "#14213d",
+        "selected": false,
+        "dim": false,
+        "participation": "60.4%",
+        "enrolled": "126,394",
+        "vsAus": "−32.5 pp",
+        "vsPrev": "−33.8 pp",
+        "context": "2026 · all year levels · all domains"
+      }
+    ]
+  },
+  "encoding": {
+    "x": {
+      "field": "col",
+      "type": "ordinal",
+      "axis": null,
+      "scale": {
+        "domain": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "paddingInner": 0.08,
+        "paddingOuter": 0
+      }
+    },
+    "y": {
+      "field": "row",
+      "type": "ordinal",
+      "axis": null,
+      "scale": {
+        "domain": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "paddingInner": 0.08,
+        "paddingOuter": 0
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "cornerRadius": 8,
+        "cursor": "pointer",
+        "tooltip": true
+      },
+      "encoding": {
+        "fill": {
+          "field": "value",
+          "type": "quantitative",
+          "legend": null,
+          "scale": {
+            "type": "threshold",
+            "domain": [
+              70,
+              85,
+              90,
+              95
+            ],
+            "range": [
+              "#e6f1f5",
+              "#b3d4df",
+              "#78b0c4",
+              "#2f7d9a",
+              "#0e4a62"
+            ]
+          }
+        },
+        "stroke": {
+          "condition": {
+            "test": "datum.selected",
+            "value": "#14213d"
+          },
+          "value": "rgba(20, 33, 61, 0.18)"
+        },
+        "strokeWidth": {
+          "condition": {
+            "test": "datum.selected",
+            "value": 3
+          },
+          "value": 1
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum.dim",
+            "value": 0.5
+          },
+          "value": 1
+        },
+        "tooltip": [
+          {
+            "field": "region",
+            "title": "State / territory"
+          },
+          {
+            "field": "participation",
+            "title": "Participation"
+          },
+          {
+            "field": "vsAus",
+            "title": "vs Australia"
+          },
+          {
+            "field": "vsPrev",
+            "title": "vs previous year"
+          },
+          {
+            "field": "enrolled",
+            "title": "Enrolled"
+          },
+          {
+            "field": "context",
+            "title": "Selection"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -20,
+        "fontSize": 14.000000000000002,
+        "fontWeight": 600,
+        "opacity": 0.85,
+        "cursor": "pointer"
+      },
+      "encoding": {
+        "text": {
+          "field": "code"
+        },
+        "color": {
+          "field": "ink",
+          "type": "nominal",
+          "scale": null,
+          "legend": null
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum.dim",
+            "value": 0.5
+          },
+          "value": 1
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": 14.000000000000002,
+        "fontSize": 22,
+        "fontWeight": 700,
+        "cursor": "pointer"
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        },
+        "color": {
+          "field": "ink",
+          "type": "nominal",
+          "scale": null,
+          "legend": null
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum.dim",
+            "value": 0.5
+          },
+          "value": 1
+        }
+      }
+    }
+  ]
+}
