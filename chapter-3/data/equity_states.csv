@@ -1,0 +1,641 @@
+year,level,domain,state,abbr,col,row,indig,non,gap,indigN
+2023,3,Grammar and punctuation,Australian Capital Territory,ACT,3,1,28.0,56.4,28.5,216.0
+2023,3,Grammar and punctuation,New South Wales,NSW,2,1,28.4,61.7,33.3,6915.0
+2023,3,Grammar and punctuation,Northern Territory,NT,1,0,5.9,42.8,36.9,1376.0
+2023,3,Grammar and punctuation,Queensland,QLD,2,0,21.8,52.6,30.8,6503.0
+2023,3,Grammar and punctuation,South Australia,SA,1,1,18.3,50.6,32.2,1204.0
+2023,3,Grammar and punctuation,Tasmania,TAS,2,3,26.1,47.3,21.1,726.0
+2023,3,Grammar and punctuation,Victoria,VIC,2,2,30.9,58.4,27.6,1608.0
+2023,3,Grammar and punctuation,Western Australia,WA,0,1,15.4,53.6,38.2,2686.0
+2023,3,Numeracy,Australian Capital Territory,ACT,3,1,38.1,69.1,31.0,216.0
+2023,3,Numeracy,New South Wales,NSW,2,1,39.7,70.8,31.1,6915.0
+2023,3,Numeracy,Northern Territory,NT,1,0,9.3,53.8,44.6,1376.0
+2023,3,Numeracy,Queensland,QLD,2,0,27.4,62.5,35.1,6503.0
+2023,3,Numeracy,South Australia,SA,1,1,24.5,61.2,36.8,1204.0
+2023,3,Numeracy,Tasmania,TAS,2,3,39.5,60.9,21.3,726.0
+2023,3,Numeracy,Victoria,VIC,2,2,42.9,70.4,27.5,1608.0
+2023,3,Numeracy,Western Australia,WA,0,1,21.1,65.1,44.0,2685.0
+2023,3,Reading,Australian Capital Territory,ACT,3,1,42.6,72.2,29.6,216.0
+2023,3,Reading,New South Wales,NSW,2,1,42.2,72.2,30.0,6915.0
+2023,3,Reading,Northern Territory,NT,1,0,11.7,57.4,45.7,1376.0
+2023,3,Reading,Queensland,QLD,2,0,32.6,64.8,32.2,6504.0
+2023,3,Reading,South Australia,SA,1,1,32.1,66.4,34.3,1204.0
+2023,3,Reading,Tasmania,TAS,2,3,44.7,64.8,20.1,726.0
+2023,3,Reading,Victoria,VIC,2,2,47.0,72.2,25.2,1607.0
+2023,3,Reading,Western Australia,WA,0,1,25.2,66.2,41.0,2687.0
+2023,3,Spelling,Australian Capital Territory,ACT,3,1,34.7,61.4,26.7,216.0
+2023,3,Spelling,New South Wales,NSW,2,1,38.2,68.6,30.4,6915.0
+2023,3,Spelling,Northern Territory,NT,1,0,10.0,50.7,40.7,1376.0
+2023,3,Spelling,Queensland,QLD,2,0,30.9,57.4,26.5,6503.0
+2023,3,Spelling,South Australia,SA,1,1,33.2,62.3,29.0,1204.0
+2023,3,Spelling,Tasmania,TAS,2,3,36.6,54.1,17.5,726.0
+2023,3,Spelling,Victoria,VIC,2,2,37.8,63.4,25.5,1608.0
+2023,3,Spelling,Western Australia,WA,0,1,25.2,60.6,35.4,2686.0
+2023,3,Writing,Australian Capital Territory,ACT,3,1,44.9,77.7,32.8,216.0
+2023,3,Writing,New South Wales,NSW,2,1,52.1,82.2,30.1,6915.0
+2023,3,Writing,Northern Territory,NT,1,0,14.6,67.5,52.8,1376.0
+2023,3,Writing,Queensland,QLD,2,0,40.8,73.4,32.6,6503.0
+2023,3,Writing,South Australia,SA,1,1,39.0,75.1,36.1,1204.0
+2023,3,Writing,Tasmania,TAS,2,3,48.4,71.0,22.5,726.0
+2023,3,Writing,Victoria,VIC,2,2,54.5,80.9,26.4,1607.0
+2023,3,Writing,Western Australia,WA,0,1,32.1,77.7,45.6,2688.0
+2023,5,Grammar and punctuation,Australian Capital Territory,ACT,3,1,35.6,68.0,32.4,213.0
+2023,5,Grammar and punctuation,New South Wales,NSW,2,1,34.0,68.8,34.8,7300.0
+2023,5,Grammar and punctuation,Northern Territory,NT,1,0,9.1,58.5,49.3,1342.0
+2023,5,Grammar and punctuation,Queensland,QLD,2,0,28.9,64.3,35.4,6411.0
+2023,5,Grammar and punctuation,South Australia,SA,1,1,25.2,61.0,35.8,1130.0
+2023,5,Grammar and punctuation,Tasmania,TAS,2,3,35.9,58.0,22.1,705.0
+2023,5,Grammar and punctuation,Victoria,VIC,2,2,32.5,68.0,35.5,1654.0
+2023,5,Grammar and punctuation,Western Australia,WA,0,1,20.3,65.4,45.1,2666.0
+2023,5,Numeracy,Australian Capital Territory,ACT,3,1,43.8,74.0,30.2,213.0
+2023,5,Numeracy,New South Wales,NSW,2,1,40.5,73.3,32.8,7300.0
+2023,5,Numeracy,Northern Territory,NT,1,0,8.5,60.5,51.9,1342.0
+2023,5,Numeracy,Queensland,QLD,2,0,30.2,68.2,37.9,6407.0
+2023,5,Numeracy,South Australia,SA,1,1,24.8,63.9,39.1,1130.0
+2023,5,Numeracy,Tasmania,TAS,2,3,36.5,62.5,26.0,705.0
+2023,5,Numeracy,Victoria,VIC,2,2,38.5,71.0,32.5,1654.0
+2023,5,Numeracy,Western Australia,WA,0,1,23.0,69.5,46.5,2666.0
+2023,5,Reading,Australian Capital Territory,ACT,3,1,54.6,80.6,25.9,213.0
+2023,5,Reading,New South Wales,NSW,2,1,48.2,77.5,29.3,7300.0
+2023,5,Reading,Northern Territory,NT,1,0,12.9,69.2,56.3,1342.0
+2023,5,Reading,Queensland,QLD,2,0,40.0,74.0,34.1,6411.0
+2023,5,Reading,South Australia,SA,1,1,38.9,73.3,34.4,1130.0
+2023,5,Reading,Tasmania,TAS,2,3,47.8,70.7,22.9,705.0
+2023,5,Reading,Victoria,VIC,2,2,50.6,79.5,28.9,1654.0
+2023,5,Reading,Western Australia,WA,0,1,28.8,74.7,45.9,2667.0
+2023,5,Spelling,Australian Capital Territory,ACT,3,1,43.0,71.9,28.9,213.0
+2023,5,Spelling,New South Wales,NSW,2,1,46.6,74.6,28.0,7300.0
+2023,5,Spelling,Northern Territory,NT,1,0,13.2,63.0,49.8,1342.0
+2023,5,Spelling,Queensland,QLD,2,0,40.6,67.1,26.5,6411.0
+2023,5,Spelling,South Australia,SA,1,1,37.8,68.4,30.6,1130.0
+2023,5,Spelling,Tasmania,TAS,2,3,44.3,61.4,17.1,705.0
+2023,5,Spelling,Victoria,VIC,2,2,44.3,71.5,27.2,1654.0
+2023,5,Spelling,Western Australia,WA,0,1,35.2,71.1,35.9,2666.0
+2023,5,Writing,Australian Capital Territory,ACT,3,1,36.5,68.0,31.5,213.0
+2023,5,Writing,New South Wales,NSW,2,1,41.2,72.0,30.8,7300.0
+2023,5,Writing,Northern Territory,NT,1,0,11.8,59.2,47.4,1342.0
+2023,5,Writing,Queensland,QLD,2,0,30.6,59.9,29.3,6413.0
+2023,5,Writing,South Australia,SA,1,1,27.3,60.1,32.8,1130.0
+2023,5,Writing,Tasmania,TAS,2,3,39.2,59.1,19.9,706.0
+2023,5,Writing,Victoria,VIC,2,2,45.3,74.9,29.6,1654.0
+2023,5,Writing,Western Australia,WA,0,1,25.3,67.5,42.2,2667.0
+2023,7,Grammar and punctuation,Australian Capital Territory,ACT,3,1,33.1,69.0,35.9,208.0
+2023,7,Grammar and punctuation,New South Wales,NSW,2,1,33.3,68.6,35.3,6974.0
+2023,7,Grammar and punctuation,Northern Territory,NT,1,0,7.9,59.6,51.7,1402.0
+2023,7,Grammar and punctuation,Queensland,QLD,2,0,30.4,64.8,34.4,6190.0
+2023,7,Grammar and punctuation,South Australia,SA,1,1,23.0,62.0,39.0,1110.0
+2023,7,Grammar and punctuation,Tasmania,TAS,2,3,31.5,58.4,26.9,691.0
+2023,7,Grammar and punctuation,Victoria,VIC,2,2,32.8,66.8,34.0,1652.0
+2023,7,Grammar and punctuation,Western Australia,WA,0,1,20.2,67.2,47.0,2612.0
+2023,7,Numeracy,Australian Capital Territory,ACT,3,1,36.3,71.8,35.5,208.0
+2023,7,Numeracy,New South Wales,NSW,2,1,36.1,72.6,36.6,6974.0
+2023,7,Numeracy,Northern Territory,NT,1,0,8.1,62.2,54.1,1402.0
+2023,7,Numeracy,Queensland,QLD,2,0,30.8,67.3,36.5,6190.0
+2023,7,Numeracy,South Australia,SA,1,1,23.9,64.8,40.9,1110.0
+2023,7,Numeracy,Tasmania,TAS,2,3,35.1,60.0,24.9,691.0
+2023,7,Numeracy,Victoria,VIC,2,2,34.6,70.1,35.5,1652.0
+2023,7,Numeracy,Western Australia,WA,0,1,22.6,71.2,48.5,2612.0
+2023,7,Reading,Australian Capital Territory,ACT,3,1,43.3,75.3,32.0,208.0
+2023,7,Reading,New South Wales,NSW,2,1,39.3,72.9,33.6,6974.0
+2023,7,Reading,Northern Territory,NT,1,0,10.8,65.3,54.5,1402.0
+2023,7,Reading,Queensland,QLD,2,0,33.5,67.2,33.7,6190.0
+2023,7,Reading,South Australia,SA,1,1,31.8,67.9,36.0,1110.0
+2023,7,Reading,Tasmania,TAS,2,3,39.5,64.1,24.6,691.0
+2023,7,Reading,Victoria,VIC,2,2,41.8,72.9,31.0,1652.0
+2023,7,Reading,Western Australia,WA,0,1,25.2,70.8,45.6,2612.0
+2023,7,Spelling,Australian Capital Territory,ACT,3,1,49.0,74.1,25.1,208.0
+2023,7,Spelling,New South Wales,NSW,2,1,50.6,78.5,27.9,6974.0
+2023,7,Spelling,Northern Territory,NT,1,0,16.0,67.3,51.3,1402.0
+2023,7,Spelling,Queensland,QLD,2,0,46.5,72.3,25.8,6190.0
+2023,7,Spelling,South Australia,SA,1,1,43.6,71.4,27.8,1110.0
+2023,7,Spelling,Tasmania,TAS,2,3,45.9,65.1,19.1,691.0
+2023,7,Spelling,Victoria,VIC,2,2,44.4,73.6,29.2,1652.0
+2023,7,Spelling,Western Australia,WA,0,1,39.0,76.4,37.5,2612.0
+2023,7,Writing,Australian Capital Territory,ACT,3,1,33.2,65.5,32.3,208.0
+2023,7,Writing,New South Wales,NSW,2,1,36.0,68.4,32.4,6974.0
+2023,7,Writing,Northern Territory,NT,1,0,9.5,56.6,47.2,1402.0
+2023,7,Writing,Queensland,QLD,2,0,29.4,57.7,28.3,6190.0
+2023,7,Writing,South Australia,SA,1,1,24.4,57.8,33.5,1110.0
+2023,7,Writing,Tasmania,TAS,2,3,32.3,56.1,23.7,691.0
+2023,7,Writing,Victoria,VIC,2,2,37.1,69.3,32.1,1652.0
+2023,7,Writing,Western Australia,WA,0,1,22.4,64.9,42.5,2611.0
+2023,9,Grammar and punctuation,Australian Capital Territory,ACT,3,1,24.2,62.1,37.9,171.0
+2023,9,Grammar and punctuation,New South Wales,NSW,2,1,23.2,60.1,37.0,6849.0
+2023,9,Grammar and punctuation,Northern Territory,NT,1,0,6.8,49.2,42.5,1374.0
+2023,9,Grammar and punctuation,Queensland,QLD,2,0,24.0,55.6,31.6,6156.0
+2023,9,Grammar and punctuation,South Australia,SA,1,1,19.0,51.2,32.2,1185.0
+2023,9,Grammar and punctuation,Tasmania,TAS,2,3,23.9,48.8,24.9,780.0
+2023,9,Grammar and punctuation,Victoria,VIC,2,2,25.9,59.1,33.3,1617.0
+2023,9,Grammar and punctuation,Western Australia,WA,0,1,19.3,63.3,44.0,2677.0
+2023,9,Numeracy,Australian Capital Territory,ACT,3,1,31.3,68.5,37.2,171.0
+2023,9,Numeracy,New South Wales,NSW,2,1,29.5,69.0,39.5,6849.0
+2023,9,Numeracy,Northern Territory,NT,1,0,9.3,58.0,48.6,1374.0
+2023,9,Numeracy,Queensland,QLD,2,0,26.3,62.1,35.8,6155.0
+2023,9,Numeracy,South Australia,SA,1,1,23.0,60.2,37.2,1185.0
+2023,9,Numeracy,Tasmania,TAS,2,3,34.8,56.9,22.1,780.0
+2023,9,Numeracy,Victoria,VIC,2,2,32.5,67.4,34.9,1617.0
+2023,9,Numeracy,Western Australia,WA,0,1,24.8,73.2,48.4,2677.0
+2023,9,Reading,Australian Capital Territory,ACT,3,1,35.7,70.3,34.7,171.0
+2023,9,Reading,New South Wales,NSW,2,1,29.7,66.0,36.3,6849.0
+2023,9,Reading,Northern Territory,NT,1,0,11.4,57.6,46.2,1374.0
+2023,9,Reading,Queensland,QLD,2,0,29.1,60.9,31.8,6157.0
+2023,9,Reading,South Australia,SA,1,1,27.8,60.9,33.0,1185.0
+2023,9,Reading,Tasmania,TAS,2,3,35.4,59.0,23.6,780.0
+2023,9,Reading,Victoria,VIC,2,2,38.9,66.8,27.9,1617.0
+2023,9,Reading,Western Australia,WA,0,1,27.0,72.1,45.1,2677.0
+2023,9,Spelling,Australian Capital Territory,ACT,3,1,45.6,74.8,29.2,171.0
+2023,9,Spelling,New South Wales,NSW,2,1,45.8,75.4,29.6,6849.0
+2023,9,Spelling,Northern Territory,NT,1,0,15.8,67.2,51.3,1374.0
+2023,9,Spelling,Queensland,QLD,2,0,46.1,71.2,25.1,6156.0
+2023,9,Spelling,South Australia,SA,1,1,39.6,68.8,29.2,1185.0
+2023,9,Spelling,Tasmania,TAS,2,3,43.3,64.7,21.3,780.0
+2023,9,Spelling,Victoria,VIC,2,2,44.5,72.3,27.9,1617.0
+2023,9,Spelling,Western Australia,WA,0,1,37.7,75.7,38.0,2677.0
+2023,9,Writing,Australian Capital Territory,ACT,3,1,24.2,61.7,37.5,171.0
+2023,9,Writing,New South Wales,NSW,2,1,27.1,61.7,34.5,6849.0
+2023,9,Writing,Northern Territory,NT,1,0,9.1,53.9,44.8,1374.0
+2023,9,Writing,Queensland,QLD,2,0,26.5,54.5,28.0,6158.0
+2023,9,Writing,South Australia,SA,1,1,23.5,55.4,31.9,1185.0
+2023,9,Writing,Tasmania,TAS,2,3,31.4,53.8,22.4,780.0
+2023,9,Writing,Victoria,VIC,2,2,34.3,64.6,30.2,1617.0
+2023,9,Writing,Western Australia,WA,0,1,19.6,63.6,44.1,2676.0
+2024,3,Grammar and punctuation,Australian Capital Territory,ACT,3,1,28.8,60.9,32.1,198.0
+2024,3,Grammar and punctuation,New South Wales,NSW,2,1,29.1,59.9,30.8,7428.0
+2024,3,Grammar and punctuation,Northern Territory,NT,1,0,6.8,44.1,37.3,1384.0
+2024,3,Grammar and punctuation,Queensland,QLD,2,0,21.6,53.2,31.7,6609.0
+2024,3,Grammar and punctuation,South Australia,SA,1,1,20.4,50.9,30.4,1156.0
+2024,3,Grammar and punctuation,Tasmania,TAS,2,3,26.6,45.2,18.6,703.0
+2024,3,Grammar and punctuation,Victoria,VIC,2,2,30.7,57.4,26.7,1784.0
+2024,3,Grammar and punctuation,Western Australia,WA,0,1,16.9,53.6,36.8,2754.0
+2024,3,Numeracy,Australian Capital Territory,ACT,3,1,41.4,69.9,28.4,198.0
+2024,3,Numeracy,New South Wales,NSW,2,1,38.3,68.5,30.3,7428.0
+2024,3,Numeracy,Northern Territory,NT,1,0,9.0,55.5,46.6,1384.0
+2024,3,Numeracy,Queensland,QLD,2,0,27.1,62.3,35.3,6610.0
+2024,3,Numeracy,South Australia,SA,1,1,26.9,61.4,34.5,1156.0
+2024,3,Numeracy,Tasmania,TAS,2,3,40.0,60.6,20.6,702.0
+2024,3,Numeracy,Victoria,VIC,2,2,42.7,68.4,25.7,1784.0
+2024,3,Numeracy,Western Australia,WA,0,1,22.0,63.5,41.4,2754.0
+2024,3,Reading,Australian Capital Territory,ACT,3,1,39.2,72.4,33.2,198.0
+2024,3,Reading,New South Wales,NSW,2,1,41.5,71.0,29.5,7428.0
+2024,3,Reading,Northern Territory,NT,1,0,12.0,58.2,46.2,1384.0
+2024,3,Reading,Queensland,QLD,2,0,31.6,65.3,33.6,6609.0
+2024,3,Reading,South Australia,SA,1,1,32.4,64.0,31.6,1156.0
+2024,3,Reading,Tasmania,TAS,2,3,44.7,63.4,18.8,703.0
+2024,3,Reading,Victoria,VIC,2,2,48.7,72.0,23.2,1784.0
+2024,3,Reading,Western Australia,WA,0,1,25.4,65.2,39.7,2753.0
+2024,3,Spelling,Australian Capital Territory,ACT,3,1,35.8,62.0,26.3,198.0
+2024,3,Spelling,New South Wales,NSW,2,1,38.6,67.3,28.7,7428.0
+2024,3,Spelling,Northern Territory,NT,1,0,11.1,51.0,39.8,1384.0
+2024,3,Spelling,Queensland,QLD,2,0,30.8,57.8,26.9,6609.0
+2024,3,Spelling,South Australia,SA,1,1,33.4,61.3,27.9,1156.0
+2024,3,Spelling,Tasmania,TAS,2,3,37.8,53.0,15.2,703.0
+2024,3,Spelling,Victoria,VIC,2,2,38.6,63.4,24.8,1784.0
+2024,3,Spelling,Western Australia,WA,0,1,25.3,61.1,35.8,2754.0
+2024,3,Writing,Australian Capital Territory,ACT,3,1,53.4,81.0,27.6,198.0
+2024,3,Writing,New South Wales,NSW,2,1,55.1,83.2,28.1,7428.0
+2024,3,Writing,Northern Territory,NT,1,0,15.1,70.4,55.4,1384.0
+2024,3,Writing,Queensland,QLD,2,0,40.8,73.2,32.4,6603.0
+2024,3,Writing,South Australia,SA,1,1,43.4,77.3,33.9,1156.0
+2024,3,Writing,Tasmania,TAS,2,3,52.5,72.0,19.5,703.0
+2024,3,Writing,Victoria,VIC,2,2,55.0,81.0,26.0,1784.0
+2024,3,Writing,Western Australia,WA,0,1,33.7,78.1,44.5,2758.0
+2024,5,Grammar and punctuation,Australian Capital Territory,ACT,3,1,37.8,70.8,33.0,211.0
+2024,5,Grammar and punctuation,New South Wales,NSW,2,1,35.6,70.2,34.7,7560.0
+2024,5,Grammar and punctuation,Northern Territory,NT,1,0,9.6,55.6,46.0,1378.0
+2024,5,Grammar and punctuation,Queensland,QLD,2,0,29.4,66.0,36.6,6408.0
+2024,5,Grammar and punctuation,South Australia,SA,1,1,24.3,61.5,37.2,1197.0
+2024,5,Grammar and punctuation,Tasmania,TAS,2,3,34.2,56.4,22.3,701.0
+2024,5,Grammar and punctuation,Victoria,VIC,2,2,35.8,67.6,31.8,1775.0
+2024,5,Grammar and punctuation,Western Australia,WA,0,1,21.8,65.9,44.1,2659.0
+2024,5,Numeracy,Australian Capital Territory,ACT,3,1,45.6,75.9,30.3,211.0
+2024,5,Numeracy,New South Wales,NSW,2,1,39.1,72.7,33.6,7560.0
+2024,5,Numeracy,Northern Territory,NT,1,0,10.0,59.3,49.3,1378.0
+2024,5,Numeracy,Queensland,QLD,2,0,30.9,67.7,36.8,6407.0
+2024,5,Numeracy,South Australia,SA,1,1,26.0,64.9,38.9,1197.0
+2024,5,Numeracy,Tasmania,TAS,2,3,37.6,60.7,23.2,701.0
+2024,5,Numeracy,Victoria,VIC,2,2,41.0,71.8,30.9,1775.0
+2024,5,Numeracy,Western Australia,WA,0,1,24.8,70.3,45.5,2659.0
+2024,5,Reading,Australian Capital Territory,ACT,3,1,49.9,78.8,29.0,211.0
+2024,5,Reading,New South Wales,NSW,2,1,44.3,74.8,30.5,7560.0
+2024,5,Reading,Northern Territory,NT,1,0,13.4,64.9,51.5,1378.0
+2024,5,Reading,Queensland,QLD,2,0,36.1,71.1,35.0,6409.0
+2024,5,Reading,South Australia,SA,1,1,32.4,68.6,36.2,1197.0
+2024,5,Reading,Tasmania,TAS,2,3,45.1,66.3,21.2,701.0
+2024,5,Reading,Victoria,VIC,2,2,50.6,77.1,26.5,1775.0
+2024,5,Reading,Western Australia,WA,0,1,28.2,72.2,44.0,2659.0
+2024,5,Spelling,Australian Capital Territory,ACT,3,1,45.2,71.5,26.3,211.0
+2024,5,Spelling,New South Wales,NSW,2,1,44.2,73.6,29.3,7560.0
+2024,5,Spelling,Northern Territory,NT,1,0,15.5,60.7,45.2,1378.0
+2024,5,Spelling,Queensland,QLD,2,0,37.7,65.8,28.1,6408.0
+2024,5,Spelling,South Australia,SA,1,1,36.7,67.4,30.7,1197.0
+2024,5,Spelling,Tasmania,TAS,2,3,42.1,59.1,17.0,701.0
+2024,5,Spelling,Victoria,VIC,2,2,43.4,69.8,26.4,1775.0
+2024,5,Spelling,Western Australia,WA,0,1,34.6,70.5,35.8,2659.0
+2024,5,Writing,Australian Capital Territory,ACT,3,1,39.5,71.0,31.5,211.0
+2024,5,Writing,New South Wales,NSW,2,1,42.7,73.2,30.6,7560.0
+2024,5,Writing,Northern Territory,NT,1,0,13.5,61.5,48.0,1378.0
+2024,5,Writing,Queensland,QLD,2,0,30.4,62.1,31.7,6409.0
+2024,5,Writing,South Australia,SA,1,1,28.6,64.3,35.7,1197.0
+2024,5,Writing,Tasmania,TAS,2,3,44.1,62.9,18.8,701.0
+2024,5,Writing,Victoria,VIC,2,2,45.8,74.1,28.3,1775.0
+2024,5,Writing,Western Australia,WA,0,1,26.3,68.3,41.9,2660.0
+2024,7,Grammar and punctuation,Australian Capital Territory,ACT,3,1,40.5,68.0,27.5,196.0
+2024,7,Grammar and punctuation,New South Wales,NSW,2,1,31.8,67.3,35.5,7621.0
+2024,7,Grammar and punctuation,Northern Territory,NT,1,0,7.4,55.3,47.9,1389.0
+2024,7,Grammar and punctuation,Queensland,QLD,2,0,25.7,60.6,35.0,6431.0
+2024,7,Grammar and punctuation,South Australia,SA,1,1,20.8,59.0,38.2,1230.0
+2024,7,Grammar and punctuation,Tasmania,TAS,2,3,32.8,56.1,23.3,715.0
+2024,7,Grammar and punctuation,Victoria,VIC,2,2,32.4,64.0,31.6,1691.0
+2024,7,Grammar and punctuation,Western Australia,WA,0,1,21.3,65.4,44.1,2495.0
+2024,7,Numeracy,Australian Capital Territory,ACT,3,1,45.9,73.4,27.5,196.0
+2024,7,Numeracy,New South Wales,NSW,2,1,37.2,72.8,35.6,7621.0
+2024,7,Numeracy,Northern Territory,NT,1,0,9.0,62.9,53.9,1389.0
+2024,7,Numeracy,Queensland,QLD,2,0,29.9,66.5,36.6,6430.0
+2024,7,Numeracy,South Australia,SA,1,1,25.9,64.6,38.7,1230.0
+2024,7,Numeracy,Tasmania,TAS,2,3,33.9,59.7,25.8,715.0
+2024,7,Numeracy,Victoria,VIC,2,2,37.4,70.3,32.9,1691.0
+2024,7,Numeracy,Western Australia,WA,0,1,25.6,71.2,45.6,2495.0
+2024,7,Reading,Australian Capital Territory,ACT,3,1,53.4,75.0,21.6,196.0
+2024,7,Reading,New South Wales,NSW,2,1,37.9,71.4,33.5,7621.0
+2024,7,Reading,Northern Territory,NT,1,0,11.5,66.0,54.5,1389.0
+2024,7,Reading,Queensland,QLD,2,0,30.7,65.2,34.5,6432.0
+2024,7,Reading,South Australia,SA,1,1,29.7,65.3,35.6,1230.0
+2024,7,Reading,Tasmania,TAS,2,3,42.0,65.3,23.3,715.0
+2024,7,Reading,Victoria,VIC,2,2,42.6,72.6,30.0,1691.0
+2024,7,Reading,Western Australia,WA,0,1,26.5,69.8,43.3,2495.0
+2024,7,Spelling,Australian Capital Territory,ACT,3,1,56.4,75.6,19.2,196.0
+2024,7,Spelling,New South Wales,NSW,2,1,50.7,78.0,27.3,7621.0
+2024,7,Spelling,Northern Territory,NT,1,0,16.4,68.0,51.6,1389.0
+2024,7,Spelling,Queensland,QLD,2,0,45.0,70.9,25.9,6431.0
+2024,7,Spelling,South Australia,SA,1,1,44.3,71.2,27.0,1230.0
+2024,7,Spelling,Tasmania,TAS,2,3,47.9,65.2,17.2,715.0
+2024,7,Spelling,Victoria,VIC,2,2,48.0,73.3,25.2,1691.0
+2024,7,Spelling,Western Australia,WA,0,1,41.4,76.2,34.8,2495.0
+2024,7,Writing,Australian Capital Territory,ACT,3,1,52.0,70.7,18.6,196.0
+2024,7,Writing,New South Wales,NSW,2,1,38.6,71.2,32.6,7621.0
+2024,7,Writing,Northern Territory,NT,1,0,11.2,62.5,51.3,1389.0
+2024,7,Writing,Queensland,QLD,2,0,28.9,59.8,30.9,6433.0
+2024,7,Writing,South Australia,SA,1,1,29.2,61.9,32.7,1230.0
+2024,7,Writing,Tasmania,TAS,2,3,39.4,59.6,20.2,715.0
+2024,7,Writing,Victoria,VIC,2,2,43.4,72.0,28.6,1691.0
+2024,7,Writing,Western Australia,WA,0,1,27.2,67.8,40.6,2500.0
+2024,9,Grammar and punctuation,Australian Capital Territory,ACT,3,1,36.6,62.2,25.6,213.0
+2024,9,Grammar and punctuation,New South Wales,NSW,2,1,22.4,59.0,36.5,7248.0
+2024,9,Grammar and punctuation,Northern Territory,NT,1,0,5.7,47.9,42.2,1376.0
+2024,9,Grammar and punctuation,Queensland,QLD,2,0,22.7,55.8,33.1,6343.0
+2024,9,Grammar and punctuation,South Australia,SA,1,1,19.8,52.5,32.7,1171.0
+2024,9,Grammar and punctuation,Tasmania,TAS,2,3,28.8,49.2,20.4,762.0
+2024,9,Grammar and punctuation,Victoria,VIC,2,2,25.4,56.1,30.7,1610.0
+2024,9,Grammar and punctuation,Western Australia,WA,0,1,17.5,62.3,44.7,2474.0
+2024,9,Numeracy,Australian Capital Territory,ACT,3,1,33.5,69.7,36.2,213.0
+2024,9,Numeracy,New South Wales,NSW,2,1,30.0,68.3,38.3,7248.0
+2024,9,Numeracy,Northern Territory,NT,1,0,7.8,57.0,49.2,1376.0
+2024,9,Numeracy,Queensland,QLD,2,0,25.1,61.6,36.5,6342.0
+2024,9,Numeracy,South Australia,SA,1,1,21.9,59.2,37.3,1171.0
+2024,9,Numeracy,Tasmania,TAS,2,3,31.8,58.1,26.3,762.0
+2024,9,Numeracy,Victoria,VIC,2,2,33.2,66.1,32.9,1610.0
+2024,9,Numeracy,Western Australia,WA,0,1,26.1,73.7,47.7,2475.0
+2024,9,Reading,Australian Capital Territory,ACT,3,1,41.6,71.7,30.1,213.0
+2024,9,Reading,New South Wales,NSW,2,1,31.4,66.7,35.2,7248.0
+2024,9,Reading,Northern Territory,NT,1,0,9.7,58.0,48.3,1376.0
+2024,9,Reading,Queensland,QLD,2,0,27.1,59.7,32.6,6344.0
+2024,9,Reading,South Australia,SA,1,1,26.4,58.6,32.2,1171.0
+2024,9,Reading,Tasmania,TAS,2,3,36.6,60.3,23.7,762.0
+2024,9,Reading,Victoria,VIC,2,2,36.7,67.1,30.4,1610.0
+2024,9,Reading,Western Australia,WA,0,1,28.3,73.8,45.6,2477.0
+2024,9,Spelling,Australian Capital Territory,ACT,3,1,56.1,77.3,21.2,213.0
+2024,9,Spelling,New South Wales,NSW,2,1,46.3,77.0,30.6,7248.0
+2024,9,Spelling,Northern Territory,NT,1,0,15.6,67.3,51.6,1376.0
+2024,9,Spelling,Queensland,QLD,2,0,44.9,71.6,26.7,6343.0
+2024,9,Spelling,South Australia,SA,1,1,40.4,69.2,28.9,1171.0
+2024,9,Spelling,Tasmania,TAS,2,3,46.8,66.1,19.2,762.0
+2024,9,Spelling,Victoria,VIC,2,2,45.9,73.2,27.3,1610.0
+2024,9,Spelling,Western Australia,WA,0,1,39.9,77.4,37.6,2474.0
+2024,9,Writing,Australian Capital Territory,ACT,3,1,42.5,64.6,22.1,213.0
+2024,9,Writing,New South Wales,NSW,2,1,31.6,65.8,34.2,7248.0
+2024,9,Writing,Northern Territory,NT,1,0,8.8,56.2,47.5,1376.0
+2024,9,Writing,Queensland,QLD,2,0,26.2,55.8,29.7,6344.0
+2024,9,Writing,South Australia,SA,1,1,25.9,58.4,32.5,1171.0
+2024,9,Writing,Tasmania,TAS,2,3,36.6,56.5,19.9,762.0
+2024,9,Writing,Victoria,VIC,2,2,37.6,66.7,29.2,1610.0
+2024,9,Writing,Western Australia,WA,0,1,25.4,67.4,42.0,2476.0
+2025,3,Grammar and punctuation,Australian Capital Territory,ACT,3,1,28.5,58.1,29.6,231.0
+2025,3,Grammar and punctuation,New South Wales,NSW,2,1,28.1,60.4,32.2,7803.0
+2025,3,Grammar and punctuation,Northern Territory,NT,1,0,6.4,42.1,35.7,1366.0
+2025,3,Grammar and punctuation,Queensland,QLD,2,0,20.9,52.2,31.3,6611.0
+2025,3,Grammar and punctuation,South Australia,SA,1,1,19.7,50.9,31.3,1196.0
+2025,3,Grammar and punctuation,Tasmania,TAS,2,3,26.0,47.1,21.1,729.0
+2025,3,Grammar and punctuation,Victoria,VIC,2,2,32.4,59.6,27.1,1762.0
+2025,3,Grammar and punctuation,Western Australia,WA,0,1,16.5,52.2,35.7,2811.0
+2025,3,Numeracy,Australian Capital Territory,ACT,3,1,37.5,69.4,31.9,231.0
+2025,3,Numeracy,New South Wales,NSW,2,1,37.8,68.9,31.1,7803.0
+2025,3,Numeracy,Northern Territory,NT,1,0,8.0,54.1,46.2,1366.0
+2025,3,Numeracy,Queensland,QLD,2,0,27.9,62.2,34.3,6609.0
+2025,3,Numeracy,South Australia,SA,1,1,27.4,62.2,34.8,1196.0
+2025,3,Numeracy,Tasmania,TAS,2,3,39.7,62.3,22.6,729.0
+2025,3,Numeracy,Victoria,VIC,2,2,44.3,70.6,26.3,1762.0
+2025,3,Numeracy,Western Australia,WA,0,1,21.3,63.2,41.8,2810.0
+2025,3,Reading,Australian Capital Territory,ACT,3,1,43.5,70.6,27.1,231.0
+2025,3,Reading,New South Wales,NSW,2,1,40.1,70.6,30.5,7803.0
+2025,3,Reading,Northern Territory,NT,1,0,10.0,55.6,45.6,1366.0
+2025,3,Reading,Queensland,QLD,2,0,31.4,63.9,32.5,6615.0
+2025,3,Reading,South Australia,SA,1,1,30.3,63.9,33.6,1196.0
+2025,3,Reading,Tasmania,TAS,2,3,42.0,63.1,21.1,729.0
+2025,3,Reading,Victoria,VIC,2,2,47.2,72.1,24.9,1763.0
+2025,3,Reading,Western Australia,WA,0,1,25.5,63.8,38.3,2811.0
+2025,3,Spelling,Australian Capital Territory,ACT,3,1,33.8,62.8,29.0,231.0
+2025,3,Spelling,New South Wales,NSW,2,1,39.3,69.2,29.8,7803.0
+2025,3,Spelling,Northern Territory,NT,1,0,9.5,50.3,40.9,1366.0
+2025,3,Spelling,Queensland,QLD,2,0,31.1,58.6,27.5,6611.0
+2025,3,Spelling,South Australia,SA,1,1,32.0,62.2,30.3,1196.0
+2025,3,Spelling,Tasmania,TAS,2,3,36.0,55.0,18.9,729.0
+2025,3,Spelling,Victoria,VIC,2,2,41.6,66.0,24.4,1762.0
+2025,3,Spelling,Western Australia,WA,0,1,25.3,60.2,34.9,2811.0
+2025,3,Writing,Australian Capital Territory,ACT,3,1,52.5,80.0,27.5,231.0
+2025,3,Writing,New South Wales,NSW,2,1,54.0,82.9,29.0,7803.0
+2025,3,Writing,Northern Territory,NT,1,0,13.6,67.0,53.4,1366.0
+2025,3,Writing,Queensland,QLD,2,0,39.5,71.9,32.4,6622.0
+2025,3,Writing,South Australia,SA,1,1,39.4,76.1,36.7,1196.0
+2025,3,Writing,Tasmania,TAS,2,3,48.1,72.3,24.2,729.0
+2025,3,Writing,Victoria,VIC,2,2,54.9,81.8,26.8,1762.0
+2025,3,Writing,Western Australia,WA,0,1,33.8,77.7,44.0,2762.0
+2025,5,Grammar and punctuation,Australian Capital Territory,ACT,3,1,37.0,69.0,32.0,228.0
+2025,5,Grammar and punctuation,New South Wales,NSW,2,1,34.6,69.1,34.5,7806.0
+2025,5,Grammar and punctuation,Northern Territory,NT,1,0,7.7,55.1,47.4,1429.0
+2025,5,Grammar and punctuation,Queensland,QLD,2,0,29.7,61.8,32.1,6895.0
+2025,5,Grammar and punctuation,South Australia,SA,1,1,24.0,60.2,36.2,1241.0
+2025,5,Grammar and punctuation,Tasmania,TAS,2,3,35.2,58.2,23.0,788.0
+2025,5,Grammar and punctuation,Victoria,VIC,2,2,39.1,67.6,28.5,1845.0
+2025,5,Grammar and punctuation,Western Australia,WA,0,1,21.6,64.2,42.6,2709.0
+2025,5,Numeracy,Australian Capital Territory,ACT,3,1,42.6,76.0,33.4,228.0
+2025,5,Numeracy,New South Wales,NSW,2,1,40.2,73.5,33.4,7806.0
+2025,5,Numeracy,Northern Territory,NT,1,0,8.9,61.6,52.8,1429.0
+2025,5,Numeracy,Queensland,QLD,2,0,33.7,67.9,34.2,6895.0
+2025,5,Numeracy,South Australia,SA,1,1,28.1,67.2,39.1,1241.0
+2025,5,Numeracy,Tasmania,TAS,2,3,42.1,63.6,21.6,788.0
+2025,5,Numeracy,Victoria,VIC,2,2,45.0,74.2,29.2,1845.0
+2025,5,Numeracy,Western Australia,WA,0,1,26.0,71.1,45.1,2708.0
+2025,5,Reading,Australian Capital Territory,ACT,3,1,50.2,80.3,30.1,228.0
+2025,5,Reading,New South Wales,NSW,2,1,46.9,76.9,30.0,7806.0
+2025,5,Reading,Northern Territory,NT,1,0,11.6,66.8,55.2,1429.0
+2025,5,Reading,Queensland,QLD,2,0,40.0,71.9,32.0,6897.0
+2025,5,Reading,South Australia,SA,1,1,36.5,71.7,35.2,1241.0
+2025,5,Reading,Tasmania,TAS,2,3,48.9,70.4,21.5,788.0
+2025,5,Reading,Victoria,VIC,2,2,55.6,78.1,22.6,1845.0
+2025,5,Reading,Western Australia,WA,0,1,30.4,73.4,43.0,2709.0
+2025,5,Spelling,Australian Capital Territory,ACT,3,1,43.2,71.5,28.3,228.0
+2025,5,Spelling,New South Wales,NSW,2,1,46.0,74.6,28.6,7806.0
+2025,5,Spelling,Northern Territory,NT,1,0,14.1,61.1,47.0,1429.0
+2025,5,Spelling,Queensland,QLD,2,0,41.3,65.9,24.7,6895.0
+2025,5,Spelling,South Australia,SA,1,1,40.6,69.3,28.7,1241.0
+2025,5,Spelling,Tasmania,TAS,2,3,45.4,63.4,18.0,788.0
+2025,5,Spelling,Victoria,VIC,2,2,46.9,71.5,24.6,1845.0
+2025,5,Spelling,Western Australia,WA,0,1,35.7,71.1,35.5,2709.0
+2025,5,Writing,Australian Capital Territory,ACT,3,1,35.4,66.5,31.0,228.0
+2025,5,Writing,New South Wales,NSW,2,1,39.4,70.7,31.3,7806.0
+2025,5,Writing,Northern Territory,NT,1,0,10.5,59.4,48.9,1429.0
+2025,5,Writing,Queensland,QLD,2,0,30.1,58.5,28.4,6899.0
+2025,5,Writing,South Australia,SA,1,1,27.3,61.6,34.2,1241.0
+2025,5,Writing,Tasmania,TAS,2,3,39.8,61.3,21.5,788.0
+2025,5,Writing,Victoria,VIC,2,2,45.2,73.4,28.2,1845.0
+2025,5,Writing,Western Australia,WA,0,1,25.4,67.0,41.6,2708.0
+2025,7,Grammar and punctuation,Australian Capital Territory,ACT,3,1,28.3,67.5,39.2,244.0
+2025,7,Grammar and punctuation,New South Wales,NSW,2,1,32.9,68.3,35.4,8046.0
+2025,7,Grammar and punctuation,Northern Territory,NT,1,0,7.6,55.5,47.8,1315.0
+2025,7,Grammar and punctuation,Queensland,QLD,2,0,30.4,61.3,30.9,6811.0
+2025,7,Grammar and punctuation,South Australia,SA,1,1,24.0,59.8,35.9,1168.0
+2025,7,Grammar and punctuation,Tasmania,TAS,2,3,31.6,56.3,24.8,742.0
+2025,7,Grammar and punctuation,Victoria,VIC,2,2,32.4,66.2,33.8,1884.0
+2025,7,Grammar and punctuation,Western Australia,WA,0,1,19.9,64.1,44.2,2592.0
+2025,7,Numeracy,Australian Capital Territory,ACT,3,1,40.8,74.2,33.4,244.0
+2025,7,Numeracy,New South Wales,NSW,2,1,39.8,74.0,34.3,8046.0
+2025,7,Numeracy,Northern Territory,NT,1,0,8.9,61.3,52.4,1315.0
+2025,7,Numeracy,Queensland,QLD,2,0,32.5,66.7,34.2,6811.0
+2025,7,Numeracy,South Australia,SA,1,1,27.5,66.3,38.8,1168.0
+2025,7,Numeracy,Tasmania,TAS,2,3,35.9,61.4,25.5,742.0
+2025,7,Numeracy,Victoria,VIC,2,2,40.3,73.5,33.2,1884.0
+2025,7,Numeracy,Western Australia,WA,0,1,24.3,71.3,47.0,2592.0
+2025,7,Reading,Australian Capital Territory,ACT,3,1,44.5,76.3,31.8,244.0
+2025,7,Reading,New South Wales,NSW,2,1,41.6,73.7,32.1,8046.0
+2025,7,Reading,Northern Territory,NT,1,0,10.9,64.0,53.1,1315.0
+2025,7,Reading,Queensland,QLD,2,0,35.8,66.7,31.0,6811.0
+2025,7,Reading,South Australia,SA,1,1,32.6,66.7,34.1,1168.0
+2025,7,Reading,Tasmania,TAS,2,3,40.6,64.0,23.4,742.0
+2025,7,Reading,Victoria,VIC,2,2,44.7,74.7,30.0,1884.0
+2025,7,Reading,Western Australia,WA,0,1,25.7,70.7,44.9,2592.0
+2025,7,Spelling,Australian Capital Territory,ACT,3,1,46.8,75.5,28.7,244.0
+2025,7,Spelling,New South Wales,NSW,2,1,52.6,78.1,25.6,8046.0
+2025,7,Spelling,Northern Territory,NT,1,0,15.3,68.3,53.1,1315.0
+2025,7,Spelling,Queensland,QLD,2,0,46.8,70.5,23.7,6811.0
+2025,7,Spelling,South Australia,SA,1,1,44.3,71.9,27.7,1168.0
+2025,7,Spelling,Tasmania,TAS,2,3,50.3,64.9,14.6,742.0
+2025,7,Spelling,Victoria,VIC,2,2,47.8,73.8,26.0,1884.0
+2025,7,Spelling,Western Australia,WA,0,1,41.1,75.9,34.8,2592.0
+2025,7,Writing,Australian Capital Territory,ACT,3,1,35.7,65.6,29.9,244.0
+2025,7,Writing,New South Wales,NSW,2,1,37.7,69.4,31.7,8046.0
+2025,7,Writing,Northern Territory,NT,1,0,11.2,60.1,49.0,1315.0
+2025,7,Writing,Queensland,QLD,2,0,30.9,58.4,27.5,6812.0
+2025,7,Writing,South Australia,SA,1,1,30.7,62.1,31.4,1168.0
+2025,7,Writing,Tasmania,TAS,2,3,37.4,58.1,20.6,742.0
+2025,7,Writing,Victoria,VIC,2,2,41.4,70.8,29.4,1884.0
+2025,7,Writing,Western Australia,WA,0,1,24.1,66.1,42.0,2591.0
+2025,9,Grammar and punctuation,Australian Capital Territory,ACT,3,1,32.1,62.3,30.2,228.0
+2025,9,Grammar and punctuation,New South Wales,NSW,2,1,25.4,61.3,35.9,7531.0
+2025,9,Grammar and punctuation,Northern Territory,NT,1,0,5.7,49.2,43.5,1411.0
+2025,9,Grammar and punctuation,Queensland,QLD,2,0,25.3,55.0,29.8,6740.0
+2025,9,Grammar and punctuation,South Australia,SA,1,1,19.0,53.0,34.0,1176.0
+2025,9,Grammar and punctuation,Tasmania,TAS,2,3,27.6,50.1,22.5,716.0
+2025,9,Grammar and punctuation,Victoria,VIC,2,2,28.3,59.5,31.2,1763.0
+2025,9,Grammar and punctuation,Western Australia,WA,0,1,18.3,63.1,44.8,2652.0
+2025,9,Numeracy,Australian Capital Territory,ACT,3,1,33.1,70.7,37.7,228.0
+2025,9,Numeracy,New South Wales,NSW,2,1,33.9,70.5,36.6,7531.0
+2025,9,Numeracy,Northern Territory,NT,1,0,7.2,59.0,51.8,1411.0
+2025,9,Numeracy,Queensland,QLD,2,0,30.0,62.7,32.7,6740.0
+2025,9,Numeracy,South Australia,SA,1,1,24.4,62.0,37.6,1176.0
+2025,9,Numeracy,Tasmania,TAS,2,3,38.1,59.2,21.1,716.0
+2025,9,Numeracy,Victoria,VIC,2,2,36.2,69.7,33.5,1763.0
+2025,9,Numeracy,Western Australia,WA,0,1,26.8,74.4,47.6,2654.0
+2025,9,Reading,Australian Capital Territory,ACT,3,1,41.1,71.9,30.8,228.0
+2025,9,Reading,New South Wales,NSW,2,1,34.8,68.7,33.9,7531.0
+2025,9,Reading,Northern Territory,NT,1,0,9.7,61.5,51.8,1411.0
+2025,9,Reading,Queensland,QLD,2,0,32.8,62.0,29.2,6742.0
+2025,9,Reading,South Australia,SA,1,1,28.9,61.2,32.3,1176.0
+2025,9,Reading,Tasmania,TAS,2,3,37.8,61.2,23.3,716.0
+2025,9,Reading,Victoria,VIC,2,2,41.6,69.7,28.1,1763.0
+2025,9,Reading,Western Australia,WA,0,1,28.7,74.1,45.4,2654.0
+2025,9,Spelling,Australian Capital Territory,ACT,3,1,53.3,74.4,21.0,228.0
+2025,9,Spelling,New South Wales,NSW,2,1,48.9,77.1,28.2,7531.0
+2025,9,Spelling,Northern Territory,NT,1,0,16.0,67.6,51.5,1411.0
+2025,9,Spelling,Queensland,QLD,2,0,46.1,70.8,24.7,6740.0
+2025,9,Spelling,South Australia,SA,1,1,44.4,69.7,25.3,1176.0
+2025,9,Spelling,Tasmania,TAS,2,3,45.6,65.1,19.6,716.0
+2025,9,Spelling,Victoria,VIC,2,2,46.2,73.4,27.3,1763.0
+2025,9,Spelling,Western Australia,WA,0,1,40.5,76.7,36.2,2652.0
+2025,9,Writing,Australian Capital Territory,ACT,3,1,35.4,62.9,27.5,228.0
+2025,9,Writing,New South Wales,NSW,2,1,32.7,64.7,32.0,7531.0
+2025,9,Writing,Northern Territory,NT,1,0,10.5,59.5,49.0,1411.0
+2025,9,Writing,Queensland,QLD,2,0,30.3,56.9,26.6,6745.0
+2025,9,Writing,South Australia,SA,1,1,29.0,60.8,31.8,1176.0
+2025,9,Writing,Tasmania,TAS,2,3,36.4,56.4,20.0,716.0
+2025,9,Writing,Victoria,VIC,2,2,37.5,67.4,30.0,1763.0
+2025,9,Writing,Western Australia,WA,0,1,26.1,67.6,41.5,2653.0
+2026,3,Grammar and punctuation,Australian Capital Territory,ACT,3,1,30.5,60.8,30.3,207.0
+2026,3,Grammar and punctuation,New South Wales,NSW,2,1,29.9,60.9,31.0,7810.0
+2026,3,Grammar and punctuation,Northern Territory,NT,1,0,6.9,42.9,36.1,1322.0
+2026,3,Grammar and punctuation,Queensland,QLD,2,0,21.7,50.3,28.6,6780.0
+2026,3,Grammar and punctuation,South Australia,SA,1,1,20.3,48.7,28.4,1345.0
+2026,3,Grammar and punctuation,Tasmania,TAS,2,3,,,,733.0
+2026,3,Grammar and punctuation,Victoria,VIC,2,2,33.3,60.0,26.7,1841.0
+2026,3,Grammar and punctuation,Western Australia,WA,0,1,16.8,52.6,35.9,2846.0
+2026,3,Numeracy,Australian Capital Territory,ACT,3,1,41.5,69.4,27.9,207.0
+2026,3,Numeracy,New South Wales,NSW,2,1,38.2,67.4,29.2,7810.0
+2026,3,Numeracy,Northern Territory,NT,1,0,8.0,51.9,43.9,1322.0
+2026,3,Numeracy,Queensland,QLD,2,0,26.3,58.6,32.3,6777.0
+2026,3,Numeracy,South Australia,SA,1,1,25.1,59.0,33.9,1345.0
+2026,3,Numeracy,Tasmania,TAS,2,3,,,,733.0
+2026,3,Numeracy,Victoria,VIC,2,2,41.7,69.5,27.8,1841.0
+2026,3,Numeracy,Western Australia,WA,0,1,20.5,61.6,41.0,2845.0
+2026,3,Reading,Australian Capital Territory,ACT,3,1,45.1,73.8,28.7,207.0
+2026,3,Reading,New South Wales,NSW,2,1,43.3,70.9,27.6,7810.0
+2026,3,Reading,Northern Territory,NT,1,0,11.6,56.3,44.8,1322.0
+2026,3,Reading,Queensland,QLD,2,0,32.2,62.6,30.4,6779.0
+2026,3,Reading,South Australia,SA,1,1,31.4,62.5,31.1,1345.0
+2026,3,Reading,Tasmania,TAS,2,3,,,,733.0
+2026,3,Reading,Victoria,VIC,2,2,48.6,72.3,23.7,1841.0
+2026,3,Reading,Western Australia,WA,0,1,26.1,64.6,38.6,2850.0
+2026,3,Spelling,Australian Capital Territory,ACT,3,1,40.8,65.4,24.6,207.0
+2026,3,Spelling,New South Wales,NSW,2,1,41.1,69.2,28.1,7810.0
+2026,3,Spelling,Northern Territory,NT,1,0,10.5,51.3,40.9,1322.0
+2026,3,Spelling,Queensland,QLD,2,0,30.3,56.5,26.2,6780.0
+2026,3,Spelling,South Australia,SA,1,1,32.3,60.4,28.0,1345.0
+2026,3,Spelling,Tasmania,TAS,2,3,,,,733.0
+2026,3,Spelling,Victoria,VIC,2,2,41.9,67.0,25.1,1841.0
+2026,3,Spelling,Western Australia,WA,0,1,25.2,60.1,34.9,2846.0
+2026,3,Writing,Australian Capital Territory,ACT,3,1,48.4,77.4,29.0,207.0
+2026,3,Writing,New South Wales,NSW,2,1,50.6,79.6,29.1,7810.0
+2026,3,Writing,Northern Territory,NT,1,0,12.5,66.4,53.9,1322.0
+2026,3,Writing,Queensland,QLD,2,0,37.5,70.1,32.5,6781.0
+2026,3,Writing,South Australia,SA,1,1,38.1,73.1,35.0,1345.0
+2026,3,Writing,Tasmania,TAS,2,3,,,,733.0
+2026,3,Writing,Victoria,VIC,2,2,53.5,80.7,27.2,1841.0
+2026,3,Writing,Western Australia,WA,0,1,29.5,74.0,44.5,2851.0
+2026,5,Grammar and punctuation,Australian Capital Territory,ACT,3,1,39.6,70.5,30.8,213.0
+2026,5,Grammar and punctuation,New South Wales,NSW,2,1,36.4,69.1,32.7,7966.0
+2026,5,Grammar and punctuation,Northern Territory,NT,1,0,9.3,55.7,46.4,1387.0
+2026,5,Grammar and punctuation,Queensland,QLD,2,0,26.2,60.9,34.7,6859.0
+2026,5,Grammar and punctuation,South Australia,SA,1,1,25.1,59.1,34.0,1247.0
+2026,5,Grammar and punctuation,Tasmania,TAS,2,3,,,,743.0
+2026,5,Grammar and punctuation,Victoria,VIC,2,2,37.7,67.9,30.2,1944.0
+2026,5,Grammar and punctuation,Western Australia,WA,0,1,22.4,64.4,42.0,2919.0
+2026,5,Numeracy,Australian Capital Territory,ACT,3,1,47.6,78.1,30.5,213.0
+2026,5,Numeracy,New South Wales,NSW,2,1,43.3,75.5,32.2,7966.0
+2026,5,Numeracy,Northern Territory,NT,1,0,11.2,63.9,52.7,1387.0
+2026,5,Numeracy,Queensland,QLD,2,0,33.5,69.9,36.4,6857.0
+2026,5,Numeracy,South Australia,SA,1,1,30.3,68.1,37.7,1247.0
+2026,5,Numeracy,Tasmania,TAS,2,3,,,,743.0
+2026,5,Numeracy,Victoria,VIC,2,2,46.2,75.8,29.7,1944.0
+2026,5,Numeracy,Western Australia,WA,0,1,28.0,72.3,44.2,2919.0
+2026,5,Reading,Australian Capital Territory,ACT,3,1,52.8,78.9,26.2,213.0
+2026,5,Reading,New South Wales,NSW,2,1,46.0,74.8,28.8,7966.0
+2026,5,Reading,Northern Territory,NT,1,0,13.5,65.1,51.5,1387.0
+2026,5,Reading,Queensland,QLD,2,0,37.3,70.8,33.5,6861.0
+2026,5,Reading,South Australia,SA,1,1,35.7,68.9,33.2,1247.0
+2026,5,Reading,Tasmania,TAS,2,3,,,,743.0
+2026,5,Reading,Victoria,VIC,2,2,51.0,76.0,25.0,1944.0
+2026,5,Reading,Western Australia,WA,0,1,30.5,71.2,40.7,2919.0
+2026,5,Spelling,Australian Capital Territory,ACT,3,1,48.5,74.4,26.0,213.0
+2026,5,Spelling,New South Wales,NSW,2,1,49.2,75.8,26.6,7966.0
+2026,5,Spelling,Northern Territory,NT,1,0,15.1,63.1,48.0,1387.0
+2026,5,Spelling,Queensland,QLD,2,0,39.9,66.9,27.0,6859.0
+2026,5,Spelling,South Australia,SA,1,1,43.2,69.8,26.6,1247.0
+2026,5,Spelling,Tasmania,TAS,2,3,,,,743.0
+2026,5,Spelling,Victoria,VIC,2,2,48.0,72.8,24.8,1944.0
+2026,5,Spelling,Western Australia,WA,0,1,36.4,72.1,35.7,2919.0
+2026,5,Writing,Australian Capital Territory,ACT,3,1,38.5,67.2,28.7,213.0
+2026,5,Writing,New South Wales,NSW,2,1,39.3,69.7,30.4,7966.0
+2026,5,Writing,Northern Territory,NT,1,0,10.0,55.8,45.9,1387.0
+2026,5,Writing,Queensland,QLD,2,0,31.2,62.6,31.4,6863.0
+2026,5,Writing,South Australia,SA,1,1,30.9,61.7,30.8,1247.0
+2026,5,Writing,Tasmania,TAS,2,3,,,,743.0
+2026,5,Writing,Victoria,VIC,2,2,44.8,73.9,29.1,1944.0
+2026,5,Writing,Western Australia,WA,0,1,25.1,66.0,40.9,2919.0
+2026,7,Grammar and punctuation,Australian Capital Territory,ACT,3,1,33.1,67.0,33.9,236.0
+2026,7,Grammar and punctuation,New South Wales,NSW,2,1,31.3,66.1,34.8,8284.0
+2026,7,Grammar and punctuation,Northern Territory,NT,1,0,6.7,50.4,43.7,1327.0
+2026,7,Grammar and punctuation,Queensland,QLD,2,0,25.2,58.5,33.3,6532.0
+2026,7,Grammar and punctuation,South Australia,SA,1,1,22.2,57.4,35.2,1323.0
+2026,7,Grammar and punctuation,Tasmania,TAS,2,3,,,,748.0
+2026,7,Grammar and punctuation,Victoria,VIC,2,2,31.7,64.1,32.4,2056.0
+2026,7,Grammar and punctuation,Western Australia,WA,0,1,21.0,62.8,41.9,2767.0
+2026,7,Numeracy,Australian Capital Territory,ACT,3,1,39.8,77.5,37.6,236.0
+2026,7,Numeracy,New South Wales,NSW,2,1,41.8,75.4,33.7,8284.0
+2026,7,Numeracy,Northern Territory,NT,1,0,11.0,63.8,52.9,1327.0
+2026,7,Numeracy,Queensland,QLD,2,0,32.5,68.0,35.5,6531.0
+2026,7,Numeracy,South Australia,SA,1,1,27.9,66.9,39.0,1323.0
+2026,7,Numeracy,Tasmania,TAS,2,3,,,,748.0
+2026,7,Numeracy,Victoria,VIC,2,2,40.9,75.0,34.1,2056.0
+2026,7,Numeracy,Western Australia,WA,0,1,27.2,73.0,45.8,2767.0
+2026,7,Reading,Australian Capital Territory,ACT,3,1,43.0,75.6,32.7,236.0
+2026,7,Reading,New South Wales,NSW,2,1,39.6,71.5,31.9,8284.0
+2026,7,Reading,Northern Territory,NT,1,0,11.2,61.6,50.4,1327.0
+2026,7,Reading,Queensland,QLD,2,0,30.8,64.3,33.5,6533.0
+2026,7,Reading,South Australia,SA,1,1,29.5,64.5,35.0,1323.0
+2026,7,Reading,Tasmania,TAS,2,3,,,,749.0
+2026,7,Reading,Victoria,VIC,2,2,41.6,72.2,30.7,2056.0
+2026,7,Reading,Western Australia,WA,0,1,27.0,69.3,42.3,2767.0
+2026,7,Spelling,Australian Capital Territory,ACT,3,1,52.9,77.2,24.3,236.0
+2026,7,Spelling,New South Wales,NSW,2,1,52.9,78.3,25.3,8284.0
+2026,7,Spelling,Northern Territory,NT,1,0,19.0,66.6,47.6,1327.0
+2026,7,Spelling,Queensland,QLD,2,0,44.1,70.2,26.1,6532.0
+2026,7,Spelling,South Australia,SA,1,1,43.8,72.6,28.8,1323.0
+2026,7,Spelling,Tasmania,TAS,2,3,,,,748.0
+2026,7,Spelling,Victoria,VIC,2,2,48.2,74.1,25.9,2056.0
+2026,7,Spelling,Western Australia,WA,0,1,43.4,76.4,33.0,2767.0
+2026,7,Writing,Australian Capital Territory,ACT,3,1,37.1,66.5,29.4,236.0
+2026,7,Writing,New South Wales,NSW,2,1,36.6,67.7,31.1,8284.0
+2026,7,Writing,Northern Territory,NT,1,0,10.1,55.3,45.2,1327.0
+2026,7,Writing,Queensland,QLD,2,0,25.7,55.1,29.4,6533.0
+2026,7,Writing,South Australia,SA,1,1,26.3,60.3,34.0,1323.0
+2026,7,Writing,Tasmania,TAS,2,3,,,,748.0
+2026,7,Writing,Victoria,VIC,2,2,40.9,70.8,29.8,2056.0
+2026,7,Writing,Western Australia,WA,0,1,25.5,65.4,39.9,2767.0
+2026,9,Grammar and punctuation,Australian Capital Territory,ACT,3,1,35.1,61.0,25.9,208.0
+2026,9,Grammar and punctuation,New South Wales,NSW,2,1,23.7,58.7,35.0,8140.0
+2026,9,Grammar and punctuation,Northern Territory,NT,1,0,6.7,48.2,41.5,1354.0
+2026,9,Grammar and punctuation,Queensland,QLD,2,0,21.4,52.7,31.3,6724.0
+2026,9,Grammar and punctuation,South Australia,SA,1,1,17.2,50.2,33.0,1374.0
+2026,9,Grammar and punctuation,Tasmania,TAS,2,3,,,,751.0
+2026,9,Grammar and punctuation,Victoria,VIC,2,2,25.2,57.1,32.0,1787.0
+2026,9,Grammar and punctuation,Western Australia,WA,0,1,19.9,60.8,40.9,2714.0
+2026,9,Numeracy,Australian Capital Territory,ACT,3,1,42.3,72.3,30.0,208.0
+2026,9,Numeracy,New South Wales,NSW,2,1,34.3,70.2,35.9,8140.0
+2026,9,Numeracy,Northern Territory,NT,1,0,9.6,61.0,51.4,1354.0
+2026,9,Numeracy,Queensland,QLD,2,0,27.7,62.0,34.3,6725.0
+2026,9,Numeracy,South Australia,SA,1,1,23.8,60.8,37.0,1374.0
+2026,9,Numeracy,Tasmania,TAS,2,3,,,,751.0
+2026,9,Numeracy,Victoria,VIC,2,2,36.4,69.7,33.3,1787.0
+2026,9,Numeracy,Western Australia,WA,0,1,30.1,74.6,44.5,2713.0
+2026,9,Reading,Australian Capital Territory,ACT,3,1,48.8,71.4,22.7,208.0
+2026,9,Reading,New South Wales,NSW,2,1,32.1,65.3,33.3,8140.0
+2026,9,Reading,Northern Territory,NT,1,0,10.8,59.4,48.6,1354.0
+2026,9,Reading,Queensland,QLD,2,0,27.2,58.4,31.2,6726.0
+2026,9,Reading,South Australia,SA,1,1,25.5,57.8,32.3,1374.0
+2026,9,Reading,Tasmania,TAS,2,3,,,,751.0
+2026,9,Reading,Victoria,VIC,2,2,37.8,67.1,29.3,1787.0
+2026,9,Reading,Western Australia,WA,0,1,28.4,71.4,43.0,2714.0
+2026,9,Spelling,Australian Capital Territory,ACT,3,1,57.6,76.2,18.7,208.0
+2026,9,Spelling,New South Wales,NSW,2,1,48.7,76.3,27.6,8140.0
+2026,9,Spelling,Northern Territory,NT,1,0,19.0,70.7,51.8,1354.0
+2026,9,Spelling,Queensland,QLD,2,0,44.2,69.6,25.5,6724.0
+2026,9,Spelling,South Australia,SA,1,1,41.6,69.1,27.4,1374.0
+2026,9,Spelling,Tasmania,TAS,2,3,,,,751.0
+2026,9,Spelling,Victoria,VIC,2,2,47.1,73.1,26.0,1787.0
+2026,9,Spelling,Western Australia,WA,0,1,42.1,76.8,34.8,2714.0
+2026,9,Writing,Australian Capital Territory,ACT,3,1,42.7,64.3,21.6,208.0
+2026,9,Writing,New South Wales,NSW,2,1,31.4,63.4,32.0,8140.0
+2026,9,Writing,Northern Territory,NT,1,0,9.8,55.1,45.3,1354.0
+2026,9,Writing,Queensland,QLD,2,0,25.6,54.1,28.6,6728.0
+2026,9,Writing,South Australia,SA,1,1,25.5,58.0,32.5,1374.0
+2026,9,Writing,Tasmania,TAS,2,3,,,,751.0
+2026,9,Writing,Victoria,VIC,2,2,37.7,67.2,29.5,1787.0
+2026,9,Writing,Western Australia,WA,0,1,25.6,66.7,41.1,2714.0

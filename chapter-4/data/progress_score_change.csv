@@ -1,0 +1,17 @@
+measure,year,adv,dis
+Parental education,2023,0.0,0.0
+Parental education,2024,-0.43,-2.43
+Parental education,2025,0.28,-5.69
+Parental education,2026,-0.74,-5.97
+Parental occupation,2023,0.0,0.0
+Parental occupation,2024,-0.47,-2.24
+Parental occupation,2025,0.29,-6.35
+Parental occupation,2026,-0.9,-5.18
+Remoteness,2023,0.0,0.0
+Remoteness,2024,-0.14,-3.29
+Remoteness,2025,1.31,-10.2
+Remoteness,2026,0.09,-5.33
+Indigenous status,2023,0.0,0.0
+Indigenous status,2024,0.05,-1.6
+Indigenous status,2025,1.48,0.39
+Indigenous status,2026,0.39,-0.73

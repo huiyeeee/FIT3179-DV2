@@ -1,0 +1,172 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Average gap in students reaching “Strong or above”, 2023–2026",
+    "subtitle": "Averaged across all five domains and four year levels. A gap of zero would mean equal outcomes."
+  },
+  "width": 560,
+  "height": 300,
+  "padding": {
+    "right": 120,
+    "left": 5,
+    "top": 5,
+    "bottom": 5
+  },
+  "data": {
+    "url": "data/equity_gaps.csv"
+  },
+  "transform": [
+    {
+      "aggregate": [
+        {
+          "op": "mean",
+          "field": "gap",
+          "as": "avgGap"
+        }
+      ],
+      "groupby": [
+        "measure",
+        "year"
+      ]
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "axis": {
+        "title": null,
+        "labelAngle": 0,
+        "labelFontSize": 13
+      }
+    },
+    "y": {
+      "field": "avgGap",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          0,
+          60
+        ]
+      },
+      "axis": {
+        "title": "Gap (percentage points)",
+        "grid": true,
+        "tickCount": 6
+      }
+    },
+    "color": {
+      "field": "measure",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Remoteness",
+          "Parental education",
+          "Parental occupation",
+          "Indigenous status"
+        ],
+        "range": [
+          "#7a5195",
+          "#1f5f8b",
+          "#1b7f79",
+          "#d1572a"
+        ]
+      },
+      "legend": null
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3,
+        "point": {
+          "filled": true,
+          "size": 70
+        }
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "measure",
+            "title": "Comparison"
+          },
+          {
+            "field": "year",
+            "title": "Year"
+          },
+          {
+            "field": "avgGap",
+            "title": "Average gap (pts)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -12,
+        "fontSize": 11,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "text": {
+          "field": "avgGap",
+          "type": "quantitative",
+          "format": ".1f"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2026"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 14,
+        "fontSize": 12,
+        "fontWeight": 700,
+        "baseline": "middle"
+      },
+      "encoding": {
+        "text": {
+          "field": "measure"
+        }
+      }
+    }
+  ],
+  "config": {
+    "font": "system-ui, sans-serif",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "labelColor": "#374151",
+      "titleColor": "#6b7280",
+      "domainColor": "#cbd5e1",
+      "gridColor": "#e5e7eb",
+      "tickColor": "#cbd5e1"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "titleColor": "#6b7280"
+    },
+    "title": {
+      "fontSize": 13,
+      "fontWeight": 600,
+      "anchor": "start",
+      "color": "#1f2a37",
+      "subtitleColor": "#6b7280",
+      "subtitleFontSize": 12
+    }
+  }
+}

@@ -1,0 +1,111 @@
+<!-- ============ CHAPTER 4: IS THE PICTURE CHANGING? ============
+ Paste inside <body> of index.html, after Chapter 3.
+ <head> needs:  <link rel="stylesheet" href="chapter-4/css/chapter4.css">
+ Before </body>: vega@5, vega-lite@5, vega-embed@6 (once for the whole site, already added for chapter 3) and
+                 <script src="chapter-4/js/chapter4.js"></script>
+-->
+<section id="chapter-4">
+  <p class="c4-kicker">Chapter 4 · Progress over time</p>
+  <h2>Is the picture changing?</h2>
+  <p class="c4-lead">NAPLAN has now been run on the same scale for four years, from 2023 to 2026. So is Australian students’ performance improving, slipping or standing still? The short answer: the national average has hardly moved, but underneath it things are shifting.</p>
+  <p>As before, “<strong>Strong or above</strong>” means a student is meeting the expected standard for their year level. We also track the two ends of the scale: students who <em>need additional support</em> and students who are <em>exceeding</em> expectations.</p>
+
+  <div class="c4-glance" id="c4-glance" aria-label="National averages, 2023 compared with 2026"></div>
+  <p class="c4-sources" style="margin-top:.6rem">Averages across all five domains and four year levels.</p>
+
+  <div class="c4-controls" role="group" aria-label="Domain filter">
+    <div class="c4-control-group"><span class="c4-control-label">Domain</span>
+      <button data-c4-control="pdomain" data-value="All" aria-pressed="true">All domains</button>
+      <button data-c4-control="pdomain" data-value="Reading" aria-pressed="false">Reading</button>
+      <button data-c4-control="pdomain" data-value="Writing" aria-pressed="false">Writing</button>
+      <button data-c4-control="pdomain" data-value="Spelling" aria-pressed="false">Spelling</button>
+      <button data-c4-control="pdomain" data-value="Grammar and punctuation" aria-pressed="false">Grammar</button>
+      <button data-c4-control="pdomain" data-value="Numeracy" aria-pressed="false">Numeracy</button></div>
+    <p class="c4-controls-note">This filter updates the charts in sections 4.2 and 4.5.</p>
+  </div>
+
+  <!-- 4.1 -->
+  <div class="c4-section">
+    <h3>4.1 · Some areas improved, more slipped</h3>
+    <p>Each line connects a domain’s 2023 result to its 2026 result, one panel per year level. Switch to “Needs additional support” to see the struggling end instead.</p>
+    <div class="c4-grid">
+      <div class="c4-chart">
+        <div class="c4-measure" role="group" aria-label="Measure">
+          <button data-c4-control="metric" data-value="strongPlus" aria-pressed="true">Strong or above (%)</button>
+          <button data-c4-control="metric" data-value="needs" aria-pressed="false">Needs additional support (%)</button>
+        </div>
+        <div id="c4-slope"></div><p class="c4-caption" id="c4-cap-slope"></p>
+      </div>
+      <aside class="c4-aside">
+        <div class="c4-note"><b>Is that a real change?</b>Each year’s test is taken by a different group of students, so small wobbles of a point or two are normal. Look for changes that are large or that keep going in the same direction.</div>
+        <div class="c4-note"><b>Year 9 is different</b>About 89–90% of Year 9 students sit the tests, against roughly 94–95% in Years 3, 5 and 7, so Year 9 results describe a slightly smaller share of the cohort.</div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- 4.2 -->
+  <div class="c4-section">
+    <h3>4.2 · The two ends are growing</h3>
+    <p>An average can hide what is happening at the edges. Here each path follows one year level from 2023 to 2026. Moving <strong>right</strong> means more students struggling; moving <strong>up</strong> means more students excelling.</p>
+    <div class="c4-grid">
+      <div class="c4-chart"><div id="c4-scatter"></div><p class="c4-caption" id="c4-cap-scatter"></p></div>
+      <aside class="c4-aside">
+        <div class="c4-note"><b>Spreading out</b>Across all domains the share of students at “Strong” (the middle of the scale) shrank by about 1.6 points, while both the lowest and the highest groups grew. Results are becoming more spread out.</div>
+        <div class="c4-note"><b>Grammar and reading</b>Select these domains. Grammar shows a clear move to the right (more students needing support), and reading drifts right while the top group stays flat or shrinks – a double loss.</div>
+        <div class="c4-note"><b>Numeracy</b>Select it: the top group grows while the struggling group barely changes – the healthiest pattern on the chart.</div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- 4.3 -->
+  <div class="c4-section">
+    <h3>4.3 · What moved the national average?</h3>
+    <p>The average share of students at “Strong or above” fell by less than half a point. This waterfall splits that change into each domain’s contribution.</p>
+    <div class="c4-grid">
+      <div class="c4-chart"><div id="c4-waterfall"></div><p class="c4-caption" id="c4-cap-waterfall"></p></div>
+      <aside class="c4-aside">
+        <div class="c4-note"><b>How to read it</b>Start at zero (2023). Each bar floats from where the previous one ended: down for domains that pulled the average down, up for those that pushed it back. The last bar is the total.</div>
+        <div class="c4-note"><b>Cancelling out</b>Gains in numeracy and spelling were outweighed by losses in grammar, reading and writing. A flat average can hide opposing trends.</div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- 4.4 -->
+  <div class="c4-section">
+    <h3>4.4 · Who has lost ground?</h3>
+    <p>Chapter 3 showed that the <em>share</em> of students reaching “Strong” barely changed for any group. Looking at <em>average scores</em> tells a sharper story: each panel compares a more advantaged group with a less advantaged one, measured against their own 2023 result.</p>
+    <div class="c4-grid">
+      <div class="c4-chart"><div id="c4-bands"></div><p class="c4-caption" id="c4-cap-bands"></p></div>
+      <aside class="c4-aside">
+        <div class="c4-note"><b>Who is compared?</b>Parents with a bachelor degree vs Year 11 or below; senior managers and professionals vs parents not in paid work; major cities vs very remote; non-Indigenous vs Indigenous students.</div>
+        <div class="c4-note"><b>Why does this differ from Chapter 3?</b>The “Strong” cut-off only counts whether a student crosses one line. Average scores also pick up falls among students who were already well below it, so they reveal movements the percentage hides.</div>
+        <div class="c4-note"><b>Volatile small groups</b>Very remote students dipped by about 10 points in 2025, then recovered part-way in 2026. Small groups swing more, so judge them by the direction over several years.</div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- 4.5 -->
+  <div class="c4-section" style="border-bottom:0">
+    <h3>4.5 · Do all states follow the same pattern?</h3>
+    <p>Each tile shows how a state or territory’s share of students at “Strong or above” changed between 2023 and 2026. Teal means up; orange means down.</p>
+    <div class="c4-grid">
+      <div class="c4-chart"><div id="c4-tiles"></div><p class="c4-caption" id="c4-cap-tiles"></p></div>
+      <aside class="c4-aside">
+        <div class="c4-note"><b>Changes are small next to differences</b>No state moved by more than about 2 points on average, yet the Northern Territory sits roughly 30 points below the ACT and Victoria. Where a student lives still matters far more than how the year’s results moved.</div>
+        <div class="c4-note"><b>Why is the NT so low?</b>The Territory has a much larger share of remote and Indigenous students than other jurisdictions, groups that Chapter 3 showed face the widest gaps.</div>
+      </aside>
+    </div>
+  </div>
+
+  <div class="c4-takeaways">
+    <h3>What we learned</h3>
+    <ol>
+      <li><strong>The headline hasn’t moved, but the shape has.</strong> The share at “Strong or above” dipped slightly, while both the struggling and the excelling groups grew.</li>
+      <li><strong>Domains are pulling in different directions.</strong> Numeracy improved, especially in Years 5 and 7, while grammar and reading lost ground.</li>
+      <li><strong>Students with less advantaged backgrounds lost the most.</strong> Average scores for students whose parents finished Year 11 or below fell by around six points, while those of degree-educated families held steady.</li>
+      <li><strong>State differences dwarf the changes.</strong> Over four years, the gap between jurisdictions has barely shifted.</li>
+    </ol>
+  </div>
+
+  <p class="c4-sources"><strong>Data:</strong> ACARA, <em>NAPLAN results</em> (national and state/territory results, 2023–2026), https://www.acara.edu.au/. NAPLAN introduced a new scale and four proficiency levels in 2023, so earlier years are not comparable. Averages combine domains and year levels with equal weight. Score changes are averaged within each group after subtracting that group’s own 2023 result. Tasmania’s 2026 results are not published. <strong>Author:</strong> [Your name], [date]. <strong>Acknowledgement:</strong> [state any use of AI tools for text or code].</p>
+</section>

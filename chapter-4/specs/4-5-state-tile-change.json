@@ -1,0 +1,245 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Change in students at “Strong or above”, by state, 2023 → 2026",
+    "subtitle": "Average of the selected domain across all year levels. Percentage-point change."
+  },
+  "width": 440,
+  "height": 440,
+  "params": [
+    {
+      "name": "pdomain",
+      "value": "All"
+    }
+  ],
+  "data": {
+    "url": "data/progress_states.csv"
+  },
+  "transform": [
+    {
+      "filter": "(pdomain == 'All' || datum.domain == pdomain) && (datum.year == 2023 || datum.year == 2026)"
+    },
+    {
+      "aggregate": [
+        {
+          "op": "mean",
+          "field": "strongPlus",
+          "as": "sp"
+        }
+      ],
+      "groupby": [
+        "state",
+        "abbr",
+        "col",
+        "row",
+        "year"
+      ]
+    },
+    {
+      "pivot": "year",
+      "value": "sp",
+      "groupby": [
+        "state",
+        "abbr",
+        "col",
+        "row"
+      ]
+    },
+    {
+      "calculate": "isValid(datum['2023']) && isValid(datum['2026']) ? datum['2026'] - datum['2023'] : null",
+      "as": "chg"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "col",
+      "type": "ordinal",
+      "axis": null,
+      "scale": {
+        "paddingInner": 0.04,
+        "paddingOuter": 0.02
+      }
+    },
+    "y": {
+      "field": "row",
+      "type": "ordinal",
+      "axis": null,
+      "scale": {
+        "paddingInner": 0.04,
+        "paddingOuter": 0.02
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "fill": "#e5e7eb"
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "isValid(datum.chg)"
+        }
+      ],
+      "mark": {
+        "type": "rect"
+      },
+      "encoding": {
+        "color": {
+          "field": "chg",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -3,
+              0,
+              3
+            ],
+            "range": [
+              "#d1572a",
+              "#f7f5f2",
+              "#1b7f79"
+            ],
+            "clamp": true
+          },
+          "legend": {
+            "title": "Change (pts)",
+            "orient": "bottom-left",
+            "direction": "horizontal",
+            "gradientLength": 160,
+            "format": "+d"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "title": "State"
+          },
+          {
+            "field": "2023",
+            "title": "2023 (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "2026",
+            "title": "2026 (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "chg",
+            "title": "Change (pts)",
+            "format": "+.1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -34,
+        "fontSize": 13,
+        "fontWeight": 700,
+        "color": "#1f2a37"
+      },
+      "encoding": {
+        "text": {
+          "field": "abbr"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "isValid(datum.chg)"
+        },
+        {
+          "calculate": "(datum.chg >= 0 ? '+' : '−') + format(abs(datum.chg),'.1f')",
+          "as": "t"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": -4,
+        "fontSize": 24,
+        "fontWeight": 700,
+        "color": "#1f2a37"
+      },
+      "encoding": {
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "isValid(datum.chg)"
+        },
+        {
+          "calculate": "format(datum['2023'],'.1f') + '% → ' + format(datum['2026'],'.1f') + '%'",
+          "as": "t2"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": 22,
+        "fontSize": 11,
+        "color": "#1f2a37"
+      },
+      "encoding": {
+        "text": {
+          "field": "t2"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "!isValid(datum.chg)"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": -2,
+        "fontSize": 12,
+        "color": "#6b7280"
+      },
+      "encoding": {
+        "text": {
+          "value": "2026 not published"
+        }
+      }
+    }
+  ],
+  "config": {
+    "font": "system-ui, sans-serif",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "labelColor": "#374151",
+      "titleColor": "#6b7280",
+      "domainColor": "#cbd5e1",
+      "gridColor": "#e5e7eb",
+      "tickColor": "#cbd5e1"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "titleColor": "#6b7280"
+    },
+    "title": {
+      "fontSize": 13,
+      "fontWeight": 600,
+      "anchor": "start",
+      "color": "#1f2a37",
+      "subtitleColor": "#6b7280",
+      "subtitleFontSize": 12
+    }
+  }
+}

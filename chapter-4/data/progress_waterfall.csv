@@ -1,0 +1,7 @@
+step,start,end,kind,order
+Reading,0.0,-0.35,down,1
+Writing,-0.35,-0.4,down,2
+Spelling,-0.4,-0.31,up,3
+Grammar and punctuation,-0.31,-0.67,down,4
+Numeracy,-0.67,-0.44,up,5
+Net change,0.0,-0.44,total,6

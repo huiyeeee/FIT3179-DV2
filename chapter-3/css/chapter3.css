@@ -1,0 +1,56 @@
+/* Chapter 3 – Who is being left behind?  Scoped to #chapter-3 so it won't clash with other chapters.
+   Typeface is inherited from the page; override the variables below to match your global theme. */
+#chapter-3 {
+  --c3-ink: #1f2a37;  --c3-muted: #6b7280;  --c3-line: #e5e7eb;  --c3-bg-soft: #f8f5f1;
+  --c3-ind: #d1572a;  --c3-non: #1f5f8b;    --c3-accent: #1b7f79;
+  max-width: 1080px; margin: 0 auto; padding: 4rem 1.25rem 3rem; color: var(--c3-ink); line-height: 1.6;
+}
+#chapter-3 .c3-kicker { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--c3-ind); font-weight: 700; margin: 0 0 .4rem; }
+#chapter-3 h2 { font-size: clamp(1.9rem, 4vw, 2.6rem); line-height: 1.15; margin: 0 0 1rem; }
+#chapter-3 h3 { font-size: 1.45rem; line-height: 1.25; margin: 0 0 .6rem; }
+#chapter-3 .c3-lead { font-size: 1.15rem; max-width: 62ch; margin: 0 0 1.5rem; }
+#chapter-3 p { max-width: 64ch; }
+
+/* sticky filter bar */
+#chapter-3 .c3-controls { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.96); backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--c3-line); padding: .7rem 0; margin: 1.5rem 0 0; display: flex; flex-wrap: wrap; gap: .6rem 2rem; align-items: center; }
+#chapter-3 .c3-control-group { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; }
+#chapter-3 .c3-control-label { font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--c3-muted); font-weight: 700; margin-right: .25rem; }
+#chapter-3 .c3-controls button, #chapter-3 .c3-measure button {
+  font: inherit; font-size: .88rem; padding: .3rem .75rem; border: 1px solid #cbd5e1; background: #fff; color: var(--c3-ink);
+  border-radius: 999px; cursor: pointer; transition: background .15s, color .15s; }
+#chapter-3 .c3-controls button:hover, #chapter-3 .c3-measure button:hover { background: #f1f5f9; }
+#chapter-3 button[aria-pressed="true"] { background: var(--c3-ink); color: #fff; border-color: var(--c3-ink); }
+#chapter-3 .c3-controls-note { font-size: .8rem; color: var(--c3-muted); flex-basis: 100%; margin: 0; }
+
+/* sections */
+#chapter-3 .c3-section { padding: 3.5rem 0 1rem; border-bottom: 1px solid var(--c3-line); }
+#chapter-3 .c3-grid { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 2rem; align-items: start; margin-top: 1.25rem; }
+#chapter-3 .c3-chart { min-width: 0; }
+#chapter-3 .c3-chart .vega-embed { width: 100%; }
+#chapter-3 .c3-caption { margin: .75rem 0 0; padding-left: .9rem; border-left: 3px solid var(--c3-accent); font-size: .98rem; }
+#chapter-3 .c3-aside { display: flex; flex-direction: column; gap: 1rem; }
+#chapter-3 .c3-note { background: var(--c3-bg-soft); border-radius: 8px; padding: .9rem 1rem; font-size: .9rem; line-height: 1.5; }
+#chapter-3 .c3-note b { display: block; font-size: .72rem; text-transform: uppercase; letter-spacing: .09em; color: var(--c3-ind); margin-bottom: .25rem; }
+#chapter-3 .c3-measure { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: .5rem; }
+
+/* trend stat cards */
+#chapter-3 .c3-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; margin-top: 1rem; }
+#chapter-3 .c3-stat { border: 1px solid var(--c3-line); border-radius: 8px; padding: .7rem .8rem; display: flex; flex-direction: column; }
+#chapter-3 .c3-stat-name { font-size: .78rem; color: var(--c3-muted); font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+#chapter-3 .c3-stat-val { font-size: 1.25rem; font-weight: 700; margin: .15rem 0; }
+#chapter-3 .c3-stat-chg { font-size: .85rem; color: var(--c3-muted); }
+
+/* takeaways + sources */
+#chapter-3 .c3-takeaways { background: var(--c3-ink); color: #fff; border-radius: 10px; padding: 1.6rem 1.8rem; margin: 3rem 0 1.5rem; }
+#chapter-3 .c3-takeaways h3 { color: #fff; }
+#chapter-3 .c3-takeaways ol { margin: .5rem 0 0; padding-left: 1.2rem; max-width: 70ch; }
+#chapter-3 .c3-takeaways li { margin-bottom: .5rem; }
+#chapter-3 .c3-sources { font-size: .82rem; color: var(--c3-muted); max-width: 80ch; }
+
+@media (max-width: 960px) {
+  #chapter-3 .c3-grid { grid-template-columns: 1fr; }
+  #chapter-3 .c3-aside { flex-direction: row; flex-wrap: wrap; }
+  #chapter-3 .c3-aside .c3-note { flex: 1 1 240px; }
+  #chapter-3 .c3-stats { grid-template-columns: repeat(2, 1fr); }
+}

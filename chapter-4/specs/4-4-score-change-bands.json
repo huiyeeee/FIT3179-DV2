@@ -1,0 +1,252 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "How each group’s average NAPLAN score has changed since 2023",
+    "subtitle": "Score points relative to 2023, averaged over all domains and year levels. The shaded band is the widening gap."
+  },
+  "columns": 2,
+  "spacing": {
+    "row": 36,
+    "column": 36
+  },
+  "data": {
+    "url": "data/progress_score_change.csv"
+  },
+  "facet": {
+    "field": "measure",
+    "type": "nominal",
+    "sort": [
+      "Parental education",
+      "Parental occupation",
+      "Remoteness",
+      "Indigenous status"
+    ],
+    "header": {
+      "title": null,
+      "labelFontSize": 13,
+      "labelFontWeight": 700,
+      "labelAnchor": "start",
+      "labelOrient": "top"
+    }
+  },
+  "spec": {
+    "width": 300,
+    "height": 210,
+    "encoding": {
+      "x": {
+        "field": "year",
+        "type": "quantitative",
+        "scale": {
+          "domain": [
+            2022.8,
+            2026.9
+          ]
+        },
+        "axis": {
+          "title": null,
+          "values": [
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "format": "d",
+          "grid": false
+        }
+      }
+    },
+    "layer": [
+      {
+        "mark": {
+          "type": "area",
+          "color": "#cbd5e1",
+          "opacity": 0.55
+        },
+        "encoding": {
+          "y": {
+            "field": "adv",
+            "type": "quantitative",
+            "scale": {
+              "domain": [
+                -8,
+                3
+              ]
+            },
+            "axis": {
+              "title": "Score points vs 2023",
+              "grid": true,
+              "format": "+d",
+              "tickCount": 5
+            }
+          },
+          "y2": {
+            "field": "dis"
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "rule",
+          "color": "#1f2a37",
+          "strokeDash": [
+            3,
+            3
+          ]
+        },
+        "encoding": {
+          "y": {
+            "datum": 0,
+            "type": "quantitative"
+          }
+        }
+      },
+      {
+        "transform": [
+          {
+            "fold": [
+              "adv",
+              "dis"
+            ],
+            "as": [
+              "key",
+              "pts"
+            ]
+          },
+          {
+            "calculate": "datum.key == 'adv' ? 'More advantaged group' : 'Less advantaged group'",
+            "as": "grp"
+          }
+        ],
+        "layer": [
+          {
+            "mark": {
+              "type": "line",
+              "strokeWidth": 3,
+              "point": {
+                "filled": true,
+                "size": 55
+              }
+            },
+            "encoding": {
+              "y": {
+                "field": "pts",
+                "type": "quantitative"
+              },
+              "color": {
+                "field": "grp",
+                "type": "nominal",
+                "scale": {
+                  "domain": [
+                    "More advantaged group",
+                    "Less advantaged group"
+                  ],
+                  "range": [
+                    "#1f5f8b",
+                    "#d1572a"
+                  ]
+                },
+                "legend": {
+                  "title": null,
+                  "orient": "top",
+                  "direction": "horizontal"
+                }
+              },
+              "tooltip": [
+                {
+                  "field": "measure",
+                  "title": "Comparison"
+                },
+                {
+                  "field": "grp",
+                  "title": "Group"
+                },
+                {
+                  "field": "year",
+                  "title": "Year",
+                  "format": "d"
+                },
+                {
+                  "field": "pts",
+                  "title": "Score change",
+                  "format": "+.1f"
+                }
+              ]
+            }
+          },
+          {
+            "transform": [
+              {
+                "filter": "datum.year == 2026"
+              },
+              {
+                "calculate": "format(datum.pts,'+.1f')",
+                "as": "t"
+              }
+            ],
+            "mark": {
+              "type": "text",
+              "align": "left",
+              "dx": 8,
+              "fontSize": 11,
+              "fontWeight": 700
+            },
+            "encoding": {
+              "y": {
+                "field": "pts",
+                "type": "quantitative"
+              },
+              "text": {
+                "field": "t"
+              },
+              "color": {
+                "field": "grp",
+                "type": "nominal",
+                "scale": {
+                  "domain": [
+                    "More advantaged group",
+                    "Less advantaged group"
+                  ],
+                  "range": [
+                    "#1f5f8b",
+                    "#d1572a"
+                  ]
+                },
+                "legend": null
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "config": {
+    "font": "system-ui, sans-serif",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "labelColor": "#374151",
+      "titleColor": "#6b7280",
+      "domainColor": "#cbd5e1",
+      "gridColor": "#e5e7eb",
+      "tickColor": "#cbd5e1"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "titleColor": "#6b7280"
+    },
+    "title": {
+      "fontSize": 13,
+      "fontWeight": 600,
+      "anchor": "start",
+      "color": "#1f2a37",
+      "subtitleColor": "#6b7280",
+      "subtitleFontSize": 12
+    }
+  }
+}

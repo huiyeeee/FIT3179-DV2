@@ -1,0 +1,205 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Students at the bottom and the top, 2023 → 2026",
+    "subtitle": "Each path follows one year level (average of the selected domain) from 2023 to 2026."
+  },
+  "width": 520,
+  "height": 380,
+  "params": [
+    {
+      "name": "pdomain",
+      "value": "All"
+    }
+  ],
+  "data": {
+    "url": "data/progress_national.csv"
+  },
+  "transform": [
+    {
+      "filter": "(pdomain == 'All' || datum.domain == pdomain)"
+    },
+    {
+      "calculate": "'Year ' + datum.level",
+      "as": "yl"
+    },
+    {
+      "aggregate": [
+        {
+          "op": "mean",
+          "field": "needs",
+          "as": "needs"
+        },
+        {
+          "op": "mean",
+          "field": "exceeding",
+          "as": "exceeding"
+        }
+      ],
+      "groupby": [
+        "yl",
+        "year"
+      ]
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "needs",
+      "type": "quantitative",
+      "scale": {
+        "zero": false,
+        "padding": 14
+      },
+      "axis": {
+        "title": "Students needing additional support (%)  →  more students struggling",
+        "grid": true,
+        "format": ".0f"
+      }
+    },
+    "y": {
+      "field": "exceeding",
+      "type": "quantitative",
+      "scale": {
+        "zero": false,
+        "padding": 14
+      },
+      "axis": {
+        "title": "Students exceeding expectations (%)  →  more students excelling",
+        "grid": true,
+        "format": ".0f"
+      }
+    },
+    "color": {
+      "field": "yl",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Year 3",
+          "Year 5",
+          "Year 7",
+          "Year 9"
+        ],
+        "range": [
+          "#7a5195",
+          "#1f5f8b",
+          "#1b7f79",
+          "#d1572a"
+        ]
+      },
+      "legend": null
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.5,
+        "opacity": 0.9
+      },
+      "encoding": {
+        "order": {
+          "field": "year",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 60,
+        "opacity": 1,
+        "stroke": "white",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "yl",
+            "title": "Year level"
+          },
+          {
+            "field": "year",
+            "title": "Year"
+          },
+          {
+            "field": "needs",
+            "title": "Needs additional support (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "exceeding",
+            "title": "Exceeding (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2023"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": 14,
+        "fontSize": 10.5,
+        "color": "#6b7280"
+      },
+      "encoding": {
+        "text": {
+          "value": "2023"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2026"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "fontSize": 12,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "text": {
+          "field": "yl"
+        }
+      }
+    }
+  ],
+  "config": {
+    "font": "system-ui, sans-serif",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "labelColor": "#374151",
+      "titleColor": "#6b7280",
+      "domainColor": "#cbd5e1",
+      "gridColor": "#e5e7eb",
+      "tickColor": "#cbd5e1"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "titleColor": "#6b7280"
+    },
+    "title": {
+      "fontSize": 13,
+      "fontWeight": 600,
+      "anchor": "start",
+      "color": "#1f2a37",
+      "subtitleColor": "#6b7280",
+      "subtitleFontSize": 12
+    }
+  }
+}
