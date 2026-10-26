@@ -1,0 +1,833 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Stacked area chart of the share of enrolled students without a result, split by reason, 2008 to 2026 (no tests in 2020). Shown for the state in param 'sel'; a dashed line shows Australia for comparison. The y-axis maximum is the param 'ymax'.",
+  "width": "container",
+  "height": 340,
+  "padding": {
+    "left": 4,
+    "right": 12,
+    "top": 6,
+    "bottom": 4
+  },
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+    "axis": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontWeight": 500,
+      "titleFontSize": 11,
+      "domain": false,
+      "ticks": false,
+      "gridColor": "#eee8dc"
+    },
+    "legend": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontSize": 11,
+      "titleFontWeight": 600,
+      "labelFontSize": 11
+    }
+  },
+  "params": [
+    {
+      "name": "sel",
+      "value": "Australia"
+    },
+    {
+      "name": "ymax",
+      "value": 14
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {
+            "a": 2019,
+            "b": 2021
+          }
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "color": "#e9e3d6",
+        "opacity": 0.9
+      },
+      "encoding": {
+        "x": {
+          "field": "a",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              2007.5,
+              2026.5
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": null,
+            "format": "d",
+            "values": [
+              2008,
+              2010,
+              2012,
+              2014,
+              2016,
+              2018,
+              2021,
+              2023,
+              2026
+            ],
+            "grid": false,
+            "labelFontSize": 11
+          }
+        },
+        "x2": {
+          "field": "b"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-0/data/outcomes_trend.csv",
+        "format": {
+          "type": "csv"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.year <= 2019"
+        },
+        {
+          "filter": "datum.state == sel"
+        },
+        {
+          "fold": [
+            "absent",
+            "withdrawn",
+            "nores"
+          ],
+          "as": [
+            "reason",
+            "pct"
+          ]
+        },
+        {
+          "calculate": "datum.reason == 'absent' ? 'Absent' : datum.reason == 'withdrawn' ? 'Withdrawn' : 'No result (excused or didn’t attempt)'",
+          "as": "reason_label"
+        },
+        {
+          "calculate": "datum.reason == 'absent' ? 0 : datum.reason == 'nores' ? 1 : 2",
+          "as": "ord"
+        },
+        {
+          "calculate": "datum.year < 2020 ? 'before 2020' : 'after 2020'",
+          "as": "period"
+        }
+      ],
+      "mark": {
+        "type": "area",
+        "opacity": 0.95,
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              2007.5,
+              2026.5
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": null,
+            "format": "d",
+            "values": [
+              2008,
+              2010,
+              2012,
+              2014,
+              2016,
+              2018,
+              2021,
+              2023,
+              2026
+            ],
+            "grid": false,
+            "labelFontSize": 11
+          }
+        },
+        "y": {
+          "field": "pct",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              14
+            ],
+            "nice": false,
+            "domainMax": {
+              "expr": "ymax"
+            }
+          },
+          "axis": {
+            "title": "% of enrolled students without a result",
+            "grid": true,
+            "tickCount": 5,
+            "format": ".0f",
+            "labelExpr": "datum.label + '%'"
+          },
+          "stack": "zero"
+        },
+        "color": {
+          "field": "reason_label",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Absent",
+              "No result (excused or didn’t attempt)",
+              "Withdrawn"
+            ],
+            "range": [
+              "#f0745a",
+              "#a9c7d6",
+              "#7b5ea7"
+            ]
+          },
+          "legend": null
+        },
+        "order": {
+          "field": "ord",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "year",
+            "title": "Year",
+            "format": "d"
+          },
+          {
+            "field": "reason_label",
+            "title": "Reason"
+          },
+          {
+            "field": "pct",
+            "title": "% of enrolled students",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-0/data/outcomes_trend.csv",
+        "format": {
+          "type": "csv"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.year >= 2021"
+        },
+        {
+          "filter": "datum.state == sel"
+        },
+        {
+          "fold": [
+            "absent",
+            "withdrawn",
+            "nores"
+          ],
+          "as": [
+            "reason",
+            "pct"
+          ]
+        },
+        {
+          "calculate": "datum.reason == 'absent' ? 'Absent' : datum.reason == 'withdrawn' ? 'Withdrawn' : 'No result (excused or didn’t attempt)'",
+          "as": "reason_label"
+        },
+        {
+          "calculate": "datum.reason == 'absent' ? 0 : datum.reason == 'nores' ? 1 : 2",
+          "as": "ord"
+        },
+        {
+          "calculate": "datum.year < 2020 ? 'before 2020' : 'after 2020'",
+          "as": "period"
+        }
+      ],
+      "mark": {
+        "type": "area",
+        "opacity": 0.95,
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              2007.5,
+              2026.5
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": null,
+            "format": "d",
+            "values": [
+              2008,
+              2010,
+              2012,
+              2014,
+              2016,
+              2018,
+              2021,
+              2023,
+              2026
+            ],
+            "grid": false,
+            "labelFontSize": 11
+          }
+        },
+        "y": {
+          "field": "pct",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              14
+            ],
+            "nice": false,
+            "domainMax": {
+              "expr": "ymax"
+            }
+          },
+          "axis": {
+            "title": "% of enrolled students without a result",
+            "grid": true,
+            "tickCount": 5,
+            "format": ".0f",
+            "labelExpr": "datum.label + '%'"
+          },
+          "stack": "zero"
+        },
+        "color": {
+          "field": "reason_label",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Absent",
+              "No result (excused or didn’t attempt)",
+              "Withdrawn"
+            ],
+            "range": [
+              "#f0745a",
+              "#a9c7d6",
+              "#7b5ea7"
+            ]
+          },
+          "legend": null
+        },
+        "order": {
+          "field": "ord",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "year",
+            "title": "Year",
+            "format": "d"
+          },
+          {
+            "field": "reason_label",
+            "title": "Reason"
+          },
+          {
+            "field": "pct",
+            "title": "% of enrolled students",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-0/data/outcomes_trend.csv",
+        "format": {
+          "type": "csv"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.state == 'Australia' && sel != 'Australia'"
+        },
+        {
+          "calculate": "datum.year < 2020 ? 'before 2020' : 'after 2020'",
+          "as": "period"
+        }
+      ],
+      "mark": {
+        "type": "line",
+        "color": "#14213d",
+        "strokeDash": [
+          5,
+          4
+        ],
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              2007.5,
+              2026.5
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": null,
+            "format": "d",
+            "values": [
+              2008,
+              2010,
+              2012,
+              2014,
+              2016,
+              2018,
+              2021,
+              2023,
+              2026
+            ],
+            "grid": false,
+            "labelFontSize": 11
+          }
+        },
+        "y": {
+          "field": "missing",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              14
+            ],
+            "nice": false,
+            "domainMax": {
+              "expr": "ymax"
+            }
+          },
+          "axis": {
+            "title": "% of enrolled students without a result",
+            "grid": true,
+            "tickCount": 5,
+            "format": ".0f",
+            "labelExpr": "datum.label + '%'"
+          }
+        },
+        "detail": {
+          "field": "period"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "y": 2008
+          },
+          {
+            "y": 2022
+          },
+          {
+            "y": 2023
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#14213d",
+        "opacity": 0.35,
+        "strokeDash": [
+          2,
+          3
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              2007.5,
+              2026.5
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": null,
+            "format": "d",
+            "values": [
+              2008,
+              2010,
+              2012,
+              2014,
+              2016,
+              2018,
+              2021,
+              2023,
+              2026
+            ],
+            "grid": false,
+            "labelFontSize": 11
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "y": 2026
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#14213d",
+        "strokeDash": [
+          2,
+          3
+        ],
+        "opacity": {
+          "expr": "sel == 'Tasmania' || sel == 'Australia' ? 0.35 : 0"
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              2007.5,
+              2026.5
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": null,
+            "format": "d",
+            "values": [
+              2008,
+              2010,
+              2012,
+              2014,
+              2016,
+              2018,
+              2021,
+              2023,
+              2026
+            ],
+            "grid": false,
+            "labelFontSize": 11
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "y": 2008,
+            "t": "2008 First NAPLAN"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": 700,
+        "color": "#14213d",
+        "opacity": {
+          "expr": "width < 460 ? 0 : 1"
+        },
+        "align": "left",
+        "dx": 4
+      },
+      "encoding": {
+        "x": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              2007.5,
+              2026.5
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": null,
+            "format": "d",
+            "values": [
+              2008,
+              2010,
+              2012,
+              2014,
+              2016,
+              2018,
+              2021,
+              2023,
+              2026
+            ],
+            "grid": false,
+            "labelFontSize": 11
+          }
+        },
+        "y": {
+          "value": 10
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "y": 2020,
+            "t": "2020 No tests (COVID-19)"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": 700,
+        "color": "#4a5568",
+        "opacity": {
+          "expr": "width < 460 ? 0 : 1"
+        },
+        "align": "center"
+      },
+      "encoding": {
+        "x": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              2007.5,
+              2026.5
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": null,
+            "format": "d",
+            "values": [
+              2008,
+              2010,
+              2012,
+              2014,
+              2016,
+              2018,
+              2021,
+              2023,
+              2026
+            ],
+            "grid": false,
+            "labelFontSize": 11
+          }
+        },
+        "y": {
+          "value": 10
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "y": 2022,
+            "t": "2022 Illness and floods"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": 700,
+        "color": "#14213d",
+        "opacity": {
+          "expr": "width < 460 ? 0 : 1"
+        },
+        "align": "right",
+        "dx": -5
+      },
+      "encoding": {
+        "x": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              2007.5,
+              2026.5
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": null,
+            "format": "d",
+            "values": [
+              2008,
+              2010,
+              2012,
+              2014,
+              2016,
+              2018,
+              2021,
+              2023,
+              2026
+            ],
+            "grid": false,
+            "labelFontSize": 11
+          }
+        },
+        "y": {
+          "value": 30
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "y": 2023,
+            "t": "2023 March, all online"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": 700,
+        "color": "#14213d",
+        "opacity": {
+          "expr": "width < 460 ? 0 : 1"
+        },
+        "align": "right",
+        "dx": -5
+      },
+      "encoding": {
+        "x": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              2007.5,
+              2026.5
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": null,
+            "format": "d",
+            "values": [
+              2008,
+              2010,
+              2012,
+              2014,
+              2016,
+              2018,
+              2021,
+              2023,
+              2026
+            ],
+            "grid": false,
+            "labelFontSize": 11
+          }
+        },
+        "y": {
+          "value": 50
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "y": 2026,
+            "t": "2026 Tasmania boycott"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": 700,
+        "color": "#14213d",
+        "opacity": {
+          "expr": "(sel == 'Tasmania' || sel == 'Australia') && width >= 460 ? 1 : 0"
+        },
+        "align": "right",
+        "dx": -5
+      },
+      "encoding": {
+        "x": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              2007.5,
+              2026.5
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": null,
+            "format": "d",
+            "values": [
+              2008,
+              2010,
+              2012,
+              2014,
+              2016,
+              2018,
+              2021,
+              2023,
+              2026
+            ],
+            "grid": false,
+            "labelFontSize": 11
+          }
+        },
+        "y": {
+          "value": 70
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    }
+  ]
+}

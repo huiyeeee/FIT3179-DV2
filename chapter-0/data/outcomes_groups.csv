@@ -1,0 +1,22 @@
+attribute,group,order,enrolled,assessed,nores,absent,withdrawn,missing,national_missing
+Where students live,Major cities,0,964530.2,92.623,2.076,2.886,2.416,7.377,9.223
+Where students live,Inner regional,1,226638.8,86.955,1.968,7.207,3.87,13.045,9.223
+Where students live,Outer regional,2,99452.8,85.751,2.219,8.451,3.58,14.249,9.223
+Where students live,Remote,3,13874.4,80.427,2.851,14.2,2.521,19.573,9.223
+Where students live,Very remote,4,9602.0,63.008,2.679,31.114,3.199,36.992,9.223
+Indigenous status,Indigenous,0,92490.4,76.124,4.063,14.799,5.015,23.876,9.223
+Indigenous status,Non-Indigenous,1,1198039.2,92.002,1.91,3.522,2.566,7.998,9.223
+Parents’ education,Bachelor degree or above,0,626572.0,94.867,1.262,2.192,1.68,5.133,9.223
+Parents’ education,Diploma,1,184334.0,91.134,1.811,3.918,3.136,8.866,9.223
+Parents’ education,Certificate I–IV,2,292520.4,87.759,2.333,6.177,3.731,12.241,9.223
+Parents’ education,Year 12,3,64859.0,87.331,3.476,5.876,3.317,12.669,9.223
+Parents’ education,Year 11 or below,4,77922.0,77.331,5.874,12.524,4.272,22.669,9.223
+Parents’ work,Senior managers & professionals,0,433414.8,94.912,1.02,2.35,1.717,5.088,9.223
+Parents’ work,Other managers & associates,1,276167.2,93.335,1.236,3.152,2.277,6.665,9.223
+Parents’ work,"Skilled trades, clerical & sales",2,262140.0,90.665,1.84,4.45,3.044,9.335,9.223
+Parents’ work,"Unskilled manual, office & sales",3,147402.2,87.35,3.117,6.278,3.256,12.65,9.223
+Parents’ work,Not in paid work,4,96243.6,77.788,6.792,10.789,4.631,22.212,9.223
+Year level,Year 3,3,319490.8,91.608,2.401,2.961,3.029,8.392,9.223
+Year level,Year 5,5,330812.4,92.606,1.951,2.884,2.559,7.394,9.223
+Year level,Year 7,7,333158.4,91.76,1.84,4.207,2.193,8.24,9.223
+Year level,Year 9,9,331227.4,87.158,2.138,7.427,3.276,12.842,9.223

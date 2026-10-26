@@ -1,0 +1,359 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bars of the share of enrolled students without a result in 2026, split into absent, withdrawn and no result (excused or didn’t attempt), for each group of the type in param 'attr'. The dashed line is the Australian figure.",
+  "width": "container",
+  "height": {
+    "step": 42
+  },
+  "padding": {
+    "left": 4,
+    "right": 60,
+    "top": 26,
+    "bottom": 4
+  },
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+    "axis": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontWeight": 500,
+      "titleFontSize": 11,
+      "domain": false,
+      "ticks": false,
+      "gridColor": "#eee8dc"
+    },
+    "legend": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontSize": 11,
+      "titleFontWeight": 600,
+      "labelFontSize": 11
+    }
+  },
+  "params": [
+    {
+      "name": "attr",
+      "value": "Where students live"
+    },
+    {
+      "name": "xmax",
+      "value": 40
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "url": "chapter-0/data/outcomes_groups.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "order": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.attribute == attr"
+        },
+        {
+          "fold": [
+            "absent",
+            "withdrawn",
+            "nores"
+          ],
+          "as": [
+            "reason",
+            "pct"
+          ]
+        },
+        {
+          "calculate": "datum.reason == 'absent' ? 'Absent' : datum.reason == 'withdrawn' ? 'Withdrawn' : 'No result (excused or didn’t attempt)'",
+          "as": "reason_label"
+        },
+        {
+          "calculate": "datum.reason == 'absent' ? 0 : datum.reason == 'withdrawn' ? 1 : 2",
+          "as": "ord"
+        }
+      ],
+      "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "stroke": "#ffffff",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "y": {
+          "field": "group",
+          "type": "nominal",
+          "sort": {
+            "field": "order",
+            "op": "min"
+          },
+          "scale": {
+            "padding": 0.3
+          },
+          "axis": {
+            "title": null,
+            "labelFontSize": 12,
+            "labelFontWeight": 600,
+            "labelColor": "#14213d",
+            "labelLimit": 210,
+            "labelPadding": 10
+          }
+        },
+        "x": {
+          "field": "pct",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              40
+            ],
+            "nice": false,
+            "domainMax": {
+              "expr": "xmax"
+            }
+          },
+          "stack": "zero",
+          "axis": {
+            "title": "% of enrolled students without a result",
+            "grid": true,
+            "format": ".0f",
+            "labelExpr": "datum.label + '%'",
+            "tickCount": 5
+          }
+        },
+        "color": {
+          "field": "reason_label",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Absent",
+              "Withdrawn",
+              "No result (excused or didn’t attempt)"
+            ],
+            "range": [
+              "#f0745a",
+              "#7b5ea7",
+              "#a9c7d6"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "top",
+            "direction": "horizontal",
+            "symbolType": "square",
+            "offset": 8
+          }
+        },
+        "order": {
+          "field": "ord",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "group",
+            "title": "Group"
+          },
+          {
+            "field": "reason_label",
+            "title": "Reason"
+          },
+          {
+            "field": "pct",
+            "title": "% of enrolled students",
+            "format": ".1f"
+          },
+          {
+            "field": "assessed",
+            "title": "Result counted (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-0/data/outcomes_groups.csv",
+        "format": {
+          "type": "csv"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.attribute == attr"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "max",
+              "field": "national_missing",
+              "as": "nat"
+            }
+          ]
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "color": "#14213d",
+        "strokeDash": [
+          4,
+          3
+        ],
+        "strokeWidth": 1.5,
+        "opacity": 0.55
+      },
+      "encoding": {
+        "x": {
+          "field": "nat",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              40
+            ],
+            "nice": false,
+            "domainMax": {
+              "expr": "xmax"
+            }
+          },
+          "axis": null
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-0/data/outcomes_groups.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "order": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.attribute == attr"
+        },
+        {
+          "calculate": "format(datum.missing, '.0f') + '%'",
+          "as": "t"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 8,
+        "fontSize": 12,
+        "fontWeight": 800,
+        "color": "#14213d"
+      },
+      "encoding": {
+        "y": {
+          "field": "group",
+          "type": "nominal",
+          "sort": {
+            "field": "order",
+            "op": "min"
+          },
+          "scale": {
+            "padding": 0.3
+          },
+          "axis": {
+            "title": null,
+            "labelFontSize": 12,
+            "labelFontWeight": 600,
+            "labelColor": "#14213d",
+            "labelLimit": 210,
+            "labelPadding": 10
+          }
+        },
+        "x": {
+          "field": "missing",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              40
+            ],
+            "nice": false,
+            "domainMax": {
+              "expr": "xmax"
+            }
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-0/data/outcomes_groups.csv",
+        "format": {
+          "type": "csv"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.attribute == attr"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "max",
+              "field": "national_missing",
+              "as": "nat"
+            }
+          ]
+        },
+        {
+          "calculate": "'Australia ' + format(datum.nat, '.0f') + '%'",
+          "as": "t"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "bottom",
+        "dx": 4,
+        "fontSize": 10,
+        "fontWeight": 700,
+        "color": "#14213d"
+      },
+      "encoding": {
+        "x": {
+          "field": "nat",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              40
+            ],
+            "nice": false,
+            "domainMax": {
+              "expr": "xmax"
+            }
+          },
+          "axis": null
+        },
+        "y": {
+          "value": 8
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    }
+  ]
+}

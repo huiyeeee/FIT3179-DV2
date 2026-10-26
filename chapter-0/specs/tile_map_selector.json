@@ -1,0 +1,359 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Equal-sized tile map of the states and territories, placed roughly where they sit on the map. Colour and number show how many of every 100 enrolled students had a result counted in the latest year (darker = fewer). Clicking a tile selects it (param 'sel').",
+  "width": "container",
+  "height": "container",
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "padding": {
+    "left": 2,
+    "right": 2,
+    "top": 2,
+    "bottom": 2
+  },
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+    "axis": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontWeight": 500,
+      "titleFontSize": 11,
+      "domain": false,
+      "ticks": false,
+      "gridColor": "#eee8dc"
+    },
+    "legend": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontSize": 11,
+      "titleFontWeight": 600,
+      "labelFontSize": 11
+    }
+  },
+  "params": [
+    {
+      "name": "year",
+      "value": 2026
+    },
+    {
+      "name": "sel",
+      "value": "Australia"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "col",
+      "type": "ordinal",
+      "axis": null,
+      "scale": {
+        "domain": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "paddingInner": 0.08,
+        "paddingOuter": 0
+      }
+    },
+    "y": {
+      "field": "row",
+      "type": "ordinal",
+      "axis": null,
+      "scale": {
+        "domain": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "paddingInner": 0.08,
+        "paddingOuter": 0
+      }
+    }
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "chapter-0/data/outcomes_trend.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "col": "number",
+            "row": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.year == year && datum.state != 'Australia'"
+        },
+        {
+          "calculate": "datum.c_assessed >= 92 ? '92 or more' : datum.c_assessed >= 88 ? '88–91' : datum.c_assessed >= 80 ? '80–87' : datum.c_assessed >= 65 ? '65–79' : 'Under 65'",
+          "as": "band"
+        },
+        {
+          "calculate": "indexof(['65–79', 'Under 65'], datum.band) >= 0 ? '#ffffff' : '#14213d'",
+          "as": "ink"
+        },
+        {
+          "calculate": "datum.c_assessed",
+          "as": "counted_text"
+        },
+        {
+          "calculate": "datum.c_assessed + ' of 100'",
+          "as": "assessed_text"
+        },
+        {
+          "calculate": "datum.c_nores + ' of 100'",
+          "as": "nores_text"
+        },
+        {
+          "calculate": "datum.c_absent + ' of 100'",
+          "as": "absent_text"
+        },
+        {
+          "calculate": "datum.c_withdrawn + ' of 100'",
+          "as": "withdrawn_text"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "cornerRadius": 10,
+        "cursor": "pointer",
+        "tooltip": true
+      },
+      "encoding": {
+        "fill": {
+          "field": "band",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "92 or more",
+              "88–91",
+              "80–87",
+              "65–79",
+              "Under 65"
+            ],
+            "range": [
+              "#f6e7e1",
+              "#f2c8ba",
+              "#ea9d86",
+              "#d96648",
+              "#9c3a1f"
+            ]
+          },
+          "legend": {
+            "title": "Result counted, of 100",
+            "orient": "bottom",
+            "direction": "horizontal",
+            "columns": 3,
+            "symbolType": "square",
+            "symbolSize": 160,
+            "columnPadding": 10
+          }
+        },
+        "stroke": {
+          "condition": {
+            "test": "datum.state == sel",
+            "value": "#14213d"
+          },
+          "value": "#ffffff"
+        },
+        "strokeWidth": {
+          "condition": {
+            "test": "datum.state == sel",
+            "value": 4
+          },
+          "value": 0
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "title": "State / territory"
+          },
+          {
+            "field": "assessed_text",
+            "title": "Result counted"
+          },
+          {
+            "field": "nores_text",
+            "title": "No result (excused or didn’t attempt)"
+          },
+          {
+            "field": "absent_text",
+            "title": "Absent"
+          },
+          {
+            "field": "withdrawn_text",
+            "title": "Withdrawn"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "col": 1,
+            "row": 3
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "text": [
+          "Teachers’ union",
+          "boycott of the",
+          "tests in 2026 →"
+        ],
+        "align": "right",
+        "baseline": "middle",
+        "dx": {
+          "expr": "width / 4 * 0.46"
+        },
+        "fontSize": 11,
+        "fontWeight": 700,
+        "lineHeight": 14,
+        "color": "#9c3a1f",
+        "opacity": {
+          "expr": "year == 2026 && width >= 300 ? 1 : 0"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-0/data/outcomes_trend.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "col": "number",
+            "row": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.year == year && datum.state != 'Australia'"
+        },
+        {
+          "calculate": "datum.c_assessed >= 92 ? '92 or more' : datum.c_assessed >= 88 ? '88–91' : datum.c_assessed >= 80 ? '80–87' : datum.c_assessed >= 65 ? '65–79' : 'Under 65'",
+          "as": "band"
+        },
+        {
+          "calculate": "indexof(['65–79', 'Under 65'], datum.band) >= 0 ? '#ffffff' : '#14213d'",
+          "as": "ink"
+        },
+        {
+          "calculate": "datum.c_assessed",
+          "as": "counted_text"
+        },
+        {
+          "calculate": "datum.c_assessed + ' of 100'",
+          "as": "assessed_text"
+        },
+        {
+          "calculate": "datum.c_nores + ' of 100'",
+          "as": "nores_text"
+        },
+        {
+          "calculate": "datum.c_absent + ' of 100'",
+          "as": "absent_text"
+        },
+        {
+          "calculate": "datum.c_withdrawn + ' of 100'",
+          "as": "withdrawn_text"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": -9,
+        "fontSize": 13,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "text": {
+          "field": "code"
+        },
+        "color": {
+          "field": "ink",
+          "type": "nominal",
+          "scale": null,
+          "legend": null
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-0/data/outcomes_trend.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "col": "number",
+            "row": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.year == year && datum.state != 'Australia'"
+        },
+        {
+          "calculate": "datum.c_assessed >= 92 ? '92 or more' : datum.c_assessed >= 88 ? '88–91' : datum.c_assessed >= 80 ? '80–87' : datum.c_assessed >= 65 ? '65–79' : 'Under 65'",
+          "as": "band"
+        },
+        {
+          "calculate": "indexof(['65–79', 'Under 65'], datum.band) >= 0 ? '#ffffff' : '#14213d'",
+          "as": "ink"
+        },
+        {
+          "calculate": "datum.c_assessed",
+          "as": "counted_text"
+        },
+        {
+          "calculate": "datum.c_assessed + ' of 100'",
+          "as": "assessed_text"
+        },
+        {
+          "calculate": "datum.c_nores + ' of 100'",
+          "as": "nores_text"
+        },
+        {
+          "calculate": "datum.c_absent + ' of 100'",
+          "as": "absent_text"
+        },
+        {
+          "calculate": "datum.c_withdrawn + ' of 100'",
+          "as": "withdrawn_text"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": 10,
+        "fontSize": 17,
+        "fontWeight": 800
+      },
+      "encoding": {
+        "text": {
+          "field": "counted_text"
+        },
+        "color": {
+          "field": "ink",
+          "type": "nominal",
+          "scale": null,
+          "legend": null
+        }
+      }
+    }
+  ]
+}

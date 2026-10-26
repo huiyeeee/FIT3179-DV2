@@ -8,6 +8,7 @@
   <!-- Global styles, then one stylesheet per chapter -->
   <link rel="stylesheet" href="css/fonts.css" />
   <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="chapter-0/css/chapter-0.css" />
   <link rel="stylesheet" href="chapter-1/css/chapter-1.css" />
   <link rel="stylesheet" href="chapter-2/css/chapter-2.css" />
@@ -21,120 +22,122 @@
     </header>
   </section>
 
-  <!-- ============ CHAPTER 0 · PARTICIPATION ============ -->
+  <!-- ============ CHAPTER 0 · BEFORE THE RESULTS ============ -->
   <section id="chapter-0" class="chapter">
     <header class="chapter-head">
-      <p class="eyebrow">Chapter 0 · Context</p>
-      <h2>Before we compare results, who actually sat the test?</h2>
+      <p class="eyebrow">Chapter 0 · Before the results</p>
+      <h2>Before we look at the results: whose results are they?</h2>
       <p class="lede">
-        NAPLAN scores only describe the students who take part. So we start with
-        the share of enrolled students who sat each test, first across Australia and
-        then state by state. In the waffle, every square is about 1% of enrolled students.
+        NAPLAN is meant to test every student in Years 3, 5, 7 and 9. But the results only describe the students who actually sat the tests.
+        So how many is that, who is missing, and is it getting worse?
       </p>
     </header>
 
-    <div class="card" id="waffle-card">
-      <!-- Controls -->
-      <div class="controls">
-        <div class="control control-year">
-          <div class="control-label">
-            <span>Year</span>
-            <button id="play-btn" class="play" type="button" aria-label="Play through the years">▶ Play</button>
+    <div class="card" id="c0-card">
+
+      <!-- Scene A: the big picture + pick a state -->
+      <div class="scene">
+        <p class="eyebrow-sm">The big picture</p>
+        <h3>How many students' results actually count?</h3>
+        <div class="c0-grid">
+          <div class="c0-left">
+            <p class="c0-caption" id="c0-caption"></p>
+            <div class="waffle-box"><div id="c0-waffle" role="img" aria-label="Waffle chart: what happened to 100 enrolled students"></div></div>
+            <div class="hier" aria-label="Key to the waffle chart">
+              <div class="hier-group">
+                <span class="hier-title">Took part <b id="h-took"></b> <span class="tip"><button type="button" class="info" aria-expanded="false" aria-controls="tip-took" aria-label="What counts as taking part?">ⓘ</button><span class="tip-pop" role="tooltip" id="tip-took" hidden><b>Took part</b> includes students who got a result counted, plus students who sat the test but have no result: excused (for a significant disability, or newly arrived with limited English) or did not attempt enough to be scored. ACARA counts these students as taking part.</span></span></span>
+                <span class="lg"><i class="lg-sq" style="background:#1f6f8b"></i>Result counted <b id="h-assessed"></b></span>
+                <span class="lg"><i class="lg-sq" style="background:#a9c7d6"></i>No result <b id="h-nores"></b></span>
+              </div>
+              <div class="hier-group">
+                <span class="hier-title">Did not take part <b id="h-missed"></b> <span class="tip"><button type="button" class="info" aria-expanded="false" aria-controls="tip-missed" aria-label="What does did not take part mean?">ⓘ</button><span class="tip-pop" role="tooltip" id="tip-missed" hidden><b>Absent:</b> not at school for the test. <b>Withdrawn:</b> a parent or carer pulled the student out, for example for religious beliefs or objections to testing.</span></span></span>
+                <span class="lg"><i class="lg-sq" style="background:#f0745a"></i>Absent <b id="h-absent"></b></span>
+                <span class="lg"><i class="lg-sq" style="background:#7b5ea7"></i>Withdrawn <b id="h-withdrawn"></b></span>
+              </div>
+            </div>
           </div>
-          <input id="year-slider" type="range" aria-label="Calendar year" />
-          <div id="year-ticks" class="year-ticks"></div>
-        </div>
 
-        <div class="control">
-          <div class="control-label"><span>Year level</span></div>
-          <div id="level-chips" class="chips" role="group" aria-label="Filter by year level"></div>
+          <div class="c0-right">
+            <div class="pick-head">
+              <p class="eyebrow-sm">Pick a state or territory <span class="tip"><button type="button" class="info" aria-expanded="false" aria-controls="tip-tiles" aria-label="How to read the tile map">ⓘ</button><span class="tip-pop" role="tooltip" id="tip-tiles" hidden>Each tile is one state or territory, drawn the same size and placed roughly where it sits on the map, so small places are as easy to pick as big ones. The number is how many of every 100 enrolled students had a result counted. Darker = fewer.</span></span></p>
+              <button id="c0-reset" class="clear-btn" type="button" hidden>✕ Back to Australia</button>
+            </div>
+            <p class="map-title" id="c0-tile-title"></p>
+            <div class="tile-box"><div id="c0-tiles" role="img" aria-label="Tile map: share of students without a result in each state and territory"></div></div>
+            <p class="map-note tile-note">Click a state to see its 100 students.</p>
+          </div>
         </div>
-
-        <div class="control">
-          <div class="control-label"><span>Assessment domain</span></div>
-          <div id="domain-chips" class="chips" role="group" aria-label="Filter by domain"></div>
-        </div>
+        <div class="context wide-note" id="c0-state-note"></div>
       </div>
 
-      <!-- Viz -->
-      <div class="viz">
-        <aside class="stat-panel">
-          <p class="stat-context" id="stat-context"></p>
-          <p class="stat-number"><span id="stat-pct">–</span><small>%</small></p>
-          <p class="stat-label">of enrolled students participated</p>
-          <p class="delta" id="stat-delta"></p>
-          <p class="sentence" id="stat-sentence"></p>
-
-          <div class="mini">
-            <p class="mini-title">Trend for this selection</p>
-            <div id="trend"></div>
-          </div>
-        </aside>
-
-        <div class="waffle-wrap">
-          <div id="waffle" role="img"></div>
-          <div class="legend">
-            <span><i class="dot dot-in"></i>Participated</span>
-            <span><i class="dot dot-out"></i>Did not participate</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- By state / territory -->
+      <!-- Scene B: over time -->
       <div class="section-divider"></div>
-      <div class="map-section">
-        <div class="map-text">
-          <p class="eyebrow-sm">By state and territory</p>
-          <h3>Does participation depend on where you live?</h3>
-          <div class="seg" id="map-mode" role="group" aria-label="Map colour view">
-            <button type="button" data-mode="rate">Participation rate</button>
-            <button type="button" data-mode="diff">Difference from Australia</button>
+      <div class="scene">
+        <div class="scene-head">
+          <p class="eyebrow-sm">A slow slide</p>
+          <h3>Are more students going missing than before?</h3>
+          <div class="state-pick">
+            <label for="c0-state-select">State or territory</label>
+            <select id="c0-state-select"></select>
+            <span class="showing" aria-live="polite">Showing: <strong id="c0-showing">Australia</strong></span>
           </div>
-          <p class="map-insight" id="map-insight"></p>
-          <p class="map-callout" id="map-callout" hidden>
-            <strong>Why the 2026 dips?</strong> ACARA attributes the lower 2026 participation to
-            industrial action in Tasmanian government schools and localised flooding in the
-            Northern Territory. Tasmania's 2026 state-level results were not reported.
-          </p>
-          <p class="map-selected" id="map-selected"></p>
-          <button id="map-clear" class="clear-btn" type="button" hidden>✕ Clear selection</button>
-          <p class="map-note" id="map-note"></p>
         </div>
-        <div class="map-wrap">
-          <div id="map" role="img" aria-label="Tile map of participation by state and territory"></div>
-          <div id="map-legend" class="map-legend"></div>
+        <div class="c0-grid c0-grid-wide">
+          <div>
+            <div class="div-legend">
+              <span class="lg"><i class="lg-sq" style="background:#7b5ea7"></i>Withdrawn</span>
+              <span class="lg"><i class="lg-sq" style="background:#a9c7d6"></i>No result (excused or didn’t attempt)</span>
+              <span class="lg"><i class="lg-sq" style="background:#f0745a"></i>Absent</span>
+              <span class="lg" id="c0-dash-key" hidden><i class="lg-dash"></i>Australia</span>
+            </div>
+            <div class="chart-wrap"><div id="c0-trend" role="img" aria-label="Stacked area chart of the share of students without a result, by reason, 2008 to 2026"></div></div>
+          </div>
+          <div>
+            <p class="map-insight" id="c0-trend-insight"></p>
+            <div class="context"><span class="ctx-label">What was happening?</span>
+              <ul class="events">
+                <li><b>2008</b> The first year of NAPLAN.</li>
+                <li><b>2020</b> No tests, because of COVID-19.</li>
+                <li><b>2022</b> Absences jumped: widespread illness, and natural disasters during the test window.</li>
+                <li><b>2023</b> Tests moved from May to March and became fully online.</li>
+                <li><b>2026</b> Tasmania: public-school teachers’ union boycott of the tests.</li>
+              </ul></div>
+            <p class="map-note">The data do not say why parents withdraw their children.</p>
+          </div>
         </div>
       </div>
 
-      <!-- By student background -->
+      <!-- Scene C: who is missing -->
       <div class="section-divider"></div>
-      <div class="groups-section">
-        <div class="groups-head">
-          <p class="eyebrow-sm">By student background</p>
-          <h3>Who is taking part, and who is missing?</h3>
-          <div class="seg" id="groups-mode" role="group" aria-label="Background chart view">
-            <button type="button" data-mode="rate">Participation rate</button>
-            <button type="button" data-mode="share">Who is enrolled</button>
-          </div>
-          <p class="map-insight" id="groups-insight"></p>
-          <p class="map-callout callout-teal">
-            <strong>Why this matters for the results that follow:</strong> a NAPLAN score only
-            describes the students who sat the test. Where a group takes part less often, its
-            results describe fewer of its students.
-          </p>
+      <div class="scene">
+        <div class="scene-head">
+          <p class="eyebrow-sm">Who is missing?</p>
+          <h3>Are the missing students just a random tenth?</h3>
+          <p class="showing">Showing: <strong>Australia, 2026</strong></p>
+          <div class="chips" id="c0-attr-chips" role="group" aria-label="Choose how to group students"></div>
         </div>
-        <div class="groups-legend" id="groups-legend"></div>
-        <div class="groups-scroll"><div id="groups-chart" role="img" aria-label="Participation by student background"></div></div>
-        <p class="map-note" id="groups-note"></p>
+        <div class="c0-grid c0-grid-wide">
+          <div class="chart-wrap"><div id="c0-groups" role="img" aria-label="Bars of the share of students without a result, by group"></div></div>
+          <div>
+            <p class="map-insight" id="c0-groups-insight"></p>
+            <div class="context"><span class="ctx-label">Why this matters for the results</span>
+              <p>Students who score lower are more likely to miss the tests. AERO found that students with low Year 7 results were nearly five times as likely to miss the Year 9 tests as high performers. So the results in the chapters ahead probably look a little better than reality, most of all for these groups.</p>
+              <p id="c0-std"></p>
+              <span class="ctx-source">Source: AERO (2025), which also cites AERO (2023).</span></div>
+          </div>
+        </div>
       </div>
 
-      <p class="footnote" id="footnote"></p>
+      <div class="section-divider"></div>
+      <div class="takeaway">
+        <p class="eyebrow-sm">The short version</p>
+        <p>About 9 in 10 enrolled students have a result that counts, and that share has slowly shrunk, mostly because more parents withdraw their children. The students missing most often are in remote areas, or are Indigenous, or have parents with less schooling. Keep that in mind as we turn to the results.</p>
+      </div>
+      <p class="footnote">Data: ACARA NAPLAN participation, 2008 to 2026 (no tests in 2020). Shares are of enrolled students, across the four year levels and five test domains. 2026 includes the Tasmanian boycott. Tile layout by the author.</p>
+      <p class="footnote sources"><b>Sources:</b> <a href="https://nap.edu.au/naplan/for-schools/student-participation">NAP, Student participation</a>; AERO (2025), <a href="https://www.edresearch.edu.au/research/analytical-insights-papers/naplan-participation-post-covid-19-improvements-and-remaining-challenges">NAPLAN participation: post-COVID-19 improvements and remaining challenges</a>; <a href="https://pulsetasmania.com.au/news/tasmania-has-no-naplan-results-after-unions-test-boycott/">Pulse Tasmania, 5 Aug 2026</a>.</p>
     </div>
 
-    <p class="hint">
-      <strong>Try this:</strong> slide from 2025 to 2026 and watch the map, then click a
-      state to see its own waffle. Hover any square for details.
-    </p>
+    <p class="hint"><strong>Try this:</strong> click Tasmania, then the Northern Territory, then Queensland. Each loses students for a different reason.</p>
   </section>
 
   <!-- ============ CHAPTER 1 · OVERALL PERFORMANCE ============ -->
@@ -586,11 +589,6 @@
   <script src="lib/vega-embed.min.js"></script>
 
   <!-- Chapter scripts -->
-  <script src="chapter-0/js/shared.js"></script>
-  <script src="chapter-0/js/controls.js"></script>
-  <script src="chapter-0/js/waffle.js"></script>
-  <script src="chapter-0/js/map.js"></script>
-  <script src="chapter-0/js/groups.js"></script>
   <script src="chapter-0/js/main.js"></script>
 
   <script src="chapter-1/js/shared.js"></script>

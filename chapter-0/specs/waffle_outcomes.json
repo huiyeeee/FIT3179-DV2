@@ -1,0 +1,196 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Waffle chart of 100 enrolled students. Squares are filled from the bottom in the order: result counted, no result (excused or didn’t attempt), absent, withdrawn. The page sets the params 'counts' (whole numbers adding to 100) and 'pcts' (exact percentages) for the chosen state.",
+  "width": "container",
+  "height": "container",
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "padding": {
+    "left": 2,
+    "right": 2,
+    "top": 2,
+    "bottom": 2
+  },
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+    "axis": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontWeight": 500,
+      "titleFontSize": 11,
+      "domain": false,
+      "ticks": false,
+      "gridColor": "#eee8dc"
+    },
+    "legend": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontSize": 11,
+      "titleFontWeight": 600,
+      "labelFontSize": 11
+    }
+  },
+  "params": [
+    {
+      "name": "counts",
+      "value": [
+        91,
+        2,
+        4,
+        3
+      ]
+    },
+    {
+      "name": "pcts",
+      "value": [
+        90.8,
+        2.1,
+        4.4,
+        2.8
+      ]
+    },
+    {
+      "name": "hl",
+      "select": {
+        "type": "point",
+        "fields": [
+          "outcome"
+        ],
+        "on": "pointerover",
+        "clear": "pointerout"
+      }
+    }
+  ],
+  "data": {
+    "sequence": {
+      "start": 0,
+      "stop": 100,
+      "as": "i"
+    }
+  },
+  "transform": [
+    {
+      "calculate": "datum.i < counts[0] ? 0 : datum.i < counts[0] + counts[1] ? 1 : datum.i < counts[0] + counts[1] + counts[2] ? 2 : 3",
+      "as": "cat"
+    },
+    {
+      "calculate": "[\"Result counted\", \"No result (excused or didn\\u2019t attempt)\", \"Absent\", \"Withdrawn\"][datum.cat]",
+      "as": "outcome"
+    },
+    {
+      "calculate": "datum.i % 10",
+      "as": "col"
+    },
+    {
+      "calculate": "9 - floor(datum.i / 10)",
+      "as": "row"
+    },
+    {
+      "calculate": "counts[datum.cat] + ' of every 100 students'",
+      "as": "t_count"
+    },
+    {
+      "calculate": "format(pcts[datum.cat], '.1f') + '% of enrolled students'",
+      "as": "t_pct"
+    }
+  ],
+  "mark": {
+    "type": "rect",
+    "cornerRadius": 4,
+    "tooltip": true
+  },
+  "encoding": {
+    "x": {
+      "field": "col",
+      "type": "ordinal",
+      "axis": null,
+      "scale": {
+        "domain": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "paddingInner": 0.1,
+        "paddingOuter": 0
+      }
+    },
+    "y": {
+      "field": "row",
+      "type": "ordinal",
+      "axis": null,
+      "scale": {
+        "domain": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "paddingInner": 0.1,
+        "paddingOuter": 0
+      }
+    },
+    "color": {
+      "field": "outcome",
+      "type": "nominal",
+      "legend": null,
+      "scale": {
+        "domain": [
+          "Result counted",
+          "No result (excused or didn’t attempt)",
+          "Absent",
+          "Withdrawn"
+        ],
+        "range": [
+          "#1f6f8b",
+          "#a9c7d6",
+          "#f0745a",
+          "#7b5ea7"
+        ]
+      }
+    },
+    "opacity": {
+      "condition": {
+        "param": "hl",
+        "value": 1
+      },
+      "value": 0.3
+    },
+    "tooltip": [
+      {
+        "field": "outcome",
+        "title": "What happened"
+      },
+      {
+        "field": "t_count",
+        "title": "Out of 100"
+      },
+      {
+        "field": "t_pct",
+        "title": "Exact share"
+      }
+    ]
+  }
+}
