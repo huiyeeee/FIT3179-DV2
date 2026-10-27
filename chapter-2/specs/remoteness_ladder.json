@@ -85,7 +85,7 @@
             "labelColor": "#14213d",
             "labelFontWeight": 600,
             "labelPadding": 8,
-            "labelExpr": "replace(datum.label, ' ', '\\n')"
+            "labelExpr": "split(datum.label, ' ')"
           }
         },
         "y": {
@@ -153,7 +153,7 @@
             "labelColor": "#14213d",
             "labelFontWeight": 600,
             "labelPadding": 8,
-            "labelExpr": "replace(datum.label, ' ', '\\n')"
+            "labelExpr": "split(datum.label, ' ')"
           }
         },
         "y": {
@@ -250,7 +250,7 @@
             "labelColor": "#14213d",
             "labelFontWeight": 600,
             "labelPadding": 8,
-            "labelExpr": "replace(datum.label, ' ', '\\n')"
+            "labelExpr": "split(datum.label, ' ')"
           }
         },
         "y": {
@@ -318,7 +318,7 @@
             "labelColor": "#14213d",
             "labelFontWeight": 600,
             "labelPadding": 8,
-            "labelExpr": "replace(datum.label, ' ', '\\n')"
+            "labelExpr": "split(datum.label, ' ')"
           }
         },
         "y": {
@@ -385,12 +385,45 @@
       "data": {
         "url": "chapter-2/data/remoteness.csv",
         "format": {
-          "type": "csv"
+          "type": "csv",
+          "parse": {
+            "year": "number",
+            "n": "number",
+            "so": "number"
+          }
         }
       },
       "transform": [
         {
-          "filter": "datum.year == year && datum.state == 'Australia'"
+          "filter": "datum.year == year && (datum.state == sel || datum.state == 'Australia')"
+        },
+        {
+          "calculate": "datum.state == sel ? datum.so : null",
+          "as": "s1"
+        },
+        {
+          "calculate": "datum.state == 'Australia' ? datum.so : null",
+          "as": "n1"
+        },
+        {
+          "joinaggregate": [
+            {
+              "op": "max",
+              "field": "s1",
+              "as": "sel_so"
+            },
+            {
+              "op": "max",
+              "field": "n1",
+              "as": "nat_so"
+            }
+          ],
+          "groupby": [
+            "remoteness"
+          ]
+        },
+        {
+          "filter": "datum.state == sel && (datum.sel_so != null && isFinite(datum.sel_so) && datum.sel_so >= datum.nat_so) == true"
         }
       ],
       "mark": {
@@ -398,7 +431,7 @@
         "dy": -16,
         "fontSize": 11,
         "fontWeight": 700,
-        "color": "#6b7280"
+        "color": "#c2410c"
       },
       "encoding": {
         "x": {
@@ -421,7 +454,7 @@
             "labelColor": "#14213d",
             "labelFontWeight": 600,
             "labelPadding": 8,
-            "labelExpr": "replace(datum.label, ' ', '\\n')"
+            "labelExpr": "split(datum.label, ' ')"
           }
         },
         "y": {
@@ -457,12 +490,45 @@
       "data": {
         "url": "chapter-2/data/remoteness.csv",
         "format": {
-          "type": "csv"
+          "type": "csv",
+          "parse": {
+            "year": "number",
+            "n": "number",
+            "so": "number"
+          }
         }
       },
       "transform": [
         {
-          "filter": "datum.year == year && datum.state == sel"
+          "filter": "datum.year == year && (datum.state == sel || datum.state == 'Australia')"
+        },
+        {
+          "calculate": "datum.state == sel ? datum.so : null",
+          "as": "s1"
+        },
+        {
+          "calculate": "datum.state == 'Australia' ? datum.so : null",
+          "as": "n1"
+        },
+        {
+          "joinaggregate": [
+            {
+              "op": "max",
+              "field": "s1",
+              "as": "sel_so"
+            },
+            {
+              "op": "max",
+              "field": "n1",
+              "as": "nat_so"
+            }
+          ],
+          "groupby": [
+            "remoteness"
+          ]
+        },
+        {
+          "filter": "datum.state == sel && (datum.sel_so != null && isFinite(datum.sel_so) && datum.sel_so >= datum.nat_so) == false"
         }
       ],
       "mark": {
@@ -493,7 +559,217 @@
             "labelColor": "#14213d",
             "labelFontWeight": 600,
             "labelPadding": 8,
-            "labelExpr": "replace(datum.label, ' ', '\\n')"
+            "labelExpr": "split(datum.label, ' ')"
+          }
+        },
+        "y": {
+          "field": "so",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              80
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": "% meeting expectations",
+            "grid": true,
+            "values": [
+              0,
+              20,
+              40,
+              60,
+              80
+            ]
+          }
+        },
+        "text": {
+          "field": "so",
+          "type": "quantitative",
+          "format": ".0f"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-2/data/remoteness.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "year": "number",
+            "n": "number",
+            "so": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.year == year && (datum.state == sel || datum.state == 'Australia')"
+        },
+        {
+          "calculate": "datum.state == sel ? datum.so : null",
+          "as": "s1"
+        },
+        {
+          "calculate": "datum.state == 'Australia' ? datum.so : null",
+          "as": "n1"
+        },
+        {
+          "joinaggregate": [
+            {
+              "op": "max",
+              "field": "s1",
+              "as": "sel_so"
+            },
+            {
+              "op": "max",
+              "field": "n1",
+              "as": "nat_so"
+            }
+          ],
+          "groupby": [
+            "remoteness"
+          ]
+        },
+        {
+          "filter": "datum.state == 'Australia' && (datum.sel_so != null && isFinite(datum.sel_so) && datum.sel_so >= datum.nat_so) == true"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": 17,
+        "fontSize": 11,
+        "fontWeight": 700,
+        "color": "#6b7280"
+      },
+      "encoding": {
+        "x": {
+          "field": "remoteness",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "Major cities",
+              "Inner regional",
+              "Outer regional",
+              "Remote",
+              "Very remote"
+            ],
+            "padding": 0.5
+          },
+          "axis": {
+            "title": null,
+            "labelAngle": 0,
+            "labelFontSize": 12,
+            "labelColor": "#14213d",
+            "labelFontWeight": 600,
+            "labelPadding": 8,
+            "labelExpr": "split(datum.label, ' ')"
+          }
+        },
+        "y": {
+          "field": "so",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              80
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": "% meeting expectations",
+            "grid": true,
+            "values": [
+              0,
+              20,
+              40,
+              60,
+              80
+            ]
+          }
+        },
+        "text": {
+          "field": "so",
+          "type": "quantitative",
+          "format": ".0f"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-2/data/remoteness.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "year": "number",
+            "n": "number",
+            "so": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.year == year && (datum.state == sel || datum.state == 'Australia')"
+        },
+        {
+          "calculate": "datum.state == sel ? datum.so : null",
+          "as": "s1"
+        },
+        {
+          "calculate": "datum.state == 'Australia' ? datum.so : null",
+          "as": "n1"
+        },
+        {
+          "joinaggregate": [
+            {
+              "op": "max",
+              "field": "s1",
+              "as": "sel_so"
+            },
+            {
+              "op": "max",
+              "field": "n1",
+              "as": "nat_so"
+            }
+          ],
+          "groupby": [
+            "remoteness"
+          ]
+        },
+        {
+          "filter": "datum.state == 'Australia' && (datum.sel_so != null && isFinite(datum.sel_so) && datum.sel_so >= datum.nat_so) == false"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": -16,
+        "fontSize": 11,
+        "fontWeight": 700,
+        "color": "#6b7280"
+      },
+      "encoding": {
+        "x": {
+          "field": "remoteness",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "Major cities",
+              "Inner regional",
+              "Outer regional",
+              "Remote",
+              "Very remote"
+            ],
+            "padding": 0.5
+          },
+          "axis": {
+            "title": null,
+            "labelAngle": 0,
+            "labelFontSize": 12,
+            "labelColor": "#14213d",
+            "labelFontWeight": 600,
+            "labelPadding": 8,
+            "labelExpr": "split(datum.label, ' ')"
           }
         },
         "y": {

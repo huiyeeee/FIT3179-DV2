@@ -1,35 +1,79 @@
-/* Chapter 2 · geographic differences. Generic components come from chapter-0.css (scoped by .chapter). */
-#chapter-2 .controls-one { grid-template-columns: minmax(240px, 420px); }
-#chapter-2 .scene h3 {
-  margin: 0 0 14px; font-family: var(--font-display);
-  font-size: clamp(1.4rem, 2.6vw, 1.8rem); line-height: 1.2;
-}
-#chapter-2 .scene-head { max-width: 760px; margin-bottom: 18px; }
-#chapter-2 .scene-lede { margin: 0 0 14px; color: var(--ink-soft); max-width: 64ch; }
+/* Chapter 2 · geographic differences. Generic components (card, chips, ⓘ tips, wide-note) come from css/components.css. */
+#chapter-2 .scene h3 { margin: 0 0 12px; font-family: var(--font-display); font-size: clamp(1.4rem, 2.6vw, 1.8rem); line-height: 1.2; }
+#chapter-2 .scene-head { max-width: 1000px; margin-bottom: 14px; }
+#chapter-2 .scene-lede { margin: 0 0 10px; color: var(--ink); max-width: 70ch; font-size: 1.05rem; font-weight: 600; line-height: 1.4; }
 
 /* map */
 #chapter-2 .map2-grid { display: grid; grid-template-columns: minmax(240px, 0.8fr) minmax(340px, 1.45fr); gap: 32px; align-items: start; }
-#chapter-2 .map2-grid > *, #chapter-2 .why-grid > *, #chapter-2 .wf-grid > * { min-width: 0; }
-#chapter-2 .map2-box { width: 100%; aspect-ratio: 1 / 1.08; }
+#chapter-2 .map2-grid > *, #chapter-2 .c2-panels > * { min-width: 0; }
+#chapter-2 .map2-box { width: 100%; height: 640px; }
 #chapter-2 #c2-map, #chapter-2 #c2-map .vega-embed { width: 100%; height: 100%; }
 #chapter-2 #c2-map svg, #chapter-2 #c2-map canvas { max-width: 100%; }
+#chapter-2 .map-insight { font-size: 1.05rem; font-weight: 600; line-height: 1.4; max-width: 44ch; }
 
 /* charts that size themselves to their container */
-#chapter-2 #c2-strip, #chapter-2 #c2-ladder, #chapter-2 #c2-breakdown, #chapter-2 #c2-waterfall,
-#chapter-2 #c2-strip .vega-embed, #chapter-2 #c2-ladder .vega-embed, #chapter-2 #c2-breakdown .vega-embed, #chapter-2 #c2-waterfall .vega-embed { width: 100%; }
+#chapter-2 .chart-wrap, #chapter-2 .chart-wrap > div, #chapter-2 .chart-wrap .vega-embed { width: 100%; }
+#chapter-2 .chart-wrap > div { line-height: 0; }
 #chapter-2 .vega-embed summary { display: none; }
 
-#chapter-2 .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
-#chapter-2 .wf-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: start; margin-top: 34px; padding-top: 28px; border-top: 1px dashed var(--line); }
-#chapter-2 .wf-text { padding-top: 26px; }
-#chapter-2 .dd-title { margin: 0 0 8px; font-size: 0.74rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); }
-#chapter-2 .dd-text { max-width: 78ch; margin-top: 16px; }
-#chapter-2 .ladder-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 4px 0 12px; font-size: 0.8rem; color: var(--ink-soft); }
+/* scene 3: two equal panels, each with label > takeaway > hint > chart */
+#chapter-2 .c2-panels { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+#chapter-2 .c2-panel-title { margin: 0 0 4px; font-size: 0.72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); }
+#chapter-2 .c2-panel-takeaway { margin: 0 0 4px; font-size: 1.05rem; font-weight: 600; line-height: 1.35; color: var(--ink); min-height: 4.1em; }
+#chapter-2 .c2-panel-hint { margin: 0 0 12px; font-size: 0.82rem; line-height: 1.4; color: var(--ink-soft); min-height: 2.8em; }
+#chapter-2 .ladder-legend, #chapter-2 .c2-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 16px; margin: 8px 0 0; font-size: 0.8rem; color: var(--ink-soft); }
 #chapter-2 .lg { display: inline-flex; align-items: center; }
 #chapter-2 .lg-sq { display: inline-block; width: 12px; height: 12px; margin-right: 6px; border-radius: 50%; }
+#chapter-2 .lg-dash { display: inline-block; width: 16px; height: 12px; margin-right: 6px; border: 1.5px dashed var(--ink); border-radius: 2px; box-sizing: border-box; }
+
+/* blue notes */
+#chapter-2 .context {
+  margin: 18px 0 0; padding: 13px 16px; background: var(--teal-soft); border-left: 4px solid var(--teal);
+  border-radius: 0 12px 12px 0; font-size: 0.88rem; line-height: 1.5; color: var(--ink);
+}
+#chapter-2 .context .ctx-label { display: block; margin-bottom: 8px; text-align: center; font-size: 0.7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); }
+#chapter-2 .context .ctx-source { display: block; margin-top: 8px; font-size: 0.76rem; color: var(--ink-soft); }
+#chapter-2 .context a { color: var(--teal); }
+#chapter-2 .context p { margin: 0 0 8px; }
+#chapter-2 .context p:last-child { margin-bottom: 0; }
+#chapter-2 .wide-note .two-col > div p { margin: 0 0 8px; }
+#chapter-2 .wide-note .two-col > div p:last-child { margin-bottom: 0; }
+
+#chapter-2 .takeaway { max-width: 760px; }
+#chapter-2 .takeaway p:last-child { margin: 0; font-family: var(--font-display); font-size: clamp(1.15rem, 2vw, 1.4rem); line-height: 1.45; color: var(--ink); }
 
 @media (max-width: 900px) {
-  #chapter-2 .map2-grid, #chapter-2 .why-grid, #chapter-2 .wf-grid { grid-template-columns: 1fr; gap: 24px; }
-  #chapter-2 .map2-box { order: -1; }
-  #chapter-2 .wf-text { padding-top: 0; }
+  #chapter-2 .map2-grid, #chapter-2 .c2-panels { grid-template-columns: 1fr; gap: 24px; }
+  #chapter-2 .map2-box { height: auto; aspect-ratio: 1 / 1.05; }
+  #chapter-2 .c2-panel-takeaway, #chapter-2 .c2-panel-hint { min-height: 0; }
 }
+
+/* map legends (HTML, so they wrap on phones) */
+#chapter-2 .map2-right { min-width: 0; }
+#chapter-2 .c2-map-legend { margin-top: 4px; }
+#chapter-2 .lg-ring { display: inline-block; width: 12px; height: 12px; margin-right: 6px; border-radius: 50%; background: #c8c3b8; border: 1px solid #9aa3b2; box-sizing: border-box; }
+#chapter-2 .lg-dashring { display: inline-block; width: 12px; height: 12px; margin-right: 6px; border-radius: 50%; background: #fff; border: 1.5px dashed #9aa3b2; box-sizing: border-box; }
+#chapter-2 .c2-legend-title { margin: 8px 0 0; text-align: center; font-size: 0.78rem; font-weight: 600; color: var(--ink-soft); }
+#chapter-2 .c2-map-legend .lg-sq, #chapter-2 .c2-legend .lg-sq { border-radius: 3px; }
+#chapter-2 .c2-map-legend { margin-top: 4px; gap: 6px 12px; font-size: 0.76rem; }
+#chapter-2 .lg-hollow { display: inline-block; width: 12px; height: 12px; margin-right: 6px; border-radius: 50%; border: 2px solid #4a5568; background: #fff; box-sizing: border-box; }
+#chapter-2 .lg-dot { display: inline-block; width: 12px; height: 12px; margin-right: 6px; border-radius: 50%; background: #4a5568; }
+#chapter-2 .scene-head .seg { margin: 4px 0 12px; }
+@media (max-width: 600px) { #chapter-2 .scene-head .seg button { padding: 6px 9px; font-size: 0.78rem; } }
+#chapter-2 .c2-guide { margin: 0; max-width: 78ch; font-size: 0.84rem; line-height: 1.5; color: var(--ink-soft); }
+#chapter-2 .c2-guide strong { color: var(--ink); }
+#chapter-2 .c2-click-hint { margin: 6px 0 0; text-align: center; font-size: 0.8rem; color: var(--ink-soft); }
+#chapter-2 .scene-head .scene-lede { margin-bottom: 8px; }
+#chapter-2 .c2-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin: 4px 0 12px; }
+#chapter-2 .c2-controls .seg { margin: 0; }
+#chapter-2 .c2-toggle { font-size: 0.84rem; }
+#chapter-2 .c2-strip-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0 16px; }
+#chapter-2 .c2-strip-grid.with-bars { grid-template-columns: minmax(0, 1fr) 250px; }
+#chapter-2 .c2-bars-wrap[hidden] { display: none; }
+@media (max-width: 600px) { #chapter-2 .c2-toggle { display: none; } #chapter-2 .map2-box { height: auto; } }
+
+#chapter-2 .c2-strip-grid > * { min-width: 0; }
+#chapter-2 #c2-strip, #chapter-2 #c2-bars { width: 100%; display: block; }
+#chapter-2 #c2-strip.vega-embed, #chapter-2 #c2-bars.vega-embed { width: 100%; }
+
+#chapter-2 .c2-cap { margin: 0 0 6px; font-size: 0.7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); }

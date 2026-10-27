@@ -1,17 +1,13 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Proportional symbol map of Australian states and territories. Circle area = students tested; colour = how far the state is from the Australian figure (diverging classes).",
+  "description": "Choropleth map of Australian states and territories. Colour = how many percentage points the share of students meeting expectations is above or below Australia's. An inset marker shows the ACT; annotations are supplied by the page.",
   "width": "container",
   "height": "container",
-  "autosize": {
-    "type": "fit",
-    "contains": "padding"
-  },
   "padding": {
-    "left": 4,
-    "right": 4,
-    "top": 4,
-    "bottom": 4
+    "left": 0,
+    "right": 0,
+    "top": 0,
+    "bottom": 0
   },
   "background": null,
   "config": {
@@ -42,14 +38,6 @@
   },
   "params": [
     {
-      "name": "year",
-      "value": 2026
-    },
-    {
-      "name": "metric",
-      "value": "so"
-    },
-    {
       "name": "sel",
       "value": "Northern Territory"
     }
@@ -64,7 +52,17 @@
     "parallels": [
       -18,
       -36
-    ]
+    ],
+    "center": [
+      0,
+      -27
+    ],
+    "scale": {
+      "expr": "width < 600 ? min(width * 1.05, height * 1.05) : min(width * 1.3, height * 1.3)"
+    },
+    "translate": {
+      "expr": "[width / 2, height / 2]"
+    }
   },
   "layer": [
     {
@@ -75,23 +73,237 @@
           "property": "features"
         }
       },
+      "transform": [
+        {
+          "lookup": "properties.name",
+          "from": {
+            "data": {
+              "url": "chapter-2/data/map_latest.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "year": "number",
+                  "n": "number",
+                  "so": "number",
+                  "nas": "number",
+                  "gap_so": "number",
+                  "gap_nas": "number",
+                  "nat_so": "number",
+                  "reported": "number",
+                  "lon": "number",
+                  "lat": "number",
+                  "anchor_lon": "number",
+                  "anchor_lat": "number",
+                  "leader": "number",
+                  "land_pct": "number"
+                }
+              }
+            },
+            "key": "state",
+            "fields": [
+              "state",
+              "code",
+              "so",
+              "gap_so",
+              "band_so",
+              "n",
+              "nat_so",
+              "reported",
+              "lon",
+              "lat",
+              "land_pct"
+            ]
+          }
+        },
+        {
+          "calculate": "datum.reported == 1 ? datum.band_so : 'Not published'",
+          "as": "band"
+        },
+        {
+          "calculate": "(datum.gap_so > 0 ? '+' : '−') + format(abs(datum.gap_so), '.1f') + ' points'",
+          "as": "gap_label"
+        },
+        {
+          "calculate": "datum.reported == 1 ? format(datum.so, '.1f') + '%' : 'not published'",
+          "as": "value_label"
+        },
+        {
+          "calculate": "format(datum.nat_so, '.1f') + '%'",
+          "as": "nat_label"
+        },
+        {
+          "calculate": "format(datum.n, ',') + ' students (' + format(datum.n / 6103856 * 100, '.1f') + '% of Australia)'",
+          "as": "n_label"
+        },
+        {
+          "calculate": "format(datum.land_pct, '.1f') + '% of Australia’s land'",
+          "as": "land_label"
+        },
+        {
+          "calculate": "indexof(['10+ pp worse', '3+ pp better'], datum.band) >= 0 ? '#ffffff' : '#14213d'",
+          "as": "ink"
+        }
+      ],
       "mark": {
         "type": "geoshape",
-        "fill": "#ece8df",
         "stroke": "#ffffff",
-        "strokeWidth": 1.2
+        "strokeWidth": 1.4,
+        "cursor": "pointer",
+        "tooltip": true
+      },
+      "encoding": {
+        "fill": {
+          "field": "band",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "10+ pp worse",
+              "3-10 pp worse",
+              "1-3 pp worse",
+              "within 1 pp",
+              "1-3 pp better",
+              "3+ pp better",
+              "Not published"
+            ],
+            "range": [
+              "#c2410c",
+              "#f0745a",
+              "#f8cbbd",
+              "#ece8df",
+              "#9fc9d8",
+              "#0e5a78",
+              "#e3e3e3"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "title": "State / territory"
+          },
+          {
+            "field": "value_label",
+            "title": "Meeting expectations"
+          },
+          {
+            "field": "nat_label",
+            "title": "Australia"
+          },
+          {
+            "field": "gap_label",
+            "title": "Difference"
+          },
+          {
+            "field": "n_label",
+            "title": "Students tested"
+          },
+          {
+            "field": "land_label",
+            "title": "Area"
+          }
+        ]
       }
     },
     {
       "data": {
-        "url": "chapter-2/data/state_results.csv",
+        "url": "chapter-2/data/states.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.name",
+          "from": {
+            "data": {
+              "url": "chapter-2/data/map_latest.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "year": "number",
+                  "n": "number",
+                  "so": "number",
+                  "nas": "number",
+                  "gap_so": "number",
+                  "gap_nas": "number",
+                  "nat_so": "number",
+                  "reported": "number",
+                  "lon": "number",
+                  "lat": "number",
+                  "anchor_lon": "number",
+                  "anchor_lat": "number",
+                  "leader": "number",
+                  "land_pct": "number"
+                }
+              }
+            },
+            "key": "state",
+            "fields": [
+              "state",
+              "code",
+              "so",
+              "gap_so",
+              "band_so",
+              "n",
+              "nat_so",
+              "reported",
+              "lon",
+              "lat",
+              "land_pct"
+            ]
+          }
+        },
+        {
+          "calculate": "datum.reported == 1 ? datum.band_so : 'Not published'",
+          "as": "band"
+        },
+        {
+          "calculate": "(datum.gap_so > 0 ? '+' : '−') + format(abs(datum.gap_so), '.1f') + ' points'",
+          "as": "gap_label"
+        },
+        {
+          "calculate": "datum.reported == 1 ? format(datum.so, '.1f') + '%' : 'not published'",
+          "as": "value_label"
+        },
+        {
+          "calculate": "format(datum.nat_so, '.1f') + '%'",
+          "as": "nat_label"
+        },
+        {
+          "calculate": "format(datum.n, ',') + ' students (' + format(datum.n / 6103856 * 100, '.1f') + '% of Australia)'",
+          "as": "n_label"
+        },
+        {
+          "calculate": "format(datum.land_pct, '.1f') + '% of Australia’s land'",
+          "as": "land_label"
+        },
+        {
+          "calculate": "indexof(['10+ pp worse', '3+ pp better'], datum.band) >= 0 ? '#ffffff' : '#14213d'",
+          "as": "ink"
+        },
+        {
+          "filter": "datum.state == sel"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": null,
+        "stroke": "#14213d",
+        "strokeWidth": 2.5
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-2/data/map_latest.csv",
         "format": {
           "type": "csv"
         }
       },
       "transform": [
         {
-          "filter": "datum.year == year && datum.state != 'Australia' && datum.leader == 1"
+          "filter": "datum.leader == 1"
         }
       ],
       "mark": {
@@ -118,55 +330,41 @@
     },
     {
       "data": {
-        "url": "chapter-2/data/state_results.csv",
+        "url": "chapter-2/data/map_latest.csv",
         "format": {
-          "type": "csv"
+          "type": "csv",
+          "parse": {
+            "year": "number",
+            "n": "number",
+            "so": "number",
+            "nas": "number",
+            "gap_so": "number",
+            "gap_nas": "number",
+            "nat_so": "number",
+            "reported": "number",
+            "lon": "number",
+            "lat": "number",
+            "anchor_lon": "number",
+            "anchor_lat": "number",
+            "leader": "number",
+            "land_pct": "number"
+          }
         }
       },
       "transform": [
         {
-          "filter": "datum.year == year && datum.state != 'Australia' && datum.reported == 1"
+          "filter": "datum.leader == 1"
         },
         {
-          "calculate": "metric == 'so' ? datum.band_so : datum.band_nas",
+          "calculate": "datum.band_so",
           "as": "band"
-        },
-        {
-          "calculate": "metric == 'so' ? datum.gap_so : datum.gap_nas",
-          "as": "gap"
-        },
-        {
-          "calculate": "metric == 'so' ? datum.so : datum.nas",
-          "as": "value"
-        },
-        {
-          "calculate": "metric == 'so' ? datum.nat_so : datum.nat_nas",
-          "as": "nat_value"
-        },
-        {
-          "calculate": "(datum.gap > 0 ? '+' : datum.gap < 0 ? '−' : '') + format(abs(datum.gap), '.1f') + ' pp'",
-          "as": "gap_label"
-        },
-        {
-          "calculate": "format(datum.value, '.1f') + '%'",
-          "as": "value_label"
-        },
-        {
-          "calculate": "format(datum.nat_value, '.1f') + '%'",
-          "as": "nat_label"
-        },
-        {
-          "calculate": "indexof(['10+ pp worse', '3+ pp better'], datum.band) >= 0 ? '#ffffff' : '#14213d'",
-          "as": "ink"
-        },
-        {
-          "calculate": "format(datum.n, ',') + ' students tested'",
-          "as": "n_label"
         }
       ],
       "mark": {
         "type": "circle",
-        "opacity": 0.95,
+        "size": 170,
+        "stroke": "#ffffff",
+        "strokeWidth": 1.5,
         "cursor": "pointer",
         "tooltip": true
       },
@@ -179,39 +377,6 @@
           "field": "lat",
           "type": "quantitative"
         },
-        "size": {
-          "field": "n",
-          "type": "quantitative",
-          "scale": {
-            "type": "linear",
-            "domain": [
-              0,
-              2000000
-            ],
-            "range": [
-              40,
-              3600
-            ]
-          },
-          "legend": {
-            "title": "Students tested (area)",
-            "orient": "bottom",
-            "direction": "horizontal",
-            "columns": 2,
-            "columnPadding": 16,
-            "padding": 2,
-            "values": [
-              100000,
-              500000,
-              1000000,
-              2000000
-            ],
-            "format": "~s",
-            "symbolFillColor": "#c8c3b8",
-            "symbolStrokeColor": "#9aa3b2",
-            "symbolOpacity": 1
-          }
-        },
         "fill": {
           "field": "band",
           "type": "nominal",
@@ -222,7 +387,8 @@
               "1-3 pp worse",
               "within 1 pp",
               "1-3 pp better",
-              "3+ pp better"
+              "3+ pp better",
+              "Not published"
             ],
             "range": [
               "#c2410c",
@@ -230,113 +396,8 @@
               "#f8cbbd",
               "#ece8df",
               "#9fc9d8",
-              "#0e5a78"
-            ]
-          },
-          "legend": {
-            "title": "Compared with Australia",
-            "orient": "bottom",
-            "direction": "horizontal",
-            "columns": 2,
-            "columnPadding": 16,
-            "padding": 2,
-            "symbolType": "circle",
-            "symbolSize": 160,
-            "labelExpr": "replace(datum.label, '-', '–')"
-          }
-        },
-        "stroke": {
-          "condition": {
-            "test": "datum.state == sel",
-            "value": "#14213d"
-          },
-          "value": "#ffffff"
-        },
-        "strokeWidth": {
-          "condition": {
-            "test": "datum.state == sel",
-            "value": 3
-          },
-          "value": 1.5
-        },
-        "order": {
-          "field": "n",
-          "type": "quantitative",
-          "sort": "descending"
-        },
-        "tooltip": [
-          {
-            "field": "state",
-            "title": "State / territory"
-          },
-          {
-            "field": "value_label",
-            "title": "Result"
-          },
-          {
-            "field": "nat_label",
-            "title": "Australia"
-          },
-          {
-            "field": "gap_label",
-            "title": "Difference"
-          },
-          {
-            "field": "n_label",
-            "title": "Students"
-          }
-        ]
-      }
-    },
-    {
-      "data": {
-        "url": "chapter-2/data/state_results.csv",
-        "format": {
-          "type": "csv"
-        }
-      },
-      "transform": [
-        {
-          "filter": "datum.year == year && datum.state != 'Australia' && datum.reported == 0"
-        },
-        {
-          "calculate": "format(datum.n, ',') + ' students sat the tests, but ACARA did not publish Tasmania’s 2026 results'",
-          "as": "note"
-        }
-      ],
-      "mark": {
-        "type": "circle",
-        "fill": "#ffffff",
-        "fillOpacity": 0.7,
-        "stroke": "#9aa3b2",
-        "strokeDash": [
-          4,
-          3
-        ],
-        "strokeWidth": 1.5,
-        "tooltip": true
-      },
-      "encoding": {
-        "longitude": {
-          "field": "lon",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "lat",
-          "type": "quantitative"
-        },
-        "size": {
-          "field": "n",
-          "type": "quantitative",
-          "scale": {
-            "type": "linear",
-            "domain": [
-              0,
-              2000000
-            ],
-            "range": [
-              40,
-              3600
+              "#0e5a78",
+              "#e3e3e3"
             ]
           },
           "legend": null
@@ -347,66 +408,63 @@
             "title": "State / territory"
           },
           {
-            "field": "note",
-            "title": "Not published"
+            "field": "so",
+            "title": "Meeting expectations (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "gap_so",
+            "title": "Difference (points)",
+            "format": "+.1f"
           }
         ]
       }
     },
     {
       "data": {
-        "url": "chapter-2/data/state_results.csv",
+        "url": "chapter-2/data/map_latest.csv",
         "format": {
-          "type": "csv"
+          "type": "csv",
+          "parse": {
+            "year": "number",
+            "n": "number",
+            "so": "number",
+            "nas": "number",
+            "gap_so": "number",
+            "gap_nas": "number",
+            "nat_so": "number",
+            "reported": "number",
+            "lon": "number",
+            "lat": "number",
+            "anchor_lon": "number",
+            "anchor_lat": "number",
+            "leader": "number",
+            "land_pct": "number"
+          }
         }
       },
       "transform": [
         {
-          "filter": "datum.year == year && datum.state != 'Australia' && datum.reported == 1 && datum.n >= 300000"
+          "filter": "datum.leader == 0"
         },
         {
-          "calculate": "metric == 'so' ? datum.band_so : datum.band_nas",
+          "calculate": "datum.reported == 1 ? datum.band_so : 'Not published'",
           "as": "band"
-        },
-        {
-          "calculate": "metric == 'so' ? datum.gap_so : datum.gap_nas",
-          "as": "gap"
-        },
-        {
-          "calculate": "metric == 'so' ? datum.so : datum.nas",
-          "as": "value"
-        },
-        {
-          "calculate": "metric == 'so' ? datum.nat_so : datum.nat_nas",
-          "as": "nat_value"
-        },
-        {
-          "calculate": "(datum.gap > 0 ? '+' : datum.gap < 0 ? '−' : '') + format(abs(datum.gap), '.1f') + ' pp'",
-          "as": "gap_label"
-        },
-        {
-          "calculate": "format(datum.value, '.1f') + '%'",
-          "as": "value_label"
-        },
-        {
-          "calculate": "format(datum.nat_value, '.1f') + '%'",
-          "as": "nat_label"
         },
         {
           "calculate": "indexof(['10+ pp worse', '3+ pp better'], datum.band) >= 0 ? '#ffffff' : '#14213d'",
           "as": "ink"
         },
         {
-          "calculate": "format(datum.n, ',') + ' students tested'",
-          "as": "n_label"
+          "calculate": "datum.reported == 1 ? format(datum.so, '.1f') + '%' : 'not published'",
+          "as": "value_label"
         }
       ],
       "mark": {
         "type": "text",
         "dy": -7,
         "fontSize": 11,
-        "fontWeight": 700,
-        "opacity": 0.9
+        "fontWeight": 700
       },
       "encoding": {
         "longitude": {
@@ -430,56 +488,48 @@
     },
     {
       "data": {
-        "url": "chapter-2/data/state_results.csv",
+        "url": "chapter-2/data/map_latest.csv",
         "format": {
-          "type": "csv"
+          "type": "csv",
+          "parse": {
+            "year": "number",
+            "n": "number",
+            "so": "number",
+            "nas": "number",
+            "gap_so": "number",
+            "gap_nas": "number",
+            "nat_so": "number",
+            "reported": "number",
+            "lon": "number",
+            "lat": "number",
+            "anchor_lon": "number",
+            "anchor_lat": "number",
+            "leader": "number",
+            "land_pct": "number"
+          }
         }
       },
       "transform": [
         {
-          "filter": "datum.year == year && datum.state != 'Australia' && datum.reported == 1 && datum.n >= 300000"
+          "filter": "datum.leader == 0"
         },
         {
-          "calculate": "metric == 'so' ? datum.band_so : datum.band_nas",
+          "calculate": "datum.reported == 1 ? datum.band_so : 'Not published'",
           "as": "band"
-        },
-        {
-          "calculate": "metric == 'so' ? datum.gap_so : datum.gap_nas",
-          "as": "gap"
-        },
-        {
-          "calculate": "metric == 'so' ? datum.so : datum.nas",
-          "as": "value"
-        },
-        {
-          "calculate": "metric == 'so' ? datum.nat_so : datum.nat_nas",
-          "as": "nat_value"
-        },
-        {
-          "calculate": "(datum.gap > 0 ? '+' : datum.gap < 0 ? '−' : '') + format(abs(datum.gap), '.1f') + ' pp'",
-          "as": "gap_label"
-        },
-        {
-          "calculate": "format(datum.value, '.1f') + '%'",
-          "as": "value_label"
-        },
-        {
-          "calculate": "format(datum.nat_value, '.1f') + '%'",
-          "as": "nat_label"
         },
         {
           "calculate": "indexof(['10+ pp worse', '3+ pp better'], datum.band) >= 0 ? '#ffffff' : '#14213d'",
           "as": "ink"
         },
         {
-          "calculate": "format(datum.n, ',') + ' students tested'",
-          "as": "n_label"
+          "calculate": "datum.reported == 1 ? format(datum.so, '.1f') + '%' : 'not published'",
+          "as": "value_label"
         }
       ],
       "mark": {
         "type": "text",
-        "dy": 8,
-        "fontSize": 13,
+        "dy": 7,
+        "fontSize": 12,
         "fontWeight": 700
       },
       "encoding": {
@@ -504,59 +554,40 @@
     },
     {
       "data": {
-        "url": "chapter-2/data/state_results.csv",
+        "url": "chapter-2/data/map_latest.csv",
         "format": {
-          "type": "csv"
+          "type": "csv",
+          "parse": {
+            "year": "number",
+            "n": "number",
+            "so": "number",
+            "nas": "number",
+            "gap_so": "number",
+            "gap_nas": "number",
+            "nat_so": "number",
+            "reported": "number",
+            "lon": "number",
+            "lat": "number",
+            "anchor_lon": "number",
+            "anchor_lat": "number",
+            "leader": "number",
+            "land_pct": "number"
+          }
         }
       },
       "transform": [
         {
-          "filter": "datum.year == year && datum.state != 'Australia' && datum.reported == 1 && datum.n < 300000"
+          "filter": "datum.leader == 1"
         },
         {
-          "calculate": "metric == 'so' ? datum.band_so : datum.band_nas",
-          "as": "band"
-        },
-        {
-          "calculate": "metric == 'so' ? datum.gap_so : datum.gap_nas",
-          "as": "gap"
-        },
-        {
-          "calculate": "metric == 'so' ? datum.so : datum.nas",
-          "as": "value"
-        },
-        {
-          "calculate": "metric == 'so' ? datum.nat_so : datum.nat_nas",
-          "as": "nat_value"
-        },
-        {
-          "calculate": "(datum.gap > 0 ? '+' : datum.gap < 0 ? '−' : '') + format(abs(datum.gap), '.1f') + ' pp'",
-          "as": "gap_label"
-        },
-        {
-          "calculate": "format(datum.value, '.1f') + '%'",
-          "as": "value_label"
-        },
-        {
-          "calculate": "format(datum.nat_value, '.1f') + '%'",
-          "as": "nat_label"
-        },
-        {
-          "calculate": "indexof(['10+ pp worse', '3+ pp better'], datum.band) >= 0 ? '#ffffff' : '#14213d'",
-          "as": "ink"
-        },
-        {
-          "calculate": "format(datum.n, ',') + ' students tested'",
-          "as": "n_label"
-        },
-        {
-          "calculate": "datum.code + ' ' + datum.value_label",
-          "as": "small_label"
+          "calculate": "width < 420 ? datum.code : datum.code + ' ' + format(datum.so, '.1f') + '%'",
+          "as": "t"
         }
       ],
       "mark": {
         "type": "text",
-        "dy": 17,
+        "align": "left",
+        "dx": 11,
         "fontSize": 11,
         "fontWeight": 700,
         "color": "#14213d"
@@ -571,44 +602,7 @@
           "type": "quantitative"
         },
         "text": {
-          "field": "small_label"
-        }
-      }
-    },
-    {
-      "data": {
-        "url": "chapter-2/data/state_results.csv",
-        "format": {
-          "type": "csv"
-        }
-      },
-      "transform": [
-        {
-          "filter": "datum.year == year && datum.state != 'Australia' && datum.reported == 0"
-        },
-        {
-          "calculate": "datum.code + ' not published'",
-          "as": "small_label"
-        }
-      ],
-      "mark": {
-        "type": "text",
-        "dy": 30,
-        "fontSize": 11,
-        "fontWeight": 600,
-        "color": "#6b7280"
-      },
-      "encoding": {
-        "longitude": {
-          "field": "lon",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "lat",
-          "type": "quantitative"
-        },
-        "text": {
-          "field": "small_label"
+          "field": "t"
         }
       }
     },
@@ -616,9 +610,13 @@
       "data": {
         "name": "annot"
       },
+      "transform": [
+        {
+          "filter": "isValid(datum.lon2)"
+        }
+      ],
       "mark": {
         "type": "rule",
-        "stroke": "#c2410c",
         "strokeWidth": 1.2,
         "strokeDash": [
           3,
@@ -639,6 +637,12 @@
         },
         "latitude2": {
           "field": "lat3"
+        },
+        "color": {
+          "field": "color",
+          "type": "nominal",
+          "scale": null,
+          "legend": null
         }
       }
     },
@@ -650,11 +654,10 @@
         "type": "text",
         "align": "left",
         "baseline": "top",
-        "fontSize": 12,
+        "fontSize": 11.5,
         "fontWeight": 600,
         "lineBreak": "\n",
-        "lineHeight": 15,
-        "color": "#c2410c"
+        "lineHeight": 14
       },
       "encoding": {
         "longitude": {
@@ -667,6 +670,12 @@
         },
         "text": {
           "field": "text"
+        },
+        "color": {
+          "field": "color",
+          "type": "nominal",
+          "scale": null,
+          "legend": null
         }
       }
     }

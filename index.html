@@ -237,53 +237,52 @@
   <section id="chapter-2" class="chapter">
     <header class="chapter-head">
       <p class="eyebrow">Chapter 2 · Where do outcomes differ?</p>
-      <h2>One territory stands apart, and the reason is mostly geography.</h2>
+      <h2>One territory stands apart, mostly because of where its students live.</h2>
       <p class="lede">
-        Australia's states and territories are mostly within a few points of each other. One is not.
-        Let's see who is ahead, who is behind, how consistent the gaps are, and what really lies behind them.
+        Most states are within a few points of the Australian result. The Northern Territory is not.
+        Is it one weak subject, or everywhere? And what lies behind the gap?
       </p>
     </header>
 
     <div class="card" id="c2-card">
-      <div class="controls controls-one">
-        <div class="control control-year">
-          <div class="control-label"><span>Year</span>
-            <button id="c2-play" class="play" type="button" aria-label="Play through the years">▶ Play</button></div>
-          <input id="c2-year-slider" type="range" aria-label="Calendar year" />
-          <div id="c2-year-ticks" class="year-ticks"></div>
-        </div>
-      </div>
 
-      <!-- Scene 1: proportional symbol map -->
+      <!-- Scene 1: choropleth map, full width with notes drawn on the map -->
       <div class="scene">
-        <div class="map2-grid">
-          <div>
-            <p class="eyebrow-sm">State by state</p>
-            <h3>How do the states and territories compare?</h3>
-            <div class="seg" id="c2-metric" role="group" aria-label="Measure shown on the map">
-              <button type="button" data-metric="so">Meeting expectations</button>
-              <button type="button" data-metric="nas">Needing extra support</button>
-            </div>
-            <p class="map-insight" id="c2-map-insight"></p>
-            <p class="map-note"><span id="c2-legend-note"></span>
-              The size of each circle shows how many students sat the tests, so the big circles on the east coast are where most students are.
-              Click a circle to explore that state further down the page.</p>
-          </div>
-          <div class="map2-box"><div id="c2-map" role="img" aria-label="Proportional symbol map of results by state and territory"></div></div>
+        <div class="scene-head">
+          <p class="eyebrow-sm">State by state</p>
+          <h3>How far is each state from the Australian result?</h3>
+          <p class="c2-cap">Students meeting expectations in each state, compared with Australia</p>
+          <p class="scene-lede" id="c2-map-insight"></p>
         </div>
+        <div class="map2-box"><div id="c2-map" role="img" aria-label="Map of Australia coloured by how far each state's share of students meeting expectations is from the Australian result"></div></div>
+        <p class="c2-legend-title">Points above or below Australia’s share of students meeting expectations</p>
+        <div class="c2-legend c2-map-legend" aria-label="Map colours"><span class="lg"><i class="lg-sq" style="background:#c2410c"></i>10+ below</span><span class="lg"><i class="lg-sq" style="background:#f0745a"></i>3–10 below</span><span class="lg"><i class="lg-sq" style="background:#f8cbbd"></i>1–3 below</span><span class="lg"><i class="lg-sq" style="background:#ece8df"></i>within 1</span><span class="lg"><i class="lg-sq" style="background:#9fc9d8"></i>1–3 above</span><span class="lg"><i class="lg-sq" style="background:#0e5a78"></i>3+ above</span><span class="lg"><i class="lg-sq" style="background:#e3e3e3"></i>not published</span></div>
+        <p class="c2-click-hint">Click a state to follow it in the sections below.</p>
       </div>
 
-      <!-- Scene 2: dot strip plot -->
+      <!-- Scene 2: dot strip with tabs -->
       <div class="section-divider"></div>
       <div class="scene">
         <div class="scene-head">
           <p class="eyebrow-sm">How consistent are the gaps?</p>
           <h3>Is it one weak subject, or everywhere?</h3>
-          <p class="scene-lede">Each dot is one result: a subject at a year level (20 per state). A dot's position shows how far it is above or
-            below the Australian result for the same test.</p>
+          <div class="c2-controls">
+            <div class="seg" id="c2-view" role="group" aria-label="What the dots are coloured by">
+              <button type="button" data-mode="all">All 20 results</button>
+              <button type="button" data-mode="level">By year level</button>
+              <button type="button" data-mode="subject">By subject</button>
+            </div>
+            <button type="button" class="chip c2-toggle" id="c2-parents-toggle" aria-pressed="false">＋ Compare with parents’ education</button>
+          </div>
+          <p class="scene-lede" id="c2-heat-title"></p>
+          <p class="c2-guide"><strong>How to read it:</strong> each state has 20 dots (five subjects at four year levels). A dot shows how far one test is above or below Australia’s result for the same test. A hollow dot is too close to call.</p>
         </div>
-        <div class="chart-wrap"><div id="c2-strip" role="img" aria-label="Dot strip plot of each state's results compared with Australia"></div></div>
-        <p class="map-insight dd-text" id="c2-strip-insight"></p>
+        <div class="c2-strip-grid" id="c2-strip-grid">
+          <div class="chart-wrap"><div id="c2-strip" role="img" aria-label="Dot strip plot of each state's results compared with Australia"></div></div>
+          <div class="chart-wrap c2-bars-wrap" id="c2-bars-wrap" hidden><div id="c2-bars" role="img" aria-label="Bar chart of the share of students with a parent who has a degree, by state"></div></div>
+        </div>
+        <div class="c2-legend" id="c2-strip-legend" aria-label="What the dots mean"></div>
+        <div class="context wide-note" id="c2-heat-note"></div>
       </div>
 
       <!-- Scene 3: why? -->
@@ -292,44 +291,37 @@
         <div class="scene-head">
           <p class="eyebrow-sm">What lies behind the gaps?</p>
           <h3>Is it the state, or the setting?</h3>
-          <p class="scene-lede">Australia's students do very differently depending on whether they live in a city, a regional town or a remote
-            community. To compare like with like, we ask: <em>if a state's students did as well as students in the same type of area across
-            Australia, what would its result be?</em> Pick a state, or click one in the map or bars.</p>
           <div class="chips" id="c2-state-chips" role="group" aria-label="Choose a state or territory"></div>
+          <p class="showing">Showing: <strong id="c2-showing"></strong></p>
         </div>
-
-        <div class="why-grid">
+        <div class="c2-panels">
           <div>
-            <p class="dd-title" id="c2-ladder-title"></p>
-            <div class="chart-wrap"><div id="c2-ladder" role="img" aria-label="Results by remoteness, Australia and selected state"></div></div>
+            <p class="c2-panel-title" id="c2-ladder-label">Step 1 · Results fall with distance</p>
+            <p class="c2-panel-takeaway" id="c2-ladder-title"></p>
+            <p class="c2-panel-hint" id="c2-ladder-hint"></p>
+            <div class="chart-wrap"><div id="c2-ladder" role="img" aria-label="Share of students meeting expectations by type of area, Australia and the selected state"></div></div>
             <div class="ladder-legend"><span class="lg"><i class="lg-sq" style="background:#9aa3b2"></i>Australia</span>
               <span class="lg"><i class="lg-sq" style="background:#f0745a"></i>Selected state</span>
               <span class="lg">Circle area = students tested</span></div>
-            <p class="map-insight" id="c2-ladder-insight"></p>
           </div>
           <div>
-            <p class="dd-title">How much of each state's gap is about where its students live?</p>
-            <div class="chart-wrap"><div id="c2-breakdown" role="img" aria-label="Breakdown of each state's gap from Australia"></div></div>
-            <p class="map-insight" id="c2-breakdown-insight"></p>
+            <p class="c2-panel-title">Step 2 · How much that moves each state</p>
+            <p class="c2-panel-takeaway" id="c2-breakdown-insight"></p>
+            <p class="c2-panel-hint">Gap = students meeting expectations, minus Australia’s share.</p>
+            <div class="chart-wrap"><div id="c2-breakdown" role="img" aria-label="Breakdown of each state's gap from Australia into where its students live and everything else"></div></div>
           </div>
         </div>
+        <div class="context wide-note" id="c2-why-note"></div>
+      </div>
 
-        <div class="wf-grid">
-          <div>
-            <p class="dd-title" id="c2-wf-title"></p>
-            <div class="chart-wrap"><div id="c2-waterfall" role="img" aria-label="Waterfall from the Australian result to the selected state's result"></div></div>
-          </div>
-          <div class="wf-text">
-            <p class="map-insight" id="c2-wf-insight"></p>
-            <p class="map-note" id="c2-wf-note"></p>
-          </div>
-        </div>
+      <div class="section-divider"></div>
+      <div class="takeaway">
+        <p class="eyebrow-sm">The short version</p>
+        <p id="c2-short"></p>
       </div>
     </div>
-
-    <p class="hint"><strong>Try this:</strong> switch the map to "Needing extra support", slide to 2023, and click Queensland or South Australia in the bars to see how different their story is.</p>
   </section>
-  
+
   <section id="chapter-3">
     <p class="c3-kicker">Chapter 3 · Equity and student background</p>
     <h2>Who is being left behind?</h2>

@@ -1,0 +1,313 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bar chart: share of tested students whose parent has a bachelor degree, one bar per state, in the same row order as the dot strip. The dashed line is the Australian figure.",
+  "width": "container",
+  "height": 416,
+  "padding": {
+    "left": 4,
+    "right": 40,
+    "top": 34,
+    "bottom": 4
+  },
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+    "axis": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontWeight": 500,
+      "titleFontSize": 11,
+      "domain": false,
+      "ticks": false,
+      "gridColor": "#eee8dc"
+    },
+    "legend": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontSize": 11,
+      "titleFontWeight": 600,
+      "labelFontSize": 11
+    }
+  },
+  "params": [
+    {
+      "name": "sel",
+      "value": "Northern Territory"
+    }
+  ],
+  "data": {
+    "url": "chapter-2/data/state_context.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "parents_degree_pct": "number",
+        "indigenous_pct": "number",
+        "participation_pct": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.state != 'Australia'"
+    },
+    {
+      "calculate": "indexof([\"Victoria\", \"Australian Capital Territory\", \"New South Wales\", \"Western Australia\", \"South Australia\", \"Queensland\", \"Tasmania\", \"Northern Territory\"], datum.state)",
+      "as": "state_idx"
+    },
+    {
+      "calculate": "format(datum.parents_degree_pct, '.0f') + '%'",
+      "as": "t"
+    }
+  ],
+  "layer": [
+    {
+      "transform": [
+        {
+          "filter": "datum.state == sel"
+        },
+        {
+          "calculate": "datum.state_idx - 0.5",
+          "as": "i0"
+        },
+        {
+          "calculate": "datum.state_idx + 0.5",
+          "as": "i1"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "color": "#14213d",
+        "opacity": 0.06
+      },
+      "encoding": {
+        "x": {
+          "datum": 0,
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "nice": false
+          }
+        },
+        "x2": {
+          "datum": 100
+        },
+        "y": {
+          "field": "i0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -0.5,
+              7.5
+            ],
+            "reverse": true,
+            "nice": false
+          },
+          "axis": null
+        },
+        "y2": {
+          "field": "i1"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "bar",
+        "size": 16,
+        "color": "#7b8fa8",
+        "cornerRadiusEnd": 3,
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {
+          "field": "parents_degree_pct",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": "Parents with a degree",
+            "grid": true,
+            "values": [
+              0,
+              50,
+              100
+            ],
+            "labelExpr": "datum.value + '%'"
+          }
+        },
+        "x2": {
+          "datum": 0
+        },
+        "y": {
+          "field": "state_idx",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -0.5,
+              7.5
+            ],
+            "reverse": true,
+            "nice": false
+          },
+          "axis": null
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "title": "State / territory"
+          },
+          {
+            "field": "parents_degree_pct",
+            "title": "Students with a parent who has a degree (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": 34,
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#14213d"
+      },
+      "encoding": {
+        "x": {
+          "datum": 100,
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "nice": false
+          }
+        },
+        "y": {
+          "field": "state_idx",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -0.5,
+              7.5
+            ],
+            "reverse": true,
+            "nice": false
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-2/data/state_context.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "parents_degree_pct": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.state == 'Australia'"
+        },
+        {
+          "calculate": "'Australia: ' + format(datum.parents_degree_pct, '.0f') + '%'",
+          "as": "t"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "color": "#14213d",
+        "strokeDash": [
+          4,
+          3
+        ],
+        "strokeWidth": 1.4,
+        "opacity": 0.7
+      },
+      "encoding": {
+        "x": {
+          "field": "parents_degree_pct",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "nice": false
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-2/data/state_context.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "parents_degree_pct": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.state == 'Australia'"
+        },
+        {
+          "calculate": "'Australia ' + format(datum.parents_degree_pct, '.0f') + '%'",
+          "as": "t"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "bottom",
+        "dy": -4,
+        "fontSize": 10.5,
+        "fontWeight": 700,
+        "color": "#14213d"
+      },
+      "encoding": {
+        "x": {
+          "field": "parents_degree_pct",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "nice": false
+          }
+        },
+        "y": {
+          "value": 0
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    }
+  ]
+}

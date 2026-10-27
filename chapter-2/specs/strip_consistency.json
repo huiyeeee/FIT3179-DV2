@@ -1,12 +1,12 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Dot strip plot. Each dot is one result (a domain at a year level) for one state, positioned by how many percentage points it is above or below the Australian result for the same test. The five dots stacked in each row are the five domains.",
+  "description": "Dot strip plot. Each dot is one result (a subject at a year level) for one state, placed by how many percentage points it is above or below the Australian result for the same test. Filled dots are clear gaps; hollow dots are too close to call.",
   "width": "container",
   "height": 416,
   "padding": {
     "left": 4,
-    "right": 150,
-    "top": 10,
+    "right": 8,
+    "top": 34,
     "bottom": 4
   },
   "background": null,
@@ -40,6 +40,14 @@
     {
       "name": "year",
       "value": 2026
+    },
+    {
+      "name": "mode",
+      "value": "all"
+    },
+    {
+      "name": "sel",
+      "value": "Northern Territory"
     }
   ],
   "layer": [
@@ -89,7 +97,7 @@
         "x2": {
           "field": "b"
         },
-        "color": {
+        "fill": {
           "field": "z",
           "type": "nominal",
           "legend": null,
@@ -129,8 +137,113 @@
               12
             ],
             "nice": false
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "i": -0.5,
+            "i2": 0.5,
+            "state": "Victoria"
           },
-          "axis": null
+          {
+            "i": 0.5,
+            "i2": 1.5,
+            "state": "Australian Capital Territory"
+          },
+          {
+            "i": 1.5,
+            "i2": 2.5,
+            "state": "New South Wales"
+          },
+          {
+            "i": 2.5,
+            "i2": 3.5,
+            "state": "Western Australia"
+          },
+          {
+            "i": 3.5,
+            "i2": 4.5,
+            "state": "South Australia"
+          },
+          {
+            "i": 4.5,
+            "i2": 5.5,
+            "state": "Queensland"
+          },
+          {
+            "i": 5.5,
+            "i2": 6.5,
+            "state": "Tasmania"
+          },
+          {
+            "i": 6.5,
+            "i2": 7.5,
+            "state": "Northern Territory"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "filter": "datum.state == sel"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "color": "#14213d",
+        "opacity": 0.06
+      },
+      "encoding": {
+        "x": {
+          "datum": -34,
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -34,
+              12
+            ],
+            "nice": false
+          }
+        },
+        "x2": {
+          "datum": 12
+        },
+        "y": {
+          "field": "i",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -0.5,
+              7.5
+            ],
+            "reverse": true,
+            "nice": false
+          },
+          "axis": {
+            "title": null,
+            "values": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "grid": false,
+            "labelFontSize": 12,
+            "labelFontWeight": 600,
+            "labelColor": "#14213d",
+            "labelPadding": 8,
+            "labelExpr": "width < 600 ? [\"VIC\", \"ACT\", \"NSW\", \"WA\", \"SA\", \"QLD\", \"TAS\", \"NT\"][datum.value] : [\"Victoria\", \"ACT\", \"New South Wales\", \"Western Australia\", \"South Australia\", \"Queensland\", \"Tasmania\", \"Northern Territory\"][datum.value]"
+          }
+        },
+        "y2": {
+          "field": "i2"
         }
       }
     },
@@ -138,7 +251,16 @@
       "data": {
         "url": "chapter-2/data/state_cells.csv",
         "format": {
-          "type": "csv"
+          "type": "csv",
+          "parse": {
+            "year": "number",
+            "level": "number",
+            "so": "number",
+            "n": "number",
+            "nat_so": "number",
+            "gap": "number",
+            "sig": "number"
+          }
         }
       },
       "transform": [
@@ -154,16 +276,32 @@
           "as": "dom_idx"
         },
         {
-          "calculate": "datum.state_idx + (datum.dom_idx - 2) * 0.15",
+          "calculate": "datum.state_idx + (mode == 'level' ? (indexof([3, 5, 7, 9], datum.level) - 1.5) * 0.2 : (datum.dom_idx - 2) * 0.17)",
           "as": "y"
+        },
+        {
+          "calculate": "mode == 'all' ? (datum.gap >= 0 ? 'Above Australia' : 'Below Australia') : mode == 'level' ? 'Year ' + datum.level : datum.domain",
+          "as": "key"
+        },
+        {
+          "calculate": "'Year ' + datum.level + ' ' + datum.domain",
+          "as": "test"
+        },
+        {
+          "calculate": "datum.sig == 0 ? 'Too close to call' : datum.sig > 0 ? 'Clearly above Australia' : 'Clearly below Australia'",
+          "as": "clear"
+        },
+        {
+          "filter": "datum.sig != 0"
         }
       ],
       "mark": {
         "type": "circle",
-        "size": 55,
-        "opacity": 0.88,
+        "size": 60,
+        "opacity": 0.92,
         "stroke": "#ffffff",
         "strokeWidth": 0.8,
+        "cursor": "pointer",
         "tooltip": true
       },
       "encoding": {
@@ -176,8 +314,7 @@
               12
             ],
             "nice": false
-          },
-          "axis": null
+          }
         },
         "y": {
           "field": "y",
@@ -207,15 +344,41 @@
             "labelFontWeight": 600,
             "labelColor": "#14213d",
             "labelPadding": 8,
-            "labelExpr": "[\"Victoria\", \"ACT\", \"New South Wales\", \"Western Australia\", \"South Australia\", \"Queensland\", \"Tasmania\", \"Northern Territory\"][datum.value]"
+            "labelExpr": "width < 600 ? [\"VIC\", \"ACT\", \"NSW\", \"WA\", \"SA\", \"QLD\", \"TAS\", \"NT\"][datum.value] : [\"Victoria\", \"ACT\", \"New South Wales\", \"Western Australia\", \"South Australia\", \"Queensland\", \"Tasmania\", \"Northern Territory\"][datum.value]"
           }
         },
         "color": {
-          "condition": {
-            "test": "datum.gap >= 0",
-            "value": "#1f6f8b"
+          "field": "key",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Below Australia",
+              "Above Australia",
+              "Year 3",
+              "Year 5",
+              "Year 7",
+              "Year 9",
+              "Reading",
+              "Writing",
+              "Spelling",
+              "Grammar and Punctuation",
+              "Numeracy"
+            ],
+            "range": [
+              "#f0745a",
+              "#1f6f8b",
+              "#cbd5e1",
+              "#94a3b8",
+              "#556987",
+              "#1e2f4d",
+              "#c2410c",
+              "#1f6f8b",
+              "#7b5ea7",
+              "#b8860b",
+              "#4b5563"
+            ]
           },
-          "value": "#f0745a"
+          "legend": null
         },
         "tooltip": [
           {
@@ -223,12 +386,8 @@
             "title": "State / territory"
           },
           {
-            "field": "domain",
-            "title": "Domain"
-          },
-          {
-            "field": "level",
-            "title": "Year level"
+            "field": "test",
+            "title": "Test"
           },
           {
             "field": "so",
@@ -244,6 +403,10 @@
             "field": "gap",
             "title": "Difference (points)",
             "format": "+.1f"
+          },
+          {
+            "field": "clear",
+            "title": "Is the gap clear?"
           }
         ]
       }
@@ -252,7 +415,181 @@
       "data": {
         "url": "chapter-2/data/state_cells.csv",
         "format": {
-          "type": "csv"
+          "type": "csv",
+          "parse": {
+            "year": "number",
+            "level": "number",
+            "so": "number",
+            "n": "number",
+            "nat_so": "number",
+            "gap": "number",
+            "sig": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.year == year"
+        },
+        {
+          "calculate": "indexof([\"Victoria\", \"Australian Capital Territory\", \"New South Wales\", \"Western Australia\", \"South Australia\", \"Queensland\", \"Tasmania\", \"Northern Territory\"], datum.state)",
+          "as": "state_idx"
+        },
+        {
+          "calculate": "indexof([\"Reading\", \"Writing\", \"Spelling\", \"Grammar and Punctuation\", \"Numeracy\"], datum.domain)",
+          "as": "dom_idx"
+        },
+        {
+          "calculate": "datum.state_idx + (mode == 'level' ? (indexof([3, 5, 7, 9], datum.level) - 1.5) * 0.2 : (datum.dom_idx - 2) * 0.17)",
+          "as": "y"
+        },
+        {
+          "calculate": "mode == 'all' ? (datum.gap >= 0 ? 'Above Australia' : 'Below Australia') : mode == 'level' ? 'Year ' + datum.level : datum.domain",
+          "as": "key"
+        },
+        {
+          "calculate": "'Year ' + datum.level + ' ' + datum.domain",
+          "as": "test"
+        },
+        {
+          "calculate": "datum.sig == 0 ? 'Too close to call' : datum.sig > 0 ? 'Clearly above Australia' : 'Clearly below Australia'",
+          "as": "clear"
+        },
+        {
+          "filter": "datum.sig == 0"
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": false,
+        "fill": "#ffffff",
+        "size": 60,
+        "strokeWidth": 1.8,
+        "opacity": 1,
+        "cursor": "pointer",
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {
+          "field": "gap",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -34,
+              12
+            ],
+            "nice": false
+          }
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -0.5,
+              7.5
+            ],
+            "reverse": true,
+            "nice": false
+          },
+          "axis": {
+            "title": null,
+            "values": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "grid": false,
+            "labelFontSize": 12,
+            "labelFontWeight": 600,
+            "labelColor": "#14213d",
+            "labelPadding": 8,
+            "labelExpr": "width < 600 ? [\"VIC\", \"ACT\", \"NSW\", \"WA\", \"SA\", \"QLD\", \"TAS\", \"NT\"][datum.value] : [\"Victoria\", \"ACT\", \"New South Wales\", \"Western Australia\", \"South Australia\", \"Queensland\", \"Tasmania\", \"Northern Territory\"][datum.value]"
+          }
+        },
+        "color": {
+          "field": "key",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Below Australia",
+              "Above Australia",
+              "Year 3",
+              "Year 5",
+              "Year 7",
+              "Year 9",
+              "Reading",
+              "Writing",
+              "Spelling",
+              "Grammar and Punctuation",
+              "Numeracy"
+            ],
+            "range": [
+              "#f0745a",
+              "#1f6f8b",
+              "#cbd5e1",
+              "#94a3b8",
+              "#556987",
+              "#1e2f4d",
+              "#c2410c",
+              "#1f6f8b",
+              "#7b5ea7",
+              "#b8860b",
+              "#4b5563"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "title": "State / territory"
+          },
+          {
+            "field": "test",
+            "title": "Test"
+          },
+          {
+            "field": "so",
+            "title": "% meeting expectations",
+            "format": ".1f"
+          },
+          {
+            "field": "nat_so",
+            "title": "Australia, same test (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "gap",
+            "title": "Difference (points)",
+            "format": "+.1f"
+          },
+          {
+            "field": "clear",
+            "title": "Is the gap clear?"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-2/data/state_cells.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "year": "number",
+            "level": "number",
+            "so": "number",
+            "n": "number",
+            "nat_so": "number",
+            "gap": "number",
+            "sig": "number"
+          }
         }
       },
       "transform": [
@@ -310,8 +647,7 @@
               12
             ],
             "nice": false
-          },
-          "axis": null
+          }
         },
         "y": {
           "field": "state_idx",
@@ -341,7 +677,7 @@
             "labelFontWeight": 600,
             "labelColor": "#14213d",
             "labelPadding": 8,
-            "labelExpr": "[\"Victoria\", \"ACT\", \"New South Wales\", \"Western Australia\", \"South Australia\", \"Queensland\", \"Tasmania\", \"Northern Territory\"][datum.value]"
+            "labelExpr": "width < 600 ? [\"VIC\", \"ACT\", \"NSW\", \"WA\", \"SA\", \"QLD\", \"TAS\", \"NT\"][datum.value] : [\"Victoria\", \"ACT\", \"New South Wales\", \"Western Australia\", \"South Australia\", \"Queensland\", \"Tasmania\", \"Northern Territory\"][datum.value]"
           }
         },
         "text": {
@@ -357,14 +693,84 @@
     },
     {
       "data": {
+        "values": [
+          {
+            "t": "Results"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "bottom",
+        "dy": -4,
+        "dx": 10,
+        "fontSize": 10.5,
+        "fontWeight": 700,
+        "color": "#4a5568"
+      },
+      "encoding": {
+        "x": {
+          "datum": 12,
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -34,
+              12
+            ],
+            "nice": false
+          }
+        },
+        "y": {
+          "datum": -0.5,
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -0.5,
+              7.5
+            ],
+            "reverse": true,
+            "nice": false
+          },
+          "axis": {
+            "title": null,
+            "values": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "grid": false,
+            "labelFontSize": 12,
+            "labelFontWeight": 600,
+            "labelColor": "#14213d",
+            "labelPadding": 8,
+            "labelExpr": "width < 600 ? [\"VIC\", \"ACT\", \"NSW\", \"WA\", \"SA\", \"QLD\", \"TAS\", \"NT\"][datum.value] : [\"Victoria\", \"ACT\", \"New South Wales\", \"Western Australia\", \"South Australia\", \"Queensland\", \"Tasmania\", \"Northern Territory\"][datum.value]"
+          }
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
         "url": "chapter-2/data/state_results.csv",
         "format": {
-          "type": "csv"
+          "type": "csv",
+          "parse": {
+            "year": "number",
+            "reported": "number"
+          }
         }
       },
       "transform": [
         {
-          "filter": "datum.year == year && datum.reported == 0"
+          "filter": "datum.year == year && datum.reported == 0 && datum.state != 'Australia'"
         },
         {
           "calculate": "indexof([\"Victoria\", \"Australian Capital Territory\", \"New South Wales\", \"Western Australia\", \"South Australia\", \"Queensland\", \"Tasmania\", \"Northern Territory\"], datum.state)",
@@ -389,8 +795,7 @@
               12
             ],
             "nice": false
-          },
-          "axis": null
+          }
         },
         "y": {
           "field": "state_idx",
@@ -420,11 +825,73 @@
             "labelFontWeight": 600,
             "labelColor": "#14213d",
             "labelPadding": 8,
-            "labelExpr": "[\"Victoria\", \"ACT\", \"New South Wales\", \"Western Australia\", \"South Australia\", \"Queensland\", \"Tasmania\", \"Northern Territory\"][datum.value]"
+            "labelExpr": "width < 600 ? [\"VIC\", \"ACT\", \"NSW\", \"WA\", \"SA\", \"QLD\", \"TAS\", \"NT\"][datum.value] : [\"Victoria\", \"ACT\", \"New South Wales\", \"Western Australia\", \"South Australia\", \"Queensland\", \"Tasmania\", \"Northern Territory\"][datum.value]"
           }
         },
         "text": {
           "value": "results not published for 2026"
+        }
+      }
+    },
+    {
+      "data": {
+        "name": "annot"
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 11,
+        "fontWeight": 600,
+        "lineBreak": "\n",
+        "lineHeight": 13,
+        "color": "#14213d"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -34,
+              12
+            ],
+            "nice": false
+          }
+        },
+        "y": {
+          "field": "yi",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -0.5,
+              7.5
+            ],
+            "reverse": true,
+            "nice": false
+          },
+          "axis": {
+            "title": null,
+            "values": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "grid": false,
+            "labelFontSize": 12,
+            "labelFontWeight": 600,
+            "labelColor": "#14213d",
+            "labelPadding": 8,
+            "labelExpr": "width < 600 ? [\"VIC\", \"ACT\", \"NSW\", \"WA\", \"SA\", \"QLD\", \"TAS\", \"NT\"][datum.value] : [\"Victoria\", \"ACT\", \"New South Wales\", \"Western Australia\", \"South Australia\", \"Queensland\", \"Tasmania\", \"Northern Territory\"][datum.value]"
+          }
+        },
+        "text": {
+          "field": "text"
         }
       }
     }

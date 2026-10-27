@@ -7,7 +7,7 @@
   },
   "padding": {
     "left": 4,
-    "right": 70,
+    "right": 46,
     "top": 24,
     "bottom": 4
   },
@@ -78,7 +78,7 @@
         "labelColor": "#14213d",
         "labelLimit": 150,
         "labelPadding": 8,
-        "labelExpr": "replace(datum.label, 'Australian Capital Territory', 'ACT')"
+        "labelExpr": "width < 360 ? {'Australian Capital Territory': 'ACT', 'New South Wales': 'NSW', 'Victoria': 'VIC', 'Queensland': 'QLD', 'South Australia': 'SA', 'Western Australia': 'WA', 'Northern Territory': 'NT'}[datum.label] : replace(datum.label, 'Australian Capital Territory', 'ACT')"
       }
     }
   },
@@ -114,7 +114,7 @@
           "scale": {
             "domain": [
               -30,
-              8
+              10
             ],
             "nice": false
           },
@@ -125,7 +125,8 @@
               -30,
               -20,
               -10,
-              0
+              0,
+              10
             ],
             "labelExpr": "(datum.value > 0 ? '+' : datum.value < 0 ? '−' : '') + abs(datum.value)"
           }
@@ -193,11 +194,10 @@
           "scale": {
             "domain": [
               -30,
-              8
+              10
             ],
             "nice": false
-          },
-          "axis": null
+          }
         }
       }
     },
@@ -218,16 +218,15 @@
       ],
       "encoding": {
         "x": {
-          "datum": 8,
+          "datum": 10,
           "type": "quantitative",
           "scale": {
             "domain": [
               -30,
-              8
+              10
             ],
             "nice": false
-          },
-          "axis": null
+          }
         },
         "text": {
           "field": "gap_text"

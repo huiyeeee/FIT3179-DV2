@@ -7,6 +7,8 @@ Inputs  (this folder):
 Outputs (this folder):
   states.geojson      Australian state/territory outlines (Jervis Bay merged away), coordinates rounded
   state_results.csv   one row per year x state: students tested, % at each level, gap vs Australia, symbol position
+  state_context.csv  background facts per state (parents with a degree, Indigenous students, participation) for the annotations
+  map_latest.csv     the latest year of state_results, one row per state (joined to the outlines for the choropleth)
   state_cells.csv     one row per year x state x domain x year level: % meeting expectations and gap vs Australia
   remoteness.csv      one row per year x state x remoteness area: students tested, % meeting expectations
   gap_breakdown.csv   per year x state: how much of the gap vs Australia is explained by where its students live
@@ -90,6 +92,45 @@ for i, k in enumerate(["code", "lon", "lat", "anchor_lon", "anchor_lat"]):
 res["leader"] = res.state.eq("Australian Capital Territory").astype(int)
 res = res.sort_values(["year", "state"]).round(3)
 res.to_csv(here / "state_results.csv", index=False)
+# state_context.csv: background facts for the annotations (latest year, Reading rows used so each student is counted once)
+_ctx = r[(r.year == r.year.max()) & (r.domain == "Reading")].copy()
+for _c in ("n", "enrolled"):
+    _ctx[_c] = pd.to_numeric(_ctx[_c], errors="coerce")
+_pe = _ctx[_ctx.attr == "Parental education"].groupby(["state", "sub"]).n.sum().unstack()
+_ind = _ctx[_ctx.attr == "Indigeneity"].groupby(["state", "sub"]).n.sum().unstack()
+_all = _ctx[_ctx.attr == "All"].groupby("state")[["n", "enrolled"]].sum()
+_remote = pd.read_csv(here / "remoteness.csv")
+context = pd.DataFrame({
+    "parents_degree_pct": _pe["Parental education: bachelor"] / _pe.drop(columns=["Parental education: not stated"]).sum(axis=1) * 100,
+    "indigenous_pct": _ind["Indigenous"] / _ind.sum(axis=1) * 100,
+    "participation_pct": _all.n / _all.enrolled * 100,
+}).round(1)
+context.index.name = "state"
+context.reset_index().to_csv(here / "state_context.csv", index=False)
+
+# latest year only, one row per state: the choropleth joins its outlines to this file by state name
+import math
+
+
+def _ring_km2(ring):   # equal-area (Lambert azimuthal) projection centred on Australia, then the shoelace formula
+    lam0, phi0, R = math.radians(134), math.radians(-25), 6371
+    pts = []
+    for lon, lat in ring:
+        l, p = math.radians(lon), math.radians(lat)
+        k = math.sqrt(2 / (1 + math.sin(phi0) * math.sin(p) + math.cos(phi0) * math.cos(p) * math.cos(l - lam0)))
+        pts.append((R * k * math.cos(p) * math.sin(l - lam0), R * k * (math.cos(phi0) * math.sin(p) - math.sin(phi0) * math.cos(p) * math.cos(l - lam0))))
+    return abs(sum(a[0] * b[1] - b[0] * a[1] for a, b in zip(pts, pts[1:] + pts[:1]))) / 2
+
+
+_geo = json.load(open(here / "states.geojson"))
+_area = {}
+for _f in _geo["features"]:
+    _polys = _f["geometry"]["coordinates"] if _f["geometry"]["type"] == "MultiPolygon" else [_f["geometry"]["coordinates"]]
+    _area[_f["properties"]["name"]] = sum(_ring_km2(q[0]) - sum(_ring_km2(h) for h in q[1:]) for q in _polys)
+_tot = sum(_area.values())
+latest = res[(res.year == res.year.max()) & (res.state != AUS)].copy()
+latest["land_pct"] = latest.state.map(lambda x: round(_area[x] / _tot * 100, 1))   # share of Australia's land area
+latest.to_csv(here / "map_latest.csv", index=False)
 
 # ---- state_cells: each domain x year level, gap vs the same cell nationally
 cells = al[["year", "state", "domain", "level", "so", "n"]].copy()
@@ -97,7 +138,16 @@ natc = cells[cells.state == AUS].set_index(["year", "domain", "level"])["so"]
 cells["nat_so"] = [natc[(a, b, c)] for a, b, c in zip(cells.year, cells.domain, cells.level)]
 cells["gap"] = cells["so"] - cells["nat_so"]
 cells = cells[cells.state != AUS].round(3)
+
+# second ACARA file (state comparisons): is each gap clearly real, or small enough to be chance?
+# sig = -1 clearly below Australia, 0 too close to call, +1 clearly above (ACARA's 'Significance of difference').
+cmp_ = pd.read_csv(here.parent.parent / "data" / "raw" / "NAPLAN_state_comparisons_raw.csv")
+cmp_ = cmp_[(cmp_["Base state/territory"] == AUS) & (cmp_.Measure == "Strong or above (%)")]
+cmp_ = cmp_.rename(columns={"Calendar year": "year", "Year level": "level", "Domain": "domain", "State/territory": "state",
+                            "Significance of difference": "sig"})[["year", "state", "domain", "level", "sig"]]
+cells = cells.merge(cmp_, on=["year", "state", "domain", "level"], how="left")
 cells.to_csv(here / "state_cells.csv", index=False)
+
 
 # ---- remoteness: students tested + % meeting expectations per state x remoteness area
 rm = scored[scored.attr == "ABS remoteness"]
