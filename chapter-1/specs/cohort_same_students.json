@@ -1,0 +1,591 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": {
+    "step": 58
+  },
+  "padding": {
+    "left": 4,
+    "right": 8,
+    "top": 34,
+    "bottom": 4
+  },
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+    "axis": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontWeight": 500,
+      "titleFontSize": 11,
+      "domain": false,
+      "ticks": false,
+      "gridColor": "#eee8dc"
+    },
+    "legend": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontSize": 11,
+      "titleFontWeight": 600,
+      "labelFontSize": 11
+    }
+  },
+  "params": [
+    {
+      "name": "year",
+      "value": 2026
+    },
+    {
+      "name": "sel",
+      "value": "Writing"
+    }
+  ],
+  "data": {
+    "url": "chapter-1/data/cohort.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "year": "number",
+        "so_start": "number",
+        "so_end": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.year == year && datum.domain == sel"
+    },
+    {
+      "calculate": "isValid(datum.so_start) ? (datum.so_end >= datum.so_start ? 'Share rose' : 'Share fell') : 'First test'",
+      "as": "dir"
+    },
+    {
+      "calculate": "isValid(datum.so_start) ? min(datum.so_start, datum.so_end) : datum.so_end",
+      "as": "lo"
+    },
+    {
+      "calculate": "isValid(datum.so_start) ? max(datum.so_start, datum.so_end) : datum.so_end",
+      "as": "hi"
+    },
+    {
+      "calculate": "format(datum.lo, '.0f') + '%'",
+      "as": "lo_t"
+    },
+    {
+      "calculate": "format(datum.hi, '.0f') + '%'",
+      "as": "hi_t"
+    },
+    {
+      "calculate": "datum.level + ' students, ' + year + ': ' + format(datum.so_end, '.1f') + '% meet expectations'",
+      "as": "tip_now"
+    },
+    {
+      "calculate": "isValid(datum.so_start) ? 'Same students in ' + (year - 2) + ' (' + datum.from_level + '): ' + format(datum.so_start, '.1f') + '%' : 'No earlier test for this group'",
+      "as": "tip_before"
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "url": "chapter-1/data/outcomes.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "year": "number",
+            "needs": "number",
+            "developing": "number",
+            "strong": "number",
+            "exceeding": "number",
+            "exempt": "number",
+            "so": "number",
+            "mean": "number",
+            "d39": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.year == year && datum.domain == 'All subjects' && datum.level == 'All years'"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "color": "#14213d",
+        "strokeDash": [
+          4,
+          3
+        ],
+        "strokeWidth": 1.5,
+        "opacity": 0.7
+      },
+      "encoding": {
+        "x": {
+          "field": "so",
+          "type": "quantitative",
+          "scale": {
+            "domain": {
+              "expr": "[0, 100]"
+            },
+            "nice": false
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-1/data/outcomes.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "year": "number",
+            "needs": "number",
+            "developing": "number",
+            "strong": "number",
+            "exceeding": "number",
+            "exempt": "number",
+            "so": "number",
+            "mean": "number",
+            "d39": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.year == year && datum.domain == 'All subjects' && datum.level == 'All years'"
+        },
+        {
+          "calculate": "(width < 400 ? 'All ' : 'All subjects: ') + format(datum.so, '.0f') + '%'",
+          "as": "t"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "bottom",
+        "dy": -4,
+        "fontSize": 10,
+        "fontWeight": 700,
+        "color": "#14213d"
+      },
+      "encoding": {
+        "x": {
+          "field": "so",
+          "type": "quantitative",
+          "scale": {
+            "domain": {
+              "expr": "[0, 100]"
+            },
+            "nice": false
+          }
+        },
+        "y": {
+          "value": 0
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "isValid(datum.so_start)"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 5,
+        "strokeCap": "round",
+        "opacity": 0.45
+      },
+      "encoding": {
+        "y": {
+          "field": "level",
+          "type": "ordinal",
+          "sort": [
+            "Year 3",
+            "Year 5",
+            "Year 7",
+            "Year 9"
+          ],
+          "scale": {
+            "padding": 0.28
+          },
+          "axis": {
+            "title": "Year level now",
+            "titleFontSize": 11,
+            "titleColor": "#4a5568",
+            "domain": true,
+            "domainColor": "#9aa3b2",
+            "ticks": true,
+            "tickColor": "#9aa3b2",
+            "tickSize": 5,
+            "labelFontSize": 12,
+            "labelFontWeight": 700,
+            "labelColor": "#14213d",
+            "labelPadding": 6,
+            "labelExpr": "datum.value == 'Year 3' ? ['Year 3', 'first test'] : [datum.value, 'from Year ' + (toNumber(slice(datum.value, 5)) - 2)]",
+            "labelLimit": 120
+          }
+        },
+        "x": {
+          "field": "lo",
+          "type": "quantitative",
+          "scale": {
+            "domain": {
+              "expr": "[0, 100]"
+            },
+            "nice": false
+          },
+          "axis": {
+            "title": "% of students meeting expectations",
+            "grid": true,
+            "values": [
+              0,
+              25,
+              50,
+              75,
+              100
+            ],
+            "labelExpr": "datum.value + '%'"
+          }
+        },
+        "x2": {
+          "field": "hi"
+        },
+        "color": {
+          "field": "dir",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Share rose",
+              "Share fell",
+              "First test"
+            ],
+            "range": [
+              "#1f6f8b",
+              "#c2410c",
+              "#4a5568"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "isValid(datum.so_start)"
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "fill": "#ffffff",
+        "size": 120,
+        "strokeWidth": 2.5,
+        "opacity": 1,
+        "tooltip": true
+      },
+      "encoding": {
+        "y": {
+          "field": "level",
+          "type": "ordinal",
+          "sort": [
+            "Year 3",
+            "Year 5",
+            "Year 7",
+            "Year 9"
+          ],
+          "scale": {
+            "padding": 0.28
+          },
+          "axis": {
+            "title": "Year level now",
+            "titleFontSize": 11,
+            "titleColor": "#4a5568",
+            "domain": true,
+            "domainColor": "#9aa3b2",
+            "ticks": true,
+            "tickColor": "#9aa3b2",
+            "tickSize": 5,
+            "labelFontSize": 12,
+            "labelFontWeight": 700,
+            "labelColor": "#14213d",
+            "labelPadding": 6,
+            "labelExpr": "datum.value == 'Year 3' ? ['Year 3', 'first test'] : [datum.value, 'from Year ' + (toNumber(slice(datum.value, 5)) - 2)]",
+            "labelLimit": 120
+          }
+        },
+        "x": {
+          "field": "so_start",
+          "type": "quantitative",
+          "scale": {
+            "domain": {
+              "expr": "[0, 100]"
+            },
+            "nice": false
+          }
+        },
+        "stroke": {
+          "field": "dir",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Share rose",
+              "Share fell",
+              "First test"
+            ],
+            "range": [
+              "#1f6f8b",
+              "#c2410c",
+              "#4a5568"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "tip_before",
+            "title": "Two years earlier"
+          },
+          {
+            "field": "tip_now",
+            "title": "Now"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 130,
+        "strokeWidth": 0,
+        "opacity": 1,
+        "tooltip": true
+      },
+      "encoding": {
+        "y": {
+          "field": "level",
+          "type": "ordinal",
+          "sort": [
+            "Year 3",
+            "Year 5",
+            "Year 7",
+            "Year 9"
+          ],
+          "scale": {
+            "padding": 0.28
+          },
+          "axis": {
+            "title": "Year level now",
+            "titleFontSize": 11,
+            "titleColor": "#4a5568",
+            "domain": true,
+            "domainColor": "#9aa3b2",
+            "ticks": true,
+            "tickColor": "#9aa3b2",
+            "tickSize": 5,
+            "labelFontSize": 12,
+            "labelFontWeight": 700,
+            "labelColor": "#14213d",
+            "labelPadding": 6,
+            "labelExpr": "datum.value == 'Year 3' ? ['Year 3', 'first test'] : [datum.value, 'from Year ' + (toNumber(slice(datum.value, 5)) - 2)]",
+            "labelLimit": 120
+          }
+        },
+        "x": {
+          "field": "so_end",
+          "type": "quantitative",
+          "scale": {
+            "domain": {
+              "expr": "[0, 100]"
+            },
+            "nice": false
+          }
+        },
+        "color": {
+          "field": "dir",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Share rose",
+              "Share fell",
+              "First test"
+            ],
+            "range": [
+              "#1f6f8b",
+              "#c2410c",
+              "#4a5568"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "tip_before",
+            "title": "Two years earlier"
+          },
+          {
+            "field": "tip_now",
+            "title": "Now"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "isValid(datum.so_start)"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -11,
+        "fontSize": 12,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "y": {
+          "field": "level",
+          "type": "ordinal",
+          "sort": [
+            "Year 3",
+            "Year 5",
+            "Year 7",
+            "Year 9"
+          ],
+          "scale": {
+            "padding": 0.28
+          },
+          "axis": {
+            "title": "Year level now",
+            "titleFontSize": 11,
+            "titleColor": "#4a5568",
+            "domain": true,
+            "domainColor": "#9aa3b2",
+            "ticks": true,
+            "tickColor": "#9aa3b2",
+            "tickSize": 5,
+            "labelFontSize": 12,
+            "labelFontWeight": 700,
+            "labelColor": "#14213d",
+            "labelPadding": 6,
+            "labelExpr": "datum.value == 'Year 3' ? ['Year 3', 'first test'] : [datum.value, 'from Year ' + (toNumber(slice(datum.value, 5)) - 2)]",
+            "labelLimit": 120
+          }
+        },
+        "x": {
+          "field": "lo",
+          "type": "quantitative",
+          "scale": {
+            "domain": {
+              "expr": "[0, 100]"
+            },
+            "nice": false
+          }
+        },
+        "text": {
+          "field": "lo_t"
+        },
+        "color": {
+          "field": "dir",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Share rose",
+              "Share fell",
+              "First test"
+            ],
+            "range": [
+              "#1f6f8b",
+              "#c2410c",
+              "#4a5568"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 11,
+        "fontSize": 12,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "y": {
+          "field": "level",
+          "type": "ordinal",
+          "sort": [
+            "Year 3",
+            "Year 5",
+            "Year 7",
+            "Year 9"
+          ],
+          "scale": {
+            "padding": 0.28
+          },
+          "axis": {
+            "title": "Year level now",
+            "titleFontSize": 11,
+            "titleColor": "#4a5568",
+            "domain": true,
+            "domainColor": "#9aa3b2",
+            "ticks": true,
+            "tickColor": "#9aa3b2",
+            "tickSize": 5,
+            "labelFontSize": 12,
+            "labelFontWeight": 700,
+            "labelColor": "#14213d",
+            "labelPadding": 6,
+            "labelExpr": "datum.value == 'Year 3' ? ['Year 3', 'first test'] : [datum.value, 'from Year ' + (toNumber(slice(datum.value, 5)) - 2)]",
+            "labelLimit": 120
+          }
+        },
+        "x": {
+          "field": "hi",
+          "type": "quantitative",
+          "scale": {
+            "domain": {
+              "expr": "[0, 100]"
+            },
+            "nice": false
+          }
+        },
+        "text": {
+          "field": "hi_t"
+        },
+        "color": {
+          "field": "dir",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Share rose",
+              "Share fell",
+              "First test"
+            ],
+            "range": [
+              "#1f6f8b",
+              "#c2410c",
+              "#4a5568"
+            ]
+          },
+          "legend": null
+        }
+      }
+    }
+  ],
+  "description": "Dumbbell chart. For each year level in the latest year, a hollow dot shows the share meeting expectations among the same students two years earlier and a filled dot shows the latest share. Teal means the share rose, orange that it fell."
+}

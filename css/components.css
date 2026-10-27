@@ -222,3 +222,26 @@
 .chapter .viz > *, .chapter .map-section > *, .chapter .controls > * { min-width: 0; }
 
 .chapter #groups-note { max-width: 92ch; }
+
+/* ---- shared by all chapters: ⓘ tooltips, state/subject pickers, full-width two-column note ---- */
+/* ⓘ tooltips */
+.chapter .tip{position:relative;display:inline-block;vertical-align:middle;margin-left:4px;text-transform:none;letter-spacing:0;font-weight:400}
+.chapter .info{all:unset;cursor:pointer;font-size:15px;line-height:1;color:#1f6f8b;border-radius:50%;padding:3px}
+.chapter .info:focus-visible{outline:2px solid #14213d;outline-offset:1px}
+.chapter .tip-pop{position:absolute;z-index:20;left:-8px;top:calc(100% + 6px);width:min(300px,78vw);background:#14213d;color:#fff;font-size:13px;line-height:1.45;padding:10px 12px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.2);text-align:left}
+.chapter .tip-pop[hidden]{display:none}
+.chapter .state-pick{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-top:10px;font-size:14px}
+.chapter .state-pick select{font:inherit;padding:6px 10px;border:1px solid #cfc7b5;border-radius:8px;background:#fff;color:#14213d}
+.chapter .showing{font-size:14px;color:#4a5568;margin:6px 0 0}
+.chapter .state-pick .showing{margin:0}
+.chapter .footnote.sources a{color:inherit}
+.chapter .tip-pop b{color:#fff}
+
+/* full-width note under the big picture, two columns (one sentence each, short lines) */
+.chapter .wide-note { margin-top: 24px; }
+.chapter .wide-note .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 36px; }
+.chapter .wide-note .two-col p { margin: 0; }
+@media (max-width: 700px) { .chapter .wide-note .two-col { grid-template-columns: 1fr; } }
+.chapter .map-title { margin: 2px 0 8px; font-size: 1.02rem; line-height: 1.35; color: var(--ink); font-weight: 500; max-width: 40ch; }
+.chapter .map-title strong { color: #9c3a1f; }
+.chapter .tip-pop a{color:#9fd3e6}

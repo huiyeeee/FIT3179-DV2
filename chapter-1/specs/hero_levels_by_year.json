@@ -1,0 +1,517 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": {
+    "step": 54
+  },
+  "padding": {
+    "left": 44,
+    "right": 8,
+    "top": 34,
+    "bottom": 4
+  },
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+    "axis": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontWeight": 500,
+      "titleFontSize": 11,
+      "domain": false,
+      "ticks": false,
+      "gridColor": "#eee8dc"
+    },
+    "legend": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontSize": 11,
+      "titleFontWeight": 600,
+      "labelFontSize": 11
+    }
+  },
+  "data": {
+    "url": "chapter-1/data/outcomes.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "year": "number",
+        "needs": "number",
+        "developing": "number",
+        "strong": "number",
+        "exceeding": "number",
+        "exempt": "number",
+        "so": "number",
+        "mean": "number",
+        "d39": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.domain == 'All subjects' && datum.level == 'All years'"
+    },
+    {
+      "calculate": "toString(datum.year)",
+      "as": "yr"
+    },
+    {
+      "calculate": "datum.strong",
+      "as": "s"
+    },
+    {
+      "calculate": "datum.exceeding",
+      "as": "e"
+    },
+    {
+      "calculate": "datum.developing",
+      "as": "d"
+    },
+    {
+      "calculate": "datum.needs",
+      "as": "n"
+    },
+    {
+      "fold": [
+        "needs",
+        "developing",
+        "strong",
+        "exceeding"
+      ],
+      "as": [
+        "key",
+        "pct"
+      ]
+    },
+    {
+      "calculate": "datum.key == 'needs' ? 0 : datum.key == 'developing' ? 1 : datum.key == 'strong' ? 2 : 3",
+      "as": "ord"
+    },
+    {
+      "calculate": "[\"Needs additional support\", \"Developing\", \"Strong\", \"Exceeding\"][datum.ord]",
+      "as": "level_name"
+    },
+    {
+      "calculate": "datum.key == 'strong' ? 0 : datum.key == 'exceeding' ? datum.s : datum.key == 'developing' ? -datum.d : -(datum.d + datum.n)",
+      "as": "lo"
+    },
+    {
+      "calculate": "datum.key == 'strong' ? datum.s : datum.key == 'exceeding' ? datum.s + datum.e : datum.key == 'developing' ? 0 : -datum.d",
+      "as": "hi"
+    },
+    {
+      "calculate": "(datum.lo + datum.hi) / 2",
+      "as": "mid"
+    },
+    {
+      "calculate": "datum.ord >= 2 ? 'meeting' : 'below'",
+      "as": "side"
+    },
+    {
+      "calculate": "datum.ord == 1 || datum.ord == 2 ? '#14213d' : '#ffffff'",
+      "as": "ink"
+    },
+    {
+      "calculate": "format(datum.pct, '.0f')",
+      "as": "pct_text"
+    },
+    {
+      "calculate": "format(datum.pct, '.1f') + '% of students'",
+      "as": "pct_tip"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "stroke": "#ffffff",
+        "strokeWidth": 1.5,
+        "tooltip": true
+      },
+      "encoding": {
+        "y": {
+          "field": "yr",
+          "type": "ordinal",
+          "sort": "ascending",
+          "scale": {
+            "padding": 0.28
+          },
+          "axis": {
+            "title": "Year",
+            "titleFontSize": 11,
+            "titleColor": "#4a5568",
+            "domain": true,
+            "domainColor": "#9aa3b2",
+            "ticks": true,
+            "tickColor": "#9aa3b2",
+            "tickSize": 5,
+            "labelFontSize": 12,
+            "labelFontWeight": 700,
+            "labelColor": "#14213d",
+            "labelPadding": 6,
+            "labelExpr": "datum.value == '2023' ? ['2023', 'new scale'] : datum.value",
+            "labelLimit": 120
+          }
+        },
+        "x": {
+          "field": "lo",
+          "type": "quantitative",
+          "scale": {
+            "domain": {
+              "expr": "width < 400 ? [-60, 100] : [-100, 100]"
+            },
+            "nice": false
+          },
+          "axis": {
+            "title": "% of students",
+            "grid": true,
+            "values": [
+              -100,
+              -75,
+              -50,
+              -25,
+              0,
+              25,
+              50,
+              75,
+              100
+            ],
+            "labelExpr": "abs(datum.value) + '%'"
+          }
+        },
+        "x2": {
+          "field": "hi"
+        },
+        "color": {
+          "field": "level_name",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Needs additional support",
+              "Developing",
+              "Strong",
+              "Exceeding"
+            ],
+            "range": [
+              "#c2410c",
+              "#f4a58f",
+              "#7ab3c6",
+              "#0e4a62"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "yr",
+            "title": "Year"
+          },
+          {
+            "field": "level_name",
+            "title": "Level"
+          },
+          {
+            "field": "pct_tip",
+            "title": "Share"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.pct >= (width < 400 ? 11 : 5)"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "y": {
+          "field": "yr",
+          "type": "ordinal",
+          "sort": "ascending",
+          "scale": {
+            "padding": 0.28
+          },
+          "axis": {
+            "title": "Year",
+            "titleFontSize": 11,
+            "titleColor": "#4a5568",
+            "domain": true,
+            "domainColor": "#9aa3b2",
+            "ticks": true,
+            "tickColor": "#9aa3b2",
+            "tickSize": 5,
+            "labelFontSize": 12,
+            "labelFontWeight": 700,
+            "labelColor": "#14213d",
+            "labelPadding": 6,
+            "labelExpr": "datum.value == '2023' ? ['2023', 'new scale'] : datum.value",
+            "labelLimit": 120
+          }
+        },
+        "x": {
+          "field": "mid",
+          "type": "quantitative",
+          "scale": {
+            "domain": {
+              "expr": "width < 400 ? [-60, 100] : [-100, 100]"
+            },
+            "nice": false
+          }
+        },
+        "text": {
+          "field": "pct_text"
+        },
+        "color": {
+          "field": "ink",
+          "type": "nominal",
+          "scale": null,
+          "legend": null
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.key == 'exceeding'"
+        },
+        {
+          "calculate": "format(datum.s + datum.e, '.0f') + '%'",
+          "as": "t"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 7,
+        "fontSize": 13,
+        "fontWeight": 800,
+        "color": "#0e4a62"
+      },
+      "encoding": {
+        "y": {
+          "field": "yr",
+          "type": "ordinal",
+          "sort": "ascending",
+          "scale": {
+            "padding": 0.28
+          },
+          "axis": {
+            "title": "Year",
+            "titleFontSize": 11,
+            "titleColor": "#4a5568",
+            "domain": true,
+            "domainColor": "#9aa3b2",
+            "ticks": true,
+            "tickColor": "#9aa3b2",
+            "tickSize": 5,
+            "labelFontSize": 12,
+            "labelFontWeight": 700,
+            "labelColor": "#14213d",
+            "labelPadding": 6,
+            "labelExpr": "datum.value == '2023' ? ['2023', 'new scale'] : datum.value",
+            "labelLimit": 120
+          }
+        },
+        "x": {
+          "field": "hi",
+          "type": "quantitative",
+          "scale": {
+            "domain": {
+              "expr": "width < 400 ? [-60, 100] : [-100, 100]"
+            },
+            "nice": false
+          }
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.key == 'needs'"
+        },
+        {
+          "calculate": "format(datum.d + datum.n, '.0f') + '%'",
+          "as": "t"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -7,
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#c2410c",
+        "opacity": {
+          "expr": "width < 400 ? 0 : 1"
+        }
+      },
+      "encoding": {
+        "y": {
+          "field": "yr",
+          "type": "ordinal",
+          "sort": "ascending",
+          "scale": {
+            "padding": 0.28
+          },
+          "axis": {
+            "title": "Year",
+            "titleFontSize": 11,
+            "titleColor": "#4a5568",
+            "domain": true,
+            "domainColor": "#9aa3b2",
+            "ticks": true,
+            "tickColor": "#9aa3b2",
+            "tickSize": 5,
+            "labelFontSize": 12,
+            "labelFontWeight": 700,
+            "labelColor": "#14213d",
+            "labelPadding": 6,
+            "labelExpr": "datum.value == '2023' ? ['2023', 'new scale'] : datum.value",
+            "labelLimit": 120
+          }
+        },
+        "x": {
+          "field": "lo",
+          "type": "quantitative",
+          "scale": {
+            "domain": {
+              "expr": "width < 400 ? [-60, 100] : [-100, 100]"
+            },
+            "nice": false
+          }
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 0
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#14213d",
+        "strokeWidth": 2.5
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": {
+              "expr": "width < 400 ? [-60, 100] : [-100, 100]"
+            },
+            "nice": false
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 0
+          }
+        ]
+      },
+      "transform": [
+        {
+          "calculate": "width < 400 ? '◀ Below' : '◀ Below the expected level'",
+          "as": "t"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "bottom",
+        "dx": -6,
+        "dy": -4,
+        "fontSize": 11,
+        "fontWeight": 700,
+        "color": "#c2410c"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": {
+              "expr": "width < 400 ? [-60, 100] : [-100, 100]"
+            },
+            "nice": false
+          }
+        },
+        "y": {
+          "value": 0
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 0
+          }
+        ]
+      },
+      "transform": [
+        {
+          "calculate": "width < 400 ? 'Meeting ▶' : 'Meeting expectations ▶'",
+          "as": "t"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "bottom",
+        "dx": 6,
+        "dy": -4,
+        "fontSize": 11,
+        "fontWeight": 700,
+        "color": "#0e4a62"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": {
+              "expr": "width < 400 ? [-60, 100] : [-100, 100]"
+            },
+            "nice": false
+          }
+        },
+        "y": {
+          "value": 0
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    }
+  ],
+  "description": "Diverging stacked bar of the four NAPLAN proficiency levels for all students, subjects and year levels combined, 2023 to 2026. The bars are drawn from the expectation line: Strong and Exceeding to the right, Developing and Needs additional support to the left."
+}

@@ -1,0 +1,49 @@
+year,domain,level,from_level,so_start,so_end
+2025,All subjects,Year 3,,,64.41
+2025,All subjects,Year 5,Year 3,64.53,67.76
+2025,All subjects,Year 7,Year 5,68.21,67.24
+2025,All subjects,Year 9,Year 7,66.96,64.04
+2025,Grammar & punctuation,Year 3,,,54.08
+2025,Grammar & punctuation,Year 5,Year 3,54.33,63.18
+2025,Grammar & punctuation,Year 7,Year 5,63.93,62.39
+2025,Grammar & punctuation,Year 9,Year 7,63.97,56.43
+2025,Numeracy,Year 3,,,64.05
+2025,Numeracy,Year 5,Year 3,64.67,68.95
+2025,Numeracy,Year 7,Year 5,67.72,68.55
+2025,Numeracy,Year 9,Year 7,67.16,65.57
+2025,Reading,Year 3,,,65.69
+2025,Reading,Year 5,Year 3,66.84,72.87
+2025,Reading,Year 7,Year 5,74.18,69.01
+2025,Reading,Year 9,Year 7,68.45,65.09
+2025,Spelling,Year 3,,,61.89
+2025,Spelling,Year 5,Year 3,60.81,68.74
+2025,Spelling,Year 7,Year 5,69.0,72.41
+2025,Spelling,Year 9,Year 7,72.76,71.87
+2025,Writing,Year 3,,,76.37
+2025,Writing,Year 5,Year 3,76.04,65.04
+2025,Writing,Year 7,Year 5,66.22,63.88
+2025,Writing,Year 9,Year 7,62.52,61.27
+2026,All subjects,Year 3,,,63.41
+2026,All subjects,Year 5,Year 3,64.2,67.99
+2026,All subjects,Year 7,Year 5,67.77,66.34
+2026,All subjects,Year 9,Year 7,66.7,62.49
+2026,Grammar & punctuation,Year 3,,,53.86
+2026,Grammar & punctuation,Year 5,Year 3,53.86,62.98
+2026,Grammar & punctuation,Year 7,Year 5,64.69,60.15
+2026,Grammar & punctuation,Year 9,Year 7,61.49,54.01
+2026,Numeracy,Year 3,,,62.1
+2026,Numeracy,Year 5,Year 3,63.47,70.67
+2026,Numeracy,Year 7,Year 5,67.81,69.92
+2026,Numeracy,Year 9,Year 7,67.2,65.29
+2026,Reading,Year 3,,,65.64
+2026,Reading,Year 5,Year 3,66.33,70.93
+2026,Reading,Year 7,Year 5,71.35,66.78
+2026,Reading,Year 9,Year 7,67.26,62.02
+2026,Spelling,Year 3,,,61.61
+2026,Spelling,Year 5,Year 3,60.58,69.83
+2026,Spelling,Year 7,Year 5,67.69,72.52
+2026,Spelling,Year 9,Year 7,72.28,71.31
+2026,Writing,Year 3,,,73.88
+2026,Writing,Year 5,Year 3,76.77,65.55
+2026,Writing,Year 7,Year 5,67.3,62.38
+2026,Writing,Year 9,Year 7,65.3,59.85

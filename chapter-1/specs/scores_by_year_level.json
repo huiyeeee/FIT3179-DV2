@@ -1,0 +1,426 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Line chart of the average NAPLAN score at Years 3, 5, 7 and 9 in the latest year, one line per subject. The param 'focus' is either 'All subjects' (five lines) or one subject (one line, with labels). The y-axis starts at 0.",
+  "width": "container",
+  "height": 190,
+  "padding": {
+    "left": 4,
+    "right": 12,
+    "top": 16,
+    "bottom": 4
+  },
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+    "axis": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontWeight": 500,
+      "titleFontSize": 11,
+      "domain": false,
+      "ticks": false,
+      "gridColor": "#eee8dc"
+    },
+    "legend": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontSize": 11,
+      "titleFontWeight": 600,
+      "labelFontSize": 11
+    }
+  },
+  "params": [
+    {
+      "name": "year",
+      "value": 2026
+    },
+    {
+      "name": "focus",
+      "value": "All subjects"
+    }
+  ],
+  "data": {
+    "url": "chapter-1/data/outcomes.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "year": "number",
+        "needs": "number",
+        "developing": "number",
+        "strong": "number",
+        "exceeding": "number",
+        "exempt": "number",
+        "so": "number",
+        "mean": "number",
+        "d39": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.year == year && datum.domain != 'All subjects' && datum.level != 'All years'"
+    },
+    {
+      "filter": "focus == 'All subjects' || datum.domain == focus"
+    },
+    {
+      "window": [
+        {
+          "op": "lag",
+          "field": "mean",
+          "as": "prev"
+        }
+      ],
+      "groupby": [
+        "domain"
+      ],
+      "sort": [
+        {
+          "field": "level"
+        }
+      ]
+    },
+    {
+      "calculate": "isValid(datum.prev) ? '+' + format(datum.mean - datum.prev, '.0f') : ''",
+      "as": "gain"
+    },
+    {
+      "calculate": "format(datum.mean, '.0f')",
+      "as": "score"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": {
+          "expr": "focus == 'All subjects' ? 2.5 : 3.5"
+        },
+        "opacity": 0.95
+      },
+      "encoding": {
+        "x": {
+          "field": "level",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "Year 3",
+              "Year 5",
+              "Year 7",
+              "Year 9"
+            ],
+            "padding": 0.35
+          },
+          "axis": {
+            "title": "Year level",
+            "labelAngle": 0,
+            "labelFontWeight": 700,
+            "labelColor": "#14213d",
+            "labelFontSize": 12,
+            "domain": true,
+            "domainColor": "#9aa3b2",
+            "ticks": true,
+            "tickColor": "#9aa3b2"
+          }
+        },
+        "y": {
+          "field": "mean",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              600
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": "Average NAPLAN score",
+            "grid": true,
+            "values": [
+              0,
+              100,
+              200,
+              300,
+              400,
+              500,
+              600
+            ],
+            "domain": true,
+            "domainColor": "#9aa3b2",
+            "ticks": true,
+            "tickColor": "#9aa3b2"
+          }
+        },
+        "color": {
+          "field": "domain",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Writing",
+              "Spelling",
+              "Reading",
+              "Numeracy",
+              "Grammar & punctuation"
+            ],
+            "range": [
+              "#c2410c",
+              "#1f6f8b",
+              "#7b5ea7",
+              "#b8860b",
+              "#4b5563"
+            ]
+          },
+          "legend": null
+        },
+        "detail": {
+          "field": "domain"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": {
+          "expr": "focus == 'All subjects' ? 40 : 90"
+        },
+        "tooltip": true,
+        "opacity": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "level",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "Year 3",
+              "Year 5",
+              "Year 7",
+              "Year 9"
+            ],
+            "padding": 0.35
+          },
+          "axis": {
+            "title": "Year level",
+            "labelAngle": 0,
+            "labelFontWeight": 700,
+            "labelColor": "#14213d",
+            "labelFontSize": 12,
+            "domain": true,
+            "domainColor": "#9aa3b2",
+            "ticks": true,
+            "tickColor": "#9aa3b2"
+          }
+        },
+        "y": {
+          "field": "mean",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              600
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": "Average NAPLAN score",
+            "grid": true,
+            "values": [
+              0,
+              100,
+              200,
+              300,
+              400,
+              500,
+              600
+            ],
+            "domain": true,
+            "domainColor": "#9aa3b2",
+            "ticks": true,
+            "tickColor": "#9aa3b2"
+          }
+        },
+        "color": {
+          "field": "domain",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Writing",
+              "Spelling",
+              "Reading",
+              "Numeracy",
+              "Grammar & punctuation"
+            ],
+            "range": [
+              "#c2410c",
+              "#1f6f8b",
+              "#7b5ea7",
+              "#b8860b",
+              "#4b5563"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "domain",
+            "title": "Subject"
+          },
+          {
+            "field": "level",
+            "title": "Year level"
+          },
+          {
+            "field": "score",
+            "title": "Average score"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -14,
+        "fontSize": 13,
+        "fontWeight": 800,
+        "color": "#14213d",
+        "opacity": {
+          "expr": "focus == 'All subjects' ? 0 : 1"
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "level",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "Year 3",
+              "Year 5",
+              "Year 7",
+              "Year 9"
+            ],
+            "padding": 0.35
+          },
+          "axis": {
+            "title": "Year level",
+            "labelAngle": 0,
+            "labelFontWeight": 700,
+            "labelColor": "#14213d",
+            "labelFontSize": 12,
+            "domain": true,
+            "domainColor": "#9aa3b2",
+            "ticks": true,
+            "tickColor": "#9aa3b2"
+          }
+        },
+        "y": {
+          "field": "mean",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              600
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": "Average NAPLAN score",
+            "grid": true,
+            "values": [
+              0,
+              100,
+              200,
+              300,
+              400,
+              500,
+              600
+            ],
+            "domain": true,
+            "domainColor": "#9aa3b2",
+            "ticks": true,
+            "tickColor": "#9aa3b2"
+          }
+        },
+        "text": {
+          "field": "score"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": 20,
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#c2410c",
+        "opacity": {
+          "expr": "focus == 'All subjects' ? 0 : 1"
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "level",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "Year 3",
+              "Year 5",
+              "Year 7",
+              "Year 9"
+            ],
+            "padding": 0.35
+          },
+          "axis": {
+            "title": "Year level",
+            "labelAngle": 0,
+            "labelFontWeight": 700,
+            "labelColor": "#14213d",
+            "labelFontSize": 12,
+            "domain": true,
+            "domainColor": "#9aa3b2",
+            "ticks": true,
+            "tickColor": "#9aa3b2"
+          }
+        },
+        "y": {
+          "field": "mean",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              600
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": "Average NAPLAN score",
+            "grid": true,
+            "values": [
+              0,
+              100,
+              200,
+              300,
+              400,
+              500,
+              600
+            ],
+            "domain": true,
+            "domainColor": "#9aa3b2",
+            "ticks": true,
+            "tickColor": "#9aa3b2"
+          }
+        },
+        "text": {
+          "field": "gain"
+        }
+      }
+    }
+  ]
+}

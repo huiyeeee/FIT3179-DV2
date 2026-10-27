@@ -1,68 +1,69 @@
-/* Chapter 1 · overall performance. Generic components (card, chips, seg, slider, callouts) come from chapter-0.css via .chapter */
+/* Chapter 1 · overall performance. Generic components (card, chips, context notes, ⓘ tips) come from css/components.css. */
+#chapter-1 .scene h3 { margin: 0 0 12px; font-family: var(--font-display); font-size: clamp(1.4rem, 2.6vw, 1.8rem); line-height: 1.2; }
+#chapter-1 .scene-head { max-width: 1000px; margin-bottom: 14px; }
+#chapter-1 .scene-head .map-insight { margin: 0 0 8px; max-width: 62ch; font-size: 1.05rem; }
+#chapter-1 .c1-legend-block { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 8px 0 4px; }
+#chapter-1 .c1-legend-title { margin: 0; font-size: 0.72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); }
+#chapter-1 .c1-legend-block .div-legend { justify-content: center; margin: 0; }
+#chapter-1 .c1-click { margin: 6px 0 4px; }
+#chapter-1 .c1-snapshot { margin: 0 0 6px; }
+#chapter-1 .c1-rel { position: relative; }
+#chapter-1 .c1-newscale { position: absolute; margin: 0; }
 
-#chapter-1 .controls-one { grid-template-columns: minmax(240px, 420px); }
-#chapter-1 .scene { margin-top: 4px; }
-#chapter-1 .scene h3 {
-  margin: 0 0 14px; font-family: var(--font-display);
-  font-size: clamp(1.4rem, 2.6vw, 1.8rem); line-height: 1.2;
-}
-#chapter-1 .scene-head { max-width: 700px; margin-bottom: 18px; }
-#chapter-1 .scene-lede { margin: 0 0 14px; color: var(--ink-soft); max-width: 62ch; }
+#chapter-1 .c1-grid { display: grid; grid-template-columns: minmax(250px, 0.9fr) minmax(0, 1.5fr); gap: 36px; align-items: start; }
+#chapter-1 .c1-grid-wide { grid-template-columns: minmax(0, 1.6fr) minmax(260px, 1fr); gap: 40px; }
+#chapter-1 .c1-grid > * { min-width: 0; }
 
-/* proficiency level key */
-#chapter-1 .levels {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 0 0 22px;
-}
-#chapter-1 .level {
-  padding: 10px 12px; border-radius: 12px; background: #faf7f1; border: 1px solid var(--line);
-  border-top-width: 4px; font-size: 0.82rem; color: var(--ink-soft); line-height: 1.4;
-}
-#chapter-1 .level b { display: block; color: var(--ink); font-size: 0.86rem; margin-bottom: 2px; }
-#chapter-1 .level.l-nas { border-top-color: #c2410c; }
-#chapter-1 .level.l-dev { border-top-color: #f4a58f; }
-#chapter-1 .level.l-strong { border-top-color: #7ab3c6; }
-#chapter-1 .level.l-exceed { border-top-color: #0e4a62; }
-
-/* KPIs */
-#chapter-1 .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 0 0 22px; }
-#chapter-1 .kpi {
-  padding: 16px 18px; border-radius: 16px; background: #fff; border: 1px solid var(--line);
-  display: flex; flex-direction: column; gap: 2px;
-}
-#chapter-1 .kpi-label { font-size: 0.74rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
-#chapter-1 .kpi-sub { font-size: 0.8rem; color: var(--ink-soft); }
-#chapter-1 .kpi-num { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.2rem, 5vw, 3.2rem); line-height: 1.05; margin-top: 4px; }
-#chapter-1 .kpi-num small { font-size: .45em; color: var(--ink-soft); margin-left: 2px; }
-#chapter-1 .kpi.k-so   .kpi-num { color: var(--teal); }
-#chapter-1 .kpi.k-nas  .kpi-num { color: #c2410c; }
-#chapter-1 .kpi.k-ex   .kpi-num { color: #0e4a62; }
-#chapter-1 .kpi-delta { margin-top: 6px; font-size: 0.8rem; font-weight: 600; }
-#chapter-1 .kpi-delta.good { color: var(--good); }
-#chapter-1 .kpi-delta.bad  { color: var(--bad); }
-#chapter-1 .kpi-delta.flat { color: var(--ink-soft); font-weight: 400; }
-
-/* diverging legend */
-#chapter-1 .div-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin: 0 0 10px; font-size: 0.8rem; color: var(--ink-soft); }
-#chapter-1 .lg-sq { display: inline-block; width: 12px; height: 12px; margin-right: 6px; border-radius: 3px; vertical-align: -2px; }
-#chapter-1 .lg-sep { display: inline-block; width: 2px; height: 16px; background: var(--ink); border-radius: 2px; }
-#chapter-1 .lg { display: inline-flex; align-items: center; }
-
-/* hero + heatmap layout */
-#chapter-1 .hero-grid { display: grid; grid-template-columns: minmax(240px, 0.8fr) minmax(320px, 2fr); gap: 36px; align-items: start; }
-#chapter-1 .chart-wrap { overflow-x: auto; padding-bottom: 6px; }
+#chapter-1 .chart-wrap, #chapter-1 .chart-wrap > div, #chapter-1 .chart-wrap .vega-embed { width: 100%; }
 #chapter-1 .chart-wrap > div { line-height: 0; }
-#chapter-1 .heat-grid { display: grid; grid-template-columns: minmax(240px, 0.9fr) minmax(320px, 1.7fr); gap: 36px; align-items: start; }
-#chapter-1 .heat-grid > *, #chapter-1 .hero-grid > *, #chapter-1 .dd-grid > * { min-width: 0; }
-#chapter-1 .heat-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 0 0 12px; font-size: 0.78rem; color: var(--ink-soft); }
+#chapter-1 .vega-embed summary { display: none; }
 
-/* deep-dive */
-#chapter-1 .dd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: start; margin-top: 8px; }
-#chapter-1 .dd-title { margin: 0 0 8px; font-size: 0.74rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); }
-#chapter-1 .dd-text { max-width: 78ch; margin-top: 18px; }
-#chapter-1 .teaser { background: #fdf1ec; border-left-color: var(--coral); }
+#chapter-1 .context {
+  margin: 14px 0 0; padding: 13px 16px; background: var(--teal-soft); border-left: 4px solid var(--teal);
+  border-radius: 0 12px 12px 0; font-size: 0.88rem; line-height: 1.5; color: var(--ink);
+}
+#chapter-1 .context[hidden] { display: none; }
+#chapter-1 .context .ctx-label { display: block; margin-bottom: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); }
+#chapter-1 .context .ctx-source { display: block; margin-top: 8px; font-size: 0.76rem; color: var(--ink-soft); }
+#chapter-1 .context a { color: var(--teal); }
+#chapter-1 .context p { margin: 0 0 8px; }
+#chapter-1 .context p:last-of-type { margin-bottom: 0; }
+
+#chapter-1 .takeaway { max-width: 760px; }
+#chapter-1 .takeaway p:last-child { margin: 0; font-family: var(--font-display); font-size: clamp(1.15rem, 2vw, 1.4rem); line-height: 1.45; color: var(--ink); }
 
 @media (max-width: 900px) {
-  #chapter-1 .hero-grid, #chapter-1 .heat-grid, #chapter-1 .dd-grid { grid-template-columns: 1fr; gap: 24px; }
-  #chapter-1 .levels { grid-template-columns: 1fr 1fr; }
-  #chapter-1 .kpis { grid-template-columns: 1fr; }
+  #chapter-1 .c1-grid, #chapter-1 .c1-grid-wide { grid-template-columns: 1fr; gap: 24px; }
 }
+
+#chapter-1 .div-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; margin: 4px 0 6px; font-size: 0.82rem; color: var(--ink-soft); }
+#chapter-1 .lg { display: inline-flex; align-items: center; }
+#chapter-1 .lg-sq { display: inline-block; width: 12px; height: 12px; margin-right: 6px; border-radius: 3px; }
+
+#chapter-1 .c1-two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 36px; align-items: start; margin-top: 4px; }
+#chapter-1 .c1-two > * { min-width: 0; }
+#chapter-1 .c1-panel-title { margin: 0 0 4px; font-size: 0.72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); }
+#chapter-1 .c1-grid-even { grid-template-columns: 1fr 1fr; margin-top: 18px; }
+@media (max-width: 900px) { #chapter-1 .c1-two, #chapter-1 .c1-grid-even { grid-template-columns: 1fr; gap: 22px; } }
+@media (max-width: 900px) { #chapter-1 .c1-two-heat { grid-template-columns: 1fr; } }
+
+/* section 2: two equal panels, each with label (what) > takeaway (so what) > hint > chart */
+#chapter-1 .c1-panels { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+#chapter-1 .c1-panels > * { min-width: 0; }
+#chapter-1 .c1-panel-takeaway { margin: 0 0 4px; font-size: 1.05rem; font-weight: 600; line-height: 1.35; color: var(--ink); min-height: 2.7em; }
+#chapter-1 .c1-panel-hint { margin: 0 0 12px; font-size: 0.82rem; line-height: 1.4; color: var(--ink-soft); min-height: 1.4em; }
+#chapter-1 .c1-legend-bottom { justify-content: center; margin: 8px 0 0; gap: 6px 9px; font-size: 0.76rem; }
+#chapter-1 .c1-legend-bottom .lg-sq { margin-right: 4px; width: 11px; height: 11px; }
+@media (min-width: 901px) { #chapter-1 .c1-legend-bottom { flex-wrap: nowrap; white-space: nowrap; } }
+@media (max-width: 900px) { #chapter-1 .c1-panels { grid-template-columns: 1fr; gap: 28px; } #chapter-1 .c1-panel-takeaway, #chapter-1 .c1-panel-hint { min-height: 0; } }
+
+/* the title of a full-width note is centred across the whole box */
+#chapter-1 .wide-note > .ctx-label { text-align: center; margin-bottom: 8px; }
+
+/* section 3: dots in the legend, and legends that sit above the charts */
+#chapter-1 .lg-dot { display: inline-block; width: 11px; height: 11px; margin-right: 4px; border-radius: 50%; background: #4a5568; box-sizing: border-box; }
+#chapter-1 .lg-hollow { background: #fff; border: 2px solid #4a5568; }
+#chapter-1 .c1-legend-top { margin: 0 0 4px; }
+#chapter-1 .wide-note .two-col > div p { margin: 0 0 8px; }
+#chapter-1 .wide-note .two-col > div p:last-child { margin-bottom: 0; }
+@media (min-width: 901px) { #chapter-1 .c1-panels-zoom .c1-panel-takeaway { min-height: 4.1em; } }

@@ -144,115 +144,93 @@
   <section id="chapter-1" class="chapter">
     <header class="chapter-head">
       <p class="eyebrow">Chapter 1 · Overall performance</p>
-      <h2>Two in three students meet expectations. The headline hides a lot.</h2>
+      <h2>Two in three students meet expectations. Which skills they are strong in depends on the year level.</h2>
       <p class="lede">
-        NAPLAN isn't a pass or fail test. Since 2023, each student is placed in one of four proficiency
-        levels, and "Strong" is the level that means meeting expectations for their year level.
-        Let's see where Australia's students sit relative to that line, and where it gets more interesting.
+        NAPLAN is not a pass or fail test. Every student is placed in one of four proficiency levels, and “Strong” is the level expected for their year.
+        So how many get there, and does it depend on what they are tested on?
       </p>
     </header>
 
     <div class="card" id="c1-card">
-      <div class="controls controls-one">
-        <div class="control control-year">
-          <div class="control-label">
-            <span>Year</span>
-            <button id="c1-play" class="play" type="button" aria-label="Play through the years">▶ Play</button>
-          </div>
-          <input id="c1-year-slider" type="range" aria-label="Calendar year" />
-          <div id="c1-year-ticks" class="year-ticks"></div>
-        </div>
-      </div>
 
-      <!-- Scene 1: hero -->
+      <!-- Scene A: the headline -->
       <div class="scene">
         <div class="scene-head">
-          <p class="eyebrow-sm">Overall picture</p>
-          <h3>Where do students sit relative to the expectation line?</h3>
+          <p class="eyebrow-sm">The headline</p>
+          <h3>Two in three students meet expectations, year after year</h3>
         </div>
-
-        <div class="levels" aria-label="The four NAPLAN proficiency levels">
-          <div class="level l-nas"><b>Needs additional support</b>At risk of not making enough progress without extra help</div>
-          <div class="level l-dev"><b>Developing</b>Working towards the expected level</div>
-          <div class="level l-strong"><b>Strong</b>Meeting the expected level: the target</div>
-          <div class="level l-exceed"><b>Exceeding</b>Performing above the expected level</div>
+        <div class="c1-legend-block" role="group" aria-label="Proficiency levels">
+          <p class="c1-legend-title">Proficiency level <span class="tip"><button type="button" class="info" aria-expanded="false" aria-controls="tip-levels" aria-label="What do the four levels mean?">ⓘ</button><span class="tip-pop" role="tooltip" id="tip-levels" hidden><b>Needs additional support:</b> at risk of not making enough progress without extra help. <b>Developing:</b> working towards the expected level. <b>Strong:</b> meeting the expected level for the year. <b>Exceeding:</b> above the expected level.</span></span></p>
+          <div class="div-legend c1-legend"><span class="lg"><i class="lg-sq" style="background:#c2410c"></i>Needs additional support</span><span class="lg"><i class="lg-sq" style="background:#f4a58f"></i>Developing</span><span class="lg"><i class="lg-sq" style="background:#7ab3c6"></i>Strong</span><span class="lg"><i class="lg-sq" style="background:#0e4a62"></i>Exceeding</span></div>
         </div>
-
-        <div class="kpis">
-          <div class="kpi k-so"><span class="kpi-label">Meeting expectations</span><span class="kpi-sub">Strong or Exceeding</span>
-            <span class="kpi-num"><span id="kpi-so">–</span><small>%</small></span><span class="kpi-delta" id="kpi-so-d"></span></div>
-          <div class="kpi k-nas"><span class="kpi-label">Needs additional support</span><span class="kpi-sub">Lowest proficiency level</span>
-            <span class="kpi-num"><span id="kpi-nas">–</span><small>%</small></span><span class="kpi-delta" id="kpi-nas-d"></span></div>
-          <div class="kpi k-ex"><span class="kpi-label">Exceeding</span><span class="kpi-sub">Highest proficiency level</span>
-            <span class="kpi-num"><span id="kpi-exceed">–</span><small>%</small></span><span class="kpi-delta" id="kpi-exceed-d"></span></div>
-        </div>
-
-        <div class="hero-grid">
-          <div>
-            <p class="map-insight" id="hero-insight"></p>
-            <p class="map-note">All 20 domain and year-level results are combined, weighted by the number of students who sat each test.
-              Around 2% of students are exempt and are not shown, so each bar adds up to about 98%.
-              Hover any segment for details.</p>
-          </div>
-          <div>
-            <div class="div-legend" id="hero-legend"></div>
-            <div class="chart-wrap"><div id="hero-chart" role="img" aria-label="Diverging stacked bar of NAPLAN proficiency levels by year"></div></div>
-          </div>
-        </div>
+        <div class="chart-wrap c1-rel"><div id="c1-hero" role="img" aria-label="Diverging bar chart of the four proficiency levels for all students, 2023 to 2026"></div>
+          <span class="tip c1-newscale" id="c1-newscale"><button type="button" class="info" aria-expanded="false" aria-controls="tip-2023" aria-label="Why does the chart start in 2023?">ⓘ</button><span class="tip-pop" role="tooltip" id="tip-2023" hidden><b>Why 2023?</b> NAPLAN introduced the four proficiency levels in 2023, with standards set by panels of expert teachers. Results from 2023 on are not directly comparable with 2008 to 2022, because the scale was reset. <a href="https://www.acara.edu.au/docs/default-source/media-releases/naplan-proficiency-standards-media-release-2023-02-10.pdf">ACARA (2023)</a></span></span></div>
+        <div class="context wide-note" id="c1-numbers"></div>
       </div>
 
-      <!-- Scene 2: heatmap -->
+      <!-- Scene B: subjects x year levels -->
       <div class="section-divider"></div>
       <div class="scene">
         <div class="scene-head">
-          <p class="eyebrow-sm">Domains and year levels</p>
-          <h3>Where are the strengths and the weak spots?</h3>
-          <div class="seg" id="heat-metric" role="group" aria-label="Measure shown in the heatmap">
-            <button type="button" data-metric="so">Strong or above</button>
-            <button type="button" data-metric="nas">Needs additional support</button>
-            <button type="button" data-metric="exceed">Exceeding</button>
+          <p class="eyebrow-sm">Subjects and year levels</p>
+          <h3>Where do students do best, and where do they struggle?</h3>
+        </div>
+        <div class="c1-panels">
+          <div class="c1-panel">
+            <p class="c1-panel-title">Share meeting expectations, <span id="c1-year-b">2026</span></p>
+            <p class="c1-panel-takeaway" id="c1-heat-title"></p>
+            <p class="c1-panel-hint">Click a subject to isolate its score line and zoom in below.</p>
+            <div class="chart-wrap"><div id="c1-heat" role="img" aria-label="Heatmap of the share of students meeting expectations for each subject and year level"></div></div>
+          </div>
+          <div class="c1-panel">
+            <p class="c1-panel-title">Average score, <span id="c1-scores-label">all subjects</span></p>
+            <p class="c1-panel-takeaway" id="c1-scores-title"></p>
+            <p class="c1-panel-hint" id="c1-scores-hint"></p>
+            <div class="chart-wrap"><div id="c1-scores" role="img" aria-label="Line chart of the average score at Years 3, 5, 7 and 9, one line per subject"></div></div>
+            <div class="div-legend c1-legend c1-legend-bottom" id="c1-scores-legend" aria-label="Subjects"><span class="lg"><i class="lg-sq" style="background:#c2410c"></i>Writing</span><span class="lg"><i class="lg-sq" style="background:#1f6f8b"></i>Spelling</span><span class="lg"><i class="lg-sq" style="background:#7b5ea7"></i>Reading</span><span class="lg"><i class="lg-sq" style="background:#b8860b"></i>Numeracy</span><span class="lg"><i class="lg-sq" style="background:#4b5563"></i>Grammar &amp; punctuation</span></div>
           </div>
         </div>
-        <div class="heat-grid">
-          <div>
-            <p class="map-insight" id="heat-insight"></p>
-            <p class="map-note" id="heat-note"></p>
-          </div>
-          <div>
-            <div class="heat-legend" id="heat-legend"></div>
-            <div class="chart-wrap"><div id="heat-chart" role="img" aria-label="Heatmap of results by domain and year level"></div></div>
-          </div>
-        </div>
+        <div class="context wide-note" id="c1-scale-note"></div>
       </div>
 
-      <!-- Scene 3: deep-dive -->
+      <!-- Scene C: zoom -->
       <div class="section-divider"></div>
-      <div class="scene" id="c1-deepdive">
+      <div class="scene">
         <div class="scene-head">
           <p class="eyebrow-sm">Zoom in</p>
-          <h3>How does one domain change as students move through school?</h3>
-          <div class="chips" id="dd-domain-chips" role="group" aria-label="Domain"></div>
+          <h3>How does one subject change from Year 3 to Year 9?</h3>
+          <div class="chips" id="c1-chips" role="group" aria-label="Choose a subject"></div>
+          <p class="showing">Showing: <strong id="c1-showing"></strong></p>
         </div>
-        <div class="div-legend" id="dd-legend"></div>
-        <div class="dd-grid">
+        <div class="c1-panels c1-panels-zoom">
           <div>
-            <p class="dd-title" id="dd-title-stack"></p>
-            <div class="chart-wrap"><div id="dd-stack" role="img" aria-label="Proficiency mix by year level"></div></div>
+            <p class="c1-panel-title">A snapshot: different students, all tested in <span id="c1-year-a">2026</span></p>
+            <p class="c1-panel-takeaway" id="c1-zoom-insight"></p>
+            <p class="c1-panel-hint">Each bar is a different group of students.</p>
+            <div class="div-legend c1-legend c1-legend-bottom c1-legend-top" aria-label="Proficiency levels"><span class="lg"><i class="lg-sq" style="background:#c2410c"></i>Needs additional support</span><span class="lg"><i class="lg-sq" style="background:#f4a58f"></i>Developing</span><span class="lg"><i class="lg-sq" style="background:#7ab3c6"></i>Strong</span><span class="lg"><i class="lg-sq" style="background:#0e4a62"></i>Exceeding</span></div>
+            <div class="chart-wrap"><div id="c1-zoom" role="img" aria-label="Diverging bar chart of the four proficiency levels for the chosen subject at Years 3, 5, 7 and 9"></div></div>
           </div>
           <div>
-            <p class="dd-title" id="dd-title-dist"></p>
-            <div class="chart-wrap"><div id="dd-dist" role="img" aria-label="Modelled score distributions by year level"></div></div>
+            <p class="c1-panel-title">The same students, two years apart</p>
+            <p class="c1-panel-takeaway" id="c1-cohort-title"></p>
+            <p class="c1-panel-hint" id="c1-cohort-hint"></p>
+            <div class="div-legend c1-legend c1-legend-bottom c1-legend-top" aria-label="How to read the dots"><span class="lg"><i class="lg-dot lg-hollow"></i>Same students, two years earlier</span><span class="lg"><i class="lg-dot"></i>Now</span><span class="lg"><i class="lg-sq" style="background:#1f6f8b"></i>Share rose</span><span class="lg"><i class="lg-sq" style="background:#c2410c"></i>Share fell</span></div>
+            <div class="chart-wrap"><div id="c1-cohort" role="img" aria-label="Dumbbell chart: share meeting expectations for the same students two years earlier and now, at Years 5, 7 and 9"></div></div>
           </div>
         </div>
-        <p class="map-insight dd-text" id="dd-insight"></p>
-        <p class="map-note dd-text" id="dd-note"></p>
+        <div class="context wide-note" id="c1-zoom-note"></div>
       </div>
+
+      <div class="section-divider"></div>
+      <div class="takeaway">
+        <p class="eyebrow-sm">The short version</p>
+        <p>About two in three students meet expectations, and that has not changed since 2023. But the total hides a pattern: writing is the strongest subject in Year 3 but falls behind by Year 9, spelling does the opposite, and grammar and punctuation lags at every year level. Next: is it the same in every state?</p>
+      </div>
+      <p class="footnote">Data: ACARA NAPLAN national results for all students, 2023 to 2026 (Years 3, 5, 7 and 9; five subjects). Combined figures are averages weighted by the number of students who sat each test. About 2% of students are exempt and are not in any level, so bars add up to about 98%. Tasmania’s own 2026 results were not published; the national figures appear to include the Tasmanian students who sat the tests.</p>
+      <p class="footnote sources"><b>Sources:</b> <a href="https://www.acara.edu.au/docs/default-source/media-releases/naplan-proficiency-standards-media-release-2023-02-10.pdf">ACARA (2023)</a>; <a href="https://www.theeducatoronline.com/k12/news/tackling-the-writing-slump-in-australias-schools/281237">The Educator, 20 Oct 2022</a>, reporting AERO’s writing analysis.</p>
     </div>
 
-    <p class="hint">
-      <strong>Try this:</strong> switch the heatmap to "Needs additional support", click a row to jump to that domain, and
-      slide through the years. Hover anything for details.
-    </p>
+    <p class="hint"><strong>Try this:</strong> click Spelling, then Writing, in the zoom chart. The blue side grows with age for one and shrinks for the other.</p>
   </section>
 
   <!-- ============ CHAPTER 2 · GEOGRAPHIC DIFFERENCES ============ -->
@@ -589,13 +567,9 @@
   <script src="lib/vega-embed.min.js"></script>
 
   <!-- Chapter scripts -->
+  <script src="js/tips.js"></script>
   <script src="chapter-0/js/main.js"></script>
 
-  <script src="chapter-1/js/shared.js"></script>
-  <script src="chapter-1/js/diverging.js"></script>
-  <script src="chapter-1/js/hero.js"></script>
-  <script src="chapter-1/js/heatmap.js"></script>
-  <script src="chapter-1/js/deepdive.js"></script>
   <script src="chapter-1/js/main.js"></script>
 
   <script src="chapter-2/js/main.js"></script>

@@ -1,0 +1,406 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Heatmap of the share of students meeting expectations (Strong or Exceeding) for each subject and year level in the latest year. The last two columns show all year levels combined and the change from Year 3 to Year 9. The param 'sel' outlines the chosen subject.",
+  "width": "container",
+  "height": {
+    "step": 36
+  },
+  "padding": {
+    "left": 2,
+    "right": 4,
+    "top": 4,
+    "bottom": 2
+  },
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+    "axis": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontWeight": 500,
+      "titleFontSize": 11,
+      "domain": false,
+      "ticks": false,
+      "gridColor": "#eee8dc"
+    },
+    "legend": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontSize": 11,
+      "titleFontWeight": 600,
+      "labelFontSize": 11
+    }
+  },
+  "params": [
+    {
+      "name": "year",
+      "value": 2026
+    },
+    {
+      "name": "sel",
+      "value": "All subjects"
+    }
+  ],
+  "data": {
+    "url": "chapter-1/data/outcomes.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "year": "number",
+        "needs": "number",
+        "developing": "number",
+        "strong": "number",
+        "exceeding": "number",
+        "exempt": "number",
+        "so": "number",
+        "mean": "number",
+        "d39": "number"
+      }
+    }
+  },
+  "layer": [
+    {
+      "transform": [
+        {
+          "filter": "datum.year == year"
+        },
+        {
+          "filter": "datum.level != 'Change'"
+        },
+        {
+          "calculate": "format(datum.so, '.0f') + '% meet expectations: ' + (abs(datum.so - 65.1) < 0.5 ? 'the same as all students' : format(abs(datum.so - 65.1), '.0f') + ' points ' + (datum.so > 65.1 ? 'above' : 'below') + ' all students (65%)')",
+          "as": "tip"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "cornerRadius": 4,
+        "cursor": "pointer",
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {
+          "field": "level",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "Year 3",
+              "Year 5",
+              "Year 7",
+              "Year 9",
+              "All years",
+              "Change"
+            ],
+            "paddingInner": 0.07,
+            "paddingOuter": 0
+          },
+          "axis": {
+            "orient": "top",
+            "title": null,
+            "labelAngle": 0,
+            "labelFontSize": 11,
+            "labelFontWeight": 700,
+            "labelColor": "#14213d",
+            "labelPadding": 6,
+            "labelExpr": "datum.value == 'Change' ? (width < 250 ? '3→9' : 'Year 3 → 9') : datum.value == 'All years' ? 'All' : (width < 250 ? replace(datum.value, 'Year ', 'Y') : datum.value)"
+          }
+        },
+        "y": {
+          "field": "domain",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "All subjects",
+              "Spelling",
+              "Numeracy",
+              "Reading",
+              "Writing",
+              "Grammar & punctuation"
+            ],
+            "paddingInner": 0.07,
+            "paddingOuter": 0
+          },
+          "axis": {
+            "title": null,
+            "labelFontSize": {
+              "expr": "width < 250 ? 10 : 12"
+            },
+            "labelFontWeight": 700,
+            "labelColor": "#14213d",
+            "labelLimit": 150,
+            "labelPadding": 6,
+            "labelExpr": "datum.value == 'Grammar & punctuation' && width < 250 ? ['Grammar &', 'punctuation'] : datum.value"
+          }
+        },
+        "fill": {
+          "field": "so",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              50.099999999999994,
+              65.1,
+              80.1
+            ],
+            "range": [
+              "#d96648",
+              "#f4efe6",
+              "#1f6f8b"
+            ],
+            "clamp": true
+          },
+          "legend": {
+            "title": {
+              "expr": "width < 250 ? \"Vs all students\" : \"Compared with all students\""
+            },
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": {
+              "expr": "min(240, width + 20)"
+            },
+            "gradientThickness": 10,
+            "values": [
+              50,
+              65,
+              80
+            ],
+            "offset": 10,
+            "titleLimit": 300,
+            "labelExpr": "datum.value == 50 ? (width < 250 ? '≤50%' : '50% or less') : datum.value == 65 ? (width < 250 ? '65%' : 'All students: 65%') : (width < 250 ? '≥80%' : '80% or more')"
+          }
+        },
+        "stroke": {
+          "condition": {
+            "test": "datum.domain == sel",
+            "value": "#14213d"
+          },
+          "value": "#ffffff"
+        },
+        "strokeWidth": {
+          "condition": {
+            "test": "datum.domain == sel",
+            "value": 3
+          },
+          "value": 0
+        },
+        "tooltip": [
+          {
+            "field": "domain",
+            "title": "Subject"
+          },
+          {
+            "field": "level",
+            "title": "Year level"
+          },
+          {
+            "field": "tip",
+            "title": "Result"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == year"
+        },
+        {
+          "filter": "datum.level != 'Change'"
+        },
+        {
+          "calculate": "format(datum.so, '.0f') + (width < 250 ? '' : '%')",
+          "as": "t"
+        },
+        {
+          "calculate": "abs(datum.so - 65.1) > 8 ? '#ffffff' : '#14213d'",
+          "as": "ink"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": {
+          "expr": "width < 250 ? 10 : 13"
+        },
+        "fontWeight": 700
+      },
+      "encoding": {
+        "x": {
+          "field": "level",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "Year 3",
+              "Year 5",
+              "Year 7",
+              "Year 9",
+              "All years",
+              "Change"
+            ],
+            "paddingInner": 0.07,
+            "paddingOuter": 0
+          },
+          "axis": {
+            "orient": "top",
+            "title": null,
+            "labelAngle": 0,
+            "labelFontSize": 11,
+            "labelFontWeight": 700,
+            "labelColor": "#14213d",
+            "labelPadding": 6,
+            "labelExpr": "datum.value == 'Change' ? (width < 250 ? '3→9' : 'Year 3 → 9') : datum.value == 'All years' ? 'All' : (width < 250 ? replace(datum.value, 'Year ', 'Y') : datum.value)"
+          }
+        },
+        "y": {
+          "field": "domain",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "All subjects",
+              "Spelling",
+              "Numeracy",
+              "Reading",
+              "Writing",
+              "Grammar & punctuation"
+            ],
+            "paddingInner": 0.07,
+            "paddingOuter": 0
+          },
+          "axis": {
+            "title": null,
+            "labelFontSize": {
+              "expr": "width < 250 ? 10 : 12"
+            },
+            "labelFontWeight": 700,
+            "labelColor": "#14213d",
+            "labelLimit": 150,
+            "labelPadding": 6,
+            "labelExpr": "datum.value == 'Grammar & punctuation' && width < 250 ? ['Grammar &', 'punctuation'] : datum.value"
+          }
+        },
+        "text": {
+          "field": "t"
+        },
+        "color": {
+          "field": "ink",
+          "type": "nominal",
+          "scale": null,
+          "legend": null
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == year"
+        },
+        {
+          "filter": "datum.level == 'All years'"
+        },
+        {
+          "calculate": "abs(datum.d39) < 1.5 ? '→ 0' : datum.d39 > 0 ? '↑ ' + format(datum.d39, '.0f') : '↓ ' + format(-datum.d39, '.0f')",
+          "as": "t"
+        },
+        {
+          "calculate": "abs(datum.d39) < 1.5 ? '#4a5568' : datum.d39 > 0 ? '#1f6f8b' : '#c2410c'",
+          "as": "ink"
+        },
+        {
+          "calculate": "'Year 3 to Year 9: ' + (datum.d39 > 0 ? '+' : '') + format(datum.d39, '.0f') + ' percentage points'",
+          "as": "tip"
+        },
+        {
+          "calculate": "'Change'",
+          "as": "level"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": {
+          "expr": "width < 250 ? 11 : 14"
+        },
+        "fontWeight": 800,
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {
+          "field": "level",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "Year 3",
+              "Year 5",
+              "Year 7",
+              "Year 9",
+              "All years",
+              "Change"
+            ],
+            "paddingInner": 0.07,
+            "paddingOuter": 0
+          },
+          "axis": {
+            "orient": "top",
+            "title": null,
+            "labelAngle": 0,
+            "labelFontSize": 11,
+            "labelFontWeight": 700,
+            "labelColor": "#14213d",
+            "labelPadding": 6,
+            "labelExpr": "datum.value == 'Change' ? (width < 250 ? '3→9' : 'Year 3 → 9') : datum.value == 'All years' ? 'All' : (width < 250 ? replace(datum.value, 'Year ', 'Y') : datum.value)"
+          }
+        },
+        "y": {
+          "field": "domain",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "All subjects",
+              "Spelling",
+              "Numeracy",
+              "Reading",
+              "Writing",
+              "Grammar & punctuation"
+            ],
+            "paddingInner": 0.07,
+            "paddingOuter": 0
+          },
+          "axis": {
+            "title": null,
+            "labelFontSize": {
+              "expr": "width < 250 ? 10 : 12"
+            },
+            "labelFontWeight": 700,
+            "labelColor": "#14213d",
+            "labelLimit": 150,
+            "labelPadding": 6,
+            "labelExpr": "datum.value == 'Grammar & punctuation' && width < 250 ? ['Grammar &', 'punctuation'] : datum.value"
+          }
+        },
+        "text": {
+          "field": "t"
+        },
+        "color": {
+          "field": "ink",
+          "type": "nominal",
+          "scale": null,
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "domain",
+            "title": "Subject"
+          },
+          {
+            "field": "tip",
+            "title": "Change"
+          }
+        ]
+      }
+    }
+  ]
+}
