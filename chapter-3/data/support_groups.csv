@@ -1,0 +1,23 @@
+factor,label,group,order,share,rate,students,support,share_support
+all,All students,All students,0,100.0,10.79,1220771.2,131751.7,100.0
+area,Where they live,Major cities,0,74.82,8.55,913393.8,78131.09,59.3
+area,Where they live,Inner regional,1,16.51,14.05,201532.6,28309.47,21.49
+area,Where they live,Outer regional,2,7.17,18.32,87488.4,16030.23,12.17
+area,Where they live,Remote,3,0.95,28.36,11554.4,3277.26,2.49
+area,Where they live,Very remote,4,0.52,55.13,6307.2,3477.42,2.64
+ind,Indigenous status,Non-Indigenous,0,92.16,9.02,1125100.2,101474.52,77.02
+ind,Indigenous status,Indigenous,1,6.08,33.22,74164.6,24634.81,18.7
+edu,Parents’ education,Bachelor degree,0,49.34,4.27,602314.6,25707.63,19.51
+edu,Parents’ education,Diploma,1,14.03,11.17,171330.2,19138.66,14.53
+edu,Parents’ education,Certificate,2,21.59,16.55,263537.4,43613.75,33.1
+edu,Parents’ education,Year 12,3,4.82,17.59,58896.6,10358.0,7.86
+edu,Parents’ education,Year 11 or below,4,5.31,30.77,64834.4,19951.0,15.14
+job,Parents’ job,"Managers, professionals",0,34.06,4.71,415786.0,19583.56,14.86
+job,Parents’ job,Other managers,1,21.39,7.14,261175.6,18651.41,14.16
+job,Parents’ job,"Trades, clerical, sales",2,19.86,12.53,242493.0,30386.92,23.06
+job,Parents’ job,Unskilled work,3,10.92,17.66,133349.2,23555.36,17.88
+job,Parents’ job,Not in paid work,4,6.67,25.96,81402.8,21133.03,16.04
+sex,Gender,Girls,0,48.84,8.95,596277.4,53347.03,40.49
+sex,Gender,Boys,1,51.11,12.55,623972.0,78302.41,59.43
+lang,Language at home,English only,0,64.7,11.32,789849.6,89429.66,67.88
+lang,Language at home,Other than English,1,30.85,9.44,376647.6,35538.23,26.97

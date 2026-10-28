@@ -1,70 +1,157 @@
-"""Builds the small, tidy CSVs used by Chapter 3 from the ACARA NAPLAN results file.
-Run:  python prepare_data.py <path-to-ACARA-csv>
-Only selects, renames and pivots columns; values are not altered (rounded to 1 d.p.)."""
-import sys, pandas as pd
+"""Prepare the Chapter 3 datasets (student background).
 
-src = sys.argv[1] if len(sys.argv) > 1 else "FIT3179_DV2_Dataset__ACARA__-_NAPLAN_Results__1_.csv"
-d = pd.read_csv(src)
-d.columns = ["year","level","domain","state","attribute","subgroup","flag","enrolled","part","partn","score","ci","sd",
-             "exempt","needs","developing","strong","exceeding","excci","strongPlus","spci","devPlus","dpci"]
-d["enrolled"] = pd.to_numeric(d["enrolled"].astype(str).str.replace(",", ""), errors="coerce")
-d["strongPlus"] = pd.to_numeric(d["strongPlus"], errors="coerce")
-d["domain"] = d["domain"].replace({"Grammar and Punctuation": "Grammar and punctuation"})
+Inputs (../../data/raw/):
+  NAPLAN_results_raw.csv              ACARA NAPLAN results by student background (students tested, average scores, % at each level)
 
-LABEL = {
- "Parental education: bachelor": "Bachelor degree or above", "Parental education: diploma": "Diploma",
- "Parental education: certificate": "Certificate (trade / TAFE)", "Parental education: Year 12": "Year 12",
- "Parental education: Year 11": "Year 11 or below",
- "Senior managers and professionals": "Senior managers & professionals",
- "Other managers and associate professionals": "Other managers & associate professionals",
- "Skilled trades, clerical and sales": "Skilled trades, clerical & sales",
- "Unskilled manual, office & sales": "Unskilled manual, office & sales",
- "Not in paid work for 12 months": "Not in paid work (12 months)",
- "Non-LBOTE": "English at home", "LBOTE": "Language other than English at home",
+Outputs (this folder):
+  factors.csv        one row per background factor: the lower and higher group, their % meeting expectations, the gap, the share of
+                     students in each group, and the same gap in 2023
+  groups_all.csv     every group of every factor (for the "groups in between" view)
+  subject_gaps.csv      % meeting expectations and gap by subject for each background
+  state_gaps.csv        the five gaps (education, job, Indigenous status, language, gender) in each state and territory
+  support_groups.csv    every group: share of all students, % needing additional support, and share of all students needing support
+  support_combo.csv     % needing support: Indigenous and non-Indigenous students by type of area
+
+"Meeting expectations" = Strong or Exceeding. Averages over subjects and year levels are weighted by students tested.
+Run from this folder:  python3 prepare_data.py
+"""
+from pathlib import Path
+import numpy as np
+import pandas as pd
+
+here = Path(__file__).parent
+raw = here.parent.parent / "data" / "raw"
+YEAR, BASE_YEAR = 2026, 2023
+
+r = pd.read_csv(raw / "NAPLAN_results_raw.csv", thousands=",")
+r.columns = ["year", "level", "domain", "state", "attr", "sub", "flag", "enrolled", "part_pct", "n", "avg", "avg_ci", "sd", "exempt", "nas",
+             "dev", "strong", "exceed", "exceed_ci", "so", "so_ci", "do", "do_ci"]
+rall = r.copy()
+r = r[r.state == "Australia"]
+res = r[r.so.notna() & (r.n > 0)]
+
+# factor -> (label, lower group, higher group, [(raw name, short label) all groups, high to low])
+FACTORS = {
+    "edu": ("Parents’ education", "Parental education: Year 11", "Parental education: bachelor", [
+        ("Parental education: bachelor", "Bachelor degree"), ("Parental education: diploma", "Diploma"), ("Parental education: certificate", "Certificate"),
+        ("Parental education: Year 12", "Year 12"), ("Parental education: Year 11", "Year 11 or below")]),
+    "job": ("Parents’ job", "Not in paid work for 12 months", "Senior managers and professionals", [
+        ("Senior managers and professionals", "Managers, professionals"), ("Other managers and associate professionals", "Other managers"),
+        ("Skilled trades, clerical and sales", "Trades, clerical, sales"), ("Unskilled manual, office & sales", "Unskilled work"),
+        ("Not in paid work for 12 months", "Not in paid work")]),
+    "area": ("Where they live", "Very remote", "Major cities", [
+        ("Major cities", "Major cities"), ("Inner regional", "Inner regional"), ("Outer regional", "Outer regional"), ("Remote", "Remote"),
+        ("Very remote", "Very remote")]),
+    "ind": ("Indigenous status", "Indigenous", "Non-Indigenous", [("Non-Indigenous", "Non-Indigenous"), ("Indigenous", "Indigenous")]),
+    "lang": ("Language at home", "Non-LBOTE", "LBOTE", [("LBOTE", "Other than English"), ("Non-LBOTE", "English only")]),
+    "sex": ("Gender", "Male", "Female", [("Female", "Girls"), ("Male", "Boys")]),
 }
-ATTR = {"Indigeneity": "Indigenous status", "ABS remoteness": "Remoteness", "Language background": "Language background",
-        "Gender": "Gender", "Parental education": "Parental education", "Parental occupation": "Parental occupation", "All": "All"}
-d["group"] = d["subgroup"].replace(LABEL)
-d["attr"] = d["attribute"].map(ATTR)
+LOW_LABEL = {"edu": "Year 11 or below", "job": "Not in paid work", "area": "Very remote", "ind": "Indigenous", "lang": "English only", "sex": "Boys"}
+HIGH_LABEL = {"edu": "Bachelor degree", "job": "Managers, professionals", "area": "Major cities", "ind": "Non-Indigenous", "lang": "Other than English", "sex": "Girls"}
 
-# 1. National results by student background (Australia rows only; 'not stated' groups dropped)
-n = d[(d.state == "Australia") & d.attribute.isin(ATTR) & ~d.subgroup.str.contains("not stated")].copy()
-avg = n[n.attribute == "All"].set_index(["year","level","domain"])["strongPlus"].rename("avg")
-n = n.join(avg, on=["year","level","domain"])
-n["diff"] = n.strongPlus - n.avg
-n = n[["year","level","domain","attr","group","enrolled","score","needs","developing","strong","exceeding","strongPlus","avg","diff"]]
-n.round(1).to_csv("equity_national.csv", index=False)
-print("diff range (all years):", n[n.attr != "All"]["diff"].agg(["min","max"]).round(1).tolist())
 
-# 2. Indigenous status x remoteness (national)
-r = d[(d.state == "Australia") & (d.attribute == "Indigeneity by ABS remoteness")].copy()
-r["status"] = r.subgroup.str.extract(r"^(Non-Indigenous|Indigenous)")[0]
-r["remoteness"] = r.subgroup.str.replace(r"^(Non-Indigenous|Indigenous) ", "", regex=True).str.capitalize()
-r[["year","level","domain","remoteness","status","enrolled","strongPlus"]].round(1).to_csv("equity_remoteness.csv", index=False)
+def wmean(df, col="so"):
+    df = df[df[col].notna() & df["n"].notna() & (df["n"] > 0)]
+    return float(np.average(df[col], weights=df["n"])) if len(df) else float("nan")
 
-# 3. Gaps (percentage points at 'Strong or above') for four advantage/disadvantage pairs, national
-pairs = {"Indigenous status": ("Non-Indigenous", "Indigenous"),
-         "Parental education": ("Parental education: bachelor", "Parental education: Year 11"),
-         "Parental occupation": ("Senior managers and professionals", "Not in paid work for 12 months"),
-         "Remoteness": ("Major cities", "Very remote")}
-a = d[d.state == "Australia"]
+
+def so(sub, year):
+    return wmean(res[(res["sub"] == sub) & (res.year == year)])
+
+
+def students(sub, year):   # students tested, counted once (mean over the five subjects of the sum over year levels)
+    g = r[(r["sub"] == sub) & (r.year == year) & r.n.notna()]
+    return float(g.groupby("domain").n.sum().mean())
+
+
+tot = {y: students("All", y) for y in (YEAR, BASE_YEAR)}
+DOMS = ["Reading", "Writing", "Spelling", "Grammar and Punctuation", "Numeracy"]
+
+
+def so_d(sub, year, dom=None):
+    g = res[(res["sub"] == sub) & (res.year == year)]
+    if dom:
+        g = g[g.domain == dom]
+    return wmean(g)
+
+
+rows, grows = [], []
+for k, (label, lo, hi, groups) in FACTORS.items():
+    for dom in [None] + DOMS:
+        d = dict(factor=k, label=label, domain=dom or "All subjects")
+        a_, b_ = so_d(lo, YEAR, dom), so_d(hi, YEAR, dom)
+        lo_name, hi_name, lo_so, hi_so = LOW_LABEL[k], HIGH_LABEL[k], a_, b_
+        if a_ > b_:   # the groups swap roles when the "usually lower" group is ahead (boys in numeracy)
+            lo_name, hi_name, lo_so, hi_so = hi_name, lo_name, b_, a_
+        d.update(low=lo_name, high=hi_name, so_low=lo_so, so_high=hi_so, gap=hi_so - lo_so,
+                 share_low=students(lo, YEAR) / tot[YEAR] * 100, share_high=students(hi, YEAR) / tot[YEAR] * 100)
+        if dom is None:
+            d["so_low_2023"], d["so_high_2023"] = so_d(lo, BASE_YEAR), so_d(hi, BASE_YEAR)
+            d["gap_2023"] = d["so_high_2023"] - d["so_low_2023"]
+        rows.append(d)
+    for i, (raw_name, lab) in enumerate(groups):
+        for dom in [None] + DOMS:
+            grows.append(dict(factor=k, label=label, domain=dom or "All subjects", group=lab, order=i, so=so_d(raw_name, YEAR, dom), share=students(raw_name, YEAR) / tot[YEAR] * 100))
+fac = pd.DataFrame(rows)
+order = fac[fac.domain == "All subjects"].sort_values("gap", ascending=False).factor.tolist()
+fac["rank"] = fac.factor.map({f: i for i, f in enumerate(order)})
+fac = fac[fac.domain == "All subjects"].drop(columns="domain").sort_values("gap", ascending=False)
+fac.round(2).to_csv(here / "factors.csv", index=False)
+pd.DataFrame(grows).query("domain == 'All subjects'").drop(columns="domain").round(2).to_csv(here / "groups_all.csv", index=False)
+
+# ------------------------------------------------------------------ the same gaps in each state
+STATES = ["Australian Capital Territory", "New South Wales", "Victoria", "Western Australia", "South Australia", "Queensland", "Northern Territory"]
+srows = []
+for k in ("edu", "job", "ind", "sex", "lang"):
+    _, lo, hi, _g = FACTORS[k]
+    for s in STATES:
+        sd_ = rall[(rall.state == s) & (rall.year == YEAR) & rall.so.notna() & (rall.n > 0)]
+        gl, gh = sd_[sd_["sub"] == lo], sd_[sd_["sub"] == hi]
+        n_lo = gl.groupby("domain").n.sum().mean()
+        srows.append(dict(factor=k, state=s, so_low=wmean(gl), so_high=wmean(gh), gap=wmean(gh) - wmean(gl), n_low=n_lo))
+pd.DataFrame(srows).round(2).to_csv(here / "state_gaps.csv", index=False)
+
+# ------------------------------------------------------------------ who needs additional support
+a = r[(r.year == YEAR) & r.nas.notna() & (r.n > 0)]
+
+
+def nas_rate(sub, df=None):
+    g = (a if df is None else df)
+    g = g[g["sub"] == sub]
+    return float(np.average(g.nas, weights=g.n))
+
+
+all_n, all_rate = students("All", YEAR), nas_rate("All")
+GROUPS = [("area", "Where they live", [("Major cities", "Major cities"), ("Inner regional", "Inner regional"), ("Outer regional", "Outer regional"), ("Remote", "Remote"), ("Very remote", "Very remote")]),
+          ("ind", "Indigenous status", [("Non-Indigenous", "Non-Indigenous"), ("Indigenous", "Indigenous")]),
+          ("edu", "Parents’ education", [("Parental education: bachelor", "Bachelor degree"), ("Parental education: diploma", "Diploma"), ("Parental education: certificate", "Certificate"),
+                                          ("Parental education: Year 12", "Year 12"), ("Parental education: Year 11", "Year 11 or below")]),
+          ("job", "Parents’ job", [("Senior managers and professionals", "Managers, professionals"), ("Other managers and associate professionals", "Other managers"),
+                                   ("Skilled trades, clerical and sales", "Trades, clerical, sales"), ("Unskilled manual, office & sales", "Unskilled work"),
+                                   ("Not in paid work for 12 months", "Not in paid work")]),
+          ("sex", "Gender", [("Female", "Girls"), ("Male", "Boys")]),
+          ("lang", "Language at home", [("Non-LBOTE", "English only"), ("LBOTE", "Other than English")])]
+grows = [dict(factor="all", label="All students", group="All students", order=0, share=100.0, rate=all_rate, students=all_n, support=all_n * all_rate / 100, share_support=100.0)]
+for k, label, gs in GROUPS:
+    for i, (raw_name, lab) in enumerate(gs):
+        n, rt = students(raw_name, YEAR), nas_rate(raw_name)
+        grows.append(dict(factor=k, label=label, group=lab, order=i, share=n / all_n * 100, rate=rt, students=n, support=n * rt / 100, share_support=n * rt / (all_n * all_rate) * 100))
+sgrp = pd.DataFrame(grows)
+sgrp.round(2).to_csv(here / "support_groups.csv", index=False)
+
+# Indigenous status and place together (Indigenous students by type of area)
+combo = []
+for area in ("Major cities", "Inner regional", "Outer regional", "Remote", "Very remote"):
+    pg = r[(r.year == YEAR) & (r["sub"] == "Indigenous " + area.lower()) & r.part_pct.notna() & (r.enrolled > 0)]
+    combo.append(dict(area=area, ind=nas_rate("Indigenous " + area.lower()), non=nas_rate("Non-Indigenous " + area.lower()),
+                      part_ind=float(np.average(pg.part_pct, weights=pg.enrolled))))
+pd.DataFrame(combo).round(2).to_csv(here / "support_combo.csv", index=False)
+
+# the other four backgrounds by subject (they favour the same group in every subject), and Year 9 shares for girls/boys and language
 rows = []
-for m, (hi, lo) in pairs.items():
-    p = a[a.subgroup.isin([hi, lo])].pivot_table(index=["year","level","domain"], columns="subgroup", values="strongPlus").dropna().reset_index()
-    p["measure"] = m; p["advantaged"] = p[hi]; p["disadvantaged"] = p[lo]; p["gap"] = p[hi] - p[lo]
-    rows.append(p[["measure","year","level","domain","advantaged","disadvantaged","gap"]])
-g = pd.concat(rows)
-ok = g.groupby(["measure","level","domain"]).year.transform("nunique") == 4   # comparable across all 4 years
-print("dropped incomplete rows:", (~ok).sum())
-g[ok].round(1).to_csv("equity_gaps.csv", index=False)
-
-# 4. State results for Indigenous vs non-Indigenous students (tile-grid map)
-TILE = {"Western Australia":("WA",0,1),"Northern Territory":("NT",1,0),"South Australia":("SA",1,1),"Queensland":("QLD",2,0),
-        "New South Wales":("NSW",2,1),"Australian Capital Territory":("ACT",3,1),"Victoria":("VIC",2,2),"Tasmania":("TAS",2,3)}
-s = d[(d.attribute == "Indigeneity") & d.state.isin(TILE)]
-p = s.pivot_table(index=["year","level","domain","state"], columns="subgroup", values=["strongPlus","enrolled"], dropna=False)
-p.columns = [f"{a}_{b}" for a, b in p.columns]; p = p.reset_index()
-p["abbr"] = p.state.map(lambda x: TILE[x][0]); p["col"] = p.state.map(lambda x: TILE[x][1]); p["row"] = p.state.map(lambda x: TILE[x][2])
-p = p.rename(columns={"strongPlus_Indigenous":"indig","strongPlus_Non-Indigenous":"non","enrolled_Indigenous":"indigN"})
-p["gap"] = p.non - p.indig
-p[["year","level","domain","state","abbr","col","row","indig","non","gap","indigN"]].round(1).to_csv("equity_states.csv", index=False)
+for k in ("edu", "job", "area", "ind", "sex", "lang"):
+    _, lo, hi, _g = FACTORS[k]
+    for dom in DOMS:
+        rows.append(dict(factor=k, domain=dom, so_low=so_d(lo, YEAR, dom), so_high=so_d(hi, YEAR, dom), gap=so_d(hi, YEAR, dom) - so_d(lo, YEAR, dom)))
+pd.DataFrame(rows).round(2).to_csv(here / "subject_gaps.csv", index=False)
+print(fac[["factor", "so_low", "so_high", "gap", "gap_2023", "share_low", "share_high"]].round(1).to_string())

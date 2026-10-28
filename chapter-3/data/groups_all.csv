@@ -1,0 +1,22 @@
+factor,label,group,order,so,share
+edu,Parents’ education,Bachelor degree,0,79.0,49.34
+edu,Parents’ education,Diploma,1,60.57,14.03
+edu,Parents’ education,Certificate,2,51.04,21.59
+edu,Parents’ education,Year 12,3,50.94,4.82
+edu,Parents’ education,Year 11 or below,4,33.65,5.31
+job,Parents’ job,"Managers, professionals",0,78.16,34.06
+job,Parents’ job,Other managers,1,70.85,21.39
+job,Parents’ job,"Trades, clerical, sales",2,58.81,19.86
+job,Parents’ job,Unskilled work,3,50.49,10.92
+job,Parents’ job,Not in paid work,4,39.83,6.67
+area,Where they live,Major cities,0,69.11,74.82
+area,Where they live,Inner regional,1,57.44,16.51
+area,Where they live,Outer regional,2,51.23,7.17
+area,Where they live,Remote,3,41.51,0.95
+area,Where they live,Very remote,4,22.5,0.52
+ind,Indigenous status,Non-Indigenous,0,67.57,92.16
+ind,Indigenous status,Indigenous,1,33.7,6.08
+lang,Language at home,Other than English,0,69.73,30.85
+lang,Language at home,English only,1,63.13,64.7
+sex,Gender,Girls,0,68.04,48.84
+sex,Gender,Boys,1,62.32,51.11

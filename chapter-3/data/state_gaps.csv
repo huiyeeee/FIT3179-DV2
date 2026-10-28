@@ -1,0 +1,36 @@
+factor,state,so_low,so_high,gap,n_low
+edu,Australian Capital Territory,32.36,78.46,46.1,380.8
+edu,New South Wales,36.08,81.47,45.39,24413.6
+edu,Victoria,39.41,80.66,41.25,15146.8
+edu,Western Australia,33.65,78.72,45.07,7202.8
+edu,South Australia,33.06,75.19,42.14,5093.4
+edu,Queensland,27.57,75.09,47.52,10505.0
+edu,Northern Territory,6.57,61.8,55.24,1233.4
+job,Australian Capital Territory,41.98,76.52,34.54,550.8
+job,New South Wales,42.66,79.64,36.97,32976.0
+job,Victoria,43.77,81.98,38.21,24673.4
+job,Western Australia,37.23,77.47,40.25,6198.6
+job,South Australia,38.62,74.24,35.62,4200.4
+job,Queensland,33.51,73.75,40.24,10781.6
+job,Northern Territory,6.93,60.78,53.85,1346.6
+ind,Australian Capital Territory,43.16,71.31,28.15,682.8
+ind,New South Wales,39.67,70.31,30.64,28191.0
+ind,Victoria,41.95,70.37,28.42,6389.8
+ind,Western Australia,27.41,67.82,40.41,8712.6
+ind,South Australia,29.91,62.48,32.58,4092.2
+ind,Queensland,31.1,62.19,31.09,21626.0
+ind,Northern Territory,11.12,58.25,47.13,2949.0
+sex,Australian Capital Territory,67.44,73.02,5.58,11463.6
+sex,New South Wales,65.22,70.82,5.6,195071.4
+sex,Victoria,66.89,72.37,5.48,162451.8
+sex,Western Australia,61.8,67.73,5.93,72323.2
+sex,South Australia,57.72,63.47,5.75,41353.6
+sex,Queensland,56.11,61.99,5.88,128531.6
+sex,Northern Territory,35.91,42.05,6.14,5094.8
+lang,Australian Capital Territory,69.18,71.76,2.58,14179.6
+lang,New South Wales,64.87,72.94,8.07,222099.2
+lang,Victoria,68.15,72.07,3.92,194729.0
+lang,Western Australia,64.33,68.4,4.06,76604.0
+lang,South Australia,59.19,63.97,4.78,59276.8
+lang,Queensland,58.2,64.03,5.83,203904.6
+lang,Northern Territory,49.15,28.52,-20.62,5695.4

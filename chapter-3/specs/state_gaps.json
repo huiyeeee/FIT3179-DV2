@@ -1,0 +1,778 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Dot strip. For each background, the gap in the share of students meeting expectations in each state or territory, 2026 (higher group minus lower group; for gender, girls minus boys; for language, other-than-English minus English only). A dark tick marks Australia. Tasmania is left out because its results by background are not published.",
+  "width": "container",
+  "height": 280,
+  "padding": {
+    "left": 4,
+    "right": 8,
+    "top": 34,
+    "bottom": 4
+  },
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+    "axis": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontWeight": 500,
+      "titleFontSize": 11,
+      "domain": false,
+      "ticks": false,
+      "gridColor": "#eee8dc"
+    }
+  },
+  "params": [
+    {
+      "name": "st",
+      "value": ""
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {
+            "x": 0
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#14213d",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -25,
+              60
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": "Gap in the share meeting expectations (percentage points)",
+            "grid": true,
+            "values": [
+              -20,
+              0,
+              20,
+              40,
+              60
+            ],
+            "labelExpr": "(datum.value > 0 ? '+' : datum.value < 0 ? '−' : '') + abs(datum.value)"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-3/data/state_gaps.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "so_low": "number",
+            "so_high": "number",
+            "gap": "number",
+            "n_low": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "calculate": "indexof([\"edu\", \"job\", \"ind\", \"lang\", \"sex\"], datum.factor)",
+          "as": "row"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "color": "#d5dbe5",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "datum": -25,
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -25,
+              60
+            ],
+            "nice": false
+          }
+        },
+        "x2": {
+          "datum": 60
+        },
+        "y": {
+          "field": "row",
+          "scale": {
+            "domain": [
+              -0.5,
+              4.5
+            ],
+            "reverse": true,
+            "nice": false
+          },
+          "type": "quantitative",
+          "axis": {
+            "title": null,
+            "values": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "grid": false,
+            "labelFontSize": 12,
+            "labelFontWeight": 600,
+            "labelColor": "#14213d",
+            "labelPadding": 8,
+            "labelLimit": 130,
+            "labelExpr": "[\"Parents’ education\", \"Parents’ job\", \"Indigenous status\", \"Language at home\", \"Gender\"][datum.value]"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-3/data/state_gaps.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "so_low": "number",
+            "so_high": "number",
+            "gap": "number",
+            "n_low": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "calculate": "indexof([\"edu\", \"job\", \"ind\", \"lang\", \"sex\"], datum.factor)",
+          "as": "row"
+        },
+        {
+          "calculate": "datum.state == st ? 'sel' : (st == '' ? 'all' : 'other')",
+          "as": "k"
+        },
+        {
+          "filter": "datum.k != 'sel'"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 130,
+        "opacity": 0.9,
+        "stroke": "#fff",
+        "strokeWidth": 1,
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {
+          "field": "gap",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -25,
+              60
+            ],
+            "nice": false
+          }
+        },
+        "y": {
+          "field": "row",
+          "scale": {
+            "domain": [
+              -0.5,
+              4.5
+            ],
+            "reverse": true,
+            "nice": false
+          },
+          "type": "quantitative",
+          "axis": {
+            "title": null,
+            "values": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "grid": false,
+            "labelFontSize": 12,
+            "labelFontWeight": 600,
+            "labelColor": "#14213d",
+            "labelPadding": 8,
+            "labelLimit": 130,
+            "labelExpr": "[\"Parents’ education\", \"Parents’ job\", \"Indigenous status\", \"Language at home\", \"Gender\"][datum.value]"
+          }
+        },
+        "color": {
+          "field": "k",
+          "type": "nominal",
+          "legend": null,
+          "scale": {
+            "domain": [
+              "sel",
+              "all",
+              "other"
+            ],
+            "range": [
+              "#f0745a",
+              "#1f6f8b",
+              "#bcc5d6"
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "title": "State"
+          },
+          {
+            "field": "gap",
+            "title": "Gap (points)",
+            "format": ".1f"
+          },
+          {
+            "field": "so_high",
+            "title": "Higher group: % meeting expectations",
+            "format": ".0f"
+          },
+          {
+            "field": "so_low",
+            "title": "Lower group: % meeting expectations",
+            "format": ".0f"
+          },
+          {
+            "field": "n_low",
+            "title": "Students in the lower group",
+            "format": ",.0f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-3/data/factors.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "gap": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "indexof([\"edu\", \"job\", \"ind\", \"lang\", \"sex\"], datum.factor) >= 0"
+        },
+        {
+          "calculate": "indexof([\"edu\", \"job\", \"ind\", \"lang\", \"sex\"], datum.factor)",
+          "as": "row"
+        }
+      ],
+      "mark": {
+        "type": "tick",
+        "color": "#14213d",
+        "thickness": 3,
+        "size": 30
+      },
+      "encoding": {
+        "x": {
+          "field": "gap",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -25,
+              60
+            ],
+            "nice": false
+          }
+        },
+        "y": {
+          "field": "row",
+          "scale": {
+            "domain": [
+              -0.5,
+              4.5
+            ],
+            "reverse": true,
+            "nice": false
+          },
+          "type": "quantitative",
+          "axis": {
+            "title": null,
+            "values": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "grid": false,
+            "labelFontSize": 12,
+            "labelFontWeight": 600,
+            "labelColor": "#14213d",
+            "labelPadding": 8,
+            "labelLimit": 130,
+            "labelExpr": "[\"Parents’ education\", \"Parents’ job\", \"Indigenous status\", \"Language at home\", \"Gender\"][datum.value]"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "label",
+            "title": "Australia"
+          },
+          {
+            "field": "gap",
+            "title": "Gap (points)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-3/data/state_gaps.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "so_low": "number",
+            "so_high": "number",
+            "gap": "number",
+            "n_low": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "calculate": "indexof([\"edu\", \"job\", \"ind\", \"lang\", \"sex\"], datum.factor)",
+          "as": "row"
+        },
+        {
+          "calculate": "datum.state == st ? 'sel' : (st == '' ? 'all' : 'other')",
+          "as": "k"
+        },
+        {
+          "filter": "datum.k == 'sel'"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 260,
+        "stroke": "#fff",
+        "strokeWidth": 1.5,
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {
+          "field": "gap",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -25,
+              60
+            ],
+            "nice": false
+          }
+        },
+        "y": {
+          "field": "row",
+          "scale": {
+            "domain": [
+              -0.5,
+              4.5
+            ],
+            "reverse": true,
+            "nice": false
+          },
+          "type": "quantitative",
+          "axis": {
+            "title": null,
+            "values": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "grid": false,
+            "labelFontSize": 12,
+            "labelFontWeight": 600,
+            "labelColor": "#14213d",
+            "labelPadding": 8,
+            "labelLimit": 130,
+            "labelExpr": "[\"Parents’ education\", \"Parents’ job\", \"Indigenous status\", \"Language at home\", \"Gender\"][datum.value]"
+          }
+        },
+        "color": {
+          "field": "k",
+          "type": "nominal",
+          "legend": null,
+          "scale": {
+            "domain": [
+              "sel",
+              "all",
+              "other"
+            ],
+            "range": [
+              "#f0745a",
+              "#1f6f8b",
+              "#bcc5d6"
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "title": "State"
+          },
+          {
+            "field": "gap",
+            "title": "Gap (points)",
+            "format": ".1f"
+          },
+          {
+            "field": "so_high",
+            "title": "Higher group: % meeting expectations",
+            "format": ".0f"
+          },
+          {
+            "field": "so_low",
+            "title": "Lower group: % meeting expectations",
+            "format": ".0f"
+          },
+          {
+            "field": "n_low",
+            "title": "Students in the lower group",
+            "format": ",.0f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-3/data/state_gaps.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "so_low": "number",
+            "so_high": "number",
+            "gap": "number",
+            "n_low": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "joinaggregate": [
+            {
+              "op": "min",
+              "field": "gap",
+              "as": "gmin"
+            },
+            {
+              "op": "max",
+              "field": "gap",
+              "as": "gmax"
+            }
+          ],
+          "groupby": [
+            "factor"
+          ]
+        },
+        {
+          "calculate": "indexof([\"edu\", \"job\", \"ind\", \"lang\", \"sex\"], datum.factor)",
+          "as": "row"
+        },
+        {
+          "calculate": "datum.state == 'Australian Capital Territory' ? 'ACT' : datum.state == 'New South Wales' ? 'NSW' : datum.state == 'Northern Territory' ? 'NT' : datum.state == 'Queensland' ? 'QLD' : datum.state == 'South Australia' ? 'SA' : datum.state == 'Victoria' ? 'VIC' : 'WA'",
+          "as": "ab"
+        },
+        {
+          "filter": "datum.state == st || (st == '' && datum.gmax - datum.gmin > 3 && (datum.gap == datum.gmax || datum.gap == datum.gmin))"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": -15,
+        "fontSize": 11,
+        "fontWeight": 700,
+        "color": "#4a5568"
+      },
+      "encoding": {
+        "x": {
+          "field": "gap",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -25,
+              60
+            ],
+            "nice": false
+          }
+        },
+        "y": {
+          "field": "row",
+          "scale": {
+            "domain": [
+              -0.5,
+              4.5
+            ],
+            "reverse": true,
+            "nice": false
+          },
+          "type": "quantitative",
+          "axis": {
+            "title": null,
+            "values": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "grid": false,
+            "labelFontSize": 12,
+            "labelFontWeight": 600,
+            "labelColor": "#14213d",
+            "labelPadding": 8,
+            "labelLimit": 130,
+            "labelExpr": "[\"Parents’ education\", \"Parents’ job\", \"Indigenous status\", \"Language at home\", \"Gender\"][datum.value]"
+          }
+        },
+        "text": {
+          "field": "ab"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "t": "Spread across states"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "bottom",
+        "dx": 14,
+        "dy": -5,
+        "fontSize": 10.5,
+        "fontWeight": 700,
+        "color": "#4a5568"
+      },
+      "encoding": {
+        "x": {
+          "datum": 60,
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -25,
+              60
+            ],
+            "nice": false
+          }
+        },
+        "y": {
+          "value": 0
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-3/data/state_gaps.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "so_low": "number",
+            "so_high": "number",
+            "gap": "number",
+            "n_low": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "joinaggregate": [
+            {
+              "op": "min",
+              "field": "gap",
+              "as": "gmin"
+            },
+            {
+              "op": "max",
+              "field": "gap",
+              "as": "gmax"
+            }
+          ],
+          "groupby": [
+            "factor"
+          ]
+        },
+        {
+          "calculate": "indexof([\"edu\", \"job\", \"ind\", \"lang\", \"sex\"], datum.factor)",
+          "as": "row"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "max",
+              "field": "gmin",
+              "as": "gmin"
+            },
+            {
+              "op": "max",
+              "field": "gmax",
+              "as": "gmax"
+            }
+          ],
+          "groupby": [
+            "factor",
+            "row"
+          ]
+        },
+        {
+          "calculate": "(datum.gmin < 0 ? '−' : '') + format(abs(datum.gmin), '.0f') + ' to ' + (datum.gmax < 0 ? '−' : '') + format(abs(datum.gmax), '.0f') + ' pts'",
+          "as": "rg"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 14,
+        "fontSize": 12.5,
+        "fontWeight": 700,
+        "color": "#14213d"
+      },
+      "encoding": {
+        "x": {
+          "datum": 60,
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -25,
+              60
+            ],
+            "nice": false
+          }
+        },
+        "y": {
+          "field": "row",
+          "scale": {
+            "domain": [
+              -0.5,
+              4.5
+            ],
+            "reverse": true,
+            "nice": false
+          },
+          "type": "quantitative",
+          "axis": {
+            "title": null,
+            "values": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "grid": false,
+            "labelFontSize": 12,
+            "labelFontWeight": 600,
+            "labelColor": "#14213d",
+            "labelPadding": 8,
+            "labelLimit": 130,
+            "labelExpr": "[\"Parents’ education\", \"Parents’ job\", \"Indigenous status\", \"Language at home\", \"Gender\"][datum.value]"
+          }
+        },
+        "text": {
+          "field": "rg"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "row": 3,
+            "t": "Many Territory students\nspeak an Indigenous\nlanguage at home."
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 4,
+        "fontSize": 11,
+        "fontStyle": "italic",
+        "lineBreak": "\n",
+        "lineHeight": 13,
+        "color": "#4a5568"
+      },
+      "encoding": {
+        "x": {
+          "datum": -18.5,
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -25,
+              60
+            ],
+            "nice": false
+          }
+        },
+        "y": {
+          "field": "row",
+          "scale": {
+            "domain": [
+              -0.5,
+              4.5
+            ],
+            "reverse": true,
+            "nice": false
+          },
+          "type": "quantitative",
+          "axis": {
+            "title": null,
+            "values": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "grid": false,
+            "labelFontSize": 12,
+            "labelFontWeight": 600,
+            "labelColor": "#14213d",
+            "labelPadding": 8,
+            "labelLimit": 130,
+            "labelExpr": "[\"Parents’ education\", \"Parents’ job\", \"Indigenous status\", \"Language at home\", \"Gender\"][datum.value]"
+          }
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    }
+  ]
+}

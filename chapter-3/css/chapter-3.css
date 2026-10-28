@@ -1,0 +1,45 @@
+/* Chapter 3 · student background. Generic components (card, chips, seg tabs, ⓘ tips, wide-note) come from css/components.css. */
+#chapter-3 .scene h3 { margin: 0 0 12px; font-family: var(--font-display); font-size: clamp(1.4rem, 2.6vw, 1.8rem); line-height: 1.2; }
+#chapter-3 .scene-head { max-width: 1000px; margin-bottom: 14px; }
+#chapter-3 .scene-lede { margin: 0 0 8px; color: var(--ink); max-width: 70ch; font-size: 1.05rem; font-weight: 600; line-height: 1.4; }
+#chapter-3 .c3-cap { margin: 0 0 6px; font-size: 0.7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); }
+#chapter-3 .c3-guide { margin: 0; max-width: 78ch; font-size: 0.84rem; line-height: 1.5; color: var(--ink-soft); }
+#chapter-3 .c3-guide strong { color: var(--ink); }
+#chapter-3 .c3-foot { margin: 10px auto 0; max-width: 78ch; font-size: 0.82rem; line-height: 1.5; color: var(--ink-soft); text-align: center; }
+#chapter-3 .c3-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin: 4px 0 12px; }
+#chapter-3 .c3-controls .seg { margin: 0; }
+#chapter-3 .scene-head .seg { margin: 4px 0 12px; }
+#chapter-3 .c3-toggle { font-size: 0.84rem; }
+
+/* charts that size themselves to their container */
+#chapter-3 .chart-wrap, #chapter-3 .chart-wrap > div, #chapter-3 .chart-wrap .vega-embed { width: 100%; }
+#chapter-3 .chart-wrap > div { line-height: 0; }
+#chapter-3 .vega-embed summary { display: none; }
+
+/* legends (HTML, so they wrap on phones) */
+#chapter-3 .c3-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; margin: 10px 0 0; font-size: 0.8rem; color: var(--ink-soft); }
+#chapter-3 .lg { display: inline-flex; align-items: center; }
+#chapter-3 .lg-sq { display: inline-block; width: 12px; height: 12px; margin-right: 6px; border-radius: 50%; }
+#chapter-3 .lg-hollow { display: inline-block; width: 12px; height: 12px; margin-right: 6px; border-radius: 50%; border: 2px solid #4a5568; background: #fff; box-sizing: border-box; }
+
+/* blue notes */
+#chapter-3 .context { margin: 18px 0 0; padding: 13px 16px; background: var(--teal-soft); border-left: 4px solid var(--teal); border-radius: 0 12px 12px 0; font-size: 0.88rem; line-height: 1.5; color: var(--ink); }
+#chapter-3 .context .ctx-label { display: block; margin-bottom: 8px; text-align: center; font-size: 0.7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); }
+#chapter-3 .context .ctx-source { display: block; margin-top: 8px; font-size: 0.76rem; color: var(--ink-soft); }
+#chapter-3 .context a { color: var(--teal); }
+#chapter-3 .context p { margin: 0 0 8px; }
+#chapter-3 .context p:last-child { margin-bottom: 0; }
+#chapter-3 .wide-note .two-col > div p { margin: 0 0 8px; }
+#chapter-3 .wide-note .two-col > div p:last-child { margin-bottom: 0; }
+
+#chapter-3 .takeaway { max-width: 760px; }
+#chapter-3 .takeaway p:last-child { margin: 0; font-family: var(--font-display); font-size: clamp(1.15rem, 2vw, 1.4rem); line-height: 1.45; color: var(--ink); }
+@media (max-width: 600px) { #chapter-3 .scene-head .seg button { padding: 6px 9px; font-size: 0.78rem; } #chapter-3 .c3-toggle { font-size: 0.8rem; } }
+#chapter-3 .scene-head .showing { margin: 2px 0 8px; }
+#chapter-3 .lg-tick { display: inline-block; width: 3px; height: 14px; margin-right: 8px; background: #14213d; }
+#chapter-3 .scene-head .chips { margin: 8px 0 8px; }
+#chapter-3 .c3-scale { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px 0 0; font-size: 0.8rem; color: var(--ink-soft); }
+#chapter-3 .c3-bar { display: inline-block; width: 160px; height: 10px; border-radius: 5px; background: linear-gradient(90deg, #fdf1ea, #f0745a, #8f2a0a); }
+#chapter-3 .scene-head .seg + .scene-lede, #chapter-3 .scene-head .chips + .seg { margin-top: 4px; }
+#chapter-3 .context:empty { display: none; }
+@media (max-width: 600px) { #chapter-3 .c3-cap { position: relative; } #chapter-3 .c3-cap .tip { position: static; } #chapter-3 .c3-cap .tip-pop { left: 0; right: 0; width: auto; } }

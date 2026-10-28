@@ -1,0 +1,31 @@
+factor,domain,so_low,so_high,gap
+edu,Reading,32.85,80.89,48.04
+edu,Writing,34.8,78.68,43.88
+edu,Spelling,43.69,79.76,36.07
+edu,Grammar and Punctuation,24.7,73.64,48.94
+edu,Numeracy,32.21,82.04,49.84
+job,Reading,39.87,80.44,40.57
+job,Writing,40.54,77.77,37.23
+job,Spelling,48.42,78.46,30.04
+job,Grammar and Punctuation,31.51,72.7,41.19
+job,Numeracy,38.79,81.41,42.62
+area,Reading,23.35,70.03,46.69
+area,Writing,22.19,69.66,47.46
+area,Spelling,26.51,72.93,46.43
+area,Grammar and Punctuation,17.57,62.09,44.52
+area,Numeracy,22.89,70.84,47.94
+ind,Reading,34.87,68.87,34.0
+ind,Writing,33.53,67.89,34.35
+ind,Spelling,41.48,70.98,29.49
+ind,Grammar and Punctuation,25.61,60.35,34.73
+ind,Numeracy,33.0,69.75,36.75
+sex,Reading,62.73,70.26,7.53
+sex,Writing,59.11,71.98,12.86
+sex,Spelling,66.64,71.17,4.53
+sex,Grammar and Punctuation,53.59,62.3,8.72
+sex,Numeracy,69.54,64.45,-5.1
+lang,Reading,65.6,68.4,2.81
+lang,Writing,63.0,70.89,7.89
+lang,Spelling,65.69,76.07,10.38
+lang,Grammar and Punctuation,55.65,62.93,7.28
+lang,Numeracy,65.7,70.34,4.64

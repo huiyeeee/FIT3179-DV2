@@ -1,0 +1,570 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Two bar charts on the same rows, 2026. Left: the share of each group that needs additional support. Right: the share of all students needing additional support who belong to that group. The dashed line is the rate for all students.",
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+    "axis": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontWeight": 500,
+      "titleFontSize": 11,
+      "domain": false,
+      "ticks": false,
+      "gridColor": "#eee8dc"
+    }
+  },
+  "padding": {
+    "left": 4,
+    "right": 8,
+    "top": 4,
+    "bottom": 4
+  },
+  "hconcat": [
+    {
+      "title": {
+        "text": "Share of the group needing support",
+        "anchor": "start",
+        "fontSize": 13,
+        "fontWeight": 700,
+        "color": "#14213d",
+        "offset": 12,
+        "font": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif"
+      },
+      "width": 330,
+      "height": {
+        "step": 52
+      },
+      "layer": [
+        {
+          "data": {
+            "url": "chapter-3/data/support_groups.csv",
+            "format": {
+              "type": "csv",
+              "parse": {
+                "order": "number",
+                "share": "number",
+                "rate": "number",
+                "students": "number",
+                "support": "number",
+                "share_support": "number"
+              }
+            }
+          },
+          "transform": [
+            {
+              "filter": "indexof([\"Very remote\", \"Indigenous\", \"Year 11 or below\", \"Not in paid work\"], datum.group) >= 0"
+            },
+            {
+              "calculate": "{\"Very remote\": \"Very remote areas\", \"Indigenous\": \"Indigenous students\", \"Year 11 or below\": \"Parents: Year 11 or below\", \"Not in paid work\": \"Parents: not in paid work\"}[datum.group]",
+              "as": "g"
+            }
+          ],
+          "mark": {
+            "type": "bar",
+            "color": "#f0745a",
+            "cornerRadiusEnd": 3,
+            "height": {
+              "band": 0.62
+            },
+            "tooltip": true
+          },
+          "encoding": {
+            "x": {
+              "field": "rate",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  0,
+                  100
+                ],
+                "nice": false
+              },
+              "axis": {
+                "title": "Students needing additional support (%)",
+                "grid": true,
+                "values": [
+                  0,
+                  25,
+                  50,
+                  75,
+                  100
+                ],
+                "labelExpr": "datum.value + '%'"
+              }
+            },
+            "y": {
+              "field": "g",
+              "type": "nominal",
+              "sort": [
+                "Very remote areas",
+                "Indigenous students",
+                "Parents: Year 11 or below",
+                "Parents: not in paid work"
+              ],
+              "title": null,
+              "axis": {
+                "grid": false,
+                "labelFontSize": 12,
+                "labelFontWeight": 600,
+                "labelColor": "#14213d",
+                "labelPadding": 8,
+                "labelLimit": 170,
+                "labelLineHeight": 14
+              }
+            },
+            "tooltip": [
+              {
+                "field": "g",
+                "title": "Group"
+              },
+              {
+                "field": "rate",
+                "title": "% of the group needing support",
+                "format": ".1f"
+              },
+              {
+                "field": "share_support",
+                "title": "% of all students needing support",
+                "format": ".1f"
+              },
+              {
+                "field": "share",
+                "title": "% of all students",
+                "format": ".1f"
+              }
+            ]
+          }
+        },
+        {
+          "data": {
+            "url": "chapter-3/data/support_groups.csv",
+            "format": {
+              "type": "csv",
+              "parse": {
+                "order": "number",
+                "share": "number",
+                "rate": "number",
+                "students": "number",
+                "support": "number",
+                "share_support": "number"
+              }
+            }
+          },
+          "transform": [
+            {
+              "filter": "indexof([\"Very remote\", \"Indigenous\", \"Year 11 or below\", \"Not in paid work\"], datum.group) >= 0"
+            },
+            {
+              "calculate": "{\"Very remote\": \"Very remote areas\", \"Indigenous\": \"Indigenous students\", \"Year 11 or below\": \"Parents: Year 11 or below\", \"Not in paid work\": \"Parents: not in paid work\"}[datum.group]",
+              "as": "g"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 5,
+            "fontSize": 12,
+            "fontWeight": 700,
+            "color": "#c2410c"
+          },
+          "encoding": {
+            "x": {
+              "field": "rate",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  0,
+                  100
+                ],
+                "nice": false
+              }
+            },
+            "y": {
+              "field": "g",
+              "type": "nominal",
+              "sort": [
+                "Very remote areas",
+                "Indigenous students",
+                "Parents: Year 11 or below",
+                "Parents: not in paid work"
+              ]
+            },
+            "text": {
+              "field": "rate",
+              "type": "quantitative",
+              "format": ".0f"
+            }
+          }
+        },
+        {
+          "data": {
+            "url": "chapter-3/data/support_groups.csv",
+            "format": {
+              "type": "csv",
+              "parse": {
+                "order": "number",
+                "share": "number",
+                "rate": "number",
+                "students": "number",
+                "support": "number",
+                "share_support": "number"
+              }
+            }
+          },
+          "transform": [
+            {
+              "filter": "datum.factor == 'all'"
+            }
+          ],
+          "mark": {
+            "type": "rule",
+            "strokeDash": [
+              4,
+              3
+            ],
+            "color": "#14213d",
+            "strokeWidth": 1.3
+          },
+          "encoding": {
+            "x": {
+              "field": "rate",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  0,
+                  100
+                ],
+                "nice": false
+              }
+            }
+          }
+        },
+        {
+          "data": {
+            "url": "chapter-3/data/support_groups.csv",
+            "format": {
+              "type": "csv",
+              "parse": {
+                "order": "number",
+                "share": "number",
+                "rate": "number",
+                "students": "number",
+                "support": "number",
+                "share_support": "number"
+              }
+            }
+          },
+          "transform": [
+            {
+              "filter": "datum.factor == 'all'"
+            },
+            {
+              "calculate": "'All students: ' + format(datum.rate, '.0f') + '%'",
+              "as": "t"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "bottom",
+            "dx": 5,
+            "dy": -2,
+            "fontSize": 10.5,
+            "fontWeight": 700,
+            "color": "#14213d"
+          },
+          "encoding": {
+            "x": {
+              "field": "rate",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  0,
+                  100
+                ],
+                "nice": false
+              }
+            },
+            "y": {
+              "value": 0
+            },
+            "text": {
+              "field": "t"
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "g": "Very remote areas",
+                "t": "Fewer students sit\nthe tests here, so\nthe need may be higher."
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "fontSize": 10.5,
+            "fontStyle": "italic",
+            "lineBreak": "\n",
+            "lineHeight": 12,
+            "color": "#4a5568"
+          },
+          "encoding": {
+            "x": {
+              "datum": 65,
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  0,
+                  100
+                ],
+                "nice": false
+              }
+            },
+            "y": {
+              "field": "g",
+              "type": "nominal",
+              "sort": [
+                "Very remote areas",
+                "Indigenous students",
+                "Parents: Year 11 or below",
+                "Parents: not in paid work"
+              ]
+            },
+            "text": {
+              "field": "t"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "text": "Share of all students needing support",
+        "anchor": "start",
+        "fontSize": 13,
+        "fontWeight": 700,
+        "color": "#14213d",
+        "offset": 12,
+        "font": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif"
+      },
+      "width": 330,
+      "height": {
+        "step": 52
+      },
+      "layer": [
+        {
+          "data": {
+            "url": "chapter-3/data/support_groups.csv",
+            "format": {
+              "type": "csv",
+              "parse": {
+                "order": "number",
+                "share": "number",
+                "rate": "number",
+                "students": "number",
+                "support": "number",
+                "share_support": "number"
+              }
+            }
+          },
+          "transform": [
+            {
+              "filter": "indexof([\"Very remote\", \"Indigenous\", \"Year 11 or below\", \"Not in paid work\"], datum.group) >= 0"
+            },
+            {
+              "calculate": "{\"Very remote\": \"Very remote areas\", \"Indigenous\": \"Indigenous students\", \"Year 11 or below\": \"Parents: Year 11 or below\", \"Not in paid work\": \"Parents: not in paid work\"}[datum.group]",
+              "as": "g"
+            }
+          ],
+          "mark": {
+            "type": "bar",
+            "color": "#7f8fb0",
+            "cornerRadiusEnd": 3,
+            "height": {
+              "band": 0.62
+            },
+            "tooltip": true
+          },
+          "encoding": {
+            "x": {
+              "field": "share_support",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  0,
+                  100
+                ],
+                "nice": false
+              },
+              "axis": {
+                "title": "Students needing additional support who are in the group (%)",
+                "grid": true,
+                "values": [
+                  0,
+                  25,
+                  50,
+                  75,
+                  100
+                ],
+                "labelExpr": "datum.value + '%'"
+              }
+            },
+            "y": {
+              "field": "g",
+              "type": "nominal",
+              "sort": [
+                "Very remote areas",
+                "Indigenous students",
+                "Parents: Year 11 or below",
+                "Parents: not in paid work"
+              ],
+              "title": null,
+              "axis": {
+                "labels": false,
+                "grid": false
+              }
+            },
+            "tooltip": [
+              {
+                "field": "g",
+                "title": "Group"
+              },
+              {
+                "field": "rate",
+                "title": "% of the group needing support",
+                "format": ".1f"
+              },
+              {
+                "field": "share_support",
+                "title": "% of all students needing support",
+                "format": ".1f"
+              },
+              {
+                "field": "share",
+                "title": "% of all students",
+                "format": ".1f"
+              }
+            ]
+          }
+        },
+        {
+          "data": {
+            "url": "chapter-3/data/support_groups.csv",
+            "format": {
+              "type": "csv",
+              "parse": {
+                "order": "number",
+                "share": "number",
+                "rate": "number",
+                "students": "number",
+                "support": "number",
+                "share_support": "number"
+              }
+            }
+          },
+          "transform": [
+            {
+              "filter": "indexof([\"Very remote\", \"Indigenous\", \"Year 11 or below\", \"Not in paid work\"], datum.group) >= 0"
+            },
+            {
+              "calculate": "{\"Very remote\": \"Very remote areas\", \"Indigenous\": \"Indigenous students\", \"Year 11 or below\": \"Parents: Year 11 or below\", \"Not in paid work\": \"Parents: not in paid work\"}[datum.group]",
+              "as": "g"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 5,
+            "fontSize": 12,
+            "fontWeight": 700,
+            "color": "#14213d"
+          },
+          "encoding": {
+            "x": {
+              "field": "share_support",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  0,
+                  100
+                ],
+                "nice": false
+              }
+            },
+            "y": {
+              "field": "g",
+              "type": "nominal",
+              "sort": [
+                "Very remote areas",
+                "Indigenous students",
+                "Parents: Year 11 or below",
+                "Parents: not in paid work"
+              ]
+            },
+            "text": {
+              "field": "share_support",
+              "type": "quantitative",
+              "format": ".0f"
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "g": "Parents: Year 11 or below",
+                "t": "Most students needing\nsupport are in big groups:\n59% live in major cities,\n77% are non-Indigenous."
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "fontSize": 11,
+            "fontStyle": "italic",
+            "lineBreak": "\n",
+            "lineHeight": 12,
+            "color": "#4a5568"
+          },
+          "encoding": {
+            "x": {
+              "datum": 30,
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  0,
+                  100
+                ],
+                "nice": false
+              }
+            },
+            "y": {
+              "field": "g",
+              "type": "nominal",
+              "sort": [
+                "Very remote areas",
+                "Indigenous students",
+                "Parents: Year 11 or below",
+                "Parents: not in paid work"
+              ]
+            },
+            "text": {
+              "field": "t"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

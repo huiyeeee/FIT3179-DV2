@@ -1,0 +1,587 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Dot plot. For each subject, how many percentage points more (right) or fewer (left) students in the named group meet expectations than in the comparison group, 2026, averaged over Years 3, 5, 7 and 9.",
+  "width": "container",
+  "height": 280,
+  "padding": {
+    "left": 4,
+    "right": 8,
+    "top": 26,
+    "bottom": 4
+  },
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+    "axis": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontWeight": 500,
+      "titleFontSize": 11,
+      "domain": false,
+      "ticks": false,
+      "gridColor": "#eee8dc"
+    }
+  },
+  "params": [
+    {
+      "name": "factor",
+      "value": "sex"
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {
+            "a": -10,
+            "b": 0,
+            "z": "l"
+          },
+          {
+            "a": 0,
+            "b": 20,
+            "z": "r"
+          }
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "opacity": 0.07
+      },
+      "encoding": {
+        "x": {
+          "field": "a",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -10,
+              20
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": "Lead in the share meeting expectations (percentage points)",
+            "grid": true,
+            "values": [
+              -10,
+              0,
+              10,
+              20
+            ],
+            "labelExpr": "(datum.value > 0 ? '+' : datum.value < 0 ? '−' : '') + abs(datum.value)"
+          }
+        },
+        "x2": {
+          "field": "b"
+        },
+        "fill": {
+          "field": "z",
+          "type": "nominal",
+          "legend": null,
+          "scale": {
+            "domain": [
+              "l",
+              "r"
+            ],
+            "range": [
+              "#f0745a",
+              "#1f6f8b"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 0
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#14213d",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -10,
+              20
+            ],
+            "nice": false
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-3/data/subject_gaps.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "so_low": "number",
+            "so_high": "number",
+            "gap": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.factor == factor"
+        },
+        {
+          "calculate": "indexof([\"Reading\", \"Writing\", \"Spelling\", \"Grammar and Punctuation\", \"Numeracy\"], datum.domain)",
+          "as": "row"
+        },
+        {
+          "calculate": "0",
+          "as": "z"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 3,
+        "strokeCap": "round",
+        "color": "#d5dbe5"
+      },
+      "encoding": {
+        "x": {
+          "field": "z",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -10,
+              20
+            ],
+            "nice": false
+          }
+        },
+        "x2": {
+          "field": "gap"
+        },
+        "y": {
+          "field": "row",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -0.5,
+              4.5
+            ],
+            "reverse": true,
+            "nice": false
+          },
+          "axis": {
+            "title": null,
+            "values": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "grid": false,
+            "labelFontSize": 12,
+            "labelFontWeight": 600,
+            "labelColor": "#14213d",
+            "labelPadding": 8,
+            "labelExpr": "width < 600 ? ['Reading','Writing','Spelling','Grammar','Numeracy'][datum.value] : ['Reading','Writing','Spelling','Grammar and punctuation','Numeracy'][datum.value]"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-3/data/subject_gaps.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "so_low": "number",
+            "so_high": "number",
+            "gap": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.factor == factor"
+        },
+        {
+          "calculate": "indexof([\"Reading\", \"Writing\", \"Spelling\", \"Grammar and Punctuation\", \"Numeracy\"], datum.domain)",
+          "as": "row"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 220,
+        "stroke": "#fff",
+        "strokeWidth": 1.5,
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {
+          "field": "gap",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -10,
+              20
+            ],
+            "nice": false
+          }
+        },
+        "y": {
+          "field": "row",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -0.5,
+              4.5
+            ],
+            "reverse": true,
+            "nice": false
+          }
+        },
+        "color": {
+          "field": "gap",
+          "type": "quantitative",
+          "legend": null,
+          "scale": {
+            "type": "threshold",
+            "domain": [
+              0
+            ],
+            "range": [
+              "#f0745a",
+              "#1f6f8b"
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "domain",
+            "title": "Subject"
+          },
+          {
+            "field": "gap",
+            "title": "Lead (points)",
+            "format": "+.1f"
+          },
+          {
+            "field": "so_low",
+            "title": "Left group: % meeting expectations",
+            "format": ".0f"
+          },
+          {
+            "field": "so_high",
+            "title": "Right group: % meeting expectations",
+            "format": ".0f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-3/data/subject_gaps.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "so_low": "number",
+            "so_high": "number",
+            "gap": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.factor == factor"
+        },
+        {
+          "calculate": "indexof([\"Reading\", \"Writing\", \"Spelling\", \"Grammar and Punctuation\", \"Numeracy\"], datum.domain)",
+          "as": "row"
+        },
+        {
+          "calculate": "(datum.gap > 0 ? '+' : datum.gap < 0 ? '−' : '') + format(abs(datum.gap), '.0f')",
+          "as": "t"
+        },
+        {
+          "filter": "datum.gap >= 0"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 13,
+        "fontSize": 12.5,
+        "fontWeight": 700,
+        "color": "#14213d"
+      },
+      "encoding": {
+        "x": {
+          "field": "gap",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -10,
+              20
+            ],
+            "nice": false
+          }
+        },
+        "y": {
+          "field": "row",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -0.5,
+              4.5
+            ],
+            "reverse": true,
+            "nice": false
+          }
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-3/data/subject_gaps.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "so_low": "number",
+            "so_high": "number",
+            "gap": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.factor == factor"
+        },
+        {
+          "calculate": "indexof([\"Reading\", \"Writing\", \"Spelling\", \"Grammar and Punctuation\", \"Numeracy\"], datum.domain)",
+          "as": "row"
+        },
+        {
+          "calculate": "(datum.gap > 0 ? '+' : datum.gap < 0 ? '−' : '') + format(abs(datum.gap), '.0f')",
+          "as": "t"
+        },
+        {
+          "filter": "datum.gap < 0"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -13,
+        "fontSize": 12.5,
+        "fontWeight": 700,
+        "color": "#14213d"
+      },
+      "encoding": {
+        "x": {
+          "field": "gap",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -10,
+              20
+            ],
+            "nice": false
+          }
+        },
+        "y": {
+          "field": "row",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -0.5,
+              4.5
+            ],
+            "reverse": true,
+            "nice": false
+          }
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-3/data/subject_gaps.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "so_low": "number",
+            "so_high": "number",
+            "gap": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.factor == factor"
+        },
+        {
+          "calculate": "indexof([\"Reading\", \"Writing\", \"Spelling\", \"Grammar and Punctuation\", \"Numeracy\"], datum.domain)",
+          "as": "row"
+        },
+        {
+          "filter": "(datum.factor == 'sex' && datum.domain == 'Writing') || (datum.factor == 'lang' && datum.domain == 'Spelling')"
+        },
+        {
+          "calculate": "(datum.factor == 'sex' ? 'Writing' : 'Spelling') + ': ' + format(datum.so_low, '.0f') + '% of ' + (datum.factor == 'sex' ? 'boys' : 'English-only students') + ' and ' + format(datum.so_high, '.0f') + '% of ' + (datum.factor == 'sex' ? 'girls' : 'other-language students') + '\\nmeet expectations, so most ' + (datum.factor == 'sex' ? 'boys' : 'English-only students') + ' still do.\\nA group lead does not describe every student.'",
+          "as": "t"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 6,
+        "fontSize": 11,
+        "fontStyle": "italic",
+        "lineBreak": "\n",
+        "lineHeight": 13,
+        "color": "#4a5568"
+      },
+      "encoding": {
+        "x": {
+          "datum": -10,
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -10,
+              20
+            ],
+            "nice": false
+          }
+        },
+        "y": {
+          "field": "row",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -0.5,
+              4.5
+            ],
+            "reverse": true,
+            "nice": false
+          }
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "factor": "sex",
+            "t": "Boys ahead"
+          },
+          {
+            "factor": "lang",
+            "t": "English only ahead"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "filter": "datum.factor == factor"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "bottom",
+        "dx": 4,
+        "dy": -6,
+        "fontSize": 10.5,
+        "fontWeight": 700,
+        "color": "#c2410c"
+      },
+      "encoding": {
+        "x": {
+          "datum": -10,
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -10,
+              20
+            ],
+            "nice": false
+          }
+        },
+        "y": {
+          "value": 0
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "factor": "sex",
+            "t": "Girls ahead"
+          },
+          {
+            "factor": "lang",
+            "t": "Other language ahead"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "filter": "datum.factor == factor"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "bottom",
+        "dx": -4,
+        "dy": -6,
+        "fontSize": 10.5,
+        "fontWeight": 700,
+        "color": "#1f6f8b"
+      },
+      "encoding": {
+        "x": {
+          "datum": 20,
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -10,
+              20
+            ],
+            "nice": false
+          }
+        },
+        "y": {
+          "value": 0
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    }
+  ]
+}
