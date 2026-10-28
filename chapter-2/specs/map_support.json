@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Choropleth map of Australian states and territories. Colour = how many percentage points the share of students meeting expectations is above or below Australia's. An inset marker shows the ACT; annotations are supplied by the page.",
+  "description": "Choropleth map of Australian states and territories. Colour = how many percentage points the share of students needing additional support is above or below Australia's. An inset marker shows the ACT; annotations are supplied by the page.",
   "width": "container",
   "height": "container",
   "padding": {
@@ -95,7 +95,8 @@
                   "anchor_lon": "number",
                   "anchor_lat": "number",
                   "leader": "number",
-                  "land_pct": "number"
+                  "land_pct": "number",
+                  "nat_nas": "number"
                 }
               }
             },
@@ -103,11 +104,11 @@
             "fields": [
               "state",
               "code",
-              "so",
-              "gap_so",
-              "band_so",
+              "nas",
+              "gap_nas",
+              "band_nas",
               "n",
-              "nat_so",
+              "nat_nas",
               "reported",
               "lon",
               "lat",
@@ -116,19 +117,19 @@
           }
         },
         {
-          "calculate": "datum.reported == 1 ? datum.band_so : 'Not published'",
+          "calculate": "datum.reported == 1 ? datum.band_nas : 'Not published'",
           "as": "band"
         },
         {
-          "calculate": "(datum.gap_so > 0 ? '+' : '−') + format(abs(datum.gap_so), '.1f') + ' points'",
+          "calculate": "(datum.gap_nas > 0 ? '+' : '−') + format(abs(datum.gap_nas), '.1f') + ' points'",
           "as": "gap_label"
         },
         {
-          "calculate": "datum.reported == 1 ? format(datum.so, '.1f') + '%' : 'not published'",
+          "calculate": "datum.reported == 1 ? format(datum.nas, '.1f') + '%' : 'not published'",
           "as": "value_label"
         },
         {
-          "calculate": "format(datum.nat_so, '.1f') + '%'",
+          "calculate": "format(datum.nat_nas, '.1f') + '%'",
           "as": "nat_label"
         },
         {
@@ -184,7 +185,7 @@
           },
           {
             "field": "value_label",
-            "title": "Meeting expectations"
+            "title": "Needing support"
           },
           {
             "field": "nat_label",
@@ -235,7 +236,8 @@
                   "anchor_lon": "number",
                   "anchor_lat": "number",
                   "leader": "number",
-                  "land_pct": "number"
+                  "land_pct": "number",
+                  "nat_nas": "number"
                 }
               }
             },
@@ -243,11 +245,11 @@
             "fields": [
               "state",
               "code",
-              "so",
-              "gap_so",
-              "band_so",
+              "nas",
+              "gap_nas",
+              "band_nas",
               "n",
-              "nat_so",
+              "nat_nas",
               "reported",
               "lon",
               "lat",
@@ -256,19 +258,19 @@
           }
         },
         {
-          "calculate": "datum.reported == 1 ? datum.band_so : 'Not published'",
+          "calculate": "datum.reported == 1 ? datum.band_nas : 'Not published'",
           "as": "band"
         },
         {
-          "calculate": "(datum.gap_so > 0 ? '+' : '−') + format(abs(datum.gap_so), '.1f') + ' points'",
+          "calculate": "(datum.gap_nas > 0 ? '+' : '−') + format(abs(datum.gap_nas), '.1f') + ' points'",
           "as": "gap_label"
         },
         {
-          "calculate": "datum.reported == 1 ? format(datum.so, '.1f') + '%' : 'not published'",
+          "calculate": "datum.reported == 1 ? format(datum.nas, '.1f') + '%' : 'not published'",
           "as": "value_label"
         },
         {
-          "calculate": "format(datum.nat_so, '.1f') + '%'",
+          "calculate": "format(datum.nat_nas, '.1f') + '%'",
           "as": "nat_label"
         },
         {
@@ -347,7 +349,8 @@
             "anchor_lon": "number",
             "anchor_lat": "number",
             "leader": "number",
-            "land_pct": "number"
+            "land_pct": "number",
+            "nat_nas": "number"
           }
         }
       },
@@ -356,7 +359,7 @@
           "filter": "datum.leader == 1"
         },
         {
-          "calculate": "datum.band_so",
+          "calculate": "datum.band_nas",
           "as": "band"
         }
       ],
@@ -408,12 +411,12 @@
             "title": "State / territory"
           },
           {
-            "field": "so",
-            "title": "Meeting expectations (%)",
+            "field": "nas",
+            "title": "Needing support (%)",
             "format": ".1f"
           },
           {
-            "field": "gap_so",
+            "field": "gap_nas",
             "title": "Difference (points)",
             "format": "+.1f"
           }
@@ -439,7 +442,8 @@
             "anchor_lon": "number",
             "anchor_lat": "number",
             "leader": "number",
-            "land_pct": "number"
+            "land_pct": "number",
+            "nat_nas": "number"
           }
         }
       },
@@ -448,7 +452,7 @@
           "filter": "datum.leader == 0"
         },
         {
-          "calculate": "datum.reported == 1 ? datum.band_so : 'Not published'",
+          "calculate": "datum.reported == 1 ? datum.band_nas : 'Not published'",
           "as": "band"
         },
         {
@@ -456,7 +460,7 @@
           "as": "ink"
         },
         {
-          "calculate": "datum.reported == 1 ? format(datum.so, '.1f') + '%' : 'not published'",
+          "calculate": "datum.reported == 1 ? format(datum.nas, '.1f') + '%' : 'not published'",
           "as": "value_label"
         }
       ],
@@ -505,7 +509,8 @@
             "anchor_lon": "number",
             "anchor_lat": "number",
             "leader": "number",
-            "land_pct": "number"
+            "land_pct": "number",
+            "nat_nas": "number"
           }
         }
       },
@@ -514,7 +519,7 @@
           "filter": "datum.leader == 0"
         },
         {
-          "calculate": "datum.reported == 1 ? datum.band_so : 'Not published'",
+          "calculate": "datum.reported == 1 ? datum.band_nas : 'Not published'",
           "as": "band"
         },
         {
@@ -522,7 +527,7 @@
           "as": "ink"
         },
         {
-          "calculate": "datum.reported == 1 ? format(datum.so, '.1f') + '%' : 'not published'",
+          "calculate": "datum.reported == 1 ? format(datum.nas, '.1f') + '%' : 'not published'",
           "as": "value_label"
         }
       ],
@@ -571,7 +576,8 @@
             "anchor_lon": "number",
             "anchor_lat": "number",
             "leader": "number",
-            "land_pct": "number"
+            "land_pct": "number",
+            "nat_nas": "number"
           }
         }
       },
@@ -580,7 +586,7 @@
           "filter": "datum.leader == 1"
         },
         {
-          "calculate": "width < 420 ? datum.code : datum.code + ' ' + format(datum.so, '.1f') + '%'",
+          "calculate": "width < 420 ? datum.code : datum.code + ' ' + format(datum.nas, '.1f') + '%'",
           "as": "t"
         }
       ],

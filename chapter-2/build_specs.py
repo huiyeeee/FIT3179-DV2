@@ -356,4 +356,104 @@ dump("gap_breakdown", {
     ],
 })
 
+
+# =====================================================================================================
+# 1b. Proportional symbol map (meeting expectations): where do the students live, and how far from Australia is each state?
+#     One circle per state: area = number of students meeting expectations (a count), colour = above / below the Australian share. Colour = above / below the Australian share.
+#     The choropleth (map_support.json) is derived from the one above: same map, but showing students needing additional support.
+# =====================================================================================================
+SYM_COLORS = ["#c2410c", "#f0745a", "#f4a994", "#b8b2a4", "#7fb3c7", "#0e5a78"]
+SYMNUM = ("n", "so", "nat_so", "gap_so", "lon", "lat", "anchor_lon", "anchor_lat", "reported", "leader")
+SYM_AREA = "datum.meet / 2000000 * 8500"      # pixel area of the outer circle; the inner one uses the same scale, so areas are comparable
+SYM_POS = {"longitude": {"field": "sx", "type": "quantitative"}, "latitude": {"field": "sy", "type": "quantitative"}}
+SYM_CALC = [
+    {"filter": "datum.reported == 1"},
+    {"calculate": "{'NSW': 148.6, 'VIC': 143.6, 'QLD': 144.5, 'ACT': 155.0}[datum.code] || datum.lon", "as": "sx"},
+    {"calculate": "{'NSW': -32.2, 'VIC': -37.6, 'ACT': -36.6}[datum.code] || datum.lat", "as": "sy"},
+    {"calculate": "datum.band_so", "as": "band"},
+    {"calculate": "datum.n * datum.so / 100", "as": "meet"},
+    {"calculate": "'about ' + format(round(datum.n / 1000), ',') + ',000 students'", "as": "n_label"},
+    {"calculate": "'about ' + format(round(datum.meet / 1000), ',') + ',000 (' + format(datum.so, '.1f') + '%)'", "as": "meet_label"},
+    {"calculate": "format(datum.nat_so, '.1f') + '%'", "as": "nat_label"},
+    {"calculate": "(datum.gap_so > 0 ? '+' : '−') + format(abs(datum.gap_so), '.1f') + ' points'", "as": "gap_label"},
+    {"calculate": "width < 420 ? datum.code : datum.code + ' ' + format(datum.so, '.0f') + '%'", "as": "label"},
+    {"calculate": "datum.sy + (sqrt(" + SYM_AREA.replace("8500", "(width < 600 ? 2200 : 8500)") + " / PI) + 5) * 180 / (PI * (width < 600 ? min(width * 1.05, height * 1.05) : min(width * 1.3, height * 1.3)))", "as": "ly"},
+]
+SYM_COLOR = {"field": "band", "type": "nominal", "scale": {"domain": BANDS, "range": SYM_COLORS}, "legend": None}
+SYM_DATA = csvn("map_latest", SYMNUM + ("anchor_lon", "anchor_lat"))
+dump("map_symbols", {
+    "description": "Proportional symbol map of Australian states. Circle area = number of students meeting expectations; "
+                   "colour = above or below the Australian share meeting expectations. Tasmania is not published. Annotations are supplied by the page.",
+    "width": "container", "height": "container",
+    "padding": {"left": 0, "right": 0, "top": 0, "bottom": 0},
+    "background": None, "config": CONFIG,
+    "params": [{"name": "sel", "value": "Northern Territory"}],
+    "projection": {"type": "conicEqualArea", "rotate": [-134, 0, 0], "parallels": [-18, -36], "center": [0, -27],
+                   "scale": {"expr": "width < 600 ? min(width * 1.05, height * 1.05) : min(width * 1.3, height * 1.3)"}, "translate": {"expr": "[width / 2, height / 2]"}},
+    "layer": [
+        {"data": GEO, "mark": {"type": "geoshape", "fill": "#f1efe9", "stroke": "#ffffff", "strokeWidth": 1.4}},
+        {"data": SYM_DATA, "transform": [{"filter": "datum.leader == 1"}],
+         "mark": {"type": "rule", "stroke": "#9aa3b2", "strokeWidth": 1},
+         "encoding": {"longitude": {"field": "lon", "type": "quantitative"}, "latitude": {"field": "lat", "type": "quantitative"},
+                      "longitude2": {"field": "anchor_lon"}, "latitude2": {"field": "anchor_lat"}}},
+        {   # one circle per state: area = number of students meeting expectations; colour = above / below Australia
+            "data": SYM_DATA, "transform": SYM_CALC,
+            "mark": {"type": "circle", "fillOpacity": 0.9, "cursor": "pointer", "tooltip": True},
+            "encoding": {**SYM_POS, "color": SYM_COLOR,
+                         "size": {"field": "meet", "type": "quantitative", "scale": {"type": "linear", "domain": [0, 2000000], "range": [0, 8500]}, "legend": None},
+                         "stroke": {"condition": {"test": "datum.state == sel", "value": INK}, "value": "#ffffff"},
+                         "strokeWidth": {"condition": {"test": "datum.state == sel", "value": 2.8}, "value": 1.5},
+                         "tooltip": [{"field": "state", "title": "State / territory"}, {"field": "meet_label", "title": "Meeting expectations"},
+                                     {"field": "n_label", "title": "Students tested"}, {"field": "nat_label", "title": "Australia"},
+                                     {"field": "gap_label", "title": "Difference"}]}},
+        {"data": SYM_DATA, "transform": SYM_CALC,
+         "mark": {"type": "text", "baseline": "bottom", "fontSize": 11, "fontWeight": 700, "color": INK},
+         "encoding": {"longitude": {"field": "sx", "type": "quantitative"}, "latitude": {"field": "ly", "type": "quantitative"},
+                      "text": {"field": "label"}}},
+        {"data": SYM_DATA, "transform": [{"filter": "datum.reported == 0"}],
+         "mark": {"type": "text", "fontSize": 10.5, "color": "#6b7280", "fontStyle": "italic"},
+         "encoding": {"longitude": {"field": "lon", "type": "quantitative"}, "latitude": {"field": "lat", "type": "quantitative"},
+                      "text": {"value": "TAS: not published"}}},
+        {   # annotations supplied by the page: a leader line and a note for each row (see js/main.js)
+            "data": {"name": "annot"}, "transform": [{"filter": "isValid(datum.lon2)"}],
+            "mark": {"type": "rule", "strokeWidth": 1.2, "strokeDash": [3, 2]},
+            "encoding": {"longitude": {"field": "lon2", "type": "quantitative"}, "latitude": {"field": "lat2", "type": "quantitative"},
+                         "longitude2": {"field": "lon3"}, "latitude2": {"field": "lat3"}, "color": {"field": "color", "type": "nominal", "scale": None, "legend": None}}},
+        {"data": {"name": "annot"},
+         "mark": {"type": "text", "align": "left", "baseline": "top", "fontSize": 11.5, "fontWeight": 600, "lineBreak": "\n", "lineHeight": 14},
+         "encoding": {"longitude": {"field": "lon", "type": "quantitative"}, "latitude": {"field": "lat", "type": "quantitative"},
+                      "text": {"field": "text"}, "color": {"field": "color", "type": "nominal", "scale": None, "legend": None}}},
+    ],
+})
+
+# ---- choropleth of students needing additional support: the original choropleth with the measure swapped (so -> nas) ----
+import re as _re
+
+
+def _swap(o):
+    if isinstance(o, dict):
+        return {k: _swap(v) for k, v in o.items()}
+    if isinstance(o, list):
+        return [_swap(v) for v in o]
+    if isinstance(o, str):
+        o = _re.sub(r"\b(gap_|band_|nat_)so\b", r"\1nas", o)
+        o = _re.sub(r"\bso\b", "nas", o)
+        return o.replace("Meeting expectations", "Needing support")
+    return o
+
+
+_sup = _swap(json.loads((OUT / "map_states.json").read_text(encoding="utf-8")))
+_sup["description"] = ("Choropleth map of Australian states and territories. Colour = how many percentage points the share of students needing "
+                       "additional support is above or below Australia's. An inset marker shows the ACT; annotations are supplied by the page.")
+for _l in _sup["layer"]:
+    _d = _l.get("data", {})
+    for _t in _l.get("transform", []):
+        if "lookup" in _t:
+            _t["from"]["fields"] = list(dict.fromkeys(_t["from"]["fields"] + ["nas", "gap_nas", "band_nas", "nat_nas"]))
+            _t["from"]["data"]["format"]["parse"]["nat_nas"] = "number"
+    if "format" in _d and "parse" in _d["format"]:
+        _d["format"]["parse"]["nat_nas"] = "number"
+(OUT / "map_support.json").write_text(json.dumps({"$schema": VL, **{k: v for k, v in _sup.items() if k != "$schema"}}, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+(OUT / "map_states.json").unlink()      # the "meeting expectations" choropleth is replaced by the symbol map above
+
 print("wrote:", ", ".join(sorted(p.name for p in OUT.glob("*.json"))))

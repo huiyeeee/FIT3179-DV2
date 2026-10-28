@@ -28,7 +28,7 @@
 
   /* ---------- embed the JSON specs ---------- */
   const views = {};
-  const mount = { map_states: "c2-map", strip_consistency: "c2-strip", remoteness_ladder: "c2-ladder", gap_breakdown: "c2-breakdown" };
+  const mount = { map_symbols: "c2-sym", map_support: "c2-sup", strip_consistency: "c2-strip", remoteness_ladder: "c2-ladder", gap_breakdown: "c2-breakdown" };
   await Promise.all(Object.entries(mount).map(async ([name, el]) => {
     let spec = await (await fetch(`chapter-2/specs/${name}.json`)).json();
     if (name === "strip_consistency" && narrow) {   // phones: no room for the side columns and notes
@@ -37,6 +37,11 @@
       spec.padding.right = 8;
       spec.layer = spec.layer.filter((l) => !((l.data && l.data.name === "annot") || (l.encoding && l.encoding.text && l.encoding.text.field === "summary") ||
         (l.data && l.data.url && /state_context/.test(l.data.url)) || (l.data && l.data.values && l.data.values[0] && l.data.values[0].t)));
+    }
+    if (name === "map_symbols" && narrow) {   // phones: smaller circles (area 2200 px² for 2 million students)
+      spec.layer.forEach((l) => {
+        if (l.encoding && l.encoding.size) l.encoding.size.scale.range = [0, 2200];
+      });
     }
     views[name] = (await vegaEmbed("#" + el, spec, { actions: false, renderer: "svg" })).view;
   }));
@@ -51,7 +56,7 @@
     const tas = results.find((d) => d.state === "Tasmania" && d.year === YEAR - 1 && d.reported);
     // Notes are placed in screen pixels and converted back to longitude/latitude with the same projection the map spec uses,
     // so each leader line starts at its note and ends on the state it explains.
-    const box = $("c2-map").getBoundingClientRect(), w = box.width, h = box.height;
+    const box = $("c2-sym").getBoundingClientRect(), w = box.width, h = box.height;
     const sc = w < 600 ? Math.min(w * 1.05, h * 1.05) : Math.min(w * 1.3, h * 1.3);
     const proj = vega.projection("conicEqualArea")().rotate([-134, 0, 0]).parallels([-18, -36]).center([0, -27]).scale(sc).translate([w / 2, h / 2]);
     const px = (x, y) => proj.invert([x, y]), at = (lon, lat) => proj([lon, lat]);
@@ -77,7 +82,12 @@
       const t = at(155.5, -41);
       rows.push(note(t[0] + 8, t[1] - 14, `Tasmania: no ${YEAR} result. A union\nboycott of public-school testing\ncut participation to ${f0(tc.participation_pct)}%, below\nthe reporting threshold.`, "#4a5568", [148.8, -42.2], "left"));
     }
-    views.map_states.change("annot", vega.changeset().remove(vega.truthy).insert(rows)).run();
+    views.map_symbols.change("annot", vega.changeset().remove(vega.truthy).insert(rows)).run();
+    // the support map gets the Territory note only (its Tasmania label is drawn by the map itself)
+    const nsup = published("Northern Territory"), sRows = [];
+    if (narrow) sRows.push(note(w * 0.03, h * 0.03, `NT: ${f0(nsup.nas)}% need support\n(Australia: ${f0(nat.nas)}%)`, "#c2410c", [132.2, -16.5]));
+    else sRows.push(note(w * 0.02, h * 0.1, `Northern Territory: ${f0(nsup.nas)}% need support,\nagainst ${f0(nat.nas)}% across Australia.\n${f0(remShare("Northern Territory"))}% of its students live in remote\nor very remote areas (Australia: ${f1(remShare(AUS))}%).`, "#c2410c", [129.4, -16.5]));
+    views.map_support.change("annot", vega.changeset().remove(vega.truthy).insert(sRows)).run();
 
     if (!narrow) {
       const rows = [{ x: -19, yi: 7, text: `${f0(remShare("Northern Territory"))}% of its students live in remote or very\nremote areas (Australia: ${f1(remShare(AUS))}%)` }];
@@ -93,6 +103,13 @@
     const others = ok.filter((d) => d !== worst).map((d) => Math.abs(d.gap_so));
     $("c2-map-insight").innerHTML = `${cap(THE(worst.state))} is <strong>${f0(Math.abs(worst.gap_so))} points below</strong> Australia (${f0(worst.so)}% against ${f0(nat.so)}%). ` +
       `Among the states with published results, none other is more than ${f0(Math.max(...others))} points away.`;
+  }
+
+  function symText() {
+    const ok = results.filter((d) => d.year === YEAR && d.state !== AUS && d.reported);
+    const worst = [...ok].sort((a, b) => b.nas - a.nas)[0], rest = ok.filter((d) => d !== worst);
+    $("c2-sup-insight").innerHTML = `<strong>${f0(worst.nas)}%</strong> of Territory students need additional support, against ${f0(nat.nas)}% across Australia. ` +
+      `No other state is more than ${f0(Math.max(...rest.map((d) => Math.abs(d.nas - nat.nas))))} points away.`;
   }
 
   /* ---------- scene 2: dot strip ---------- */
@@ -176,7 +193,7 @@
     $("c2-ladder-hint").textContent = cmp.length === 1 ? "" :
       `${f0(farShare(mine, total))}% of ${st === "Northern Territory" ? "its" : name + "’s"} students live in outer regional, remote or very remote areas, against ${f0(farShare(natR, natTotal))}% of Australia’s.`;
 
-    views.map_states.signal("sel", st).run();
+    views.map_symbols.signal("sel", st).run(); views.map_support.signal("sel", st).run();
     ["strip_consistency", "remoteness_ladder", "gap_breakdown"].forEach((k) => views[k].signal("sel", st).run());
     [...$("c2-state-chips").children].forEach((b) => { const on = b.dataset.state === st; b.classList.toggle("active", on); b.setAttribute("aria-pressed", on); });
   }
@@ -204,12 +221,20 @@
       `About <strong>${f0(Math.abs(nt.location / nt.gap) * 100)}%</strong> of that gap comes from where its students live. Queensland and South Australia trail by smaller, steady margins that location does not explain.`;
   }
 
+  /* ---------- map tabs: meeting expectations (symbols) / needing support (colours) ---------- */
+  const showTab = (tab) => {
+    [...$("c2-maptab").children].forEach((x) => { const on = x.dataset.tab === tab; x.classList.toggle("active", on); x.setAttribute("aria-pressed", on); });
+    ["meet", "need"].forEach((t) => { const p = $("c2-panel-" + t); p.classList.toggle("on", t === tab); p.setAttribute("aria-hidden", t !== tab); });
+  };
+  [...$("c2-maptab").children].forEach((b) => b.addEventListener("click", () => showTab(b.dataset.tab)));
+  document.querySelectorAll("#chapter-2 .c2-switch").forEach((b) => b.addEventListener("click", () => { showTab(b.dataset.tab); $("c2-maptab").scrollIntoView({ block: "start", behavior: "smooth" }); }));
+
   /* ---------- controls ---------- */
   const chips = $("c2-state-chips");
   STATES.forEach((s) => { const b = document.createElement("button"); b.type = "button"; b.className = "chip"; b.textContent = CODE[s]; b.title = s; b.dataset.state = s; b.addEventListener("click", () => update(s)); chips.appendChild(b); });
   [...$("c2-view").children].forEach((b) => b.addEventListener("click", () => { state.mode = b.dataset.mode; stripText(); }));
   const pick = (e, item) => { const d = item && item.datum; if (d && d.state && STATES.includes(d.state)) update(d.state); };
-  ["map_states", "strip_consistency", "gap_breakdown"].forEach((k) => views[k].addEventListener("click", pick));
+  ["map_symbols", "map_support", "strip_consistency", "gap_breakdown"].forEach((k) => views[k].addEventListener("click", pick));
   function update(s) { state.sel = s; whyText(); if (barsView) barsView.signal("sel", s).run(); }
   let barsView = null;
   const grid = $("c2-strip-grid"), tog = $("c2-parents-toggle");
@@ -225,5 +250,5 @@
   if (window.ResizeObserver) { let ro; new ResizeObserver(() => { clearTimeout(ro); ro = setTimeout(() => { views.strip_consistency.resize().run(); if (barsView) barsView.resize().run(); }, 80); }).observe($("c2-strip-grid") || document.querySelector(".c2-strip-grid")); }
   window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { annotate(); Object.values(views).forEach((v) => v.resize().run()); if (barsView) barsView.resize().run(); }, 200); });
 
-  annotate(); mapText(); stripText(); stripNote(); whyNote(); update("Northern Territory");
+  annotate(); mapText(); symText(); if (window.initTips) window.initTips($("chapter-2")); stripText(); stripNote(); whyNote(); update("Northern Territory");
 })();
