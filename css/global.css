@@ -66,3 +66,7 @@ body {
 /* Text marks inside charts (value labels etc.) must not swallow hover/click:
    the tooltip and click handlers belong to the shape underneath. */
 .vega-embed svg text { pointer-events: none; }
+
+.concl-close {
+  text-align: center;
+}
