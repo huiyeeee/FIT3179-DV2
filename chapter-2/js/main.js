@@ -247,8 +247,8 @@
       `<p>In the other states, ${f0(Math.min(...shares))}–${f0(Math.max(...shares))}% of students live in major cities (Australia: ${f0(major(natR))}%), so location explains ${f1(maxLoc)} points or less. Their gaps come from elsewhere. Chapter 3 looks at student background.</p></div></div>` +
       `<span class="ctx-source">Source: <a href="https://educationmattersmag.com.au/naplan-participation-bounces-back-amid-early-signs-of-potential-improvements/">Education Matters</a>, on the 2025 results; ACARA NAPLAN results, ${YEAR}.</span>`;
     const nt = gb.find((d) => d.year === YEAR && d.state === "Northern Territory");
-    $("c2-short").innerHTML = `Only the Northern Territory is far from the Australian result: <strong>${f0(Math.abs(nt.gap))} points below</strong>, in every subject and year level. ` +
-      `About <strong>${f0(Math.abs(nt.location / nt.gap) * 100)}%</strong> of that gap comes from where its students live. Queensland and South Australia trail by smaller, steady margins that location does not explain.`;
+    $("c2-short-a").innerHTML = `Only the Northern Territory is far from the Australian result: <strong>${f0(Math.abs(nt.gap))} points below</strong>, in every subject and year level.`;
+    $("c2-short-b").innerHTML = `About <strong>${f0(Math.abs(nt.location / nt.gap) * 100)}%</strong> of that gap comes from where its students live. Queensland and South Australia trail by smaller, steady margins that location does not explain.`;
   }
 
   /* ---------- map tabs: meeting expectations (symbols) / needing support (colours) ---------- */

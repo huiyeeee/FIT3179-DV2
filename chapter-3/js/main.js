@@ -140,8 +140,8 @@
     const big = fac.filter((d) => d.gap > 20), lo = Math.round(Math.min(...big.map((d) => d.gap))), hi = Math.round(Math.max(...big.map((d) => d.gap)));
     const ind = sg.filter((d) => d.factor === "ind"), imin = ind.reduce((a, b) => (a.gap < b.gap ? a : b)), imax = ind.reduce((a, b) => (a.gap > b.gap ? a : b));
     const vr = SG("Very remote"), cityS = SG("Major cities");
-    $("c3-short").innerHTML = `Where students live, their parents’ education and work, and Indigenous status separate students by <strong>${lo} to ${hi} points</strong>, and the gaps have not moved since 2023. ` +
-      `The Indigenous gap changes most from state to state, from ${f0(imin.gap)} points in ${AB[imin.state]} to ${f0(imax.gap)} in ${AB[imax.state]}. ` +
+    $("c3-short-a").innerHTML = `Where students live, their parents’ education and work, and Indigenous status separate students by <strong>${lo} to ${hi} points</strong>. The gaps have not moved since 2023.`;
+    $("c3-short-b").innerHTML = `The Indigenous gap changes most from state to state, from ${f0(imin.gap)} points in ${AB[imin.state]} to ${f0(imax.gap)} in ${AB[imax.state]}. ` +
       `The highest rates of need are in the smallest groups (${f0(vr.rate)}% of very remote students), yet ${f0(cityS.share_support)}% of students needing support live in major cities.`;
   }
 

@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NAPLAN Performance Trends · Australia</title>
+  <title>Behind the NAPLAN average · Australia</title>
+  <meta name="description" content="Who sits Australia's national tests, who does well, and who falls behind. A data story built from ACARA's NAPLAN results, 2008 to 2026." />
+  <meta name="author" content="Lee Hui Yee" />
 
   <!-- Global styles, then one stylesheet per chapter -->
   <link rel="stylesheet" href="css/fonts.css" />
@@ -13,13 +15,53 @@
   <link rel="stylesheet" href="chapter-1/css/chapter-1.css" />
   <link rel="stylesheet" href="chapter-2/css/chapter-2.css" />
   <link rel="stylesheet" href="chapter-3/css/chapter-3.css" />
-  <link rel="stylesheet" href="chapter-4/css/chapter4.css" />
+  <!-- <link rel="stylesheet" href="chapter-4/css/chapter4.css" /> -->
+  <link rel="stylesheet" href="css/frame.css" />
 </head>
 <body>
-  <section id="title" class="title">
-    <header class="title chapter-head">
-      <h1>NAPLAN Performance Trends</h1>
-    </header>
+
+  <!-- ============ TITLE BANNER ============ -->
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="pill">Australia · NAPLAN, 2008 to 2026</p>
+      <h1>Behind the NAPLAN average</h1>
+      <p class="subtitle">Who sits the tests, who does well, and who falls behind.</p>
+    </div>
+  </header>
+
+  <!-- ============ INTRODUCTION ============ -->
+  <section id="intro" class="chapter">
+    <div class="intro-why">
+      <div>
+        <p class="eyebrow-sm">What is NAPLAN?</p>
+        <p>NAPLAN is Australia’s yearly national test of reading, writing, spelling, grammar and numeracy.</p>
+        <p>Students in Years 3, 5, 7 and 9 sit it each March. Since 2023, each student lands in one of four levels, from “needs additional support” to “exceeding”.</p>
+      </div>
+      <div>
+        <p class="eyebrow-sm">Why look behind the average?</p>
+        <p>Results are often reported as one national number or a ranking of states.</p>
+        <p>A number cannot say who sat the test, or who is struggling. Those answers show where help is needed, so we look at them first.</p>
+      </div>
+    </div>
+
+    <p class="eyebrow-sm intro-label">A first look</p>
+    <div class="intro-stats" id="intro-stats">
+      <div class="stat"><p class="stat-num" id="st1-n"></p><p class="stat-txt" id="st1-t"></p></div>
+      <div class="stat"><p class="stat-num" id="st2-n"></p><p class="stat-txt" id="st2-t"></p></div>
+      <div class="stat"><p class="stat-num" id="st3-n"></p><p class="stat-txt" id="st3-t"></p></div>
+    </div>
+
+    <div class="intro-path">
+      <p class="eyebrow-sm">Four questions, four chapters</p>
+      <ol>
+        <li><strong>Who sits the tests?</strong> Whose results are counted, and who is missing.</li>
+        <li><strong>How many meet expectations?</strong> Overall, and by subject and year level.</li>
+        <li><strong>How do the states compare?</strong> One territory stands apart.</li>
+        <li><strong>Who is being left behind?</strong> Place, family and background.</li>
+      </ol>
+    </div>
+    <p class="intro-go">Scroll down to start with the first question ↓</p>
+    <p class="footnote intro-note">Results are for 2026, the latest year published. Tasmania’s 2026 results were not published.</p>
   </section>
 
   <!-- ============ CHAPTER 0 · BEFORE THE RESULTS ============ -->
@@ -37,17 +79,17 @@
 
       <!-- Scene A: the big picture + pick a state -->
       <div class="scene">
-        <p class="eyebrow-sm">The big picture</p>
-        <h3>How many students' results actually count?</h3>
         <div class="c0-grid">
           <div class="c0-left">
+            <p class="eyebrow-sm">The big picture</p>
+            <h3>How many students’ results actually count?</h3>
             <p class="c0-caption" id="c0-caption"></p>
             <div class="waffle-box"><div id="c0-waffle" role="img" aria-label="Waffle chart: what happened to 100 enrolled students"></div></div>
             <div class="hier" aria-label="Key to the waffle chart">
               <div class="hier-group">
                 <span class="hier-title">Took part <b id="h-took"></b> <span class="tip"><button type="button" class="info" aria-expanded="false" aria-controls="tip-took" aria-label="What counts as taking part?">ⓘ</button><span class="tip-pop" role="tooltip" id="tip-took" hidden><b>Took part</b> includes students who got a result counted, plus students who sat the test but have no result: excused (for a significant disability, or newly arrived with limited English) or did not attempt enough to be scored. ACARA counts these students as taking part.</span></span></span>
                 <span class="lg"><i class="lg-sq" style="background:#1f6f8b"></i>Result counted <b id="h-assessed"></b></span>
-                <span class="lg"><i class="lg-sq" style="background:#a9c7d6"></i>No result <b id="h-nores"></b></span>
+                <span class="lg"><i class="lg-sq" style="background:#a9c7d6"></i>No result (excused or didn’t attempt) <b id="h-nores"></b></span>
               </div>
               <div class="hier-group">
                 <span class="hier-title">Did not take part <b id="h-missed"></b> <span class="tip"><button type="button" class="info" aria-expanded="false" aria-controls="tip-missed" aria-label="What does did not take part mean?">ⓘ</button><span class="tip-pop" role="tooltip" id="tip-missed" hidden><b>Absent:</b> not at school for the test. <b>Withdrawn:</b> a parent or carer pulled the student out, for example for religious beliefs or objections to testing.</span></span></span>
@@ -129,9 +171,13 @@
       </div>
 
       <div class="section-divider"></div>
-      <div class="takeaway">
-        <p class="eyebrow-sm">The short version</p>
-        <p>About 9 in 10 enrolled students have a result that counts, and that share has slowly shrunk, mostly because more parents withdraw their children. The students missing most often are in remote areas, or are Indigenous, or have parents with less schooling. Keep that in mind as we turn to the results.</p>
+      <div class="short">
+        <p class="eyebrow-sm">Key takeaways</p>
+        <div class="short-cols">
+          <div><h4>The pattern</h4><p>About 9 in 10 enrolled students have a result that counts. That share has slowly shrunk, mostly because more parents withdraw their children.</p></div>
+          <div><h4>Who is missing</h4><p>Students are missing most often in remote areas, or if they are Indigenous, or have parents with less schooling. Keep that in mind for the results ahead.</p></div>
+        </div>
+        <p class="short-next">Next: how many students meet expectations? →</p>
       </div>
       <p class="footnote">Data: ACARA NAPLAN participation, 2008 to 2026 (no tests in 2020). Shares are of enrolled students, across the four year levels and five test domains. 2026 includes the Tasmanian boycott. Tile layout by the author.</p>
       <p class="footnote sources"><b>Sources:</b> <a href="https://nap.edu.au/naplan/for-schools/student-participation">NAP, Student participation</a>; AERO (2025), <a href="https://www.edresearch.edu.au/research/analytical-insights-papers/naplan-participation-post-covid-19-improvements-and-remaining-challenges">NAPLAN participation: post-COVID-19 improvements and remaining challenges</a>; <a href="https://pulsetasmania.com.au/news/tasmania-has-no-naplan-results-after-unions-test-boycott/">Pulse Tasmania, 5 Aug 2026</a>.</p>
@@ -222,9 +268,13 @@
       </div>
 
       <div class="section-divider"></div>
-      <div class="takeaway">
-        <p class="eyebrow-sm">The short version</p>
-        <p>About two in three students meet expectations, and that has not changed since 2023. But the total hides a pattern: writing is the strongest subject in Year 3 but falls behind by Year 9, spelling does the opposite, and grammar and punctuation lags at every year level. Next: is it the same in every state?</p>
+      <div class="short">
+        <p class="eyebrow-sm">Key takeaways</p>
+        <div class="short-cols">
+          <div><h4>The headline</h4><p>About two in three students meet expectations, and that has not changed since 2023.</p></div>
+          <div><h4>The pattern underneath</h4><p>Writing is strongest in Year 3 but falls behind by Year 9. Spelling does the opposite. Grammar and punctuation lags at every year level.</p></div>
+        </div>
+        <p class="short-next">Next: is it the same in every state? →</p>
       </div>
       <p class="footnote">Data: ACARA NAPLAN national results for all students, 2023 to 2026 (Years 3, 5, 7 and 9; five subjects). Combined figures are averages weighted by the number of students who sat each test. About 2% of students are exempt and are not in any level, so bars add up to about 98%. Tasmania’s own 2026 results were not published; the national figures appear to include the Tasmanian students who sat the tests.</p>
       <p class="footnote sources"><b>Sources:</b> <a href="https://www.acara.edu.au/docs/default-source/media-releases/naplan-proficiency-standards-media-release-2023-02-10.pdf">ACARA (2023)</a>; <a href="https://www.theeducatoronline.com/k12/news/tackling-the-writing-slump-in-australias-schools/281237">The Educator, 20 Oct 2022</a>, reporting AERO’s writing analysis.</p>
@@ -348,9 +398,13 @@
       </div>
 
       <div class="section-divider"></div>
-      <div class="takeaway">
-        <p class="eyebrow-sm">The short version</p>
-        <p id="c2-short"></p>
+      <div class="short">
+        <p class="eyebrow-sm">Key takeaways</p>
+        <div class="short-cols">
+          <div><h4>One territory stands apart</h4><p id="c2-short-a"></p></div>
+          <div><h4>Place explains most of it</h4><p id="c2-short-b"></p></div>
+        </div>
+        <p class="short-next">Next: who is being left behind? →</p>
       </div>
     </div>
   </section>
@@ -435,120 +489,99 @@
       </div>
 
       <div class="section-divider"></div>
-      <div class="takeaway">
-        <p class="eyebrow-sm">The short version</p>
-        <p id="c3-short"></p>
-      </div>
-    </div>
-  </section>
- 
-  <section id="chapter-4">
-    <p class="c4-kicker">Chapter 4 · Progress over time</p>
-    <h2>Is the picture changing?</h2>
-    <p class="c4-lead">NAPLAN has now been run on the same scale for four years, from 2023 to 2026. So is Australian students’ performance improving, slipping or standing still? The short answer: the national average has hardly moved, but underneath it things are shifting.</p>
-    <p>As before, “<strong>Strong or above</strong>” means a student is meeting the expected standard for their year level. We also track the two ends of the scale: students who <em>need additional support</em> and students who are <em>exceeding</em> expectations.</p>
-
-    <div class="c4-glance" id="c4-glance" aria-label="National averages, 2023 compared with 2026"></div>
-    <p class="c4-sources" style="margin-top:.6rem">Averages across all five domains and four year levels.</p>
-
-    <div class="c4-controls" role="group" aria-label="Domain filter">
-      <div class="c4-control-group"><span class="c4-control-label">Domain</span>
-        <button data-c4-control="pdomain" data-value="All" aria-pressed="true">All domains</button>
-        <button data-c4-control="pdomain" data-value="Reading" aria-pressed="false">Reading</button>
-        <button data-c4-control="pdomain" data-value="Writing" aria-pressed="false">Writing</button>
-        <button data-c4-control="pdomain" data-value="Spelling" aria-pressed="false">Spelling</button>
-        <button data-c4-control="pdomain" data-value="Grammar and punctuation" aria-pressed="false">Grammar</button>
-        <button data-c4-control="pdomain" data-value="Numeracy" aria-pressed="false">Numeracy</button></div>
-      <p class="c4-controls-note">This filter updates the charts in sections 4.2 and 4.5.</p>
-    </div>
-
-    <!-- 4.1 -->
-    <div class="c4-section">
-      <h3>4.1 · Some areas improved, more slipped</h3>
-      <p>Each line connects a domain’s 2023 result to its 2026 result, one panel per year level. Switch to “Needs additional support” to see the struggling end instead.</p>
-      <div class="c4-grid">
-        <div class="c4-chart">
-          <div class="c4-measure" role="group" aria-label="Measure">
-            <button data-c4-control="metric" data-value="strongPlus" aria-pressed="true">Strong or above (%)</button>
-            <button data-c4-control="metric" data-value="needs" aria-pressed="false">Needs additional support (%)</button>
-          </div>
-          <div id="c4-slope"></div><p class="c4-caption" id="c4-cap-slope"></p>
+      <div class="short">
+        <p class="eyebrow-sm">Key takeaways</p>
+        <div class="short-cols">
+          <div><h4>Who is behind</h4><p id="c3-short-a"></p></div>
+          <div><h4>Where it matters</h4><p id="c3-short-b"></p></div>
         </div>
-        <aside class="c4-aside">
-          <div class="c4-note"><b>Is that a real change?</b>Each year’s test is taken by a different group of students, so small wobbles of a point or two are normal. Look for changes that are large or that keep going in the same direction.</div>
-          <div class="c4-note"><b>Year 9 is different</b>About 89–90% of Year 9 students sit the tests, against roughly 94–95% in Years 3, 5 and 7, so Year 9 results describe a slightly smaller share of the cohort.</div>
-        </aside>
+        <p class="short-next">Next: what the numbers add up to →</p>
       </div>
     </div>
-
-    <!-- 4.2 -->
-    <div class="c4-section">
-      <h3>4.2 · The two ends are growing</h3>
-      <p>An average can hide what is happening at the edges. Here each path follows one year level from 2023 to 2026. Moving <strong>right</strong> means more students struggling; moving <strong>up</strong> means more students excelling.</p>
-      <div class="c4-grid">
-        <div class="c4-chart"><div id="c4-scatter"></div><p class="c4-caption" id="c4-cap-scatter"></p></div>
-        <aside class="c4-aside">
-          <div class="c4-note"><b>Spreading out</b>Across all domains the share of students at “Strong” (the middle of the scale) shrank by about 1.6 points, while both the lowest and the highest groups grew. Results are becoming more spread out.</div>
-          <div class="c4-note"><b>Grammar and reading</b>Select these domains. Grammar shows a clear move to the right (more students needing support), and reading drifts right while the top group stays flat or shrinks – a double loss.</div>
-          <div class="c4-note"><b>Numeracy</b>Select it: the top group grows while the struggling group barely changes – the healthiest pattern on the chart.</div>
-        </aside>
-      </div>
-    </div>
-
-    <!-- 4.3 -->
-    <div class="c4-section">
-      <h3>4.3 · What moved the national average?</h3>
-      <p>The average share of students at “Strong or above” fell by less than half a point. This waterfall splits that change into each domain’s contribution.</p>
-      <div class="c4-grid">
-        <div class="c4-chart"><div id="c4-waterfall"></div><p class="c4-caption" id="c4-cap-waterfall"></p></div>
-        <aside class="c4-aside">
-          <div class="c4-note"><b>How to read it</b>Start at zero (2023). Each bar floats from where the previous one ended: down for domains that pulled the average down, up for those that pushed it back. The last bar is the total.</div>
-          <div class="c4-note"><b>Cancelling out</b>Gains in numeracy and spelling were outweighed by losses in grammar, reading and writing. A flat average can hide opposing trends.</div>
-        </aside>
-      </div>
-    </div>
-
-    <!-- 4.4 -->
-    <div class="c4-section">
-      <h3>4.4 · Who has lost ground?</h3>
-      <p>Chapter 3 showed that the <em>share</em> of students reaching “Strong” barely changed for any group. Looking at <em>average scores</em> tells a sharper story: each panel compares a more advantaged group with a less advantaged one, measured against their own 2023 result.</p>
-      <div class="c4-grid">
-        <div class="c4-chart"><div id="c4-bands"></div><p class="c4-caption" id="c4-cap-bands"></p></div>
-        <aside class="c4-aside">
-          <div class="c4-note"><b>Who is compared?</b>Parents with a bachelor degree vs Year 11 or below; senior managers and professionals vs parents not in paid work; major cities vs very remote; non-Indigenous vs Indigenous students.</div>
-          <div class="c4-note"><b>Why does this differ from Chapter 3?</b>The “Strong” cut-off only counts whether a student crosses one line. Average scores also pick up falls among students who were already well below it, so they reveal movements the percentage hides.</div>
-          <div class="c4-note"><b>Volatile small groups</b>Very remote students dipped by about 10 points in 2025, then recovered part-way in 2026. Small groups swing more, so judge them by the direction over several years.</div>
-        </aside>
-      </div>
-    </div>
-
-    <!-- 4.5 -->
-    <div class="c4-section" style="border-bottom:0">
-      <h3>4.5 · Do all states follow the same pattern?</h3>
-      <p>Each tile shows how a state or territory’s share of students at “Strong or above” changed between 2023 and 2026. Teal means up; orange means down.</p>
-      <div class="c4-grid">
-        <div class="c4-chart"><div id="c4-tiles"></div><p class="c4-caption" id="c4-cap-tiles"></p></div>
-        <aside class="c4-aside">
-          <div class="c4-note"><b>Changes are small next to differences</b>No state moved by more than about 2 points on average, yet the Northern Territory sits roughly 30 points below the ACT and Victoria. Where a student lives still matters far more than how the year’s results moved.</div>
-          <div class="c4-note"><b>Why is the NT so low?</b>The Territory has a much larger share of remote and Indigenous students than other jurisdictions, groups that Chapter 3 showed face the widest gaps.</div>
-        </aside>
-      </div>
-    </div>
-
-    <div class="c4-takeaways">
-      <h3>What we learned</h3>
-      <ol>
-        <li><strong>The headline hasn’t moved, but the shape has.</strong> The share at “Strong or above” dipped slightly, while both the struggling and the excelling groups grew.</li>
-        <li><strong>Domains are pulling in different directions.</strong> Numeracy improved, especially in Years 5 and 7, while grammar and reading lost ground.</li>
-        <li><strong>Students with less advantaged backgrounds lost the most.</strong> Average scores for students whose parents finished Year 11 or below fell by around six points, while those of degree-educated families held steady.</li>
-        <li><strong>State differences dwarf the changes.</strong> Over four years, the gap between jurisdictions has barely shifted.</li>
-      </ol>
-    </div>
-
-    <p class="c4-sources"><strong>Data:</strong> ACARA, <em>NAPLAN results</em> (national and state/territory results, 2023–2026), https://www.acara.edu.au/. NAPLAN introduced a new scale and four proficiency levels in 2023, so earlier years are not comparable. Averages combine domains and year levels with equal weight. Score changes are averaged within each group after subtracting that group’s own 2023 result. Tasmania’s 2026 results are not published. <strong>Author:</strong> [Your name], [date]. <strong>Acknowledgement:</strong> [state any use of AI tools for text or code].</p>
   </section>
 
+  <!-- ============ CONCLUSION ============ -->
+  <section id="conclusion" class="chapter">
+    <header class="chapter-head">
+      <p class="eyebrow">Conclusion</p>
+      <h2>The average hides who is missing and who is behind</h2>
+      <p class="lede">Three things to take from the numbers.</p>
+    </header>
 
+    <div class="card">
+      <ol class="concl-list">
+        <li>
+          <span class="concl-n">1</span>
+          <div><h3>Not every student is counted.</h3><p id="cl-1"></p></div>
+        </li>
+        <li>
+          <span class="concl-n">2</span>
+          <div><h3>The average is steady, but one place stands apart.</h3><p id="cl-2"></p></div>
+        </li>
+        <li>
+          <span class="concl-n">3</span>
+          <div><h3>Place and family set the gaps, and they have not moved.</h3><p id="cl-3"></p></div>
+        </li>
+      </ol>
+
+      <div class="context concl-limits">
+        <span class="ctx-label">What the data cannot tell us</span>
+        <ul>
+          <li><strong>Causes.</strong> Remoteness, parents’ education and Indigenous status overlap, so these are patterns, not proof.</li>
+          <li><strong>Missing students.</strong> Students who miss the tests tend to score lower, so the true picture is probably weaker.</li>
+          <li><strong>Long trends.</strong> The four levels began in 2023, so earlier years cannot be compared.</li>
+        </ul>
+      </div>
+
+      <p class="concl-close">The average says how the country is doing. The gaps say who is not.</p>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER: authorship, date, sources ============ -->
+  <footer id="colophon">
+    <div class="colophon-inner">
+      <div class="col-about">
+        <h2>About this project</h2>
+        <p><strong>Behind the NAPLAN average</strong> was designed and built by Lee Hui Yee for FIT3179 Data Visualisation 2, Monash University, Semester 2, 2026.</p>
+        <p>Published 29 October 2026. All figures are the author’s calculations from the published data below. They are not official ACARA figures.</p>
+        <p>Every chart is a Vega-Lite specification. The JSON files are in each chapter’s <code>specs</code> folder of the GitHub repository.</p>
+      </div>
+
+      <div class="col-data">
+        <h2>Data</h2>
+        <ul>
+          <li><strong>ACARA.</strong> NAPLAN results and participation data, national and by state and territory, 2008 to 2026. National Assessment Program website: <a href="https://www.nap.edu.au/naplan/results-and-reports">Results and reports</a>. Used under ACARA’s data terms of use.</li>
+          <li><strong>Natural Earth.</strong> Admin 1 – States, Provinces, 1:50m, state and territory outlines. Public domain: <a href="https://www.naturalearthdata.com/downloads/50m-cultural-vectors/">naturalearthdata.com</a>.</li>
+        </ul>
+      </div>
+
+      <div class="col-cited">
+        <h2>Sources cited in the notes</h2>
+        <ul>
+          <li>AERO (2025). <a href="https://www.edresearch.edu.au/research/analytical-insights-papers/naplan-participation-post-covid-19-improvements-and-remaining-challenges">NAPLAN participation: post-COVID-19 improvements and remaining challenges</a>.</li>
+          <li>ACARA (2023). <a href="https://www.acara.edu.au/docs/default-source/media-releases/naplan-proficiency-standards-media-release-2023-02-10.pdf">NAPLAN proficiency standards</a>, media release, 10 Feb 2023.</li>
+          <li>NAP. <a href="https://nap.edu.au/naplan/for-schools/student-participation">Student participation</a>.</li>
+          <li>Pulse Tasmania (5 Aug 2026). <a href="https://pulsetasmania.com.au/news/tasmania-has-no-naplan-results-after-unions-test-boycott/">Tasmania has no NAPLAN results after union’s test boycott</a>.</li>
+          <li>Education Matters. <a href="https://educationmattersmag.com.au/naplan-participation-bounces-back-amid-early-signs-of-potential-improvements/">NAPLAN participation bounces back amid early signs of potential improvements</a>.</li>
+          <li>The Educator (20 Oct 2022). <a href="https://www.theeducatoronline.com/k12/news/tackling-the-writing-slump-in-australias-schools/281237">Tackling the writing slump in Australia’s schools</a>.</li>
+          <li>The Educator (15 Nov 2019). <a href="https://www.theeducatoronline.com/k12/news/whats-holding-back-students-reading-progress/268138">What’s holding back students’ reading progress</a>.</li>
+          <li>The Educator (30 Jul 2025). <a href="https://www.theeducatoronline.com/k12/news/naplan-national-results-released/287677">NAPLAN national results released</a>.</li>
+          <li>National Indigenous Times (24 Aug 2026). <a href="https://nit.com.au/24-08-2026/26094/call-for-systemic-change-to-address-indigenous-education-gap">Call for systemic change to address Indigenous education gap</a>.</li>
+          <li>SBS News (25 Feb 2020). <a href="https://www.sbs.com.au/news/article/australian-school-students-with-english-as-a-second-language-are-outperforming-their-peers/6s0rlth5t">Australian school students with English as a second language are outperforming their peers</a>.</li>
+          <li>NT Department of Education. <a href="https://education.nt.gov.au/support-for-teachers/student-diversity/english-as-an-additional-language-dialect">English as an additional language or dialect</a>.</li>
+        </ul>
+      </div>
+
+      <div class="col-tools">
+        <h2>Tools and credits</h2>
+        <ul>
+          <li>Charts: <a href="https://vega.github.io/vega-lite/">Vega-Lite</a> 5.23, <a href="https://vega.github.io/vega/">Vega</a> 5.33 and Vega-Embed 6.29 (BSD 3-Clause).</li>
+          <li>Typefaces: Fraunces and Inter (SIL Open Font License).</li>
+          <li>The tile layout of the states and the cartogram of student numbers were made by the author.</li>
+        </ul>
+      </div>
+    </div>
+  </footer>
 
   <!-- Vega stack (local copies: vega 5.33.1, vega-lite 5.23.0, vega-embed 6.29.0) -->
   <script src="lib/vega.min.js"></script>
@@ -557,12 +590,13 @@
 
   <!-- Chapter scripts -->
   <script src="js/tips.js"></script>
+  <script src="js/frame.js"></script>
   <script src="chapter-0/js/main.js"></script>
 
   <script src="chapter-1/js/main.js"></script>
 
   <script src="chapter-2/js/main.js"></script>
+
   <script src="chapter-3/js/main.js"></script>
-  <script src="chapter-4/js/chapter4.js"></script>
 </body>
 </html>
