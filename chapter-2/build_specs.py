@@ -125,7 +125,7 @@ dump("map_states", {
             "encoding": {"longitude": {"field": "lon2", "type": "quantitative"}, "latitude": {"field": "lat2", "type": "quantitative"},
                          "longitude2": {"field": "lon3"}, "latitude2": {"field": "lat3"},
                          "color": {"field": "color", "type": "nominal", "scale": None, "legend": None}}},
-        {"data": {"name": "annot"},
+        {"data": {"name": "annot"}, "transform": [{"filter": "isValid(datum.text)"}],
          "mark": {"type": "text", "align": "left", "baseline": "top", "fontSize": 11.5, "fontWeight": 600, "lineBreak": "\n", "lineHeight": 14},
          "encoding": {"longitude": {"field": "lon", "type": "quantitative"}, "latitude": {"field": "lat", "type": "quantitative"},
                       "text": {"field": "text"}, "color": {"field": "color", "type": "nominal", "scale": None, "legend": None}}},
@@ -358,32 +358,144 @@ dump("gap_breakdown", {
 
 
 # =====================================================================================================
-# 1b. Proportional symbol map (meeting expectations): where do the students live, and how far from Australia is each state?
-#     One circle per state: area = number of students meeting expectations (a count), colour = above / below the Australian share. Colour = above / below the Australian share.
-#     The choropleth (map_support.json) is derived from the one above: same map, but showing students needing additional support.
+# Numbers used in the notes drawn on the maps below (all from the CSV files, so the notes cannot drift from the data)
 # =====================================================================================================
-SYM_COLORS = ["#c2410c", "#f0745a", "#f4a994", "#b8b2a4", "#7fb3c7", "#0e5a78"]
-SYMNUM = ("n", "so", "nat_so", "gap_so", "lon", "lat", "anchor_lon", "anchor_lat", "reported", "leader")
-SYM_AREA = "datum.meet / 2000000 * 8500"      # pixel area of the outer circle; the inner one uses the same scale, so areas are comparable
+_res = pd.read_csv(HERE / "data" / "state_results.csv")
+_ctx = pd.read_csv(HERE / "data" / "state_context.csv").set_index("state")
+_m = pd.read_csv(HERE / "data" / "map_latest.csv")
+_YEAR = int(_res.year.max())
+_aus = _res[(_res.year == _YEAR) & (_res.state == "Australia")].iloc[0]
+_ok = _res[(_res.state != "Australia") & (_res.reported == 1)]
+_nt_lowest = all(g.sort_values("so").iloc[0].state == "Northern Territory" for _, g in _ok.groupby("year"))
+_big3 = _m[_m.code.isin(["NSW", "VIC", "QLD"])].n.sum() / _aus.n * 100
+_nt_share = _m[_m.code == "NT"].n.iloc[0] / _aus.n * 100
+_pub = _m[_m.reported == 1].copy()
+_pub["cnt_ex"] = _pub.n * _pub.exceed / 100
+_two = _pub[_pub.code.isin(["NSW", "VIC"])].cnt_ex.sum() / _pub.cnt_ex.sum() * 100
+_nt_ex = _pub[_pub.code == "NT"].iloc[0]
+_nat_ex = float(_aus.exceed)
+
+# =====================================================================================================
+# 1a. Contiguous area cartogram (first tab): each state is redrawn so its AREA is proportional to its students tested, while
+#     neighbours still touch (shapes from data/make_cartogram.py). Colour = how far the share meeting expectations is from Australia's.
+#     Size answers "how many students", colour answers "how well are they doing", so the Territory is far below AND tiny.
+# =====================================================================================================
+CLAB = {"url": "chapter-2/data/cartogram_labels.csv", "format": {"type": "csv", "parse": {c: "number" for c in ("cx", "cy", "lx", "ly", "ext", "side", "area_share", "students_share")}}}
+CARTO_FIELDS = ["state", "code", "so", "gap_so", "band_so", "n", "nat_so", "reported"]
+CARTO_JOIN = [
+    {"lookup": "properties.name", "from": {"data": CLAB, "key": "state", "fields": ["cx", "cy", "lx", "ly", "ext", "side", "students_share"]}},
+    {"lookup": "properties.name", "from": {"data": csvn("map_latest", MAPNUM), "key": "state", "fields": CARTO_FIELDS}},
+    {"calculate": "datum.reported == 1 ? datum.band_so : 'Not published'", "as": "band"},
+    {"calculate": "(datum.gap_so > 0 ? '+' : '−') + format(abs(datum.gap_so), '.1f') + ' points'", "as": "gap_label"},
+    {"calculate": "datum.reported == 1 ? format(datum.so, '.1f') + '%' : 'not published'", "as": "value_label"},
+    {"calculate": "format(datum.nat_so, '.1f') + '%'", "as": "nat_label"},
+    {"calculate": "format(datum.n, ',') + ' (' + format(datum.n / 6103856 * 100, '.1f') + '% of Australia)'", "as": "n_label"},
+    {"calculate": "indexof(['10+ pp worse', '3+ pp better'], datum.band) >= 0 ? '#ffffff' : '" + INK + "'", "as": "ink"},
+    {"calculate": "width < 420 ? datum.code : datum.reported == 1 ? datum.code + ' ' + format(datum.so, '.0f') + '%' : datum.code + ' not published'", "as": "label"},
+]
+CPOS = {"longitude": {"field": "cx", "type": "quantitative"}, "latitude": {"field": "cy", "type": "quantitative"}}
+CLPOS = {"longitude": {"field": "lx", "type": "quantitative"}, "latitude": {"field": "ly", "type": "quantitative"}}
+CGEO = {"url": "chapter-2/data/cartogram.geojson", "format": {"type": "json", "property": "features"}}
+SHOW = {"expr": "width >= 560 ? 1 : 0"}          # the notes need width: phones keep the labels and drop the notes
+NOTE_MARK = {"type": "text", "align": "left", "baseline": "top", "fontSize": 11.5, "fontWeight": 600, "lineBreak": "\n", "lineHeight": 14, "opacity": SHOW}
+carto_notes = [
+    {"x": 12, "y": 8, "color": "#c2410c",
+     "text": "Northern Territory: lowest result\n" + (f"in every year since {int(_res.year.min())}.\n" if _nt_lowest else "") +
+             f"{_ctx.loc['Northern Territory'].indigenous_pct:.0f}% of its students are Indigenous\n(Australia: {_ctx.loc['Australia'].indigenous_pct:.0f}%)."},
+    {"x": 12, "y": 690, "color": "#4a5568",
+     "text": f"{_big3:.0f}% of students live in NSW,\nVictoria and Queensland, so they\nsteer the national result.\nThe Territory has {_nt_share:.1f}%."},
+    {"x": 12, "y": 850, "color": "#4a5568",
+     "text": f"Tasmania: no {_YEAR} result. A union\nboycott of public-school testing\ncut participation to {_ctx.loc['Tasmania'].participation_pct:.0f}%, below\nthe reporting threshold."},
+]
+carto_calls = [        # callout lines: from the right edge of each note to the state it explains
+    {"x": 470, "y": 78, "x2": 520, "y2": 150, "color": "#c2410c"},       # Territory note -> the Territory
+    {"x": 485, "y": 895, "x2": 903, "y2": 958, "color": "#4a5568"},      # Tasmania note -> Tasmania
+]
+dump("map_cartogram", {
+    "description": "Contiguous area cartogram of the states and territories. Each state is redrawn so its area is proportional to its students tested, "
+                   "while neighbours still touch. Colour = how many percentage points the share meeting expectations is above or below Australia's. Tasmania is not published.",
+    "width": "container", "height": "container", "autosize": {"type": "fit", "contains": "padding"},
+    "padding": {"left": 4, "right": 4, "top": 4, "bottom": 4},
+    "background": None, "config": CONFIG,
+    "params": [{"name": "sel", "value": "Northern Territory"}],
+    "projection": {"type": "identity"},
+    "layer": [
+        {"data": CGEO, "transform": CARTO_JOIN,
+         "mark": {"type": "geoshape", "cursor": "pointer", "tooltip": True, "strokeJoin": "round"},
+         "encoding": {"fill": {"field": "band", "type": "nominal", "scale": {"domain": MAP_BANDS, "range": MAP_COLORS}, "legend": None},
+                      "stroke": {"condition": {"test": "datum.state == sel", "value": INK}, "value": "#ffffff"},
+                      "strokeWidth": {"condition": {"test": "datum.state == sel", "value": 2}, "value": 1.2},
+                      "tooltip": [{"field": "state", "title": "State / territory"}, {"field": "value_label", "title": "Meeting expectations"},
+                                  {"field": "nat_label", "title": "Australia"}, {"field": "gap_label", "title": "Difference"},
+                                  {"field": "n_label", "title": "Students tested"}]}},
+        {"data": CLAB, "transform": [{"filter": "datum.ext == 1"}],      # leader lines from the small states to their labels
+         "mark": {"type": "rule", "stroke": "#9aa3b2", "strokeWidth": 1},
+         "encoding": {**CLPOS, "longitude2": {"field": "cx"}, "latitude2": {"field": "cy"}}},
+        {"data": CGEO, "transform": CARTO_JOIN + [{"filter": "datum.ext == 0"}],      # labels inside the big states
+         "mark": {"type": "text", "fontSize": 13, "fontWeight": 700},
+         "encoding": {**CPOS, "text": {"field": "label"}, "color": {"field": "ink", "type": "nominal", "scale": None, "legend": None}}},
+        {"data": CGEO, "transform": CARTO_JOIN + [{"filter": "datum.ext == 1 && datum.side == 1"}],      # labels to the right of the small states
+         "mark": {"type": "text", "align": "left", "dx": 6, "fontSize": 12.5, "fontWeight": 700, "color": INK},
+         "encoding": {**CLPOS, "text": {"field": "label"}}},
+        {"data": CGEO, "transform": CARTO_JOIN + [{"filter": "datum.ext == 1 && datum.side == -1"}],     # labels to the left (the Territory)
+         "mark": {"type": "text", "align": "right", "dx": -6, "fontSize": 12.5, "fontWeight": 700, "color": INK},
+         "encoding": {**CLPOS, "text": {"field": "label"}}},
+        {   # annotations supplied by the page (js/main.js measures the text so each leader line starts at its note)
+            "data": {"name": "annot"}, "transform": [{"filter": "isValid(datum.lon2)"}],
+            "mark": {"type": "rule", "strokeWidth": 1.2, "strokeDash": [3, 2]},
+            "encoding": {"longitude": {"field": "lon2", "type": "quantitative"}, "latitude": {"field": "lat2", "type": "quantitative"},
+                         "longitude2": {"field": "lon3"}, "latitude2": {"field": "lat3"},
+                         "color": {"field": "color", "type": "nominal", "scale": None, "legend": None}}},
+        {"data": {"name": "annot"}, "transform": [{"filter": "isValid(datum.text)"}],
+         "mark": {"type": "text", "align": "left", "baseline": "top", "fontSize": 11.5, "fontWeight": 600, "lineBreak": "\n", "lineHeight": 14},
+         "encoding": {"longitude": {"field": "lon", "type": "quantitative"}, "latitude": {"field": "lat", "type": "quantitative"},
+                      "text": {"field": "text"}, "color": {"field": "color", "type": "nominal", "scale": None, "legend": None}}},
+    ],
+})
+
+# =====================================================================================================
+# 1b. Proportional symbol map (third tab, exceeding expectations): one circle per state.
+#     Area = number of students exceeding expectations (a count); colour = above / below the Australian share exceeding.
+#     Count and rate on one map: the Territory is far below Australia AND has almost no students at the top end.
+# =====================================================================================================
+EX_BANDS = ["5+ below", "2–5 below", "within 2", "2+ above"]
+EX_COLORS = ["#c2410c", "#f0745a", "#b8b2a4", "#7fb3c7"]
+SYMNUM = ("n", "so", "exceed", "lon", "lat", "anchor_lon", "anchor_lat", "reported", "leader")
+SYM_AREA = "datum.cnt / 400000 * 6500"      # pixel area of a circle; 400,000 students = 6,500 square pixels
 SYM_POS = {"longitude": {"field": "sx", "type": "quantitative"}, "latitude": {"field": "sy", "type": "quantitative"}}
+_ex = "datum.exceed - %.4f" % _nat_ex
 SYM_CALC = [
     {"filter": "datum.reported == 1"},
     {"calculate": "{'NSW': 148.6, 'VIC': 143.6, 'QLD': 144.5, 'ACT': 155.0}[datum.code] || datum.lon", "as": "sx"},
     {"calculate": "{'NSW': -32.2, 'VIC': -37.6, 'ACT': -36.6}[datum.code] || datum.lat", "as": "sy"},
-    {"calculate": "datum.band_so", "as": "band"},
-    {"calculate": "datum.n * datum.so / 100", "as": "meet"},
-    {"calculate": "'about ' + format(round(datum.n / 1000), ',') + ',000 students'", "as": "n_label"},
-    {"calculate": "'about ' + format(round(datum.meet / 1000), ',') + ',000 (' + format(datum.so, '.1f') + '%)'", "as": "meet_label"},
-    {"calculate": "format(datum.nat_so, '.1f') + '%'", "as": "nat_label"},
-    {"calculate": "(datum.gap_so > 0 ? '+' : '−') + format(abs(datum.gap_so), '.1f') + ' points'", "as": "gap_label"},
-    {"calculate": "width < 420 ? datum.code : datum.code + ' ' + format(datum.so, '.0f') + '%'", "as": "label"},
-    {"calculate": "datum.sy + (sqrt(" + SYM_AREA.replace("8500", "(width < 600 ? 2200 : 8500)") + " / PI) + 5) * 180 / (PI * (width < 600 ? min(width * 1.05, height * 1.05) : min(width * 1.3, height * 1.3)))", "as": "ly"},
+    {"calculate": _ex, "as": "gap_ex"},
+    {"calculate": "datum.gap_ex <= -5 ? '" + EX_BANDS[0] + "' : datum.gap_ex <= -2 ? '" + EX_BANDS[1] + "' : datum.gap_ex < 2 ? '" + EX_BANDS[2] + "' : '" + EX_BANDS[3] + "'", "as": "band"},
+    {"calculate": "datum.n * datum.exceed / 100", "as": "cnt"},
+    {"calculate": "'about ' + format(round(datum.cnt / 1000), ',') + ',000 students (' + format(datum.exceed, '.1f') + '%)'", "as": "cnt_label"},
+    {"calculate": "format(" + "%.1f" % _nat_ex + ", '.1f') + '%'", "as": "nat_label"},
+    {"calculate": "(datum.gap_ex > 0 ? '+' : '−') + format(abs(datum.gap_ex), '.1f') + ' points'", "as": "gap_label"},
+    {"calculate": "width < 420 ? datum.code : datum.code + ' ' + format(datum.exceed, '.0f') + '%'", "as": "label"},
+    {"calculate": "datum.sy + (sqrt(" + SYM_AREA.replace("6500", "(width < 600 ? 1700 : 6500)") + " / PI) + 5) * 180 / (PI * (width < 600 ? min(width * 1.05, height * 1.05) : min(width * 1.3, height * 1.3)))", "as": "ly"},
 ]
-SYM_COLOR = {"field": "band", "type": "nominal", "scale": {"domain": BANDS, "range": SYM_COLORS}, "legend": None}
-SYM_DATA = csvn("map_latest", SYMNUM + ("anchor_lon", "anchor_lat"))
+SYM_COLOR = {"field": "band", "type": "nominal", "scale": {"domain": EX_BANDS, "range": EX_COLORS}, "legend": None}
+SYM_DATA = csvn("map_latest", SYMNUM + ("anchor_lon", "anchor_lat") + ("exceed",))
+sym_notes = [
+    {"lon": 110.5, "lat": -12.5, "color": "#c2410c",
+     "text": f"Northern Territory: {_nt_ex.exceed:.0f}% exceed expectations,\nless than half Australia’s {_nat_ex:.0f}%."},
+    {"lon": 110.5, "lat": -35.0, "color": "#4a5568",
+     "text": f"NSW and Victoria hold {_two:.0f}% of all\nstudents exceeding expectations."},
+    {"lon": 153.5, "lat": -40.0, "color": "#4a5568",
+     "text": f"{_ctx.loc['Australian Capital Territory'].parents_degree_pct:.0f}% of ACT students’ parents have\na degree, the highest of any state\n(Australia: {_ctx.loc['Australia'].parents_degree_pct:.0f}%)."},
+]
+sym_calls = [          # callout lines from each note to the circle(s) it explains
+    {"lon": 128.0, "lat": -15.3, "lon2": 132.7, "lat2": -18.7, "color": "#c2410c"},      # Territory note -> Territory
+    {"lon": 124.6, "lat": -36.3, "lon2": 140.7, "lat2": -37.2, "color": "#4a5568"},      # NSW/VIC note -> Victoria
+    {"lon": 124.6, "lat": -36.0, "lon2": 145.6, "lat2": -33.0, "color": "#4a5568"},      # NSW/VIC note -> NSW
+    {"lon": 155.0, "lat": -39.9, "lon2": 155.0, "lat2": -37.6, "color": "#4a5568"},      # ACT note -> ACT
+]
 dump("map_symbols", {
-    "description": "Proportional symbol map of Australian states. Circle area = number of students meeting expectations; "
-                   "colour = above or below the Australian share meeting expectations. Tasmania is not published. Annotations are supplied by the page.",
+    "description": "Proportional symbol map of Australian states. Circle area = number of students exceeding expectations; colour = how far the share "
+                   "exceeding is above or below Australia's. Tasmania is not published.",
     "width": "container", "height": "container",
     "padding": {"left": 0, "right": 0, "top": 0, "bottom": 0},
     "background": None, "config": CONFIG,
@@ -396,33 +508,31 @@ dump("map_symbols", {
          "mark": {"type": "rule", "stroke": "#9aa3b2", "strokeWidth": 1},
          "encoding": {"longitude": {"field": "lon", "type": "quantitative"}, "latitude": {"field": "lat", "type": "quantitative"},
                       "longitude2": {"field": "anchor_lon"}, "latitude2": {"field": "anchor_lat"}}},
-        {   # one circle per state: area = number of students meeting expectations; colour = above / below Australia
-            "data": SYM_DATA, "transform": SYM_CALC,
-            "mark": {"type": "circle", "fillOpacity": 0.9, "cursor": "pointer", "tooltip": True},
-            "encoding": {**SYM_POS, "color": SYM_COLOR,
-                         "size": {"field": "meet", "type": "quantitative", "scale": {"type": "linear", "domain": [0, 2000000], "range": [0, 8500]}, "legend": None},
-                         "stroke": {"condition": {"test": "datum.state == sel", "value": INK}, "value": "#ffffff"},
-                         "strokeWidth": {"condition": {"test": "datum.state == sel", "value": 2.8}, "value": 1.5},
-                         "tooltip": [{"field": "state", "title": "State / territory"}, {"field": "meet_label", "title": "Meeting expectations"},
-                                     {"field": "n_label", "title": "Students tested"}, {"field": "nat_label", "title": "Australia"},
-                                     {"field": "gap_label", "title": "Difference"}]}},
         {"data": SYM_DATA, "transform": SYM_CALC,
-         "mark": {"type": "text", "baseline": "bottom", "fontSize": 11, "fontWeight": 700, "color": INK},
-         "encoding": {"longitude": {"field": "sx", "type": "quantitative"}, "latitude": {"field": "ly", "type": "quantitative"},
-                      "text": {"field": "label"}}},
+         "mark": {"type": "circle", "fillOpacity": 0.9, "cursor": "pointer", "tooltip": True},
+         "encoding": {**SYM_POS, "color": SYM_COLOR,
+                      "size": {"field": "cnt", "type": "quantitative", "scale": {"type": "linear", "domain": [0, 400000], "range": [0, 6500]}, "legend": None},
+                      "stroke": {"condition": {"test": "datum.state == sel", "value": INK}, "value": "#ffffff"},
+                      "strokeWidth": {"condition": {"test": "datum.state == sel", "value": 2.8}, "value": 1.5},
+                      "tooltip": [{"field": "state", "title": "State / territory"}, {"field": "cnt_label", "title": "Exceeding expectations"},
+                                  {"field": "nat_label", "title": "Australia"}, {"field": "gap_label", "title": "Difference"}]}},
+        {"data": SYM_DATA, "transform": SYM_CALC,
+         "mark": {"type": "text", "baseline": "middle", "fontSize": 11, "fontWeight": 700, "color": INK},
+         "encoding": {"longitude": {"field": "sx", "type": "quantitative"}, "latitude": {"field": "ly", "type": "quantitative"}, "text": {"field": "label"}}},
         {"data": SYM_DATA, "transform": [{"filter": "datum.reported == 0"}],
          "mark": {"type": "text", "fontSize": 10.5, "color": "#6b7280", "fontStyle": "italic"},
          "encoding": {"longitude": {"field": "lon", "type": "quantitative"}, "latitude": {"field": "lat", "type": "quantitative"},
                       "text": {"value": "TAS: not published"}}},
-        {   # annotations supplied by the page: a leader line and a note for each row (see js/main.js)
+        {   # annotations supplied by the page (colour is by condition: the circles above already use a colour scale)
             "data": {"name": "annot"}, "transform": [{"filter": "isValid(datum.lon2)"}],
             "mark": {"type": "rule", "strokeWidth": 1.2, "strokeDash": [3, 2]},
             "encoding": {"longitude": {"field": "lon2", "type": "quantitative"}, "latitude": {"field": "lat2", "type": "quantitative"},
-                         "longitude2": {"field": "lon3"}, "latitude2": {"field": "lat3"}, "color": {"field": "color", "type": "nominal", "scale": None, "legend": None}}},
-        {"data": {"name": "annot"},
+                         "longitude2": {"field": "lon3"}, "latitude2": {"field": "lat3"},
+                         "color": {"condition": {"test": "datum.color == '#c2410c'", "value": "#c2410c"}, "value": "#4a5568"}}},
+        {"data": {"name": "annot"}, "transform": [{"filter": "isValid(datum.text)"}],
          "mark": {"type": "text", "align": "left", "baseline": "top", "fontSize": 11.5, "fontWeight": 600, "lineBreak": "\n", "lineHeight": 14},
          "encoding": {"longitude": {"field": "lon", "type": "quantitative"}, "latitude": {"field": "lat", "type": "quantitative"},
-                      "text": {"field": "text"}, "color": {"field": "color", "type": "nominal", "scale": None, "legend": None}}},
+                      "text": {"field": "text"}, "color": {"condition": {"test": "datum.color == '#c2410c'", "value": "#c2410c"}, "value": "#4a5568"}}},
     ],
 })
 

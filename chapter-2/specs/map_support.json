@@ -656,6 +656,11 @@
       "data": {
         "name": "annot"
       },
+      "transform": [
+        {
+          "filter": "isValid(datum.text)"
+        }
+      ],
       "mark": {
         "type": "text",
         "align": "left",

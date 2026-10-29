@@ -1,0 +1,9 @@
+state,code,cx,cy,ext,lx,ly,side,area_share,students_share
+Western Australia,WA,211.8,387.5,0,211.8,387.5,1,11.53,11.61
+Northern Territory,NT,474.9,213.0,1,420,170,-1,1.0,0.82
+South Australia,SA,484.9,397.4,0,484.9,397.4,1,6.64,6.6
+Queensland,QLD,863.0,264.1,0,863.0,264.1,1,20.54,20.68
+Tasmania,TAS,981.3,963.0,1,1120,955,1,1.25,1.25
+Victoria,VIC,807.8,738.1,0,807.8,738.1,1,25.92,25.94
+Australian Capital Territory,ACT,1194.5,721.9,1,1344,830,1,1.84,1.84
+New South Wales,NSW,971.2,514.3,0,971.2,514.3,1,31.29,31.25

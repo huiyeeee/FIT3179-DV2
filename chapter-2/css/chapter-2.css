@@ -7,8 +7,8 @@
 #chapter-2 .map2-grid { display: grid; grid-template-columns: minmax(240px, 0.8fr) minmax(340px, 1.45fr); gap: 32px; align-items: start; }
 #chapter-2 .map2-grid > *, #chapter-2 .c2-panels > * { min-width: 0; }
 #chapter-2 .map2-box { width: 100%; height: 640px; }
-#chapter-2 #c2-sup, #chapter-2 #c2-sup .vega-embed, #chapter-2 #c2-sym, #chapter-2 #c2-sym .vega-embed { width: 100%; height: 100%; }
-#chapter-2 #c2-sup svg, #chapter-2 #c2-sup canvas, #chapter-2 #c2-sym svg, #chapter-2 #c2-sym canvas { max-width: 100%; }
+#chapter-2 #c2-carto, #chapter-2 #c2-carto .vega-embed, #chapter-2 #c2-sup, #chapter-2 #c2-sup .vega-embed, #chapter-2 #c2-sym, #chapter-2 #c2-sym .vega-embed { width: 100%; height: 100%; }
+#chapter-2 #c2-carto svg, #chapter-2 #c2-carto canvas, #chapter-2 #c2-sup svg, #chapter-2 #c2-sup canvas, #chapter-2 #c2-sym svg, #chapter-2 #c2-sym canvas { max-width: 100%; }
 #chapter-2 .map-insight { font-size: 1.05rem; font-weight: 600; line-height: 1.4; max-width: 44ch; }
 
 /* charts that size themselves to their container */
@@ -89,3 +89,5 @@
 #chapter-2 .c2-switch:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
 #chapter-2 .c2-mp .c2-cap { margin-top: 6px; }
 #chapter-2 .c2-mt { margin: 0 0 8px; font-family: var(--font-display); font-size: clamp(1.15rem, 2.1vw, 1.45rem); line-height: 1.25; font-weight: 600; color: var(--ink); }
+#chapter-2 .c2-guide { margin: 0 0 12px; max-width: 78ch; font-size: 0.86rem; line-height: 1.5; color: var(--ink-soft); }
+#chapter-2 .c2-guide strong { color: var(--ink); }

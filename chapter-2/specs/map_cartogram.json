@@ -1,0 +1,752 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Contiguous area cartogram of the states and territories. Each state is redrawn so its area is proportional to its students tested, while neighbours still touch. Colour = how many percentage points the share meeting expectations is above or below Australia's. Tasmania is not published.",
+  "width": "container",
+  "height": "container",
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "padding": {
+    "left": 4,
+    "right": 4,
+    "top": 4,
+    "bottom": 4
+  },
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+    "axis": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontWeight": 500,
+      "titleFontSize": 11,
+      "domain": false,
+      "ticks": false,
+      "gridColor": "#eee8dc"
+    },
+    "legend": {
+      "labelFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "titleFont": "Inter, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+      "labelColor": "#4a5568",
+      "titleColor": "#4a5568",
+      "titleFontSize": 11,
+      "titleFontWeight": 600,
+      "labelFontSize": 11
+    }
+  },
+  "params": [
+    {
+      "name": "sel",
+      "value": "Northern Territory"
+    }
+  ],
+  "projection": {
+    "type": "identity"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "chapter-2/data/cartogram.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.name",
+          "from": {
+            "data": {
+              "url": "chapter-2/data/cartogram_labels.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "cx": "number",
+                  "cy": "number",
+                  "lx": "number",
+                  "ly": "number",
+                  "ext": "number",
+                  "side": "number",
+                  "area_share": "number",
+                  "students_share": "number"
+                }
+              }
+            },
+            "key": "state",
+            "fields": [
+              "cx",
+              "cy",
+              "lx",
+              "ly",
+              "ext",
+              "side",
+              "students_share"
+            ]
+          }
+        },
+        {
+          "lookup": "properties.name",
+          "from": {
+            "data": {
+              "url": "chapter-2/data/map_latest.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "year": "number",
+                  "n": "number",
+                  "so": "number",
+                  "nas": "number",
+                  "gap_so": "number",
+                  "gap_nas": "number",
+                  "nat_so": "number",
+                  "reported": "number",
+                  "lon": "number",
+                  "lat": "number",
+                  "anchor_lon": "number",
+                  "anchor_lat": "number",
+                  "leader": "number",
+                  "land_pct": "number"
+                }
+              }
+            },
+            "key": "state",
+            "fields": [
+              "state",
+              "code",
+              "so",
+              "gap_so",
+              "band_so",
+              "n",
+              "nat_so",
+              "reported"
+            ]
+          }
+        },
+        {
+          "calculate": "datum.reported == 1 ? datum.band_so : 'Not published'",
+          "as": "band"
+        },
+        {
+          "calculate": "(datum.gap_so > 0 ? '+' : '−') + format(abs(datum.gap_so), '.1f') + ' points'",
+          "as": "gap_label"
+        },
+        {
+          "calculate": "datum.reported == 1 ? format(datum.so, '.1f') + '%' : 'not published'",
+          "as": "value_label"
+        },
+        {
+          "calculate": "format(datum.nat_so, '.1f') + '%'",
+          "as": "nat_label"
+        },
+        {
+          "calculate": "format(datum.n, ',') + ' (' + format(datum.n / 6103856 * 100, '.1f') + '% of Australia)'",
+          "as": "n_label"
+        },
+        {
+          "calculate": "indexof(['10+ pp worse', '3+ pp better'], datum.band) >= 0 ? '#ffffff' : '#14213d'",
+          "as": "ink"
+        },
+        {
+          "calculate": "width < 420 ? datum.code : datum.reported == 1 ? datum.code + ' ' + format(datum.so, '.0f') + '%' : datum.code + ' not published'",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "cursor": "pointer",
+        "tooltip": true,
+        "strokeJoin": "round"
+      },
+      "encoding": {
+        "fill": {
+          "field": "band",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "10+ pp worse",
+              "3-10 pp worse",
+              "1-3 pp worse",
+              "within 1 pp",
+              "1-3 pp better",
+              "3+ pp better",
+              "Not published"
+            ],
+            "range": [
+              "#c2410c",
+              "#f0745a",
+              "#f8cbbd",
+              "#ece8df",
+              "#9fc9d8",
+              "#0e5a78",
+              "#e3e3e3"
+            ]
+          },
+          "legend": null
+        },
+        "stroke": {
+          "condition": {
+            "test": "datum.state == sel",
+            "value": "#14213d"
+          },
+          "value": "#ffffff"
+        },
+        "strokeWidth": {
+          "condition": {
+            "test": "datum.state == sel",
+            "value": 2
+          },
+          "value": 1.2
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "title": "State / territory"
+          },
+          {
+            "field": "value_label",
+            "title": "Meeting expectations"
+          },
+          {
+            "field": "nat_label",
+            "title": "Australia"
+          },
+          {
+            "field": "gap_label",
+            "title": "Difference"
+          },
+          {
+            "field": "n_label",
+            "title": "Students tested"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-2/data/cartogram_labels.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "cx": "number",
+            "cy": "number",
+            "lx": "number",
+            "ly": "number",
+            "ext": "number",
+            "side": "number",
+            "area_share": "number",
+            "students_share": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.ext == 1"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "stroke": "#9aa3b2",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lx",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "ly",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "cx"
+        },
+        "latitude2": {
+          "field": "cy"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-2/data/cartogram.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.name",
+          "from": {
+            "data": {
+              "url": "chapter-2/data/cartogram_labels.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "cx": "number",
+                  "cy": "number",
+                  "lx": "number",
+                  "ly": "number",
+                  "ext": "number",
+                  "side": "number",
+                  "area_share": "number",
+                  "students_share": "number"
+                }
+              }
+            },
+            "key": "state",
+            "fields": [
+              "cx",
+              "cy",
+              "lx",
+              "ly",
+              "ext",
+              "side",
+              "students_share"
+            ]
+          }
+        },
+        {
+          "lookup": "properties.name",
+          "from": {
+            "data": {
+              "url": "chapter-2/data/map_latest.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "year": "number",
+                  "n": "number",
+                  "so": "number",
+                  "nas": "number",
+                  "gap_so": "number",
+                  "gap_nas": "number",
+                  "nat_so": "number",
+                  "reported": "number",
+                  "lon": "number",
+                  "lat": "number",
+                  "anchor_lon": "number",
+                  "anchor_lat": "number",
+                  "leader": "number",
+                  "land_pct": "number"
+                }
+              }
+            },
+            "key": "state",
+            "fields": [
+              "state",
+              "code",
+              "so",
+              "gap_so",
+              "band_so",
+              "n",
+              "nat_so",
+              "reported"
+            ]
+          }
+        },
+        {
+          "calculate": "datum.reported == 1 ? datum.band_so : 'Not published'",
+          "as": "band"
+        },
+        {
+          "calculate": "(datum.gap_so > 0 ? '+' : '−') + format(abs(datum.gap_so), '.1f') + ' points'",
+          "as": "gap_label"
+        },
+        {
+          "calculate": "datum.reported == 1 ? format(datum.so, '.1f') + '%' : 'not published'",
+          "as": "value_label"
+        },
+        {
+          "calculate": "format(datum.nat_so, '.1f') + '%'",
+          "as": "nat_label"
+        },
+        {
+          "calculate": "format(datum.n, ',') + ' (' + format(datum.n / 6103856 * 100, '.1f') + '% of Australia)'",
+          "as": "n_label"
+        },
+        {
+          "calculate": "indexof(['10+ pp worse', '3+ pp better'], datum.band) >= 0 ? '#ffffff' : '#14213d'",
+          "as": "ink"
+        },
+        {
+          "calculate": "width < 420 ? datum.code : datum.reported == 1 ? datum.code + ' ' + format(datum.so, '.0f') + '%' : datum.code + ' not published'",
+          "as": "label"
+        },
+        {
+          "filter": "datum.ext == 0"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "longitude": {
+          "field": "cx",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "cy",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        },
+        "color": {
+          "field": "ink",
+          "type": "nominal",
+          "scale": null,
+          "legend": null
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-2/data/cartogram.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.name",
+          "from": {
+            "data": {
+              "url": "chapter-2/data/cartogram_labels.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "cx": "number",
+                  "cy": "number",
+                  "lx": "number",
+                  "ly": "number",
+                  "ext": "number",
+                  "side": "number",
+                  "area_share": "number",
+                  "students_share": "number"
+                }
+              }
+            },
+            "key": "state",
+            "fields": [
+              "cx",
+              "cy",
+              "lx",
+              "ly",
+              "ext",
+              "side",
+              "students_share"
+            ]
+          }
+        },
+        {
+          "lookup": "properties.name",
+          "from": {
+            "data": {
+              "url": "chapter-2/data/map_latest.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "year": "number",
+                  "n": "number",
+                  "so": "number",
+                  "nas": "number",
+                  "gap_so": "number",
+                  "gap_nas": "number",
+                  "nat_so": "number",
+                  "reported": "number",
+                  "lon": "number",
+                  "lat": "number",
+                  "anchor_lon": "number",
+                  "anchor_lat": "number",
+                  "leader": "number",
+                  "land_pct": "number"
+                }
+              }
+            },
+            "key": "state",
+            "fields": [
+              "state",
+              "code",
+              "so",
+              "gap_so",
+              "band_so",
+              "n",
+              "nat_so",
+              "reported"
+            ]
+          }
+        },
+        {
+          "calculate": "datum.reported == 1 ? datum.band_so : 'Not published'",
+          "as": "band"
+        },
+        {
+          "calculate": "(datum.gap_so > 0 ? '+' : '−') + format(abs(datum.gap_so), '.1f') + ' points'",
+          "as": "gap_label"
+        },
+        {
+          "calculate": "datum.reported == 1 ? format(datum.so, '.1f') + '%' : 'not published'",
+          "as": "value_label"
+        },
+        {
+          "calculate": "format(datum.nat_so, '.1f') + '%'",
+          "as": "nat_label"
+        },
+        {
+          "calculate": "format(datum.n, ',') + ' (' + format(datum.n / 6103856 * 100, '.1f') + '% of Australia)'",
+          "as": "n_label"
+        },
+        {
+          "calculate": "indexof(['10+ pp worse', '3+ pp better'], datum.band) >= 0 ? '#ffffff' : '#14213d'",
+          "as": "ink"
+        },
+        {
+          "calculate": "width < 420 ? datum.code : datum.reported == 1 ? datum.code + ' ' + format(datum.so, '.0f') + '%' : datum.code + ' not published'",
+          "as": "label"
+        },
+        {
+          "filter": "datum.ext == 1 && datum.side == 1"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 6,
+        "fontSize": 12.5,
+        "fontWeight": 700,
+        "color": "#14213d"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lx",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "ly",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "chapter-2/data/cartogram.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.name",
+          "from": {
+            "data": {
+              "url": "chapter-2/data/cartogram_labels.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "cx": "number",
+                  "cy": "number",
+                  "lx": "number",
+                  "ly": "number",
+                  "ext": "number",
+                  "side": "number",
+                  "area_share": "number",
+                  "students_share": "number"
+                }
+              }
+            },
+            "key": "state",
+            "fields": [
+              "cx",
+              "cy",
+              "lx",
+              "ly",
+              "ext",
+              "side",
+              "students_share"
+            ]
+          }
+        },
+        {
+          "lookup": "properties.name",
+          "from": {
+            "data": {
+              "url": "chapter-2/data/map_latest.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "year": "number",
+                  "n": "number",
+                  "so": "number",
+                  "nas": "number",
+                  "gap_so": "number",
+                  "gap_nas": "number",
+                  "nat_so": "number",
+                  "reported": "number",
+                  "lon": "number",
+                  "lat": "number",
+                  "anchor_lon": "number",
+                  "anchor_lat": "number",
+                  "leader": "number",
+                  "land_pct": "number"
+                }
+              }
+            },
+            "key": "state",
+            "fields": [
+              "state",
+              "code",
+              "so",
+              "gap_so",
+              "band_so",
+              "n",
+              "nat_so",
+              "reported"
+            ]
+          }
+        },
+        {
+          "calculate": "datum.reported == 1 ? datum.band_so : 'Not published'",
+          "as": "band"
+        },
+        {
+          "calculate": "(datum.gap_so > 0 ? '+' : '−') + format(abs(datum.gap_so), '.1f') + ' points'",
+          "as": "gap_label"
+        },
+        {
+          "calculate": "datum.reported == 1 ? format(datum.so, '.1f') + '%' : 'not published'",
+          "as": "value_label"
+        },
+        {
+          "calculate": "format(datum.nat_so, '.1f') + '%'",
+          "as": "nat_label"
+        },
+        {
+          "calculate": "format(datum.n, ',') + ' (' + format(datum.n / 6103856 * 100, '.1f') + '% of Australia)'",
+          "as": "n_label"
+        },
+        {
+          "calculate": "indexof(['10+ pp worse', '3+ pp better'], datum.band) >= 0 ? '#ffffff' : '#14213d'",
+          "as": "ink"
+        },
+        {
+          "calculate": "width < 420 ? datum.code : datum.reported == 1 ? datum.code + ' ' + format(datum.so, '.0f') + '%' : datum.code + ' not published'",
+          "as": "label"
+        },
+        {
+          "filter": "datum.ext == 1 && datum.side == -1"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -6,
+        "fontSize": 12.5,
+        "fontWeight": 700,
+        "color": "#14213d"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lx",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "ly",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "data": {
+        "name": "annot"
+      },
+      "transform": [
+        {
+          "filter": "isValid(datum.lon2)"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 1.2,
+        "strokeDash": [
+          3,
+          2
+        ]
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon2",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat2",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "lon3"
+        },
+        "latitude2": {
+          "field": "lat3"
+        },
+        "color": {
+          "field": "color",
+          "type": "nominal",
+          "scale": null,
+          "legend": null
+        }
+      }
+    },
+    {
+      "data": {
+        "name": "annot"
+      },
+      "transform": [
+        {
+          "filter": "isValid(datum.text)"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "fontSize": 11.5,
+        "fontWeight": 600,
+        "lineBreak": "\n",
+        "lineHeight": 14
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text"
+        },
+        "color": {
+          "field": "color",
+          "type": "nominal",
+          "scale": null,
+          "legend": null
+        }
+      }
+    }
+  ]
+}
